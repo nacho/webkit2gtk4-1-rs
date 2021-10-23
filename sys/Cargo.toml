@@ -1,48 +1,50 @@
 [build-dependencies]
 pkg-config = "0.3.7"
-system-deps = "3"
+system-deps = "5"
 
 [dependencies]
 libc = "0.2"
-
-[dependencies.atk-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
-
-[dependencies.cairo-sys-rs]
-git = "https://github.com/gtk-rs/gtk-rs.git"
-
-[dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
-
-[dependencies.gdk-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+bitflags = "^1.0"
 
 [dependencies.gio-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gtk-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+[dependencies.cairo-sys-rs]
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.javascriptcore-rs-sys]
-git = "https://github.com/gtk-rs/javascriptcore-rs"
+[dependencies.gdk-pixbuf-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.pango-sys]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core"
+
+[dependencies.atk-sys]
+git = "https://github.com/gtk-rs/gtk3-rs"
+
+[dependencies.gdk-sys]
+git = "https://github.com/gtk-rs/gtk3-rs"
+
+[dependencies.gtk-sys]
+git = "https://github.com/gtk-rs/gtk3-rs"
+
+[dependencies.javascriptcore-rs-sys]
+git = "https://github.com/vhdirk/javascriptcore-rs"
 
 [dependencies.soup-sys]
-git = "https://github.com/gtk-rs/soup-sys-rs"
+git = "https://github.com/vhdirk/soup-rs"
 
 [dev-dependencies]
 shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
+dox = []
 v2_6 = []
 v2_8 = ["v2_6"]
 v2_10 = ["v2_8"]
@@ -54,21 +56,25 @@ v2_20 = ["v2_18"]
 v2_22 = ["v2_20"]
 v2_24 = ["v2_22"]
 v2_26 = ["v2_24"]
-dox = []
 v2_28 = ["v2_26"]
 v2_30 = ["v2_28"]
+v2_32 = ["v2_30"]
+v2_34 = ["v2_32"]
 
 [lib]
 name = "webkit2gtk_sys"
 
 [package]
+name = "webkit2gtk-sys"
 build = "build.rs"
+categories = ["api-bindings", "gui"]
+description = "Rust binding for webkit-gtk library"
+keywords = ["webkit", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
 links = "web_kit2"
-name = "webkit2gtk-sys"
-version = "0.7.0"
+repository = "https://github.com/vhdirk/webkit2gtk-rs"
+version = "0.15.0"
 edition = "2018"
-documentation = "https://gtk-rs.github.io/webkit2gtk-rs/webkit2gtk_sys"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.webkit2gtk_4_0]
@@ -113,3 +119,9 @@ version = "2.28"
 
 [package.metadata.system-deps.webkit2gtk_4_0.v2_30]
 version = "2.30"
+
+[package.metadata.system-deps.webkit2gtk_4_0.v2_32]
+version = "2.32"
+
+[package.metadata.system-deps.webkit2gtk_4_0.v2_34]
+version = "2.34"
