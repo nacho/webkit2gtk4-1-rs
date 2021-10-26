@@ -306,8 +306,12 @@ name = "WebKit2.WebsiteDataManager"
 status = "generate"
 generate_builder = true
     [[object.function]]
-    name = "(remove|clear)"
-    ignore = true # to be generated manually
+    name = "clear"
+    manual = true
+
+    [[object.function]]
+    name = "remove"
+    manual = true
 
 [[object]]
 name = "WebKit2.WebsitePolicies"

@@ -13,7 +13,7 @@ use std::ptr;
 
 use ffi;
 use glib::object::Cast;
-use glib::translate::ToGlibPtr;
+use glib::translate::{ToGlibPtr, IntoGlib, ToGlibPtrMut, FromGlibPtrNone};
 use glib::StaticType;
 use gobject_sys;
 use gtk;
