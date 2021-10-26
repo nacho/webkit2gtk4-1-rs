@@ -34,10 +34,12 @@ mod credential;
 mod javascript_result;
 mod web_context;
 mod web_view;
+mod website_data_manager;
 
 pub use credential::*;
 pub use javascript_result::*;
 pub use web_context::*;
 pub use web_view::*;
+pub use website_data_manager::*;
 
 pub use crate::auto::*;

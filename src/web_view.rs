@@ -12,8 +12,8 @@ use std::ffi::CString;
 use std::ptr;
 
 use ffi;
-use glib::translate::ToGlibPtr;
 use glib::object::Cast;
+use glib::translate::ToGlibPtr;
 use glib::StaticType;
 use gobject_sys;
 use gtk;

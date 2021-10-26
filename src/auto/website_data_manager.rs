@@ -456,6 +456,23 @@ pub trait WebsiteDataManagerExt: 'static {
     #[doc(alias = "webkit_website_data_manager_is_ephemeral")]
     fn is_ephemeral(&self) -> bool;
 
+    #[cfg(any(feature = "v2_16", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "webkit_website_data_manager_remove")]
+    fn remove<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
+        &self,
+        types: WebsiteDataTypes,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    );
+
+    #[cfg(any(feature = "v2_16", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    fn remove_future(
+        &self,
+        types: WebsiteDataTypes,
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
+
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     #[doc(alias = "webkit_website_data_manager_set_itp_enabled")]
@@ -816,6 +833,62 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
                 self.as_ref().to_glib_none().0,
             ))
         }
+    }
+
+    #[cfg(any(feature = "v2_16", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    fn remove<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
+        &self,
+        types: WebsiteDataTypes,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    ) {
+        let user_data: Box_<P> = Box_::new(callback);
+        unsafe extern "C" fn remove_trampoline<
+            P: FnOnce(Result<(), glib::Error>) + Send + 'static,
+        >(
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let mut error = ptr::null_mut();
+            let _ = ffi::webkit_website_data_manager_remove_finish(
+                _source_object as *mut _,
+                res,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok(())
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<P> = Box_::from_raw(user_data as *mut _);
+            callback(result);
+        }
+        let callback = remove_trampoline::<P>;
+        unsafe {
+            ffi::webkit_website_data_manager_remove(
+                self.as_ref().to_glib_none().0,
+                types.into_glib(),
+                website_data.to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
+
+    #[cfg(any(feature = "v2_16", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    fn remove_future(
+        &self,
+        types: WebsiteDataTypes,
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.remove(types, Some(cancellable), move |res| {
+                send.resolve(res);
+            });
+        }))
     }
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
