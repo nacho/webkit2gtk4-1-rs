@@ -1,0 +1,12 @@
+[options]
+library = "JavaScriptCore"
+version = "5.0"
+target_path = "."
+min_cfg_version = "2.24"
+work_mode = "sys"
+girs_directories = ["../../gir-files", "../../webkit2gtk-gir-files"]
+
+external_libraries = [
+    "GLib",
+    "GObject",
+]
