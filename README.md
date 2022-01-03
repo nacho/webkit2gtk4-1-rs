@@ -1,12 +1,12 @@
-# webkit2gtk ![CI](https://github.com/gtk-rs/webkit2gtk-rs/workflows/CI/badge.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
+# webkit2gtk ![CI](https://gitlab.gnome.org/World/Rust/webkit2gtk5-rs/badges/master/pipeline.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
 
-[Project site](https://gtk-rs.org/) | [Online documentation](https://gtk-rs.github.io/webkit2gtk-rs/webkit2gtk)
+[Project site](https://gtk-rs.org/)
 
-__Rust__ bindings and wrappers for __webkit2gtk__.
+__Rust__ bindings and wrappers for __webkit2gtk-5.0__.
 
 ## Building
 
-__webkit2gtk-rs__ expects __GTK+__, __GLib__ and __webkit2gtk__ development files to be installed on your system.
+__webkit2gtk5-rs__ expects __GTK4__, __GLib__ and __webkit2gtk-5.0__ development files to be installed on your system.
 See the [requirements page](https://gtk-rs.org/docs/requirements.html).
 
 ## Using
@@ -18,7 +18,7 @@ If you want to track the bleeding edge, use the git dependency instead:
 
 ```toml
 [dependencies]
-webkit2gtk-rs = { git = "https://github.com/gtk-rs/webkit2gtk-rs.git" }
+webkit2gtk5 = { git = "https://gitlab.gnome.org/World/Rust/webkit2gtk5-rs.git" }
 ```
 
 Avoid mixing versioned and git crates like this:
@@ -26,8 +26,8 @@ Avoid mixing versioned and git crates like this:
 ```toml
 # This will not compile
 [dependencies]
-gtk = "0.2"
-webkit2gtk-rs = { git = "https://github.com/gtk-rs/webkit2gtk-rs.git" }
+gtk4 = "0.2"
+webkit2gtk5 = { git = "https://gitlab.gnome.org/World/Rust/webkit2gtk5-rs.git" }
 ```
 
 ## Contribute
@@ -46,4 +46,4 @@ When opening a PR please put the changes to the `src/auto` directory in a separa
 
 ## License
 
-__webkit2gtk-rs__ is available under the MIT License, please refer to it.
+__webkit2gtk5-rs__ is available under the MIT License, please refer to it.
