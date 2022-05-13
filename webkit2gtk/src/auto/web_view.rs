@@ -29,6 +29,9 @@ use crate::InputMethodContext;
 use crate::InsecureContentEvent;
 use crate::JavascriptResult;
 use crate::LoadEvent;
+#[cfg(any(feature = "v2_34", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+use crate::MediaCaptureState;
 #[cfg(any(feature = "v2_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use crate::NavigationAction;
@@ -89,7 +92,7 @@ use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebView")]
-    pub struct WebView(Object<ffi::WebKitWebView, ffi::WebKitWebViewClass>) @extends WebViewBase, gtk::Widget;
+    pub struct WebView(Object<ffi::WebKitWebView, ffi::WebKitWebViewClass>) @extends WebViewBase, gtk::Widget, gobject::InitiallyUnowned, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
         type_ => || ffi::webkit_web_view_get_type(),
@@ -186,8 +189,12 @@ pub struct WebViewBuilder {
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     automation_presentation_type: Option<AutomationBrowsingContextPresentation>,
-    //camera-capture-state: /*Unknown type*/,
-    //display-capture-state: /*Unknown type*/,
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    camera_capture_state: Option<MediaCaptureState>,
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    display_capture_state: Option<MediaCaptureState>,
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     editable: Option<bool>,
@@ -200,7 +207,9 @@ pub struct WebViewBuilder {
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     is_muted: Option<bool>,
-    //microphone-capture-state: /*Unknown type*/,
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    microphone_capture_state: Option<MediaCaptureState>,
     #[cfg(any(feature = "v2_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
     related_view: Option<WebView>,
@@ -244,6 +253,7 @@ pub struct WebViewBuilder {
     vexpand_set: Option<bool>,
     visible: Option<bool>,
     width_request: Option<i32>,
+    //accessible-role: /*Unknown type*/,
 }
 
 impl WebViewBuilder {
@@ -262,6 +272,14 @@ impl WebViewBuilder {
         if let Some(ref automation_presentation_type) = self.automation_presentation_type {
             properties.push(("automation-presentation-type", automation_presentation_type));
         }
+        #[cfg(any(feature = "v2_34", feature = "dox"))]
+        if let Some(ref camera_capture_state) = self.camera_capture_state {
+            properties.push(("camera-capture-state", camera_capture_state));
+        }
+        #[cfg(any(feature = "v2_34", feature = "dox"))]
+        if let Some(ref display_capture_state) = self.display_capture_state {
+            properties.push(("display-capture-state", display_capture_state));
+        }
         #[cfg(any(feature = "v2_8", feature = "dox"))]
         if let Some(ref editable) = self.editable {
             properties.push(("editable", editable));
@@ -277,6 +295,10 @@ impl WebViewBuilder {
         #[cfg(any(feature = "v2_30", feature = "dox"))]
         if let Some(ref is_muted) = self.is_muted {
             properties.push(("is-muted", is_muted));
+        }
+        #[cfg(any(feature = "v2_34", feature = "dox"))]
+        if let Some(ref microphone_capture_state) = self.microphone_capture_state {
+            properties.push(("microphone-capture-state", microphone_capture_state));
         }
         #[cfg(any(feature = "v2_4", feature = "dox"))]
         if let Some(ref related_view) = self.related_view {
@@ -385,6 +407,20 @@ impl WebViewBuilder {
         self
     }
 
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn camera_capture_state(mut self, camera_capture_state: MediaCaptureState) -> Self {
+        self.camera_capture_state = Some(camera_capture_state);
+        self
+    }
+
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn display_capture_state(mut self, display_capture_state: MediaCaptureState) -> Self {
+        self.display_capture_state = Some(display_capture_state);
+        self
+    }
+
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     pub fn editable(mut self, editable: bool) -> Self {
@@ -410,6 +446,13 @@ impl WebViewBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     pub fn is_muted(mut self, is_muted: bool) -> Self {
         self.is_muted = Some(is_muted);
+        self
+    }
+
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn microphone_capture_state(mut self, microphone_capture_state: MediaCaptureState) -> Self {
+        self.microphone_capture_state = Some(microphone_capture_state);
         self
     }
 
@@ -625,11 +668,11 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_background_color")]
     fn background_color(&self) -> gdk::RGBA;
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_get_camera_capture_state")]
-    //#[doc(alias = "get_camera_capture_state")]
-    //fn camera_capture_state(&self) -> /*Ignored*/MediaCaptureState;
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_get_camera_capture_state")]
+    #[doc(alias = "get_camera_capture_state")]
+    fn camera_capture_state(&self) -> MediaCaptureState;
 
     #[doc(alias = "webkit_web_view_get_context")]
     #[doc(alias = "get_context")]
@@ -639,11 +682,11 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_custom_charset")]
     fn custom_charset(&self) -> Option<glib::GString>;
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_get_display_capture_state")]
-    //#[doc(alias = "get_display_capture_state")]
-    //fn display_capture_state(&self) -> /*Ignored*/MediaCaptureState;
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_get_display_capture_state")]
+    #[doc(alias = "get_display_capture_state")]
+    fn display_capture_state(&self) -> MediaCaptureState;
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
@@ -692,11 +735,11 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_main_resource")]
     fn main_resource(&self) -> Option<WebResource>;
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_get_microphone_capture_state")]
-    //#[doc(alias = "get_microphone_capture_state")]
-    //fn microphone_capture_state(&self) -> /*Ignored*/MediaCaptureState;
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_get_microphone_capture_state")]
+    #[doc(alias = "get_microphone_capture_state")]
+    fn microphone_capture_state(&self) -> MediaCaptureState;
 
     #[doc(alias = "webkit_web_view_get_page_id")]
     #[doc(alias = "get_page_id")]
@@ -928,10 +971,10 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "webkit_web_view_set_background_color")]
     fn set_background_color(&self, rgba: &gdk::RGBA);
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_set_camera_capture_state")]
-    //fn set_camera_capture_state(&self, state: /*Ignored*/MediaCaptureState);
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_set_camera_capture_state")]
+    fn set_camera_capture_state(&self, state: MediaCaptureState);
 
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
@@ -941,10 +984,10 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "webkit_web_view_set_custom_charset")]
     fn set_custom_charset(&self, charset: Option<&str>);
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_set_display_capture_state")]
-    //fn set_display_capture_state(&self, state: /*Ignored*/MediaCaptureState);
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_set_display_capture_state")]
+    fn set_display_capture_state(&self, state: MediaCaptureState);
 
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -961,10 +1004,10 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "webkit_web_view_set_is_muted")]
     fn set_is_muted(&self, muted: bool);
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_web_view_set_microphone_capture_state")]
-    //fn set_microphone_capture_state(&self, state: /*Ignored*/MediaCaptureState);
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_web_view_set_microphone_capture_state")]
+    fn set_microphone_capture_state(&self, state: MediaCaptureState);
 
     #[doc(alias = "webkit_web_view_set_settings")]
     fn set_settings(&self, settings: &impl IsA<Settings>);
@@ -1377,11 +1420,15 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn camera_capture_state(&self) -> /*Ignored*/MediaCaptureState {
-    //    unsafe { TODO: call ffi:webkit_web_view_get_camera_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn camera_capture_state(&self) -> MediaCaptureState {
+        unsafe {
+            from_glib(ffi::webkit_web_view_get_camera_capture_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn context(&self) -> Option<WebContext> {
         unsafe {
@@ -1399,11 +1446,15 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn display_capture_state(&self) -> /*Ignored*/MediaCaptureState {
-    //    unsafe { TODO: call ffi:webkit_web_view_get_display_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn display_capture_state(&self) -> MediaCaptureState {
+        unsafe {
+            from_glib(ffi::webkit_web_view_get_display_capture_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
@@ -1483,11 +1534,15 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn microphone_capture_state(&self) -> /*Ignored*/MediaCaptureState {
-    //    unsafe { TODO: call ffi:webkit_web_view_get_microphone_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn microphone_capture_state(&self) -> MediaCaptureState {
+        unsafe {
+            from_glib(ffi::webkit_web_view_get_microphone_capture_state(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn page_id(&self) -> u64 {
         unsafe { ffi::webkit_web_view_get_page_id(self.as_ref().to_glib_none().0) }
@@ -2216,11 +2271,16 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn set_camera_capture_state(&self, state: /*Ignored*/MediaCaptureState) {
-    //    unsafe { TODO: call ffi:webkit_web_view_set_camera_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn set_camera_capture_state(&self, state: MediaCaptureState) {
+        unsafe {
+            ffi::webkit_web_view_set_camera_capture_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib(),
+            );
+        }
+    }
 
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
@@ -2242,11 +2302,16 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn set_display_capture_state(&self, state: /*Ignored*/MediaCaptureState) {
-    //    unsafe { TODO: call ffi:webkit_web_view_set_display_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn set_display_capture_state(&self, state: MediaCaptureState) {
+        unsafe {
+            ffi::webkit_web_view_set_display_capture_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib(),
+            );
+        }
+    }
 
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -2275,11 +2340,16 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn set_microphone_capture_state(&self, state: /*Ignored*/MediaCaptureState) {
-    //    unsafe { TODO: call ffi:webkit_web_view_set_microphone_capture_state() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn set_microphone_capture_state(&self, state: MediaCaptureState) {
+        unsafe {
+            ffi::webkit_web_view_set_microphone_capture_state(
+                self.as_ref().to_glib_none().0,
+                state.into_glib(),
+            );
+        }
+    }
 
     fn set_settings(&self, settings: &impl IsA<Settings>) {
         unsafe {

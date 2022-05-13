@@ -9,7 +9,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "WebKitBackForwardListItem")]
-    pub struct BackForwardListItem(Object<ffi::WebKitBackForwardListItem, ffi::WebKitBackForwardListItemClass>);
+    pub struct BackForwardListItem(Object<ffi::WebKitBackForwardListItem, ffi::WebKitBackForwardListItemClass>) @extends gobject::InitiallyUnowned;
 
     match fn {
         type_ => || ffi::webkit_back_forward_list_item_get_type(),

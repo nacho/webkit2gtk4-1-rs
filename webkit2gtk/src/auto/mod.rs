@@ -67,6 +67,9 @@ pub use self::input_method_context::InputMethodContext;
 mod install_missing_media_plugins_permission_request;
 pub use self::install_missing_media_plugins_permission_request::InstallMissingMediaPluginsPermissionRequest;
 
+mod media_key_system_permission_request;
+pub use self::media_key_system_permission_request::MediaKeySystemPermissionRequest;
+
 mod navigation_policy_decision;
 pub use self::navigation_policy_decision::NavigationPolicyDecision;
 
@@ -186,6 +189,9 @@ mod input_method_underline;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 pub use self::input_method_underline::InputMethodUnderline;
 
+mod memory_pressure_settings;
+pub use self::memory_pressure_settings::MemoryPressureSettings;
+
 mod mime_info;
 pub use self::mime_info::MimeInfo;
 
@@ -280,6 +286,9 @@ pub use self::enums::InputPurpose;
 pub use self::enums::InsecureContentEvent;
 pub use self::enums::JavascriptError;
 pub use self::enums::LoadEvent;
+#[cfg(any(feature = "v2_34", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+pub use self::enums::MediaCaptureState;
 pub use self::enums::NavigationType;
 pub use self::enums::NetworkError;
 #[cfg(any(feature = "v2_16", feature = "dox"))]

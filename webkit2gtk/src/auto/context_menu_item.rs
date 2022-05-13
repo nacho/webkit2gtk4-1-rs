@@ -11,7 +11,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "WebKitContextMenuItem")]
-    pub struct ContextMenuItem(Object<ffi::WebKitContextMenuItem, ffi::WebKitContextMenuItemClass>);
+    pub struct ContextMenuItem(Object<ffi::WebKitContextMenuItem, ffi::WebKitContextMenuItemClass>) @extends gobject::InitiallyUnowned;
 
     match fn {
         type_ => || ffi::webkit_context_menu_item_get_type(),

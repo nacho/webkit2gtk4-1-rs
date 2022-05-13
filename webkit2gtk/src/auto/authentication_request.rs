@@ -57,11 +57,11 @@ pub trait AuthenticationRequestExt: 'static {
     #[doc(alias = "webkit_authentication_request_cancel")]
     fn cancel(&self);
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_authentication_request_get_certificate_pin_flags")]
-    //#[doc(alias = "get_certificate_pin_flags")]
-    //fn certificate_pin_flags(&self) -> /*Ignored*/gio::TlsPasswordFlags;
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_authentication_request_get_certificate_pin_flags")]
+    #[doc(alias = "get_certificate_pin_flags")]
+    fn certificate_pin_flags(&self) -> gio::TlsPasswordFlags;
 
     #[cfg(any(feature = "v2_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
@@ -149,11 +149,17 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //fn certificate_pin_flags(&self) -> /*Ignored*/gio::TlsPasswordFlags {
-    //    unsafe { TODO: call ffi:webkit_authentication_request_get_certificate_pin_flags() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    fn certificate_pin_flags(&self) -> gio::TlsPasswordFlags {
+        unsafe {
+            from_glib(
+                ffi::webkit_authentication_request_get_certificate_pin_flags(
+                    self.as_ref().to_glib_none().0,
+                ),
+            )
+        }
+    }
 
     #[cfg(any(feature = "v2_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]

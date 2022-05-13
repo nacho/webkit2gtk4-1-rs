@@ -9,6 +9,9 @@ use crate::CookieManager;
 #[cfg(any(feature = "v2_30", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
 use crate::ITPThirdParty;
+#[cfg(any(feature = "v2_34", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+use crate::MemoryPressureSettings;
 #[cfg(any(feature = "v2_32", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
 use crate::NetworkProxyMode;
@@ -77,12 +80,17 @@ impl WebsiteDataManager {
         WebsiteDataManagerBuilder::default()
     }
 
-    //#[cfg(any(feature = "v2_34", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    //#[doc(alias = "webkit_website_data_manager_set_memory_pressure_settings")]
-    //pub fn set_memory_pressure_settings(settings: /*Ignored*/&mut MemoryPressureSettings) {
-    //    unsafe { TODO: call ffi:webkit_website_data_manager_set_memory_pressure_settings() }
-    //}
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_website_data_manager_set_memory_pressure_settings")]
+    pub fn set_memory_pressure_settings(settings: &mut MemoryPressureSettings) {
+        assert_initialized_main_thread!();
+        unsafe {
+            ffi::webkit_website_data_manager_set_memory_pressure_settings(
+                settings.to_glib_none_mut().0,
+            );
+        }
+    }
 }
 
 #[cfg(any(feature = "v2_10", feature = "dox"))]
