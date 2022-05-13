@@ -3,6 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+use crate::ConsoleMessageLevel;
 use crate::ConsoleMessageSource;
 use glib::translate::*;
 
@@ -18,11 +19,15 @@ glib::wrapper! {
 }
 
 impl ConsoleMessage {
-    //#[doc(alias = "webkit_console_message_get_level")]
-    //#[doc(alias = "get_level")]
-    //pub fn level(&mut self) -> /*Ignored*/ConsoleMessageLevel {
-    //    unsafe { TODO: call ffi:webkit_console_message_get_level() }
-    //}
+    #[doc(alias = "webkit_console_message_get_level")]
+    #[doc(alias = "get_level")]
+    pub fn level(&mut self) -> ConsoleMessageLevel {
+        unsafe {
+            from_glib(ffi::webkit_console_message_get_level(
+                self.to_glib_none_mut().0,
+            ))
+        }
+    }
 
     #[doc(alias = "webkit_console_message_get_line")]
     #[doc(alias = "get_line")]

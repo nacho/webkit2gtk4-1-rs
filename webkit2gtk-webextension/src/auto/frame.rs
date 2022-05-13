@@ -3,6 +3,12 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+#[cfg(any(feature = "v2_22", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+use crate::DOMObject;
+#[cfg(any(feature = "v2_22", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+use crate::ScriptWorld;
 use glib::object::IsA;
 #[cfg(any(feature = "v2_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
@@ -43,29 +49,39 @@ pub trait FrameExt: 'static {
     //#[doc(alias = "get_javascript_global_context")]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<java_script_core::GlobalContextRef>;
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //#[doc(alias = "webkit_frame_get_js_context")]
-    //#[doc(alias = "get_js_context")]
-    //fn js_context(&self) -> /*Ignored*/Option<java_script_core::Context>;
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_frame_get_js_context")]
+    #[doc(alias = "get_js_context")]
+    fn js_context(&self) -> Option<java_script_core::Context>;
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //#[doc(alias = "webkit_frame_get_js_context_for_script_world")]
-    //#[doc(alias = "get_js_context_for_script_world")]
-    //fn js_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::Context>;
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_frame_get_js_context_for_script_world")]
+    #[doc(alias = "get_js_context_for_script_world")]
+    fn js_context_for_script_world(
+        &self,
+        world: &impl IsA<ScriptWorld>,
+    ) -> Option<java_script_core::Context>;
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //#[doc(alias = "webkit_frame_get_js_value_for_dom_object")]
-    //#[doc(alias = "get_js_value_for_dom_object")]
-    //fn js_value_for_dom_object(&self, dom_object: &impl IsA<DOMObject>) -> /*Ignored*/Option<java_script_core::Value>;
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_frame_get_js_value_for_dom_object")]
+    #[doc(alias = "get_js_value_for_dom_object")]
+    fn js_value_for_dom_object(
+        &self,
+        dom_object: &impl IsA<DOMObject>,
+    ) -> Option<java_script_core::Value>;
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //#[doc(alias = "webkit_frame_get_js_value_for_dom_object_in_script_world")]
-    //#[doc(alias = "get_js_value_for_dom_object_in_script_world")]
-    //fn js_value_for_dom_object_in_script_world(&self, dom_object: &impl IsA<DOMObject>, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::Value>;
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_frame_get_js_value_for_dom_object_in_script_world")]
+    #[doc(alias = "get_js_value_for_dom_object_in_script_world")]
+    fn js_value_for_dom_object_in_script_world(
+        &self,
+        dom_object: &impl IsA<DOMObject>,
+        world: &impl IsA<ScriptWorld>,
+    ) -> Option<java_script_core::Value>;
 
     #[cfg(any(feature = "v2_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
@@ -98,29 +114,61 @@ impl<O: IsA<Frame>> FrameExt for O {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_global_context() }
     //}
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //fn js_context(&self) -> /*Ignored*/Option<java_script_core::Context> {
-    //    unsafe { TODO: call ffi:webkit_frame_get_js_context() }
-    //}
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    fn js_context(&self) -> Option<java_script_core::Context> {
+        unsafe {
+            from_glib_full(ffi::webkit_frame_get_js_context(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //fn js_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::Context> {
-    //    unsafe { TODO: call ffi:webkit_frame_get_js_context_for_script_world() }
-    //}
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    fn js_context_for_script_world(
+        &self,
+        world: &impl IsA<ScriptWorld>,
+    ) -> Option<java_script_core::Context> {
+        unsafe {
+            from_glib_full(ffi::webkit_frame_get_js_context_for_script_world(
+                self.as_ref().to_glib_none().0,
+                world.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //fn js_value_for_dom_object(&self, dom_object: &impl IsA<DOMObject>) -> /*Ignored*/Option<java_script_core::Value> {
-    //    unsafe { TODO: call ffi:webkit_frame_get_js_value_for_dom_object() }
-    //}
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    fn js_value_for_dom_object(
+        &self,
+        dom_object: &impl IsA<DOMObject>,
+    ) -> Option<java_script_core::Value> {
+        unsafe {
+            from_glib_full(ffi::webkit_frame_get_js_value_for_dom_object(
+                self.as_ref().to_glib_none().0,
+                dom_object.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //fn js_value_for_dom_object_in_script_world(&self, dom_object: &impl IsA<DOMObject>, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::Value> {
-    //    unsafe { TODO: call ffi:webkit_frame_get_js_value_for_dom_object_in_script_world() }
-    //}
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    fn js_value_for_dom_object_in_script_world(
+        &self,
+        dom_object: &impl IsA<DOMObject>,
+        world: &impl IsA<ScriptWorld>,
+    ) -> Option<java_script_core::Value> {
+        unsafe {
+            from_glib_full(
+                ffi::webkit_frame_get_js_value_for_dom_object_in_script_world(
+                    self.as_ref().to_glib_none().0,
+                    dom_object.as_ref().to_glib_none().0,
+                    world.as_ref().to_glib_none().0,
+                ),
+            )
+        }
+    }
 
     #[cfg(any(feature = "v2_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]

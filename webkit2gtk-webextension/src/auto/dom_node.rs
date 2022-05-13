@@ -30,12 +30,17 @@ glib::wrapper! {
 impl DOMNode {
     pub const NONE: Option<&'static DOMNode> = None;
 
-    //#[cfg(any(feature = "v2_22", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    //#[doc(alias = "webkit_dom_node_for_js_value")]
-    //pub fn for_js_value(value: /*Ignored*/&java_script_core::Value) -> Option<DOMNode> {
-    //    unsafe { TODO: call ffi:webkit_dom_node_for_js_value() }
-    //}
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_dom_node_for_js_value")]
+    pub fn for_js_value(value: &impl IsA<java_script_core::Value>) -> Option<DOMNode> {
+        assert_initialized_main_thread!();
+        unsafe {
+            from_glib_none(ffi::webkit_dom_node_for_js_value(
+                value.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 }
 
 pub trait DOMNodeExt: 'static {

@@ -4,6 +4,7 @@
 // DO NOT EDIT
 
 use crate::DOMNode;
+use crate::DOMNodeFilter;
 use crate::DOMObject;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -43,10 +44,10 @@ pub trait DOMTreeWalkerExt: 'static {
     #[doc(alias = "get_expand_entity_references")]
     fn expands_entity_references(&self) -> bool;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_tree_walker_get_filter")]
-    //#[doc(alias = "get_filter")]
-    //fn filter(&self) -> /*Ignored*/Option<DOMNodeFilter>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_tree_walker_get_filter")]
+    #[doc(alias = "get_filter")]
+    fn filter(&self) -> Option<DOMNodeFilter>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_tree_walker_get_root")]
@@ -124,9 +125,13 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
-    //fn filter(&self) -> /*Ignored*/Option<DOMNodeFilter> {
-    //    unsafe { TODO: call ffi:webkit_dom_tree_walker_get_filter() }
-    //}
+    fn filter(&self) -> Option<DOMNodeFilter> {
+        unsafe {
+            from_glib_full(ffi::webkit_dom_tree_walker_get_filter(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn root(&self) -> Option<DOMNode> {
         unsafe {

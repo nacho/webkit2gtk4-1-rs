@@ -22,12 +22,18 @@ use crate::DOMHTMLElement;
 use crate::DOMHTMLHeadElement;
 use crate::DOMHTMLScriptElement;
 use crate::DOMNode;
+use crate::DOMNodeFilter;
+use crate::DOMNodeIterator;
 use crate::DOMNodeList;
 use crate::DOMObject;
 use crate::DOMProcessingInstruction;
 use crate::DOMRange;
 use crate::DOMStyleSheetList;
 use crate::DOMText;
+use crate::DOMTreeWalker;
+use crate::DOMXPathExpression;
+use crate::DOMXPathNSResolver;
+use crate::DOMXPathResult;
 use glib::object::Cast;
 use glib::object::IsA;
 use glib::signal::connect_raw;
@@ -117,17 +123,27 @@ pub trait DOMDocumentExt: 'static {
     #[doc(alias = "webkit_dom_document_create_event")]
     fn create_event(&self, eventType: &str) -> Result<DOMEvent, glib::Error>;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_document_create_expression")]
-    //fn create_expression(&self, expression: &str, resolver: /*Ignored*/&DOMXPathNSResolver) -> Result<DOMXPathExpression, glib::Error>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_document_create_expression")]
+    fn create_expression(
+        &self,
+        expression: &str,
+        resolver: &impl IsA<DOMXPathNSResolver>,
+    ) -> Result<DOMXPathExpression, glib::Error>;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_document_create_node_iterator")]
-    //fn create_node_iterator(&self, root: &impl IsA<DOMNode>, whatToShow: libc::c_ulong, filter: /*Ignored*/Option<&DOMNodeFilter>, expandEntityReferences: bool) -> Result<DOMNodeIterator, glib::Error>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_document_create_node_iterator")]
+    fn create_node_iterator(
+        &self,
+        root: &impl IsA<DOMNode>,
+        whatToShow: libc::c_ulong,
+        filter: Option<&impl IsA<DOMNodeFilter>>,
+        expandEntityReferences: bool,
+    ) -> Result<DOMNodeIterator, glib::Error>;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_document_create_ns_resolver")]
-    //fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> /*Ignored*/Option<DOMXPathNSResolver>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_document_create_ns_resolver")]
+    fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> Option<DOMXPathNSResolver>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_document_create_processing_instruction")]
@@ -145,17 +161,30 @@ pub trait DOMDocumentExt: 'static {
     #[doc(alias = "webkit_dom_document_create_text_node")]
     fn create_text_node(&self, data: &str) -> Option<DOMText>;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_document_create_tree_walker")]
-    //fn create_tree_walker(&self, root: &impl IsA<DOMNode>, whatToShow: libc::c_ulong, filter: /*Ignored*/Option<&DOMNodeFilter>, expandEntityReferences: bool) -> Result<DOMTreeWalker, glib::Error>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_document_create_tree_walker")]
+    fn create_tree_walker(
+        &self,
+        root: &impl IsA<DOMNode>,
+        whatToShow: libc::c_ulong,
+        filter: Option<&impl IsA<DOMNodeFilter>>,
+        expandEntityReferences: bool,
+    ) -> Result<DOMTreeWalker, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_document_element_from_point")]
     fn element_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMElement>;
 
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[doc(alias = "webkit_dom_document_evaluate")]
-    //fn evaluate(&self, expression: &str, contextNode: &impl IsA<DOMNode>, resolver: /*Ignored*/Option<&DOMXPathNSResolver>, type_: libc::c_ushort, inResult: Option<&impl IsA<DOMXPathResult>>) -> Result<DOMXPathResult, glib::Error>;
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_document_evaluate")]
+    fn evaluate(
+        &self,
+        expression: &str,
+        contextNode: &impl IsA<DOMNode>,
+        resolver: Option<&impl IsA<DOMXPathNSResolver>>,
+        type_: libc::c_ushort,
+        inResult: Option<&impl IsA<DOMXPathResult>>,
+    ) -> Result<DOMXPathResult, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_document_exec_command")]
@@ -1047,17 +1076,60 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
-    //fn create_expression(&self, expression: &str, resolver: /*Ignored*/&DOMXPathNSResolver) -> Result<DOMXPathExpression, glib::Error> {
-    //    unsafe { TODO: call ffi:webkit_dom_document_create_expression() }
-    //}
+    fn create_expression(
+        &self,
+        expression: &str,
+        resolver: &impl IsA<DOMXPathNSResolver>,
+    ) -> Result<DOMXPathExpression, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = ffi::webkit_dom_document_create_expression(
+                self.as_ref().to_glib_none().0,
+                expression.to_glib_none().0,
+                resolver.as_ref().to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
-    //fn create_node_iterator(&self, root: &impl IsA<DOMNode>, whatToShow: libc::c_ulong, filter: /*Ignored*/Option<&DOMNodeFilter>, expandEntityReferences: bool) -> Result<DOMNodeIterator, glib::Error> {
-    //    unsafe { TODO: call ffi:webkit_dom_document_create_node_iterator() }
-    //}
+    fn create_node_iterator(
+        &self,
+        root: &impl IsA<DOMNode>,
+        whatToShow: libc::c_ulong,
+        filter: Option<&impl IsA<DOMNodeFilter>>,
+        expandEntityReferences: bool,
+    ) -> Result<DOMNodeIterator, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = ffi::webkit_dom_document_create_node_iterator(
+                self.as_ref().to_glib_none().0,
+                root.as_ref().to_glib_none().0,
+                whatToShow,
+                filter.map(|p| p.as_ref()).to_glib_none().0,
+                expandEntityReferences.into_glib(),
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
-    //fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> /*Ignored*/Option<DOMXPathNSResolver> {
-    //    unsafe { TODO: call ffi:webkit_dom_document_create_ns_resolver() }
-    //}
+    fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> Option<DOMXPathNSResolver> {
+        unsafe {
+            from_glib_full(ffi::webkit_dom_document_create_ns_resolver(
+                self.as_ref().to_glib_none().0,
+                nodeResolver.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     fn create_processing_instruction(
         &self,
@@ -1097,9 +1169,30 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
-    //fn create_tree_walker(&self, root: &impl IsA<DOMNode>, whatToShow: libc::c_ulong, filter: /*Ignored*/Option<&DOMNodeFilter>, expandEntityReferences: bool) -> Result<DOMTreeWalker, glib::Error> {
-    //    unsafe { TODO: call ffi:webkit_dom_document_create_tree_walker() }
-    //}
+    fn create_tree_walker(
+        &self,
+        root: &impl IsA<DOMNode>,
+        whatToShow: libc::c_ulong,
+        filter: Option<&impl IsA<DOMNodeFilter>>,
+        expandEntityReferences: bool,
+    ) -> Result<DOMTreeWalker, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = ffi::webkit_dom_document_create_tree_walker(
+                self.as_ref().to_glib_none().0,
+                root.as_ref().to_glib_none().0,
+                whatToShow,
+                filter.map(|p| p.as_ref()).to_glib_none().0,
+                expandEntityReferences.into_glib(),
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
     fn element_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMElement> {
         unsafe {
@@ -1111,9 +1204,32 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
-    //fn evaluate(&self, expression: &str, contextNode: &impl IsA<DOMNode>, resolver: /*Ignored*/Option<&DOMXPathNSResolver>, type_: libc::c_ushort, inResult: Option<&impl IsA<DOMXPathResult>>) -> Result<DOMXPathResult, glib::Error> {
-    //    unsafe { TODO: call ffi:webkit_dom_document_evaluate() }
-    //}
+    fn evaluate(
+        &self,
+        expression: &str,
+        contextNode: &impl IsA<DOMNode>,
+        resolver: Option<&impl IsA<DOMXPathNSResolver>>,
+        type_: libc::c_ushort,
+        inResult: Option<&impl IsA<DOMXPathResult>>,
+    ) -> Result<DOMXPathResult, glib::Error> {
+        unsafe {
+            let mut error = ptr::null_mut();
+            let ret = ffi::webkit_dom_document_evaluate(
+                self.as_ref().to_glib_none().0,
+                expression.to_glib_none().0,
+                contextNode.as_ref().to_glib_none().0,
+                resolver.map(|p| p.as_ref()).to_glib_none().0,
+                type_,
+                inResult.map(|p| p.as_ref()).to_glib_none().0,
+                &mut error,
+            );
+            if error.is_null() {
+                Ok(from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            }
+        }
+    }
 
     fn exec_command(&self, command: &str, userInterface: bool, value: &str) -> bool {
         unsafe {

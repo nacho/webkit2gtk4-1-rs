@@ -273,6 +273,9 @@ pub use self::dom_named_node_map::DOMNamedNodeMap;
 mod dom_node;
 pub use self::dom_node::DOMNode;
 
+mod dom_node_filter;
+pub use self::dom_node_filter::DOMNodeFilter;
+
 mod dom_node_iterator;
 pub use self::dom_node_iterator::DOMNodeIterator;
 
@@ -309,6 +312,9 @@ pub use self::dom_wheel_event::DOMWheelEvent;
 mod dom_xpath_expression;
 pub use self::dom_xpath_expression::DOMXPathExpression;
 
+mod domx_path_ns_resolver;
+pub use self::domx_path_ns_resolver::DOMXPathNSResolver;
+
 mod dom_xpath_result;
 pub use self::dom_xpath_result::DOMXPathResult;
 
@@ -326,6 +332,9 @@ pub use self::uri_request::URIRequest;
 
 mod uri_response;
 pub use self::uri_response::URIResponse;
+
+mod user_message;
+pub use self::user_message::UserMessage;
 
 mod web_editor;
 pub use self::web_editor::WebEditor;
@@ -349,8 +358,20 @@ pub use self::console_message::ConsoleMessage;
 mod enums;
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+pub use self::enums::ConsoleMessageLevel;
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 pub use self::enums::ConsoleMessageSource;
 pub use self::enums::ContextMenuAction;
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+pub use self::enums::FormSubmissionStep;
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+pub use self::enums::UserMessageError;
+
+mod flags;
+pub use self::flags::HitTestResultContext;
 
 #[doc(hidden)]
 pub mod traits {
@@ -439,6 +460,7 @@ pub mod traits {
     pub use super::dom_mouse_event::DOMMouseEventExt;
     pub use super::dom_named_node_map::DOMNamedNodeMapExt;
     pub use super::dom_node::DOMNodeExt;
+    pub use super::dom_node_filter::DOMNodeFilterExt;
     pub use super::dom_node_iterator::DOMNodeIteratorExt;
     pub use super::dom_node_list::DOMNodeListExt;
     pub use super::dom_processing_instruction::DOMProcessingInstructionExt;
@@ -451,11 +473,13 @@ pub mod traits {
     pub use super::dom_wheel_event::DOMWheelEventExt;
     pub use super::dom_xpath_expression::DOMXPathExpressionExt;
     pub use super::dom_xpath_result::DOMXPathResultExt;
+    pub use super::domx_path_ns_resolver::DOMXPathNSResolverExt;
     pub use super::frame::FrameExt;
     pub use super::hit_test_result::HitTestResultExt;
     pub use super::script_world::ScriptWorldExt;
     pub use super::uri_request::URIRequestExt;
     pub use super::uri_response::URIResponseExt;
+    pub use super::user_message::UserMessageExt;
     pub use super::web_editor::WebEditorExt;
     pub use super::web_extension::WebExtensionExt;
     pub use super::web_hit_test_result::WebHitTestResultExt;

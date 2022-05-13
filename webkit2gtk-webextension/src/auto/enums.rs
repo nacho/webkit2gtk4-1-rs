@@ -22,6 +22,121 @@ use std::fmt;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
+#[doc(alias = "WebKitConsoleMessageLevel")]
+pub enum ConsoleMessageLevel {
+    #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_LEVEL_INFO")]
+    Info,
+    #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_LEVEL_LOG")]
+    Log,
+    #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_LEVEL_WARNING")]
+    Warning,
+    #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_LEVEL_ERROR")]
+    Error,
+    #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_LEVEL_DEBUG")]
+    Debug,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+impl fmt::Display for ConsoleMessageLevel {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "ConsoleMessageLevel::{}",
+            match *self {
+                Self::Info => "Info",
+                Self::Log => "Log",
+                Self::Warning => "Warning",
+                Self::Error => "Error",
+                Self::Debug => "Debug",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[doc(hidden)]
+impl IntoGlib for ConsoleMessageLevel {
+    type GlibType = ffi::WebKitConsoleMessageLevel;
+
+    fn into_glib(self) -> ffi::WebKitConsoleMessageLevel {
+        match self {
+            Self::Info => ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_INFO,
+            Self::Log => ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_LOG,
+            Self::Warning => ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_WARNING,
+            Self::Error => ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_ERROR,
+            Self::Debug => ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_DEBUG,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[doc(hidden)]
+impl FromGlib<ffi::WebKitConsoleMessageLevel> for ConsoleMessageLevel {
+    unsafe fn from_glib(value: ffi::WebKitConsoleMessageLevel) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_INFO => Self::Info,
+            ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_LOG => Self::Log,
+            ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_WARNING => Self::Warning,
+            ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_ERROR => Self::Error,
+            ffi::WEBKIT_CONSOLE_MESSAGE_LEVEL_DEBUG => Self::Debug,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+impl StaticType for ConsoleMessageLevel {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::webkit_console_message_level_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+impl glib::value::ValueType for ConsoleMessageLevel {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+unsafe impl<'a> FromValue<'a> for ConsoleMessageLevel {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+impl ToValue for ConsoleMessageLevel {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v2_12", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
 #[doc(alias = "WebKitConsoleMessageSource")]
 pub enum ConsoleMessageSource {
     #[doc(alias = "WEBKIT_CONSOLE_MESSAGE_SOURCE_JAVASCRIPT")]
@@ -416,6 +531,160 @@ impl FromGlib<ffi::WebKitContextMenuAction> for ContextMenuAction {
             ffi::WEBKIT_CONTEXT_MENU_ACTION_INSERT_EMOJI => Self::InsertEmoji,
             ffi::WEBKIT_CONTEXT_MENU_ACTION_PASTE_AS_PLAIN_TEXT => Self::PasteAsPlainText,
             ffi::WEBKIT_CONTEXT_MENU_ACTION_CUSTOM => Self::Custom,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "WebKitFormSubmissionStep")]
+pub enum FormSubmissionStep {
+    #[doc(alias = "WEBKIT_FORM_SUBMISSION_WILL_SEND_DOM_EVENT")]
+    SendDomEvent,
+    #[doc(alias = "WEBKIT_FORM_SUBMISSION_WILL_COMPLETE")]
+    Complete,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+impl fmt::Display for FormSubmissionStep {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "FormSubmissionStep::{}",
+            match *self {
+                Self::SendDomEvent => "SendDomEvent",
+                Self::Complete => "Complete",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[doc(hidden)]
+impl IntoGlib for FormSubmissionStep {
+    type GlibType = ffi::WebKitFormSubmissionStep;
+
+    fn into_glib(self) -> ffi::WebKitFormSubmissionStep {
+        match self {
+            Self::SendDomEvent => ffi::WEBKIT_FORM_SUBMISSION_WILL_SEND_DOM_EVENT,
+            Self::Complete => ffi::WEBKIT_FORM_SUBMISSION_WILL_COMPLETE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[doc(hidden)]
+impl FromGlib<ffi::WebKitFormSubmissionStep> for FormSubmissionStep {
+    unsafe fn from_glib(value: ffi::WebKitFormSubmissionStep) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::WEBKIT_FORM_SUBMISSION_WILL_SEND_DOM_EVENT => Self::SendDomEvent,
+            ffi::WEBKIT_FORM_SUBMISSION_WILL_COMPLETE => Self::Complete,
+            value => Self::__Unknown(value),
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+impl StaticType for FormSubmissionStep {
+    fn static_type() -> Type {
+        unsafe { from_glib(ffi::webkit_form_submission_step_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+impl glib::value::ValueType for FormSubmissionStep {
+    type Type = Self;
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+unsafe impl<'a> FromValue<'a> for FormSubmissionStep {
+    type Checker = glib::value::GenericValueTypeChecker<Self>;
+
+    unsafe fn from_value(value: &'a glib::Value) -> Self {
+        skip_assert_initialized!();
+        from_glib(glib::gobject_ffi::g_value_get_enum(value.to_glib_none().0))
+    }
+}
+
+#[cfg(any(feature = "v2_20", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+impl ToValue for FormSubmissionStep {
+    fn to_value(&self) -> glib::Value {
+        let mut value = glib::Value::for_value_type::<Self>();
+        unsafe {
+            glib::gobject_ffi::g_value_set_enum(value.to_glib_none_mut().0, self.into_glib());
+        }
+        value
+    }
+
+    fn value_type(&self) -> glib::Type {
+        Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
+#[non_exhaustive]
+#[doc(alias = "WebKitUserMessageError")]
+pub enum UserMessageError {
+    #[doc(alias = "WEBKIT_USER_MESSAGE_UNHANDLED_MESSAGE")]
+    UserMessageUnhandledMessage,
+    #[doc(hidden)]
+    __Unknown(i32),
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+impl fmt::Display for UserMessageError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "UserMessageError::{}",
+            match *self {
+                Self::UserMessageUnhandledMessage => "UserMessageUnhandledMessage",
+                _ => "Unknown",
+            }
+        )
+    }
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[doc(hidden)]
+impl IntoGlib for UserMessageError {
+    type GlibType = ffi::WebKitUserMessageError;
+
+    fn into_glib(self) -> ffi::WebKitUserMessageError {
+        match self {
+            Self::UserMessageUnhandledMessage => ffi::WEBKIT_USER_MESSAGE_UNHANDLED_MESSAGE,
+            Self::__Unknown(value) => value,
+        }
+    }
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[doc(hidden)]
+impl FromGlib<ffi::WebKitUserMessageError> for UserMessageError {
+    unsafe fn from_glib(value: ffi::WebKitUserMessageError) -> Self {
+        skip_assert_initialized!();
+        match value {
+            ffi::WEBKIT_USER_MESSAGE_UNHANDLED_MESSAGE => Self::UserMessageUnhandledMessage,
             value => Self::__Unknown(value),
         }
     }
