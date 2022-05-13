@@ -22,7 +22,7 @@ git = "https://github.com/gtk-rs/gtk4-rs"
 path = "../../javascriptcore/sys"
 
 [dependencies.soup3-sys]
-git = "https://github.com/vhdirk/soup3-rs"
+git = "https://gitlab.gnome.org/World/Rust/soup3-rs"
 
 [dev-dependencies]
 shell-words = "1.0.0"

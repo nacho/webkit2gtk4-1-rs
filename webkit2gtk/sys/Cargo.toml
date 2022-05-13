@@ -35,7 +35,7 @@ path = "../../javascriptcore/sys"
 
 [dependencies.soup3-rs-sys]
 package = "soup3-sys"
-git = "https://gitlab.gnome.org/World/Rust/soup3-rs.git"
+git = "https://gitlab.gnome.org/World/Rust/soup3-rs"
 
 [dev-dependencies]
 shell-words = "1.0.0"
