@@ -92,7 +92,7 @@ use std::ptr;
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebView")]
-    pub struct WebView(Object<ffi::WebKitWebView, ffi::WebKitWebViewClass>) @extends WebViewBase, gtk::Widget, gobject::InitiallyUnowned, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct WebView(Object<ffi::WebKitWebView, ffi::WebKitWebViewClass>) @extends WebViewBase, gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
         type_ => || ffi::webkit_web_view_get_type(),

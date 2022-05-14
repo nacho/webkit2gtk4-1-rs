@@ -116,7 +116,6 @@ manual = [
     "GLib.Quark",
     "GLib.TimeSpan",
     "GLib.Variant",
-    "GObject.InitiallyUnowned",
     "GObject.Object",
     #"Gtk.Action",
     "Gtk.Accessible",

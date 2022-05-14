@@ -14,7 +14,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "WebKitUserMessage")]
-    pub struct UserMessage(Object<ffi::WebKitUserMessage, ffi::WebKitUserMessageClass>) @extends gobject::InitiallyUnowned;
+    pub struct UserMessage(Object<ffi::WebKitUserMessage, ffi::WebKitUserMessageClass>);
 
     match fn {
         type_ => || ffi::webkit_user_message_get_type(),

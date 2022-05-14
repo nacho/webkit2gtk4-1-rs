@@ -6,7 +6,6 @@ pub use ffi;
 pub use gio;
 pub use glib;
 
-
 #[cfg_attr(feature = "cargo-clippy", allow(too_many_arguments))]
 #[cfg_attr(feature = "cargo-clippy", allow(useless_transmute))]
 #[macro_use]

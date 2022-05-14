@@ -7,7 +7,6 @@ use crate::WebContext;
 use crate::WebView;
 use glib::IsA;
 
-
 pub trait WebViewExtManual {
     #[cfg(feature = "v2_6")]
     fn new_with_context_and_user_content_manager(

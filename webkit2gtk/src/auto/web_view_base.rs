@@ -7,7 +7,7 @@ use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebViewBase")]
-    pub struct WebViewBase(Object<ffi::WebKitWebViewBase, ffi::WebKitWebViewBaseClass>) @extends gtk::Widget, gobject::InitiallyUnowned, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+    pub struct WebViewBase(Object<ffi::WebKitWebViewBase, ffi::WebKitWebViewBaseClass>) @extends gtk::Widget, @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
 
     match fn {
         type_ => || ffi::webkit_web_view_base_get_type(),

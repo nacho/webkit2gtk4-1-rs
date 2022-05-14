@@ -34,7 +34,6 @@ manual = [
     "Gio.Cancellable",
     "Gio.UnixFDList",
     "GObject.Closure",
-    "GObject.InitiallyUnowned",
     "GLib.Error",
     "GLib.Quark",
     "GLib.Variant",
