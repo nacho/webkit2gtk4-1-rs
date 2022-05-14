@@ -189,9 +189,6 @@ mod input_method_underline;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 pub use self::input_method_underline::InputMethodUnderline;
 
-mod memory_pressure_settings;
-pub use self::memory_pressure_settings::MemoryPressureSettings;
-
 mod mime_info;
 pub use self::mime_info::MimeInfo;
 

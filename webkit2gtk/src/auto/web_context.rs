@@ -13,9 +13,6 @@ use crate::FaviconDatabase;
 #[cfg(any(feature = "v2_26", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
 use crate::GeolocationManager;
-#[cfg(any(feature = "v2_34", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-use crate::MemoryPressureSettings;
 use crate::Plugin;
 #[cfg(any(feature = "v2_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
@@ -121,9 +118,7 @@ pub struct WebContextBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
     local_storage_directory: Option<String>,
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    memory_pressure_settings: Option<MemoryPressureSettings>,
+    //memory-pressure-settings: /*Unknown type*/,
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     process_swap_on_cross_site_navigation_enabled: Option<bool>,
@@ -148,10 +143,6 @@ impl WebContextBuilder {
         if let Some(ref local_storage_directory) = self.local_storage_directory {
             properties.push(("local-storage-directory", local_storage_directory));
         }
-        #[cfg(any(feature = "v2_34", feature = "dox"))]
-        if let Some(ref memory_pressure_settings) = self.memory_pressure_settings {
-            properties.push(("memory-pressure-settings", memory_pressure_settings));
-        }
         #[cfg(any(feature = "v2_28", feature = "dox"))]
         if let Some(ref process_swap_on_cross_site_navigation_enabled) =
             self.process_swap_on_cross_site_navigation_enabled
@@ -174,16 +165,6 @@ impl WebContextBuilder {
     #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
     pub fn local_storage_directory(mut self, local_storage_directory: &str) -> Self {
         self.local_storage_directory = Some(local_storage_directory.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    pub fn memory_pressure_settings(
-        mut self,
-        memory_pressure_settings: &MemoryPressureSettings,
-    ) -> Self {
-        self.memory_pressure_settings = Some(memory_pressure_settings.clone());
         self
     }
 

@@ -51,7 +51,7 @@ generate = [
     "WebKit2.LoadEvent",
     "WebKit2.MediaCaptureState",
     "WebKit2.MediaKeySystemPermissionRequest",
-    "WebKit2.MemoryPressureSettings",
+    #"WebKit2.MemoryPressureSettings",
     "WebKit2.MimeInfo",
     "WebKit2.NavigationPolicyDecision",
     "WebKit2.NavigationType",
