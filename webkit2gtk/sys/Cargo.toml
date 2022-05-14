@@ -6,34 +6,35 @@ system-deps = "6"
 libc = "0.2"
 bitflags = "^1.0"
 
-[dependencies.gio-sys]
+[dependencies.gio]
+package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.glib-sys]
+[dependencies.glib]
+package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gobject-sys]
+[dependencies.gobject]
+package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.cairo-sys-rs]
+[dependencies.cairo]
+package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gdk-pixbuf-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-
-[dependencies.pango-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-
-[dependencies.gdk4-sys]
+[dependencies.gdk]
+package = "gdk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 
-[dependencies.gtk4-sys]
+[dependencies.gtk]
+package = "gtk4-sys"
 git = "https://github.com/gtk-rs/gtk4-rs"
 
-[dependencies.javascriptcore5-rs-sys]
+[dependencies.java_script_core]
+package = "javascriptcore5-rs-sys"
 path = "../../javascriptcore/sys"
 
-[dependencies.soup3-rs-sys]
+[dependencies.soup]
 package = "soup3-sys"
 git = "https://gitlab.gnome.org/World/Rust/soup3-rs"
 

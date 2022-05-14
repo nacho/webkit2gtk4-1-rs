@@ -24,10 +24,12 @@ name = "javascriptcore5_rs_sys"
 [dependencies]
 libc = "0.2"
 
-[dependencies.glib-sys]
+[dependencies.glib]
+package = "glib-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gobject-sys]
+[dependencies.gobject]
+package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [build-dependencies]
