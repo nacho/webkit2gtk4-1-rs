@@ -67,7 +67,7 @@ macro_rules! web_extension_init_with_data {
         }
     };
 }
-
+#[allow(unused_imports)]
 mod auto;
 mod dom_html_field_set_element;
 

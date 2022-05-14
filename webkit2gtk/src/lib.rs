@@ -3,25 +3,9 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 pub use ffi;
-
-// Re-export gtk dependencies
 pub use gio;
-#[macro_use]
 pub use glib;
 
-pub use glib::Error;
-
-#[macro_use]
-use bitflags;
-use cairo;
-use gdk;
-use gdk_sys;
-use gio_sys;
-use glib_sys;
-use gobject_sys;
-use gtk;
-use gtk_sys;
-use libc;
 
 #[cfg_attr(feature = "cargo-clippy", allow(too_many_arguments))]
 #[cfg_attr(feature = "cargo-clippy", allow(useless_transmute))]
