@@ -9,6 +9,8 @@ use crate::ApplicationInfo;
 #[cfg(any(feature = "v2_18", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use crate::WebView;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::object::Cast;
 use glib::object::IsA;
 #[cfg(any(feature = "v2_18", feature = "dox"))]
@@ -20,8 +22,6 @@ use glib::signal::SignalHandlerId;
 #[cfg(any(feature = "v2_18", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 #[cfg(any(feature = "v2_18", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use std::boxed::Box as Box_;
@@ -41,54 +41,6 @@ glib::wrapper! {
 
 impl AutomationSession {
     pub const NONE: Option<&'static AutomationSession> = None;
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`AutomationSession`] objects.
-    ///
-    /// This method returns an instance of [`AutomationSessionBuilder`](crate::builders::AutomationSessionBuilder) which can be used to create [`AutomationSession`] objects.
-    pub fn builder() -> AutomationSessionBuilder {
-        AutomationSessionBuilder::default()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`AutomationSession`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct AutomationSessionBuilder {
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    id: Option<String>,
-}
-
-impl AutomationSessionBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`AutomationSessionBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`AutomationSession`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> AutomationSession {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_18", feature = "dox"))]
-        if let Some(ref id) = self.id {
-            properties.push(("id", id));
-        }
-        glib::Object::new::<AutomationSession>(&properties)
-            .expect("Failed to create an instance of AutomationSession")
-    }
-
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    pub fn id(mut self, id: &str) -> Self {
-        self.id = Some(id.to_string());
-        self
-    }
 }
 
 pub trait AutomationSessionExt: 'static {

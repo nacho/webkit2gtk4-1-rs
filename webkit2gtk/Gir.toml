@@ -146,7 +146,7 @@ status = "generate"
 [[object]]
 name = "WebKit2.AutomationSession"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "WebKit2.ColorChooserRequest"
@@ -156,7 +156,7 @@ generate_builder = true
 [[object]]
 name = "WebKit2.Download"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "WebKit2.FindController"
@@ -321,7 +321,7 @@ generate_builder = true
 [[object]]
 name = "WebKit2.WebsitePolicies"
 status = "generate"
-generate_builder = true
+generate_builder = false
 
 [[object]]
 name = "WebKit2.WebView"

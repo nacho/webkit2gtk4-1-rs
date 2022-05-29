@@ -387,7 +387,6 @@ pub mod traits {
 }
 #[doc(hidden)]
 pub mod builders {
-    pub use super::automation_session::AutomationSessionBuilder;
     pub use super::color_chooser_request::ColorChooserRequestBuilder;
     pub use super::download::DownloadBuilder;
     pub use super::find_controller::FindControllerBuilder;

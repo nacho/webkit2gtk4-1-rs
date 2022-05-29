@@ -12,6 +12,7 @@ pub use glib;
 mod rt;
 
 #[allow(unused_imports)]
+#[allow(unused_mut)]
 mod auto;
 mod credential;
 mod javascript_result;
