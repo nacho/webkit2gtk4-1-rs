@@ -1,7 +1,7 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
 pub use ffi;
-pub use glib::{Error, Object};
+pub use glib;
 
 macro_rules! assert_initialized_main_thread {
     () => {
@@ -60,6 +60,10 @@ mod auto;
 mod dom_html_field_set_element;
 
 pub use auto::*;
-pub use dom_html_field_set_element::*;
+
+pub mod prelude {
+    pub use super::auto::traits::*;
+    pub use super::dom_html_field_set_element::DOMHTMLFieldSetElementExtManual;
+}
 
 unsafe impl Send for WebExtension {}

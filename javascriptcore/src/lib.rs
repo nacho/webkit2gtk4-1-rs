@@ -7,11 +7,19 @@ pub use ffi;
 
 #[allow(unused_imports)]
 mod auto;
-pub use auto::{traits::*, *};
 mod global_context_ref;
 mod string_ref;
 mod value_ref;
 
+pub use auto::*;
 pub use global_context_ref::*;
 pub use string_ref::*;
 pub use value_ref::*;
+
+pub mod prelude {
+    pub use super::auto::traits::*;
+}
+
+pub mod builders {
+    pub use super::auto::builders::*;
+}
