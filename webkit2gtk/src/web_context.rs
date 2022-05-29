@@ -2,8 +2,8 @@
 
 #[cfg(feature = "v2_16")]
 use super::{NetworkProxyMode, NetworkProxySettings};
-#[cfg(feature = "v2_6")]
-use glib::translate::{FromGlibPtrNone, IntoGlib, ToGlibPtr, ToGlibPtrMut};
+#[cfg(feature = "v2_16")]
+use glib::translate::{IntoGlib, ToGlibPtr, ToGlibPtrMut};
 use glib::IsA;
 
 use super::WebContext;

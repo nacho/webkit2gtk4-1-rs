@@ -11,26 +11,10 @@ variables:
     v0.1=0.1.0-alpha-2
     v0.1=0.1.0-alpha
 
-image: "debian:testing"
+image: "archlinux"
 
 before_script:
-  - apt update; apt install -y --no-install-recommends git build-essential curl ca-certificates meson cmake libgtk-4-dev libnghttp2-dev libsqlite3-dev libpsl-dev glib-networking valac gtk-doc-tools ruby-dev libgcrypt20-dev libxml2-dev libatk1.0-dev libwebp-dev libatspi2.0-dev libwpe-1.0-dev libwpebackend-fdo-1.0-dev libmanette-0.2-dev libxslt1-dev libsecret-1-dev libtasn1-6-dev libenchant-2-dev libxt-dev libnotify-dev libhyphen-dev libopenjp2-7-dev libwoff-dev libavif-dev libsystemd-dev liblcms2-dev libwrap0-dev bubblewrap libseccomp-dev xdg-dbus-proxy libgstreamer-plugins-base1.0-dev libgstreamer-plugins-bad1.0-dev gperf gettext
-  # compile libsoup3
-  - git clone --recursive https://gitlab.gnome.org/GNOME/libsoup
-  - cd libsoup
-  - meson build -Dprefix=/usr -Dbrotli=enabled -Dgtk_doc=true -Dinstalled_tests=true -Dvapi=enabled
-  - cd build
-  - ninja install
-  - cd ../../
-
-  # compile webkit2gtk5
-  - git clone --recursive https://salsa.debian.org/webkit-team/webkit.git
-  - mkdir -p webkit/build
-  - cd webkit/build
-  - cmake -DUSE_GTK4=ON -DPORT=GTK -DUSE_SOUP2=OFF -DUSE_AVIF=ON -DENABLE_GLES2=ON -DENABLE_MINIBROWSER=ON -DCMAKE_INSTALL_PREFIX=/usr ..
-  - make -j8 install
-  - cd ../../
-
+  - pacman -Syu webkit2gtk-5.0 git gcc python3 gdk-pixbuf2 gtk4 pango glib2 pkgconf --noconfirm
   - curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none -y
   - source $HOME/.cargo/env
   - rustup toolchain install nightly --profile minimal --allow-downgrade -c rustfmt
@@ -43,7 +27,6 @@ before_script:
 build:
   script:
     - cargo build --all-features --examples
-    - cargo test
 
 docs:
   stage: test

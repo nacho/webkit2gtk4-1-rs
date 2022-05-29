@@ -1,34 +1,16 @@
-#![allow(deprecated)]
 #![doc = include_str!("../../README.md")]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 pub use ffi;
-
-// Re-export gtk dependencies
 pub use gio;
-#[macro_use]
 pub use glib;
 
-pub use glib::Error;
-
-#[macro_use]
-use bitflags;
-use cairo;
-use gdk;
-use gdk_sys;
-use gio_sys;
-use glib_sys;
-use gobject_sys;
-use gtk;
-use gtk_sys;
-use libc;
-
-#[cfg_attr(feature = "cargo-clippy", allow(too_many_arguments))]
-#[cfg_attr(feature = "cargo-clippy", allow(useless_transmute))]
 #[macro_use]
 mod rt;
 
 #[allow(unused_imports)]
+#[allow(unused_mut)]
+#[allow(clippy::clone_on_copy)]
 mod auto;
 mod credential;
 mod javascript_result;

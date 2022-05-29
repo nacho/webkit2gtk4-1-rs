@@ -7,17 +7,10 @@ use crate::WebContext;
 use crate::WebView;
 use glib::IsA;
 
-use std::error::Error;
-use std::ffi::CString;
-use std::ptr;
-
-use ffi;
-use glib::object::Cast;
-use glib::translate::{FromGlibPtrNone, IntoGlib, ToGlibPtr, ToGlibPtrMut};
-use glib::StaticType;
-use gobject_sys;
-use gtk;
-use libc::c_void;
+#[cfg(feature = "v2_6")]
+use glib::{object::Cast, translate::*, StaticType};
+#[cfg(feature = "v2_6")]
+use std::{ffi::CString, ptr};
 
 pub trait WebViewExtManual {
     #[cfg(feature = "v2_6")]
