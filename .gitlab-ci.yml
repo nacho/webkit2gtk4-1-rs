@@ -47,7 +47,7 @@ pages:
     - mkdir public/git
     - mv docs public/git/docs
     # stable docs
-    # - ./gir-rustdoc.py docs-from-artifacts
+    - ./gir-rustdoc.py docs-from-artifacts
   artifacts:
     paths:
       - public
