@@ -47,3 +47,4 @@ glib = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 glib-sys = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 gtk4 = { git = "https://github.com/gtk-rs/gtk4-rs" }
 ffi = { package = "webkit2gtk5-webextension-sys", path = "sys" }
+javascriptcore = {path = "./../javascriptcore", package = "javascriptcore5-rs"}

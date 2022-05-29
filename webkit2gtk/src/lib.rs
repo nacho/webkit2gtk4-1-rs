@@ -1,4 +1,3 @@
-#![allow(deprecated)]
 #![doc = include_str!("../../README.md")]
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
@@ -6,13 +5,12 @@ pub use ffi;
 pub use gio;
 pub use glib;
 
-#[cfg_attr(feature = "cargo-clippy", allow(too_many_arguments))]
-#[cfg_attr(feature = "cargo-clippy", allow(useless_transmute))]
 #[macro_use]
 mod rt;
 
 #[allow(unused_imports)]
 #[allow(unused_mut)]
+#[allow(clippy::clone_on_copy)]
 mod auto;
 mod credential;
 mod javascript_result;

@@ -388,7 +388,6 @@ pub mod traits {
 #[doc(hidden)]
 pub mod builders {
     pub use super::color_chooser_request::ColorChooserRequestBuilder;
-    pub use super::download::DownloadBuilder;
     pub use super::find_controller::FindControllerBuilder;
     pub use super::hit_test_result::HitTestResultBuilder;
     pub use super::print_custom_widget::PrintCustomWidgetBuilder;
@@ -399,6 +398,5 @@ pub mod builders {
     pub use super::web_context::WebContextBuilder;
     pub use super::web_view::WebViewBuilder;
     pub use super::website_data_manager::WebsiteDataManagerBuilder;
-    pub use super::website_policies::WebsitePoliciesBuilder;
     pub use super::window_properties::WindowPropertiesBuilder;
 }

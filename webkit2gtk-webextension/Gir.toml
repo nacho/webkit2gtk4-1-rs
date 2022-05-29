@@ -1,4 +1,5 @@
 [crate_name_overrides]
+"java_script_core" = "javascriptcore"
 "web_kit2_web_extension" = "webkit2_webextension"
 
 [options]

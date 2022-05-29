@@ -5,15 +5,11 @@ use crate::WebsiteDataManager;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::WebsiteDataTypes;
-use glib::object::Cast;
 use glib::object::IsA;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::boxed::Box as Box_;
-use std::fmt;
 use std::ptr;
 
 pub trait WebsiteDataManagerExtManual: 'static {

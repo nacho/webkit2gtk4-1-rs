@@ -33,7 +33,7 @@ impl DOMNode {
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_node_for_js_value")]
-    pub fn for_js_value(value: &impl IsA<java_script_core::Value>) -> Option<DOMNode> {
+    pub fn for_js_value(value: &impl IsA<javascriptcore::Value>) -> Option<DOMNode> {
         assert_initialized_main_thread!();
         unsafe {
             from_glib_none(ffi::webkit_dom_node_for_js_value(

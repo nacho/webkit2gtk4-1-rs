@@ -40,20 +40,20 @@ pub trait FrameExt: 'static {
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //#[doc(alias = "webkit_frame_get_javascript_context_for_script_world")]
     //#[doc(alias = "get_javascript_context_for_script_world")]
-    //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::GlobalContextRef>;
+    //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[cfg(any(feature = "v2_2", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //#[doc(alias = "webkit_frame_get_javascript_global_context")]
     //#[doc(alias = "get_javascript_global_context")]
-    //fn javascript_global_context(&self) -> /*Ignored*/Option<java_script_core::GlobalContextRef>;
+    //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_frame_get_js_context")]
     #[doc(alias = "get_js_context")]
-    fn js_context(&self) -> Option<java_script_core::Context>;
+    fn js_context(&self) -> Option<javascriptcore::Context>;
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
@@ -62,7 +62,7 @@ pub trait FrameExt: 'static {
     fn js_context_for_script_world(
         &self,
         world: &impl IsA<ScriptWorld>,
-    ) -> Option<java_script_core::Context>;
+    ) -> Option<javascriptcore::Context>;
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
@@ -71,7 +71,7 @@ pub trait FrameExt: 'static {
     fn js_value_for_dom_object(
         &self,
         dom_object: &impl IsA<DOMObject>,
-    ) -> Option<java_script_core::Value>;
+    ) -> Option<javascriptcore::Value>;
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
@@ -81,7 +81,7 @@ pub trait FrameExt: 'static {
         &self,
         dom_object: &impl IsA<DOMObject>,
         world: &impl IsA<ScriptWorld>,
-    ) -> Option<java_script_core::Value>;
+    ) -> Option<javascriptcore::Value>;
 
     #[cfg(any(feature = "v2_2", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
@@ -104,19 +104,19 @@ impl<O: IsA<Frame>> FrameExt for O {
 
     //#[cfg(any(feature = "v2_2", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<java_script_core::GlobalContextRef> {
+    //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_context_for_script_world() }
     //}
 
     //#[cfg(any(feature = "v2_2", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    //fn javascript_global_context(&self) -> /*Ignored*/Option<java_script_core::GlobalContextRef> {
+    //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_global_context() }
     //}
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    fn js_context(&self) -> Option<java_script_core::Context> {
+    fn js_context(&self) -> Option<javascriptcore::Context> {
         unsafe {
             from_glib_full(ffi::webkit_frame_get_js_context(
                 self.as_ref().to_glib_none().0,
@@ -129,7 +129,7 @@ impl<O: IsA<Frame>> FrameExt for O {
     fn js_context_for_script_world(
         &self,
         world: &impl IsA<ScriptWorld>,
-    ) -> Option<java_script_core::Context> {
+    ) -> Option<javascriptcore::Context> {
         unsafe {
             from_glib_full(ffi::webkit_frame_get_js_context_for_script_world(
                 self.as_ref().to_glib_none().0,
@@ -143,7 +143,7 @@ impl<O: IsA<Frame>> FrameExt for O {
     fn js_value_for_dom_object(
         &self,
         dom_object: &impl IsA<DOMObject>,
-    ) -> Option<java_script_core::Value> {
+    ) -> Option<javascriptcore::Value> {
         unsafe {
             from_glib_full(ffi::webkit_frame_get_js_value_for_dom_object(
                 self.as_ref().to_glib_none().0,
@@ -158,7 +158,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         &self,
         dom_object: &impl IsA<DOMObject>,
         world: &impl IsA<ScriptWorld>,
-    ) -> Option<java_script_core::Value> {
+    ) -> Option<javascriptcore::Value> {
         unsafe {
             from_glib_full(
                 ffi::webkit_frame_get_js_value_for_dom_object_in_script_world(

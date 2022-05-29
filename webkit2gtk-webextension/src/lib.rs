@@ -1,21 +1,5 @@
 // Take a look at the license at the top of the repository in the LICENSE file.
 
-#![allow(
-    clippy::let_unit_value,
-    clippy::new_without_default,
-    non_snake_case,
-    clippy::transmute_ptr_to_ref,
-    clippy::type_complexity,
-    clippy::unused_imports
-)]
-
-#[cfg(any(feature = "v2_18"))]
-extern crate gio;
-extern crate glib;
-pub extern crate glib_sys;
-extern crate gtk4;
-extern crate libc;
-
 pub use ffi;
 pub use glib::{Error, Object};
 
@@ -68,6 +52,10 @@ macro_rules! web_extension_init_with_data {
     };
 }
 #[allow(unused_imports)]
+#[allow(non_snake_case)]
+#[allow(clippy::let_unit_value)]
+#[allow(clippy::too_many_arguments)]
+#[allow(clippy::wrong_self_convention)]
 mod auto;
 mod dom_html_field_set_element;
 

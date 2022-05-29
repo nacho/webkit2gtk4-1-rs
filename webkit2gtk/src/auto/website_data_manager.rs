@@ -11,12 +11,6 @@ use crate::CookieManager;
 use crate::ITPThirdParty;
 #[cfg(any(feature = "v2_32", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
-use crate::NetworkProxyMode;
-#[cfg(any(feature = "v2_32", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
-use crate::NetworkProxySettings;
-#[cfg(any(feature = "v2_32", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
 use crate::TLSErrorsPolicy;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
@@ -445,15 +439,6 @@ pub trait WebsiteDataManagerExt: 'static {
     #[doc(alias = "webkit_website_data_manager_set_itp_enabled")]
     fn set_itp_enabled(&self, enabled: bool);
 
-    #[cfg(any(feature = "v2_32", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
-    #[doc(alias = "webkit_website_data_manager_set_network_proxy_settings")]
-    fn set_network_proxy_settings(
-        &self,
-        proxy_mode: NetworkProxyMode,
-        proxy_settings: Option<&mut NetworkProxySettings>,
-    );
-
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     #[doc(alias = "webkit_website_data_manager_set_persistent_credential_storage_enabled")]
@@ -777,22 +762,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
             ffi::webkit_website_data_manager_set_itp_enabled(
                 self.as_ref().to_glib_none().0,
                 enabled.into_glib(),
-            );
-        }
-    }
-
-    #[cfg(any(feature = "v2_32", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_32")))]
-    fn set_network_proxy_settings(
-        &self,
-        proxy_mode: NetworkProxyMode,
-        proxy_settings: Option<&mut NetworkProxySettings>,
-    ) {
-        unsafe {
-            ffi::webkit_website_data_manager_set_network_proxy_settings(
-                self.as_ref().to_glib_none().0,
-                proxy_mode.into_glib(),
-                proxy_settings.to_glib_none_mut().0,
             );
         }
     }

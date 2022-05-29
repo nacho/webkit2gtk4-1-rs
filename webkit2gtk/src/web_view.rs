@@ -7,6 +7,11 @@ use crate::WebContext;
 use crate::WebView;
 use glib::IsA;
 
+#[cfg(feature = "v2_6")]
+use glib::{object::Cast, translate::*, StaticType};
+#[cfg(feature = "v2_6")]
+use std::{ffi::CString, ptr};
+
 pub trait WebViewExtManual {
     #[cfg(feature = "v2_6")]
     fn new_with_context_and_user_content_manager(

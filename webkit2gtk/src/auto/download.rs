@@ -11,8 +11,6 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -28,54 +26,6 @@ glib::wrapper! {
 
 impl Download {
     pub const NONE: Option<&'static Download> = None;
-
-    // rustdoc-stripper-ignore-next
-    /// Creates a new builder-pattern struct instance to construct [`Download`] objects.
-    ///
-    /// This method returns an instance of [`DownloadBuilder`](crate::builders::DownloadBuilder) which can be used to create [`Download`] objects.
-    pub fn builder() -> DownloadBuilder {
-        DownloadBuilder::default()
-    }
-}
-
-#[derive(Clone, Default)]
-// rustdoc-stripper-ignore-next
-/// A [builder-pattern] type to construct [`Download`] objects.
-///
-/// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
-#[must_use = "The builder must be built to be used"]
-pub struct DownloadBuilder {
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    allow_overwrite: Option<bool>,
-}
-
-impl DownloadBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`DownloadBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`Download`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> Download {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_6", feature = "dox"))]
-        if let Some(ref allow_overwrite) = self.allow_overwrite {
-            properties.push(("allow-overwrite", allow_overwrite));
-        }
-        glib::Object::new::<Download>(&properties)
-            .expect("Failed to create an instance of Download")
-    }
-
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    pub fn allow_overwrite(mut self, allow_overwrite: bool) -> Self {
-        self.allow_overwrite = Some(allow_overwrite);
-        self
-    }
 }
 
 pub trait DownloadExt: 'static {

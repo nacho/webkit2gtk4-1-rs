@@ -729,7 +729,7 @@ pub trait WebViewExt: 'static {
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[doc(alias = "webkit_web_view_get_javascript_global_context")]
     //#[doc(alias = "get_javascript_global_context")]
-    //fn javascript_global_context(&self) -> /*Ignored*/Option<java_script_core::GlobalContextRef>;
+    //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
     #[doc(alias = "webkit_web_view_get_main_resource")]
     #[doc(alias = "get_main_resource")]
@@ -1522,7 +1522,7 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
-    //fn javascript_global_context(&self) -> /*Ignored*/Option<java_script_core::GlobalContextRef> {
+    //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_web_view_get_javascript_global_context() }
     //}
 
