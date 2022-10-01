@@ -118,6 +118,13 @@ pub use self::uri_response::URIResponse;
 mod uri_scheme_request;
 pub use self::uri_scheme_request::URISchemeRequest;
 
+#[cfg(any(feature = "v2_24", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
+mod user_content_filter_store;
+#[cfg(any(feature = "v2_24", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
+pub use self::user_content_filter_store::UserContentFilterStore;
+
 mod user_content_manager;
 pub use self::user_content_manager::UserContentManager;
 
@@ -226,6 +233,9 @@ mod security_origin;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 pub use self::security_origin::SecurityOrigin;
+
+mod user_content_filter;
+pub use self::user_content_filter::UserContentFilter;
 
 #[cfg(any(feature = "v2_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
@@ -373,6 +383,9 @@ pub mod traits {
     pub use super::uri_request::URIRequestExt;
     pub use super::uri_response::URIResponseExt;
     pub use super::uri_scheme_request::URISchemeRequestExt;
+    #[cfg(any(feature = "v2_24", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
+    pub use super::user_content_filter_store::UserContentFilterStoreExt;
     pub use super::user_content_manager::UserContentManagerExt;
     pub use super::user_media_permission_request::UserMediaPermissionRequestExt;
     pub use super::user_message::UserMessageExt;

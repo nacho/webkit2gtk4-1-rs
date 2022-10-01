@@ -79,9 +79,8 @@ generate = [
     "WebKit2.SnapshotOptions",
     "WebKit2.SnapshotRegion",
     "WebKit2.TLSErrorsPolicy",
-    # "WebKit2.UserContentFilter",
+    "WebKit2.UserContentFilter",
     "WebKit2.UserContentFilterError",
-    # "WebKit2.UserContentFilterStore",
     "WebKit2.UserContentInjectedFrames",
     "WebKit2.UserContentManager",
     "WebKit2.UserMediaPermissionRequest",
@@ -349,3 +348,15 @@ version = "2.12"
 name = "WebKit2.WindowProperties"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "WebKit2.UserContentFilterStore"
+status = "generate"
+version = "2.24"
+    # both methods ignored because of missing error parameter
+    [[object.function]]
+    name = "fetch_identifiers"
+    ignore = true
+    [[object.function]]
+    name = "fetch_identifiers_finish"
+    ignore = true

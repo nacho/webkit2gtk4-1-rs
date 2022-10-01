@@ -6,6 +6,7 @@
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use crate::JavascriptResult;
+use crate::UserContentFilter;
 #[cfg(any(feature = "v2_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use crate::UserScript;
@@ -22,8 +23,6 @@ use glib::signal::connect_raw;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use glib::translate::*;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -63,10 +62,10 @@ impl Default for UserContentManager {
 }
 
 pub trait UserContentManagerExt: 'static {
-    //#[cfg(any(feature = "v2_24", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
-    //#[doc(alias = "webkit_user_content_manager_add_filter")]
-    //fn add_filter(&self, filter: /*Ignored*/&UserContentFilter);
+    #[cfg(any(feature = "v2_24", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
+    #[doc(alias = "webkit_user_content_manager_add_filter")]
+    fn add_filter(&self, filter: &UserContentFilter);
 
     #[cfg(any(feature = "v2_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
@@ -103,8 +102,8 @@ pub trait UserContentManagerExt: 'static {
     #[doc(alias = "webkit_user_content_manager_remove_all_style_sheets")]
     fn remove_all_style_sheets(&self);
 
-    //#[doc(alias = "webkit_user_content_manager_remove_filter")]
-    //fn remove_filter(&self, filter: /*Ignored*/&UserContentFilter);
+    #[doc(alias = "webkit_user_content_manager_remove_filter")]
+    fn remove_filter(&self, filter: &UserContentFilter);
 
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
@@ -142,11 +141,16 @@ pub trait UserContentManagerExt: 'static {
 }
 
 impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
-    //#[cfg(any(feature = "v2_24", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
-    //fn add_filter(&self, filter: /*Ignored*/&UserContentFilter) {
-    //    unsafe { TODO: call ffi:webkit_user_content_manager_add_filter() }
-    //}
+    #[cfg(any(feature = "v2_24", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
+    fn add_filter(&self, filter: &UserContentFilter) {
+        unsafe {
+            ffi::webkit_user_content_manager_add_filter(
+                self.as_ref().to_glib_none().0,
+                filter.to_glib_none().0,
+            );
+        }
+    }
 
     #[cfg(any(feature = "v2_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
@@ -223,9 +227,14 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         }
     }
 
-    //fn remove_filter(&self, filter: /*Ignored*/&UserContentFilter) {
-    //    unsafe { TODO: call ffi:webkit_user_content_manager_remove_filter() }
-    //}
+    fn remove_filter(&self, filter: &UserContentFilter) {
+        unsafe {
+            ffi::webkit_user_content_manager_remove_filter(
+                self.as_ref().to_glib_none().0,
+                filter.to_glib_none().0,
+            );
+        }
+    }
 
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
