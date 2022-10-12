@@ -12,6 +12,7 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -32,14 +33,35 @@ impl DOMAttr {
 
 pub trait DOMAttrExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[doc(alias = "webkit_dom_attr_get_local_name")]
+    #[doc(alias = "get_local_name")]
+    fn local_name(&self) -> Option<glib::GString>;
+
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_attr_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[doc(alias = "webkit_dom_attr_get_namespace_uri")]
+    #[doc(alias = "get_namespace_uri")]
+    fn namespace_uri(&self) -> Option<glib::GString>;
+
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_attr_get_owner_element")]
     #[doc(alias = "get_owner_element")]
     fn owner_element(&self) -> Option<DOMElement>;
+
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[doc(alias = "webkit_dom_attr_get_prefix")]
+    #[doc(alias = "get_prefix")]
+    fn prefix(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_attr_get_specified")]
@@ -54,6 +76,14 @@ pub trait DOMAttrExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_attr_set_value")]
     fn set_value(&self, value: &str) -> Result<(), glib::Error>;
+
+    #[doc(alias = "local-name")]
+    fn get_property_local_name(&self) -> Option<glib::GString>;
+
+    #[doc(alias = "namespace-uri")]
+    fn get_property_namespace_uri(&self) -> Option<glib::GString>;
+
+    fn get_property_prefix(&self) -> Option<glib::GString>;
 
     #[doc(alias = "local-name")]
     fn connect_local_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
@@ -78,6 +108,16 @@ pub trait DOMAttrExt: 'static {
 }
 
 impl<O: IsA<DOMAttr>> DOMAttrExt for O {
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    fn local_name(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_full(ffi::webkit_dom_attr_get_local_name(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_name(
@@ -86,9 +126,29 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    fn namespace_uri(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_full(ffi::webkit_dom_attr_get_namespace_uri(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     fn owner_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_attr_get_owner_element(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
+    #[cfg(any(feature = "v2_14", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    fn prefix(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_full(ffi::webkit_dom_attr_get_prefix(
                 self.as_ref().to_glib_none().0,
             ))
         }
@@ -124,6 +184,18 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
                 Err(from_glib_full(error))
             }
         }
+    }
+
+    fn get_property_local_name(&self) -> Option<glib::GString> {
+        glib::ObjectExt::property(self.as_ref(), "local-name")
+    }
+
+    fn get_property_namespace_uri(&self) -> Option<glib::GString> {
+        glib::ObjectExt::property(self.as_ref(), "namespace-uri")
+    }
+
+    fn get_property_prefix(&self) -> Option<glib::GString> {
+        glib::ObjectExt::property(self.as_ref(), "prefix")
     }
 
     fn connect_local_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {

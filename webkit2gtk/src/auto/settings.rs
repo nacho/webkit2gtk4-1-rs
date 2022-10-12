@@ -37,7 +37,7 @@ impl Settings {
 
     //#[doc(alias = "webkit_settings_new_with_settings")]
     //#[doc(alias = "new_with_settings")]
-    //pub fn with_settings(first_setting_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Settings {
+    //pub fn with_settings(first_setting_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Settings {
     //    unsafe { TODO: call ffi:webkit_settings_new_with_settings() }
     //}
 
@@ -431,7 +431,6 @@ impl SettingsBuilder {
             properties.push(("zoom-text-only", zoom_text_only));
         }
         glib::Object::new::<Settings>(&properties)
-            .expect("Failed to create an instance of Settings")
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]

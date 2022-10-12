@@ -162,9 +162,6 @@ pub trait DOMHTMLDocumentExt: 'static {
     #[doc(alias = "bg-color")]
     fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[doc(alias = "dir")]
-    fn connect_dir_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
     #[doc(alias = "fg-color")]
     fn connect_fg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -425,28 +422,6 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
                 b"notify::bg-color\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     notify_bg_color_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
-        }
-    }
-
-    fn connect_dir_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_dir_trampoline<P: IsA<DOMHTMLDocument>, F: Fn(&P) + 'static>(
-            this: *mut ffi::WebKitDOMHTMLDocument,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(DOMHTMLDocument::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::dir\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_dir_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )

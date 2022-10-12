@@ -61,7 +61,6 @@ impl ColorChooserRequestBuilder {
             properties.push(("rgba", rgba));
         }
         glib::Object::new::<ColorChooserRequest>(&properties)
-            .expect("Failed to create an instance of ColorChooserRequest")
     }
 
     pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {

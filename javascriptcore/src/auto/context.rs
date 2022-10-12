@@ -90,7 +90,7 @@ impl ContextBuilder {
         if let Some(ref virtual_machine) = self.virtual_machine {
             properties.push(("virtual-machine", virtual_machine));
         }
-        glib::Object::new::<Context>(&properties).expect("Failed to create an instance of Context")
+        glib::Object::new::<Context>(&properties)
     }
 
     pub fn virtual_machine(mut self, virtual_machine: &impl IsA<VirtualMachine>) -> Self {
@@ -116,7 +116,7 @@ pub trait ContextExt: 'static {
     fn evaluate(&self, code: &str) -> Option<Value>;
 
     //#[doc(alias = "jsc_context_evaluate_in_object")]
-    //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Fundamental: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value);
+    //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Basic: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value);
 
     #[doc(alias = "jsc_context_evaluate_with_source_uri")]
     fn evaluate_with_source_uri(&self, code: &str, uri: &str, line_number: u32) -> Option<Value>;
@@ -156,13 +156,13 @@ pub trait ContextExt: 'static {
     fn throw_exception(&self, exception: &impl IsA<Exception>);
 
     //#[doc(alias = "jsc_context_throw_printf")]
-    //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 
     #[doc(alias = "jsc_context_throw_with_name")]
     fn throw_with_name(&self, error_name: &str, error_message: &str);
 
     //#[doc(alias = "jsc_context_throw_with_name_printf")]
-    //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 }
 
 impl<O: IsA<Context>> ContextExt for O {
@@ -206,7 +206,7 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
-    //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Fundamental: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value) {
+    //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Basic: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value) {
     //    unsafe { TODO: call ffi:jsc_context_evaluate_in_object() }
     //}
 
@@ -324,7 +324,7 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
-    //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:jsc_context_throw_printf() }
     //}
 
@@ -338,7 +338,7 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
-    //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:jsc_context_throw_with_name_printf() }
     //}
 }

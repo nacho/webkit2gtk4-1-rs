@@ -36,7 +36,7 @@ pub trait DOMDOMTokenListExt: 'static {
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     //#[doc(alias = "webkit_dom_dom_token_list_add")]
-    //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
@@ -68,7 +68,7 @@ pub trait DOMDOMTokenListExt: 'static {
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     //#[doc(alias = "webkit_dom_dom_token_list_remove")]
-    //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs);
+    //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
@@ -104,7 +104,7 @@ pub trait DOMDOMTokenListExt: 'static {
 impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:webkit_dom_dom_token_list_add() }
     //}
 
@@ -148,7 +148,7 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) {
+    //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:webkit_dom_dom_token_list_remove() }
     //}
 

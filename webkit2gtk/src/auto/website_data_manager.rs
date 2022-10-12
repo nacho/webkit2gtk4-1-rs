@@ -51,7 +51,7 @@ impl WebsiteDataManager {
     //#[cfg(any(feature = "v2_10", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     //#[doc(alias = "webkit_website_data_manager_new")]
-    //pub fn new(first_option_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> WebsiteDataManager {
+    //pub fn new(first_option_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> WebsiteDataManager {
     //    unsafe { TODO: call ffi:webkit_website_data_manager_new() }
     //}
 
@@ -84,7 +84,6 @@ impl WebsiteDataManager {
 impl Default for WebsiteDataManager {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct WebsiteDataManager object with default parameters")
     }
 }
 
@@ -205,7 +204,6 @@ impl WebsiteDataManagerBuilder {
             properties.push(("websql-directory", websql_directory));
         }
         glib::Object::new::<WebsiteDataManager>(&properties)
-            .expect("Failed to create an instance of WebsiteDataManager")
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]

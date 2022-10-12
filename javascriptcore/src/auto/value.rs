@@ -25,7 +25,7 @@ impl Value {
     pub const NONE: Option<&'static Value> = None;
 
     //#[doc(alias = "jsc_value_new_array")]
-    //pub fn new_array(context: &impl IsA<Context>, first_item_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Value {
+    //pub fn new_array(context: &impl IsA<Context>, first_item_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_array() }
     //}
 
@@ -73,17 +73,17 @@ impl Value {
     }
 
     //#[doc(alias = "jsc_value_new_function")]
-    //pub fn new_function<P: Fn() + 'static>(context: &impl IsA<Context>, name: Option<&str>, callback: P, user_data: /*Unimplemented*/Option<Fundamental: Pointer>, return_type: glib::types::Type, n_params: u32, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Value {
+    //pub fn new_function<P: Fn() + 'static>(context: &impl IsA<Context>, name: Option<&str>, callback: P, user_data: /*Unimplemented*/Option<Basic: Pointer>, return_type: glib::types::Type, n_params: u32, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_function() }
     //}
 
     //#[doc(alias = "jsc_value_new_function_variadic")]
-    //pub fn new_function_variadic(context: &impl IsA<Context>, name: Option<&str>, callback: /*Unimplemented*/Fn(/*Ignored*/glib::PtrArray) -> Value, user_data: /*Unimplemented*/Option<Fundamental: Pointer>, return_type: glib::types::Type) -> Value {
+    //pub fn new_function_variadic(context: &impl IsA<Context>, name: Option<&str>, callback: /*Unimplemented*/Fn(/*Ignored*/glib::PtrArray) -> Value, user_data: /*Unimplemented*/Option<Basic: Pointer>, return_type: glib::types::Type) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_function_variadic() }
     //}
 
     //#[doc(alias = "jsc_value_new_functionv")]
-    //pub fn new_functionv<P: Fn() + 'static>(context: &impl IsA<Context>, name: Option<&str>, callback: P, user_data: /*Unimplemented*/Option<Fundamental: Pointer>, return_type: glib::types::Type, n_parameters: u32) -> Value {
+    //pub fn new_functionv<P: Fn() + 'static>(context: &impl IsA<Context>, name: Option<&str>, callback: P, user_data: /*Unimplemented*/Option<Basic: Pointer>, return_type: glib::types::Type, n_parameters: u32) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_functionv() }
     //}
 
@@ -103,7 +103,7 @@ impl Value {
     }
 
     //#[doc(alias = "jsc_value_new_object")]
-    //pub fn new_object(context: &impl IsA<Context>, instance: /*Unimplemented*/Option<Fundamental: Pointer>, jsc_class: Option<&Class>) -> Value {
+    //pub fn new_object(context: &impl IsA<Context>, instance: /*Unimplemented*/Option<Basic: Pointer>, jsc_class: Option<&Class>) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_object() }
     //}
 
@@ -180,7 +180,7 @@ impl ValueBuilder {
         if let Some(ref context) = self.context {
             properties.push(("context", context));
         }
-        glib::Object::new::<Value>(&properties).expect("Failed to create an instance of Value")
+        glib::Object::new::<Value>(&properties)
     }
 
     pub fn context(mut self, context: &impl IsA<Context>) -> Self {
@@ -192,7 +192,7 @@ impl ValueBuilder {
 pub trait ValueExt: 'static {
     //#[doc(alias = "jsc_value_constructor_call")]
     //#[must_use]
-    //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value>;
+    //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
 
     #[doc(alias = "jsc_value_constructor_callv")]
     #[must_use]
@@ -200,7 +200,7 @@ pub trait ValueExt: 'static {
 
     //#[doc(alias = "jsc_value_function_call")]
     //#[must_use]
-    //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value>;
+    //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
 
     #[doc(alias = "jsc_value_function_callv")]
     #[must_use]
@@ -264,7 +264,7 @@ pub trait ValueExt: 'static {
 
     //#[doc(alias = "jsc_value_object_invoke_method")]
     //#[must_use]
-    //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value>;
+    //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
 
     #[doc(alias = "jsc_value_object_invoke_methodv")]
     #[must_use]
@@ -302,7 +302,7 @@ pub trait ValueExt: 'static {
 }
 
 impl<O: IsA<Value>> ValueExt for O {
-    //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value> {
+    //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_constructor_call() }
     //}
 
@@ -317,7 +317,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
-    //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value> {
+    //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_function_call() }
     //}
 
@@ -436,7 +436,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
-    //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Option<Value> {
+    //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_object_invoke_method() }
     //}
 

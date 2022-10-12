@@ -39,7 +39,7 @@ impl WebsitePolicies {
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     //#[doc(alias = "webkit_website_policies_new_with_policies")]
     //#[doc(alias = "new_with_policies")]
-    //pub fn with_policies(first_policy_name: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> WebsitePolicies {
+    //pub fn with_policies(first_policy_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> WebsitePolicies {
     //    unsafe { TODO: call ffi:webkit_website_policies_new_with_policies() }
     //}
 }

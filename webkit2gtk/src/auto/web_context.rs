@@ -157,7 +157,6 @@ impl WebContextBuilder {
             properties.push(("website-data-manager", website_data_manager));
         }
         glib::Object::new::<WebContext>(&properties)
-            .expect("Failed to create an instance of WebContext")
     }
 
     #[cfg(any(feature = "v2_8", feature = "dox"))]

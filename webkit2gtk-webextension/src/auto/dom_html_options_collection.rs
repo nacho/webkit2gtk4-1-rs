@@ -4,6 +4,7 @@
 // DO NOT EDIT
 
 use crate::DOMHTMLCollection;
+use crate::DOMNode;
 use crate::DOMObject;
 use glib::object::Cast;
 use glib::object::IsA;
@@ -29,27 +30,48 @@ impl DOMHTMLOptionsCollection {
 
 pub trait DOMHTMLOptionsCollectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_html_options_collection_get_length")]
+    #[doc(alias = "get_length")]
+    fn length(&self) -> libc::c_ulong;
+
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_html_options_collection_get_selected_index")]
     #[doc(alias = "get_selected_index")]
     fn selected_index(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[doc(alias = "webkit_dom_html_options_collection_named_item")]
+    fn named_item(&self, name: &str) -> Option<DOMNode>;
+
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_html_options_collection_set_selected_index")]
     fn set_selected_index(&self, value: libc::c_long);
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
     #[doc(alias = "selected-index")]
     fn connect_selected_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
 impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
+    fn length(&self) -> libc::c_ulong {
+        unsafe {
+            ffi::webkit_dom_html_options_collection_get_length(self.as_ref().to_glib_none().0)
+        }
+    }
+
     fn selected_index(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_options_collection_get_selected_index(
                 self.as_ref().to_glib_none().0,
             )
+        }
+    }
+
+    fn named_item(&self, name: &str) -> Option<DOMNode> {
+        unsafe {
+            from_glib_none(ffi::webkit_dom_html_options_collection_named_item(
+                self.as_ref().to_glib_none().0,
+                name.to_glib_none().0,
+            ))
         }
     }
 
@@ -59,31 +81,6 @@ impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
                 self.as_ref().to_glib_none().0,
                 value,
             );
-        }
-    }
-
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_length_trampoline<
-            P: IsA<DOMHTMLOptionsCollection>,
-            F: Fn(&P) + 'static,
-        >(
-            this: *mut ffi::WebKitDOMHTMLOptionsCollection,
-            _param_spec: glib::ffi::gpointer,
-            f: glib::ffi::gpointer,
-        ) {
-            let f: &F = &*(f as *const F);
-            f(DOMHTMLOptionsCollection::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(
-                self.as_ptr() as *mut _,
-                b"notify::length\0".as_ptr() as *const _,
-                Some(transmute::<_, unsafe extern "C" fn()>(
-                    notify_length_trampoline::<Self, F> as *const (),
-                )),
-                Box_::into_raw(f),
-            )
         }
     }
 

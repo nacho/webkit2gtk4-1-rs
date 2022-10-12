@@ -63,7 +63,6 @@ impl PrintCustomWidget {
 impl Default for PrintCustomWidget {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct PrintCustomWidget object with default parameters")
     }
 }
 
@@ -103,7 +102,6 @@ impl PrintCustomWidgetBuilder {
             properties.push(("widget", widget));
         }
         glib::Object::new::<PrintCustomWidget>(&properties)
-            .expect("Failed to create an instance of PrintCustomWidget")
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]

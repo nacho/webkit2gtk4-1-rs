@@ -44,7 +44,6 @@ impl WeakValue {
 impl Default for WeakValue {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct WeakValue object with default parameters")
     }
 }
 
@@ -74,7 +73,6 @@ impl WeakValueBuilder {
             properties.push(("value", value));
         }
         glib::Object::new::<WeakValue>(&properties)
-            .expect("Failed to create an instance of WeakValue")
     }
 
     pub fn value(mut self, value: &impl IsA<Value>) -> Self {

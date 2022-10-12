@@ -44,7 +44,6 @@ impl URIRequest {
 impl Default for URIRequest {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct URIRequest object with default parameters")
     }
 }
 
@@ -74,7 +73,6 @@ impl URIRequestBuilder {
             properties.push(("uri", uri));
         }
         glib::Object::new::<URIRequest>(&properties)
-            .expect("Failed to create an instance of URIRequest")
     }
 
     pub fn uri(mut self, uri: &str) -> Self {

@@ -25,7 +25,7 @@ impl DOMEventTarget {
 pub trait DOMEventTargetExt: 'static {
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[doc(alias = "webkit_dom_event_target_add_event_listener")]
-    //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> bool;
+    //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[doc(alias = "webkit_dom_event_target_add_event_listener_with_closure")]
@@ -55,7 +55,7 @@ pub trait DOMEventTargetExt: 'static {
 }
 
 impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
-    //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Fundamental: Pointer>) -> bool {
+    //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool {
     //    unsafe { TODO: call ffi:webkit_dom_event_target_add_event_listener() }
     //}
 

@@ -70,7 +70,6 @@ impl UserMessage {
 impl Default for UserMessage {
     fn default() -> Self {
         glib::object::Object::new::<Self>(&[])
-            .expect("Can't construct UserMessage object with default parameters")
     }
 }
 
@@ -117,7 +116,6 @@ impl UserMessageBuilder {
             properties.push(("parameters", parameters));
         }
         glib::Object::new::<UserMessage>(&properties)
-            .expect("Failed to create an instance of UserMessage")
     }
 
     #[cfg(any(feature = "v2_28", feature = "dox"))]

@@ -31,7 +31,7 @@ impl Exception {
     }
 
     //#[doc(alias = "jsc_exception_new_printf")]
-    //pub fn new_printf(context: &impl IsA<Context>, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Exception {
+    //pub fn new_printf(context: &impl IsA<Context>, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Exception {
     //    unsafe { TODO: call ffi:jsc_exception_new_printf() }
     //}
 
@@ -54,7 +54,7 @@ impl Exception {
 
     //#[doc(alias = "jsc_exception_new_with_name_printf")]
     //#[doc(alias = "new_with_name_printf")]
-    //pub fn with_name_printf(context: &impl IsA<Context>, name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Fundamental: VarArgs) -> Exception {
+    //pub fn with_name_printf(context: &impl IsA<Context>, name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Exception {
     //    unsafe { TODO: call ffi:jsc_exception_new_with_name_printf() }
     //}
 

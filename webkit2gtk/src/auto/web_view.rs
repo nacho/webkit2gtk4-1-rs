@@ -394,7 +394,7 @@ impl WebViewBuilder {
         if let Some(ref width_request) = self.width_request {
             properties.push(("width-request", width_request));
         }
-        glib::Object::new::<WebView>(&properties).expect("Failed to create an instance of WebView")
+        glib::Object::new::<WebView>(&properties)
     }
 
     #[cfg(any(feature = "v2_28", feature = "dox"))]
@@ -1648,9 +1648,8 @@ impl<O: IsA<WebView>> WebViewExt for O {
                 &mut certificate,
                 errors.as_mut_ptr(),
             ));
-            let errors = errors.assume_init();
             if ret {
-                Some((from_glib_none(certificate), from_glib(errors)))
+                Some((from_glib_none(certificate), from_glib(errors.assume_init())))
             } else {
                 None
             }
