@@ -24,4 +24,4 @@ version = "0.3.0"
 
 [features]
 v2_28 = ["ffi/v2_28"]
-dox = ["ffi/dox"]
+dox = ["ffi/dox", "glib/dox"]
