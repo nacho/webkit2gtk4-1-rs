@@ -5,23 +5,13 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use glib::signal::connect_raw;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::boxed::Box as Box_;
 use std::fmt;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -36,8 +26,6 @@ glib::wrapper! {
 impl PrintCustomWidget {
     pub const NONE: Option<&'static PrintCustomWidget> = None;
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_print_custom_widget_new")]
     pub fn new(widget: &impl IsA<gtk::Widget>, title: &str) -> PrintCustomWidget {
         assert_initialized_main_thread!();
@@ -120,14 +108,10 @@ impl PrintCustomWidgetBuilder {
 }
 
 pub trait PrintCustomWidgetExt: 'static {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_print_custom_widget_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_print_custom_widget_get_widget")]
     #[doc(alias = "get_widget")]
     fn widget(&self) -> Option<gtk::Widget>;
@@ -147,8 +131,6 @@ pub trait PrintCustomWidgetExt: 'static {
 }
 
 impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_print_custom_widget_get_title(
@@ -157,8 +139,6 @@ impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     fn widget(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::webkit_print_custom_widget_get_widget(

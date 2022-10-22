@@ -59,6 +59,8 @@ v2_28 = ["v2_26"]
 v2_30 = ["v2_28"]
 v2_32 = ["v2_30"]
 v2_34 = ["v2_32"]
+v2_36 = ["v2_34"]
+v2_38 = ["v2_36"]
 
 [lib]
 name = "webkit2gtk_sys"
@@ -124,3 +126,9 @@ version = "2.32"
 
 [package.metadata.system-deps.webkit2gtk_5_0.v2_34]
 version = "2.34"
+
+[package.metadata.system-deps.webkit2gtk_5_0.v2_36]
+version = "2.36"
+
+[package.metadata.system-deps.webkit2gtk_5_0.v2_38]
+version = "2.38"

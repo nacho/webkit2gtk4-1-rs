@@ -35,6 +35,23 @@ pub trait URISchemeRequestExt: 'static {
     #[doc(alias = "webkit_uri_scheme_request_finish_error")]
     fn finish_error(&self, error: &mut glib::Error);
 
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    //#[doc(alias = "webkit_uri_scheme_request_finish_with_response")]
+    //fn finish_with_response(&self, response: /*Ignored*/&URISchemeResponse);
+
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    //#[doc(alias = "webkit_uri_scheme_request_get_http_headers")]
+    //#[doc(alias = "get_http_headers")]
+    //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders>;
+
+    #[cfg(any(feature = "v2_36", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    #[doc(alias = "webkit_uri_scheme_request_get_http_method")]
+    #[doc(alias = "get_http_method")]
+    fn http_method(&self) -> Option<glib::GString>;
+
     #[doc(alias = "webkit_uri_scheme_request_get_path")]
     #[doc(alias = "get_path")]
     fn path(&self) -> Option<glib::GString>;
@@ -77,6 +94,28 @@ impl<O: IsA<URISchemeRequest>> URISchemeRequestExt for O {
                 self.as_ref().to_glib_none().0,
                 error.to_glib_none_mut().0,
             );
+        }
+    }
+
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    //fn finish_with_response(&self, response: /*Ignored*/&URISchemeResponse) {
+    //    unsafe { TODO: call ffi:webkit_uri_scheme_request_finish_with_response() }
+    //}
+
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders> {
+    //    unsafe { TODO: call ffi:webkit_uri_scheme_request_get_http_headers() }
+    //}
+
+    #[cfg(any(feature = "v2_36", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
+    fn http_method(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::webkit_uri_scheme_request_get_http_method(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 

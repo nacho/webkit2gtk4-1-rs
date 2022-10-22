@@ -122,6 +122,9 @@ pub struct WebContextBuilder {
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     process_swap_on_cross_site_navigation_enabled: Option<bool>,
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    time_zone_override: Option<String>,
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     website_data_manager: Option<WebsiteDataManager>,
@@ -152,6 +155,10 @@ impl WebContextBuilder {
                 process_swap_on_cross_site_navigation_enabled,
             ));
         }
+        #[cfg(any(feature = "v2_38", feature = "dox"))]
+        if let Some(ref time_zone_override) = self.time_zone_override {
+            properties.push(("time-zone-override", time_zone_override));
+        }
         #[cfg(any(feature = "v2_10", feature = "dox"))]
         if let Some(ref website_data_manager) = self.website_data_manager {
             properties.push(("website-data-manager", website_data_manager));
@@ -175,6 +182,13 @@ impl WebContextBuilder {
     ) -> Self {
         self.process_swap_on_cross_site_navigation_enabled =
             Some(process_swap_on_cross_site_navigation_enabled);
+        self
+    }
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn time_zone_override(mut self, time_zone_override: &str) -> Self {
+        self.time_zone_override = Some(time_zone_override.to_string());
         self
     }
 
@@ -270,6 +284,12 @@ pub trait WebContextExt: 'static {
     #[doc(alias = "webkit_web_context_get_spell_checking_languages")]
     #[doc(alias = "get_spell_checking_languages")]
     fn spell_checking_languages(&self) -> Vec<glib::GString>;
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "webkit_web_context_get_time_zone_override")]
+    #[doc(alias = "get_time_zone_override")]
+    fn time_zone_override(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
     #[doc(alias = "webkit_web_context_get_tls_errors_policy")]
@@ -621,6 +641,16 @@ impl<O: IsA<WebContext>> WebContextExt for O {
                     self.as_ref().to_glib_none().0,
                 ),
             )
+        }
+    }
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    fn time_zone_override(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::webkit_web_context_get_time_zone_override(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 

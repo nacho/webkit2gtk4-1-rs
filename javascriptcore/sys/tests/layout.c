@@ -16,6 +16,7 @@ int main() {
     printf("%s;%zu;%zu\n", "JSCException", sizeof(JSCException), alignof(JSCException));
     printf("%s;%zu;%zu\n", "JSCExceptionClass", sizeof(JSCExceptionClass), alignof(JSCExceptionClass));
     printf("%s;%zu;%zu\n", "JSCOptionType", sizeof(JSCOptionType), alignof(JSCOptionType));
+    printf("%s;%zu;%zu\n", "JSCTypedArrayType", sizeof(JSCTypedArrayType), alignof(JSCTypedArrayType));
     printf("%s;%zu;%zu\n", "JSCValue", sizeof(JSCValue), alignof(JSCValue));
     printf("%s;%zu;%zu\n", "JSCValueClass", sizeof(JSCValueClass), alignof(JSCValueClass));
     printf("%s;%zu;%zu\n", "JSCValuePropertyFlags", sizeof(JSCValuePropertyFlags), alignof(JSCValuePropertyFlags));

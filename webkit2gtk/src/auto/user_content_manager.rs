@@ -9,11 +9,7 @@ use crate::JavascriptResult;
 #[cfg(any(feature = "v2_24", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 use crate::UserContentFilter;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use crate::UserScript;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use crate::UserStyleSheet;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -25,8 +21,6 @@ use glib::signal::connect_raw;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use glib::translate::*;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -48,8 +42,6 @@ glib::wrapper! {
 impl UserContentManager {
     pub const NONE: Option<&'static UserContentManager> = None;
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     #[doc(alias = "webkit_user_content_manager_new")]
     pub fn new() -> UserContentManager {
         assert_initialized_main_thread!();
@@ -71,13 +63,9 @@ pub trait UserContentManagerExt: 'static {
     #[doc(alias = "webkit_user_content_manager_add_filter")]
     fn add_filter(&self, filter: &UserContentFilter);
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     #[doc(alias = "webkit_user_content_manager_add_script")]
     fn add_script(&self, script: &UserScript);
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     #[doc(alias = "webkit_user_content_manager_add_style_sheet")]
     fn add_style_sheet(&self, stylesheet: &UserStyleSheet);
 
@@ -96,13 +84,9 @@ pub trait UserContentManagerExt: 'static {
     #[doc(alias = "webkit_user_content_manager_remove_all_filters")]
     fn remove_all_filters(&self);
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     #[doc(alias = "webkit_user_content_manager_remove_all_scripts")]
     fn remove_all_scripts(&self);
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     #[doc(alias = "webkit_user_content_manager_remove_all_style_sheets")]
     fn remove_all_style_sheets(&self);
 
@@ -158,8 +142,6 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     fn add_script(&self, script: &UserScript) {
         unsafe {
             ffi::webkit_user_content_manager_add_script(
@@ -169,8 +151,6 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     fn add_style_sheet(&self, stylesheet: &UserStyleSheet) {
         unsafe {
             ffi::webkit_user_content_manager_add_style_sheet(
@@ -215,16 +195,12 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     fn remove_all_scripts(&self) {
         unsafe {
             ffi::webkit_user_content_manager_remove_all_scripts(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     fn remove_all_style_sheets(&self) {
         unsafe {
             ffi::webkit_user_content_manager_remove_all_style_sheets(

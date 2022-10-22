@@ -20,8 +20,6 @@ use crate::WebsiteData;
 use crate::WebsiteDataTypes;
 use glib::object::Cast;
 use glib::object::IsA;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
@@ -48,8 +46,6 @@ glib::wrapper! {
 impl WebsiteDataManager {
     pub const NONE: Option<&'static WebsiteDataManager> = None;
 
-    //#[cfg(any(feature = "v2_10", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     //#[doc(alias = "webkit_website_data_manager_new")]
     //pub fn new(first_option_name: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> WebsiteDataManager {
     //    unsafe { TODO: call ffi:webkit_website_data_manager_new() }
@@ -318,14 +314,10 @@ pub trait WebsiteDataManagerExt: 'static {
         types: WebsiteDataTypes,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<WebsiteData>, glib::Error>> + 'static>>;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_base_cache_directory")]
     #[doc(alias = "get_base_cache_directory")]
     fn base_cache_directory(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_base_data_directory")]
     #[doc(alias = "get_base_data_directory")]
     fn base_data_directory(&self) -> Option<glib::GString>;
@@ -336,8 +328,6 @@ pub trait WebsiteDataManagerExt: 'static {
     #[doc(alias = "get_cookie_manager")]
     fn cookie_manager(&self) -> Option<CookieManager>;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_disk_cache_directory")]
     #[doc(alias = "get_disk_cache_directory")]
     fn disk_cache_directory(&self) -> Option<glib::GString>;
@@ -354,8 +344,6 @@ pub trait WebsiteDataManagerExt: 'static {
     #[doc(alias = "get_hsts_cache_directory")]
     fn hsts_cache_directory(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_indexeddb_directory")]
     #[doc(alias = "get_indexeddb_directory")]
     fn indexeddb_directory(&self) -> Option<glib::GString>;
@@ -390,14 +378,10 @@ pub trait WebsiteDataManagerExt: 'static {
         Box_<dyn std::future::Future<Output = Result<Vec<ITPThirdParty>, glib::Error>> + 'static>,
     >;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_local_storage_directory")]
     #[doc(alias = "get_local_storage_directory")]
     fn local_storage_directory(&self) -> Option<glib::GString>;
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_offline_application_cache_directory")]
     #[doc(alias = "get_offline_application_cache_directory")]
     fn offline_application_cache_directory(&self) -> Option<glib::GString>;
@@ -421,8 +405,6 @@ pub trait WebsiteDataManagerExt: 'static {
     fn tls_errors_policy(&self) -> TLSErrorsPolicy;
 
     #[cfg_attr(feature = "v2_24", deprecated = "Since 2.24")]
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_website_data_manager_get_websql_directory")]
     #[doc(alias = "get_websql_directory")]
     fn websql_directory(&self) -> Option<glib::GString>;
@@ -518,8 +500,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }))
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn base_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_base_cache_directory(
@@ -528,8 +508,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn base_data_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_base_data_directory(
@@ -548,8 +526,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn disk_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_disk_cache_directory(
@@ -578,8 +554,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn indexeddb_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_indexeddb_directory(
@@ -675,8 +649,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }))
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn local_storage_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -687,8 +659,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn offline_application_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -733,8 +703,6 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn websql_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_websql_directory(
