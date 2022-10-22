@@ -234,7 +234,11 @@ mod security_origin;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 pub use self::security_origin::SecurityOrigin;
 
+#[cfg(any(feature = "v2_24", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 mod user_content_filter;
+#[cfg(any(feature = "v2_24", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 pub use self::user_content_filter::UserContentFilter;
 
 #[cfg(any(feature = "v2_6", feature = "dox"))]

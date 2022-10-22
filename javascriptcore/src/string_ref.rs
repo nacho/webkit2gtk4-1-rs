@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/vhdirk/gir-files)
 // DO NOT EDIT
 
-use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -17,7 +16,7 @@ glib::wrapper! {
 impl StringRef {
     #[doc(alias = "JSStringGetMaximumUTF8CStringSize")]
     pub fn maximum_utf8_cstring_size(&self) -> usize {
-        unsafe { ffi::JSStringGetMaximumUTF8CStringSize(*self.to_glib_none().0) }
+        unsafe { ffi::JSStringGetMaximumUTF8CStringSize(self.as_ptr() as *mut _) }
     }
 
     // #[doc(alias = "JSStringGetUTF8CString")]

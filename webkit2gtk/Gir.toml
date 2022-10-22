@@ -79,7 +79,6 @@ generate = [
     "WebKit2.SnapshotOptions",
     "WebKit2.SnapshotRegion",
     "WebKit2.TLSErrorsPolicy",
-    "WebKit2.UserContentFilter",
     "WebKit2.UserContentFilterError",
     "WebKit2.UserContentInjectedFrames",
     "WebKit2.UserContentManager",
@@ -251,6 +250,11 @@ generate_builder = true
 name = "WebKit2.Settings"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "WebKit2.UserContentFilter"
+status = "generate"
+version = "2.24"
 
 [[object]]
 name = "WebKit2.UserMessage"

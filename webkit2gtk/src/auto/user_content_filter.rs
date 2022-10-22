@@ -3,8 +3,6 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_24", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 use glib::translate::*;
 
 glib::wrapper! {
@@ -19,8 +17,6 @@ glib::wrapper! {
 }
 
 impl UserContentFilter {
-    #[cfg(any(feature = "v2_24", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
     #[doc(alias = "webkit_user_content_filter_get_identifier")]
     #[doc(alias = "get_identifier")]
     pub fn identifier(&self) -> Option<glib::GString> {

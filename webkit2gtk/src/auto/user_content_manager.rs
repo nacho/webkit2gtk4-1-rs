@@ -6,6 +6,8 @@
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use crate::JavascriptResult;
+#[cfg(any(feature = "v2_24", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 use crate::UserContentFilter;
 #[cfg(any(feature = "v2_6", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
@@ -23,6 +25,8 @@ use glib::signal::connect_raw;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::SignalHandlerId;
+#[cfg(any(feature = "v2_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
 use glib::translate::*;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -102,6 +106,8 @@ pub trait UserContentManagerExt: 'static {
     #[doc(alias = "webkit_user_content_manager_remove_all_style_sheets")]
     fn remove_all_style_sheets(&self);
 
+    #[cfg(any(feature = "v2_24", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
     #[doc(alias = "webkit_user_content_manager_remove_filter")]
     fn remove_filter(&self, filter: &UserContentFilter);
 
@@ -227,6 +233,8 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_24", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
     fn remove_filter(&self, filter: &UserContentFilter) {
         unsafe {
             ffi::webkit_user_content_manager_remove_filter(
