@@ -27,6 +27,7 @@ docs:
   stage: test
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
+    GIT_SUBMODULE_UPDATE_FLAGS: --checkout
   script:
     # generate the docs
     - cargo install rustdoc-stripper
