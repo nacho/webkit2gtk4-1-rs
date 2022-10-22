@@ -804,7 +804,7 @@ impl SettingsBuilder {
     }
 }
 
-pub trait SettingsExt: 'static {
+pub trait WebkitSettingsExt: 'static {
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_settings_get_allow_file_access_from_file_urls")]
@@ -1607,7 +1607,7 @@ pub trait SettingsExt: 'static {
     fn connect_zoom_text_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
 
-impl<O: IsA<Settings>> SettingsExt for O {
+impl<O: IsA<Settings>> WebkitSettingsExt for O {
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn allows_file_access_from_file_urls(&self) -> bool {

@@ -1,0 +1,14 @@
+[package]
+name = "webkit-examples"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+gtk = { git = "https://github.com/gtk-rs/gtk4-rs", package = "gtk4"}
+webkit2gtk = { path = "../webkit2gtk", package = "webkit2gtk5", features = ["v2_34"]}
+
+[[bin]]
+name = "view"
+path = "main.rs"

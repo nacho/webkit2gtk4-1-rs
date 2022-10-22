@@ -383,7 +383,7 @@ pub mod traits {
     pub use super::print_operation::PrintOperationExt;
     pub use super::response_policy_decision::ResponsePolicyDecisionExt;
     pub use super::security_manager::SecurityManagerExt;
-    pub use super::settings::SettingsExt;
+    pub use super::settings::WebkitSettingsExt;
     pub use super::uri_request::URIRequestExt;
     pub use super::uri_response::URIResponseExt;
     pub use super::uri_scheme_request::URISchemeRequestExt;

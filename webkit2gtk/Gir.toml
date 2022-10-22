@@ -249,6 +249,7 @@ generate_builder = true
 [[object]]
 name = "WebKit2.Settings"
 status = "generate"
+trait_name = "WebkitSettingsExt"
 generate_builder = true
 
 [[object]]

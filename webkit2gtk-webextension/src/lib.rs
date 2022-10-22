@@ -64,6 +64,7 @@ pub use auto::*;
 pub mod prelude {
     pub use super::auto::traits::*;
     pub use super::dom_html_field_set_element::DOMHTMLFieldSetElementExtManual;
+    pub use javascriptcore::prelude::*;
 }
 
 unsafe impl Send for WebExtension {}

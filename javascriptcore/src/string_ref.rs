@@ -2,7 +2,6 @@
 // from gir-files (https://github.com/vhdirk/gir-files)
 // DO NOT EDIT
 
-
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub struct StringRef(Shared<ffi::JSStringRef>);

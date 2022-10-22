@@ -34,7 +34,8 @@ where
         let web_context_property = CString::new("web-context").unwrap();
         let glib_user_content_manager: *mut ffi::WebKitUserContentManager =
             user_content_manager.to_glib_none().0;
-        let glib_user_content_manager = glib_user_content_manager as *mut glib::gobject_ffi::GObject;
+        let glib_user_content_manager =
+            glib_user_content_manager as *mut glib::gobject_ffi::GObject;
         let glib_context: *mut ffi::WebKitWebContext = context.to_glib_none().0;
         let glib_context = glib_context as *mut glib::gobject_ffi::GObject;
         let null: *mut glib::gobject_ffi::GObject = ptr::null_mut();

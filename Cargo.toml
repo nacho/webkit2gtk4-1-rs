@@ -1,6 +1,6 @@
 [workspace]
 members = [
-  # "examples",
+  "examples",
   "javascriptcore",
   "javascriptcore/sys",
   "webkit2gtk",

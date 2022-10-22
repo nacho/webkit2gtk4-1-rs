@@ -30,6 +30,7 @@ pub mod prelude {
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     pub use super::website_data_manager::WebsiteDataManagerExtManual;
+    pub use javascriptcore::prelude::*;
 }
 
 pub mod builders {
