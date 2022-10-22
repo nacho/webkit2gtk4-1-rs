@@ -15,5 +15,4 @@ external_libraries = [
 
 [external_libraries]
 javascriptcore5_rs = "JavaScriptCore"
-gtk4 = "Gtk"
 soup3 = "Soup"

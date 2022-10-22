@@ -31,7 +31,7 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = []
+dox = ["gio/dox", "glib/dox", "gobject/dox", "java_script_core/dox", "soup/dox"]
 v2_6 = []
 v2_8 = ["v2_6"]
 v2_10 = ["v2_8"]
