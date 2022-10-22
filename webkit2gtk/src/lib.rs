@@ -1,8 +1,12 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
+pub use cairo;
 pub use ffi;
+pub use gdk;
 pub use gio;
 pub use glib;
+pub use gtk;
+pub use javascriptcore;
 
 #[macro_use]
 mod rt;

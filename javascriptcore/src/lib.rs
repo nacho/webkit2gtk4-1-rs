@@ -4,6 +4,7 @@
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
 pub use ffi;
+pub use glib;
 
 #[allow(unused_imports)]
 mod auto;
