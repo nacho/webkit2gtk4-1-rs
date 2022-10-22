@@ -73,7 +73,7 @@ license = "MIT"
 links = "web_kit2"
 repository = "https://github.com/vhdirk/webkit2gtk-rs"
 version = "0.15.0"
-edition = "2018"
+edition = "2021"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.webkit2gtk_5_0]

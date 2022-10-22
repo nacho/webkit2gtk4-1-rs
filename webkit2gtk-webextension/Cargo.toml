@@ -1,7 +1,7 @@
 [package]
 name = "webkit2gtk5-webextension"
 version = "0.15.1"
-edition = "2018"
+edition = "2021"
 authors = ["The Gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
 description = "Rust bindings for the GTK+ 3 library"

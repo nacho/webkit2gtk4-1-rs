@@ -57,7 +57,7 @@ build = "build.rs"
 links = "webkit2gtk5_webextension"
 name = "webkit2gtk5-webextension-sys"
 version = "0.5.0"
-edition = "2018"
+edition = "2021"
 [package.metadata.docs.rs]
 features = ["dox"]
 [package.metadata.system-deps.webkit2gtk_web_extension_5_0]
