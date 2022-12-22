@@ -6,6 +6,10 @@ system-deps = "6"
 libc = "0.2"
 bitflags = "^1.0"
 
+[dependencies.gtk]
+package = "gtk-sys"
+git = "https://github.com/gtk-rs/gtk3-rs"
+
 [dependencies.gio]
 package = "gio-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"

@@ -23,11 +23,11 @@ package = "cairo-sys-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gdk]
-package = "gdk3-sys"
+package = "gdk-sys"
 git = "https://github.com/gtk-rs/gtk3-rs"
 
 [dependencies.gtk]
-package = "gtk3-sys"
+package = "gtk-sys"
 git = "https://github.com/gtk-rs/gtk3-rs"
 
 [dependencies.java_script_core]

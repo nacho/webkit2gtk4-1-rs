@@ -49,8 +49,8 @@ libc = "^0.2"
 gio = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 glib = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs-core" }
-gdk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gdk3"}
-gtk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gtk3"}
+gdk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gdk"}
+gtk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gtk"}
 javascriptcore4-rs = { path = "../javascriptcore" }
 ffi = { package = "webkit2gtk4-sys", path = "sys" }
 

@@ -20,7 +20,8 @@
  */
 
 use gtk::{glib::ToVariant, prelude::*, ApplicationWindow};
-use webkit2gtk::{prelude::*, WebContext, WebView};
+use webkit2gtk::{WebContext, WebView};
+use webkit2gtk::prelude::{*, ValueExt};
 
 fn main() {
     gtk::init().unwrap();
@@ -40,7 +41,7 @@ fn main() {
         /*let inspector = webview.get_inspector().unwrap();
         inspector.show();*/
 
-        window.show();
+        window.show_all();
 
         webview.run_javascript("alert('Hello');", gtk::gio::Cancellable::NONE, |_result| {});
         webview.run_javascript("42", gtk::gio::Cancellable::NONE, |result| match result {
