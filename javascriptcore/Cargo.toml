@@ -1,5 +1,5 @@
 [package]
-name = "javascriptcore5-rs"
+name = "javascriptcore4-rs"
 version = "0.15.3"
 edition = "2021"
 description = "Rust bindings for the javacriptcore library"
@@ -18,7 +18,7 @@ bitflags = "^1.0"
 glib = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 
 [dependencies.ffi]
-package = "javascriptcore5-rs-sys"
+package = "javascriptcore4-rs-sys"
 path = "./sys"
 version = "0.3.0"
 

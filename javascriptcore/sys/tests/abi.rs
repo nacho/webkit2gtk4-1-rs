@@ -3,7 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use javascriptcore5_rs_sys::*;
+use javascriptcore4_rs_sys::*;
 use std::env;
 use std::error::Error;
 use std::ffi::OsString;
@@ -13,7 +13,7 @@ use std::process::Command;
 use std::str;
 use tempfile::Builder;
 
-static PACKAGES: &[&str] = &["javascriptcoregtk-5.0"];
+static PACKAGES: &[&str] = &["javascriptcoregtk-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -329,8 +329,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
         "3",
     ),
     ("JSC_MAJOR_VERSION", "2"),
-    ("JSC_MICRO_VERSION", "0"),
-    ("JSC_MINOR_VERSION", "38"),
+    ("JSC_MICRO_VERSION", "3"),
+    ("JSC_MINOR_VERSION", "39"),
     ("JSC_OPTIONS_USE_DFG", "useDFGJIT"),
     ("JSC_OPTIONS_USE_FTL", "useFTLJIT"),
     ("JSC_OPTIONS_USE_JIT", "useJIT"),

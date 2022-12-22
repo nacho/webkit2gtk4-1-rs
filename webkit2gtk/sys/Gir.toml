@@ -3,7 +3,7 @@ girs_directories = ["../../gir-files", "../../webkit2gtk-gir-files"]
 work_mode = "sys"
 min_cfg_version="2.4"
 library = "WebKit2"
-version = "5.0"
+version = "4.1"
 single_version_file = "."
 target_path = "."
 
@@ -15,7 +15,7 @@ external_libraries = [
 ]
 
 [external_libraries]
-javascriptcore5_rs = "JavaScriptCore"
+javascriptcore4_rs = "JavaScriptCore"
 soup3_rs = "Soup"
-gdk4 = "Gdk"
-gtk4 = "Gtk"
+gdk3 = "Gdk"
+gtk3 = "Gtk"

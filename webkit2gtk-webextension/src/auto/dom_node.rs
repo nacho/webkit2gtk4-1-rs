@@ -30,6 +30,7 @@ glib::wrapper! {
 impl DOMNode {
     pub const NONE: Option<&'static DOMNode> = None;
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_node_for_js_value")]

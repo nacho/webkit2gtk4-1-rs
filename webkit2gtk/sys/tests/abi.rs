@@ -13,7 +13,7 @@ use std::str;
 use tempfile::Builder;
 use webkit2gtk_sys::*;
 
-static PACKAGES: &[&str] = &["webkit2gtk-5.0"];
+static PACKAGES: &[&str] = &["webkit2gtk-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -721,6 +721,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "WebKitPermissionState",
+        Layout {
+            size: size_of::<WebKitPermissionState>(),
+            alignment: align_of::<WebKitPermissionState>(),
+        },
+    ),
+    (
         "WebKitPlugin",
         Layout {
             size: size_of::<WebKitPlugin>(),
@@ -1422,8 +1429,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_ACTIVE", "1"),
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_MUTED", "2"),
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_NONE", "0"),
-    ("WEBKIT_MICRO_VERSION", "0"),
-    ("WEBKIT_MINOR_VERSION", "38"),
+    ("WEBKIT_MICRO_VERSION", "3"),
+    ("WEBKIT_MINOR_VERSION", "39"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_BACK_FORWARD", "2"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_FORM_RESUBMITTED", "4"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_FORM_SUBMITTED", "1"),
@@ -1438,6 +1445,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_CUSTOM", "2"),
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_DEFAULT", "0"),
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_NO_PROXY", "1"),
+    ("(gint) WEBKIT_PERMISSION_STATE_DENIED", "1"),
+    ("(gint) WEBKIT_PERMISSION_STATE_GRANTED", "0"),
+    ("(gint) WEBKIT_PERMISSION_STATE_PROMPT", "2"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CANNOT_FIND_PLUGIN", "200"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CANNOT_LOAD_PLUGIN", "201"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CONNECTION_CANCELLED", "203"),

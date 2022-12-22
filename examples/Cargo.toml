@@ -6,8 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gtk = { git = "https://github.com/gtk-rs/gtk4-rs", package = "gtk4"}
-webkit2gtk = { path = "../webkit2gtk", package = "webkit2gtk5", features = ["v2_34"]}
+gtk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gtk3"}
+webkit2gtk = { path = "../webkit2gtk", package = "webkit2gtk4", features = ["v2_34"]}
 
 [[bin]]
 name = "view"

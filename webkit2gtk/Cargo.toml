@@ -1,5 +1,5 @@
 [package]
-name = "webkit2gtk5"
+name = "webkit2gtk4"
 version = "0.15.1"
 edition = "2021"
 authors = ["The Gtk-rs Project Developers"]
@@ -21,7 +21,7 @@ travis-ci = { repository = "vhdirk/webkit2gtk-rs" }
 name = "webkit2gtk"
 
 [features]
-dox = ["ffi/dox", "gio/dox", "glib/dox", "cairo-rs/dox", "gdk/dox", "gtk/dox", "javascriptcore5-rs/dox"]
+dox = ["ffi/dox", "gio/dox", "glib/dox", "cairo-rs/dox", "gdk/dox", "gtk/dox", "javascriptcore4-rs/dox"]
 v2_2 = [ ]
 v2_4 = [ "v2_2" ]
 v2_6 = [ "v2_4", "ffi/v2_6" ]
@@ -49,9 +49,9 @@ libc = "^0.2"
 gio = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 glib = { git = "https://github.com/gtk-rs/gtk-rs-core" }
 cairo-rs = { git = "https://github.com/gtk-rs/gtk-rs-core" }
-gdk = { git = "https://github.com/gtk-rs/gtk4-rs", package = "gdk4"}
-gtk = { git = "https://github.com/gtk-rs/gtk4-rs", package = "gtk4"}
-javascriptcore5-rs = { path = "../javascriptcore" }
-ffi = { package = "webkit2gtk5-sys", path = "sys" }
+gdk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gdk3"}
+gtk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gtk3"}
+javascriptcore4-rs = { path = "../javascriptcore" }
+ffi = { package = "webkit2gtk4-sys", path = "sys" }
 
 

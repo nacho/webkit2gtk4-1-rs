@@ -19,7 +19,7 @@ package = "gobject-sys"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.java_script_core]
-package = "javascriptcore5-rs-sys"
+package = "javascriptcore4-rs-sys"
 path = "../../javascriptcore/sys"
 
 [dependencies.soup]
@@ -47,6 +47,7 @@ v2_28 = ["v2_26"]
 v2_30 = ["v2_28"]
 v2_32 = ["v2_30"]
 v2_34 = ["v2_32"]
+v2_40 = ["v2_28"]
 
 [lib]
 name = "webkit2gtk_webextension_sys"
@@ -54,45 +55,48 @@ name = "webkit2gtk_webextension_sys"
 [package]
 authors = ["The Gtk-rs Project Developers"]
 build = "build.rs"
-links = "webkit2gtk5_webextension"
-name = "webkit2gtk5-webextension-sys"
+links = "webkit2gtk4_webextension"
+name = "webkit2gtk4-webextension-sys"
 version = "0.5.0"
 edition = "2021"
 [package.metadata.docs.rs]
 features = ["dox"]
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0]
-name = "webkit2gtk-web-extension-5.0"
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1]
+name = "webkit2gtk-web-extension-4.1"
 version = "2.4"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_6]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_6]
 version = "2.6"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_8]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_8]
 version = "2.8"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_10]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_10]
 version = "2.10"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_12]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_12]
 version = "2.12"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_14]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_14]
 version = "2.14"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_16]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_16]
 version = "2.16"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_18]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_18]
 version = "2.18"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_20]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_20]
 version = "2.20"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_22]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_22]
 version = "2.22"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_26]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_26]
 version = "2.26"
 
-[package.metadata.system-deps.webkit2gtk_web_extension_5_0.v2_28]
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_28]
 version = "2.28"
+
+[package.metadata.system-deps.webkit2gtk_web_extension_4_1.v2_40]
+version = "2.40"

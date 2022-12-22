@@ -125,6 +125,9 @@ pub struct WebContextBuilder {
     #[cfg(any(feature = "v2_38", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     time_zone_override: Option<String>,
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    use_system_appearance_for_scrollbars: Option<bool>,
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     website_data_manager: Option<WebsiteDataManager>,
@@ -159,6 +162,15 @@ impl WebContextBuilder {
         if let Some(ref time_zone_override) = self.time_zone_override {
             properties.push(("time-zone-override", time_zone_override));
         }
+        #[cfg(any(feature = "v2_30", feature = "dox"))]
+        if let Some(ref use_system_appearance_for_scrollbars) =
+            self.use_system_appearance_for_scrollbars
+        {
+            properties.push((
+                "use-system-appearance-for-scrollbars",
+                use_system_appearance_for_scrollbars,
+            ));
+        }
         #[cfg(any(feature = "v2_10", feature = "dox"))]
         if let Some(ref website_data_manager) = self.website_data_manager {
             properties.push(("website-data-manager", website_data_manager));
@@ -189,6 +201,16 @@ impl WebContextBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     pub fn time_zone_override(mut self, time_zone_override: &str) -> Self {
         self.time_zone_override = Some(time_zone_override.to_string());
+        self
+    }
+
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    pub fn use_system_appearance_for_scrollbars(
+        mut self,
+        use_system_appearance_for_scrollbars: bool,
+    ) -> Self {
+        self.use_system_appearance_for_scrollbars = Some(use_system_appearance_for_scrollbars);
         self
     }
 
@@ -445,6 +467,14 @@ pub trait WebContextExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "user-message-received")]
     fn connect_user_message_received<F: Fn(&Self, &UserMessage) -> bool + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId;
+
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "use-system-appearance-for-scrollbars")]
+    fn connect_use_system_appearance_for_scrollbars_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -1083,6 +1113,36 @@ impl<O: IsA<WebContext>> WebContextExt for O {
                 b"user-message-received\0".as_ptr() as *const _,
                 Some(transmute::<_, unsafe extern "C" fn()>(
                     user_message_received_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
+        }
+    }
+
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    fn connect_use_system_appearance_for_scrollbars_notify<F: Fn(&Self) + 'static>(
+        &self,
+        f: F,
+    ) -> SignalHandlerId {
+        unsafe extern "C" fn notify_use_system_appearance_for_scrollbars_trampoline<
+            P: IsA<WebContext>,
+            F: Fn(&P) + 'static,
+        >(
+            this: *mut ffi::WebKitWebContext,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
+            let f: &F = &*(f as *const F);
+            f(WebContext::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::use-system-appearance-for-scrollbars\0".as_ptr() as *const _,
+                Some(transmute::<_, unsafe extern "C" fn()>(
+                    notify_use_system_appearance_for_scrollbars_trampoline::<Self, F> as *const (),
                 )),
                 Box_::into_raw(f),
             )
