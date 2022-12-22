@@ -20,7 +20,8 @@
  */
 
 use gtk::{glib::ToVariant, prelude::*, ApplicationWindow};
-use webkit2gtk::{prelude::*, WebContext, WebView};
+use webkit2gtk::{WebContext, WebView};
+use webkit2gtk::prelude::{*, ValueExt};
 
 fn main() {
     gtk::init().unwrap();
