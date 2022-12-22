@@ -41,7 +41,7 @@ fn main() {
         /*let inspector = webview.get_inspector().unwrap();
         inspector.show();*/
 
-        window.show();
+        window.show_all();
 
         webview.run_javascript("alert('Hello');", gtk::gio::Cancellable::NONE, |_result| {});
         webview.run_javascript("42", gtk::gio::Cancellable::NONE, |result| match result {
