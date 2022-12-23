@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore4-rs"
-version = "0.15.3"
+version = "0.16.0"
 edition = "2021"
 description = "Rust bindings for the javacriptcore library"
 repository = "https://github.com/vhdirk/javascriptcore-rs"
