@@ -8,35 +8,35 @@ bitflags = "^1.0"
 
 [dependencies.gio]
 package = "gio-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.16"
 
 [dependencies.glib]
 package = "glib-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.16"
 
 [dependencies.gobject]
 package = "gobject-sys"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.16"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-git = "https://github.com/gtk-rs/gtk-rs-core"
+version = "0.16"
 
 [dependencies.gdk]
 package = "gdk-sys"
-git = "https://github.com/gtk-rs/gtk3-rs"
+version = "0.16"
 
 [dependencies.gtk]
 package = "gtk-sys"
-git = "https://github.com/gtk-rs/gtk3-rs"
+version = "0.16"
+
+[dependencies.soup]
+package = "soup3-sys"
+version = "0.3"
 
 [dependencies.java_script_core]
 package = "javascriptcore4-rs-sys"
 path = "../../javascriptcore/sys"
-
-[dependencies.soup]
-package = "soup3-sys"
-git = "https://gitlab.gnome.org/World/Rust/soup3-rs"
 
 [dev-dependencies]
 shell-words = "1.0.0"
