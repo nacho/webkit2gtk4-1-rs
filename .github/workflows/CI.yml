@@ -33,30 +33,35 @@ jobs:
           args: --features=v2_30
 
   fmt:
-    name: Regen Check
+    name: rust fmt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
           toolchain: stable
           override: true
+          components: rustfmt
+      - uses: actions-rs/cargo@v1
+        with:
+          command: fmt
+          args: --all -- --check
+
+  generator:
+    name: regen check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          set-safe-directory: true
+      - uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - run: git submodule init
       - run: git submodule update --checkout
       - run: python3 generator.py
       - run: git diff --exit-code
-
-  checker:
-    name: gtk-rs checker
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/checkout@v2
-        with:
-          repository: gtk-rs/checker
-          ref: master
-          path: checker
-      - working-directory: checker
-        run: cargo build --release
-      - run: "./checker/target/release/checker ."
-      - run: "./checker/check_init_asserts"
