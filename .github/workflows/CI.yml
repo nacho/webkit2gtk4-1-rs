@@ -42,8 +42,9 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-      - run: rustup component add rustfmt
-      - run: make regen_check
+      - run: git submodule update --checkout
+      - run: python3 generator.py
+      - run: git diff --exit-code
 
   checker:
     name: gtk-rs checker
