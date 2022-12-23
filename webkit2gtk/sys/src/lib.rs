@@ -279,8 +279,8 @@ pub const WEBKIT_EDITING_COMMAND_SELECT_ALL: *const c_char =
     b"SelectAll\0" as *const u8 as *const c_char;
 pub const WEBKIT_EDITING_COMMAND_UNDO: *const c_char = b"Undo\0" as *const u8 as *const c_char;
 pub const WEBKIT_MAJOR_VERSION: c_int = 2;
-pub const WEBKIT_MICRO_VERSION: c_int = 3;
-pub const WEBKIT_MINOR_VERSION: c_int = 39;
+pub const WEBKIT_MICRO_VERSION: c_int = 2;
+pub const WEBKIT_MINOR_VERSION: c_int = 38;
 
 // Flags
 pub type WebKitEditorTypingAttributes = c_uint;
