@@ -1,14 +1,11 @@
-# webkit2gtk4-rs
+# webkit2gtk4-1-rs
 
-The Rust bindings of [webkit2gtk4](https://webkitgtk.org/)
-
-Website: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs>
+The Rust bindings of [webkit2gtk 4.1](https://webkitgtk.org/)
 
 ## Documentation
 
-- webkit2gtk4: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/webkit2gtk4>
-- webkit2gtk4-sys: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/webkit2gtk4_sys>
-- webkit2gtk-webextension: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/webkit2gtk_webextension>
-- webkit2gtk-webextension-sys: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/webkit2gtk_webextension_sys>
-- javascriptcore5: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/javascriptcore>
-- javascriptcore5-sys: <https://world.pages.gitlab.gnome.org/Rust/webkit2gtk4-rs/stable/latest/docs/javascriptcore5_rs_sys>
+This project targets bindings for WebkitGTK 4.1. If your intention is to use
+a different version of WebkitGTK then there are other projects:
+
+ - WebkitGTK 4.0: https://github.com/tauri-apps/webkit2gtk-rs
+ - WebkitGTK 5.0: https://gitlab.gnome.org/World/Rust/webkit2gtk5-rs
