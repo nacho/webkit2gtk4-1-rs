@@ -10,10 +10,8 @@
 int main() {
     printf("%s;%zu;%zu\n", "WebKitConsoleMessageLevel", sizeof(WebKitConsoleMessageLevel), alignof(WebKitConsoleMessageLevel));
     printf("%s;%zu;%zu\n", "WebKitConsoleMessageSource", sizeof(WebKitConsoleMessageSource), alignof(WebKitConsoleMessageSource));
-    printf("%s;%zu;%zu\n", "WebKitContextMenu", sizeof(WebKitContextMenu), alignof(WebKitContextMenu));
     printf("%s;%zu;%zu\n", "WebKitContextMenuAction", sizeof(WebKitContextMenuAction), alignof(WebKitContextMenuAction));
     printf("%s;%zu;%zu\n", "WebKitContextMenuClass", sizeof(WebKitContextMenuClass), alignof(WebKitContextMenuClass));
-    printf("%s;%zu;%zu\n", "WebKitContextMenuItem", sizeof(WebKitContextMenuItem), alignof(WebKitContextMenuItem));
     printf("%s;%zu;%zu\n", "WebKitContextMenuItemClass", sizeof(WebKitContextMenuItemClass), alignof(WebKitContextMenuItemClass));
     printf("%s;%zu;%zu\n", "WebKitDOMAttr", sizeof(WebKitDOMAttr), alignof(WebKitDOMAttr));
     printf("%s;%zu;%zu\n", "WebKitDOMAttrClass", sizeof(WebKitDOMAttrClass), alignof(WebKitDOMAttrClass));
@@ -237,8 +235,6 @@ int main() {
     printf("%s;%zu;%zu\n", "WebKitWebEditorClass", sizeof(WebKitWebEditorClass), alignof(WebKitWebEditorClass));
     printf("%s;%zu;%zu\n", "WebKitWebExtension", sizeof(WebKitWebExtension), alignof(WebKitWebExtension));
     printf("%s;%zu;%zu\n", "WebKitWebExtensionClass", sizeof(WebKitWebExtensionClass), alignof(WebKitWebExtensionClass));
-    printf("%s;%zu;%zu\n", "WebKitWebFormManager", sizeof(WebKitWebFormManager), alignof(WebKitWebFormManager));
-    printf("%s;%zu;%zu\n", "WebKitWebFormManagerClass", sizeof(WebKitWebFormManagerClass), alignof(WebKitWebFormManagerClass));
     printf("%s;%zu;%zu\n", "WebKitWebHitTestResult", sizeof(WebKitWebHitTestResult), alignof(WebKitWebHitTestResult));
     printf("%s;%zu;%zu\n", "WebKitWebHitTestResultClass", sizeof(WebKitWebHitTestResultClass), alignof(WebKitWebHitTestResultClass));
     printf("%s;%zu;%zu\n", "WebKitWebPage", sizeof(WebKitWebPage), alignof(WebKitWebPage));

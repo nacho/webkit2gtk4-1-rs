@@ -5,9 +5,6 @@
 
 use crate::DOMNode;
 use crate::HitTestResult;
-#[cfg(any(feature = "v2_40", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-use crate::ScriptWorld;
 use glib::object::IsA;
 use glib::translate::*;
 use glib::StaticType;
@@ -27,33 +24,14 @@ impl WebHitTestResult {
 }
 
 pub trait WebHitTestResultExt: 'static {
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    #[doc(alias = "webkit_web_hit_test_result_get_js_node")]
-    #[doc(alias = "get_js_node")]
-    fn js_node(&self, world: Option<&impl IsA<ScriptWorld>>) -> Option<javascriptcore::Value>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_web_hit_test_result_get_node")]
     #[doc(alias = "get_node")]
     fn node(&self) -> Option<DOMNode>;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     fn get_property_node(&self) -> Option<DOMNode>;
 }
 
 impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    fn js_node(&self, world: Option<&impl IsA<ScriptWorld>>) -> Option<javascriptcore::Value> {
-        unsafe {
-            from_glib_full(ffi::webkit_web_hit_test_result_get_js_node(
-                self.as_ref().to_glib_none().0,
-                world.map(|p| p.as_ref()).to_glib_none().0,
-            ))
-        }
-    }
-
     fn node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_web_hit_test_result_get_node(

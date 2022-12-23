@@ -4,7 +4,6 @@
 // DO NOT EDIT
 
 use crate::ContextMenuItem;
-use glib::object::IsA;
 use glib::translate::*;
 use std::fmt;
 
@@ -18,8 +17,6 @@ glib::wrapper! {
 }
 
 impl ContextMenu {
-    pub const NONE: Option<&'static ContextMenu> = None;
-
     #[doc(alias = "webkit_context_menu_new")]
     pub fn new() -> ContextMenu {
         assert_initialized_main_thread!();
@@ -36,185 +33,118 @@ impl ContextMenu {
             ))
         }
     }
-}
 
-impl Default for ContextMenu {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-pub trait ContextMenuExt: 'static {
     #[doc(alias = "webkit_context_menu_append")]
-    fn append(&self, item: &impl IsA<ContextMenuItem>);
+    pub fn append(&self, item: &ContextMenuItem) {
+        unsafe {
+            ffi::webkit_context_menu_append(self.to_glib_none().0, item.to_glib_none().0);
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_first")]
-    fn first(&self) -> Option<ContextMenuItem>;
-
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    //#[doc(alias = "webkit_context_menu_get_event")]
-    //#[doc(alias = "get_event")]
-    //fn event(&self) -> /*Ignored*/Option<gdk::Event>;
+    pub fn first(&self) -> Option<ContextMenuItem> {
+        unsafe { from_glib_none(ffi::webkit_context_menu_first(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "webkit_context_menu_get_item_at_position")]
     #[doc(alias = "get_item_at_position")]
-    fn item_at_position(&self, position: u32) -> Option<ContextMenuItem>;
+    pub fn item_at_position(&self, position: u32) -> Option<ContextMenuItem> {
+        unsafe {
+            from_glib_none(ffi::webkit_context_menu_get_item_at_position(
+                self.to_glib_none().0,
+                position,
+            ))
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_get_items")]
     #[doc(alias = "get_items")]
-    fn items(&self) -> Vec<ContextMenuItem>;
+    pub fn items(&self) -> Vec<ContextMenuItem> {
+        unsafe {
+            FromGlibPtrContainer::from_glib_none(ffi::webkit_context_menu_get_items(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_get_n_items")]
     #[doc(alias = "get_n_items")]
-    fn n_items(&self) -> u32;
+    pub fn n_items(&self) -> u32 {
+        unsafe { ffi::webkit_context_menu_get_n_items(self.to_glib_none().0) }
+    }
 
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_context_menu_get_user_data")]
     #[doc(alias = "get_user_data")]
-    fn user_data(&self) -> Option<glib::Variant>;
+    pub fn user_data(&self) -> Option<glib::Variant> {
+        unsafe {
+            from_glib_none(ffi::webkit_context_menu_get_user_data(
+                self.to_glib_none().0,
+            ))
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_insert")]
-    fn insert(&self, item: &impl IsA<ContextMenuItem>, position: i32);
+    pub fn insert(&self, item: &ContextMenuItem, position: i32) {
+        unsafe {
+            ffi::webkit_context_menu_insert(self.to_glib_none().0, item.to_glib_none().0, position);
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_last")]
-    fn last(&self) -> Option<ContextMenuItem>;
+    pub fn last(&self) -> Option<ContextMenuItem> {
+        unsafe { from_glib_none(ffi::webkit_context_menu_last(self.to_glib_none().0)) }
+    }
 
     #[doc(alias = "webkit_context_menu_move_item")]
-    fn move_item(&self, item: &impl IsA<ContextMenuItem>, position: i32);
+    pub fn move_item(&self, item: &ContextMenuItem, position: i32) {
+        unsafe {
+            ffi::webkit_context_menu_move_item(
+                self.to_glib_none().0,
+                item.to_glib_none().0,
+                position,
+            );
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_prepend")]
-    fn prepend(&self, item: &impl IsA<ContextMenuItem>);
+    pub fn prepend(&self, item: &ContextMenuItem) {
+        unsafe {
+            ffi::webkit_context_menu_prepend(self.to_glib_none().0, item.to_glib_none().0);
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_remove")]
-    fn remove(&self, item: &impl IsA<ContextMenuItem>);
+    pub fn remove(&self, item: &ContextMenuItem) {
+        unsafe {
+            ffi::webkit_context_menu_remove(self.to_glib_none().0, item.to_glib_none().0);
+        }
+    }
 
     #[doc(alias = "webkit_context_menu_remove_all")]
-    fn remove_all(&self);
+    pub fn remove_all(&self) {
+        unsafe {
+            ffi::webkit_context_menu_remove_all(self.to_glib_none().0);
+        }
+    }
 
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_context_menu_set_user_data")]
-    fn set_user_data(&self, user_data: &glib::Variant);
-}
-
-impl<O: IsA<ContextMenu>> ContextMenuExt for O {
-    fn append(&self, item: &impl IsA<ContextMenuItem>) {
-        unsafe {
-            ffi::webkit_context_menu_append(
-                self.as_ref().to_glib_none().0,
-                item.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn first(&self) -> Option<ContextMenuItem> {
-        unsafe {
-            from_glib_none(ffi::webkit_context_menu_first(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    //fn event(&self) -> /*Ignored*/Option<gdk::Event> {
-    //    unsafe { TODO: call ffi:webkit_context_menu_get_event() }
-    //}
-
-    fn item_at_position(&self, position: u32) -> Option<ContextMenuItem> {
-        unsafe {
-            from_glib_none(ffi::webkit_context_menu_get_item_at_position(
-                self.as_ref().to_glib_none().0,
-                position,
-            ))
-        }
-    }
-
-    fn items(&self) -> Vec<ContextMenuItem> {
-        unsafe {
-            FromGlibPtrContainer::from_glib_none(ffi::webkit_context_menu_get_items(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn n_items(&self) -> u32 {
-        unsafe { ffi::webkit_context_menu_get_n_items(self.as_ref().to_glib_none().0) }
-    }
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    fn user_data(&self) -> Option<glib::Variant> {
-        unsafe {
-            from_glib_none(ffi::webkit_context_menu_get_user_data(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn insert(&self, item: &impl IsA<ContextMenuItem>, position: i32) {
-        unsafe {
-            ffi::webkit_context_menu_insert(
-                self.as_ref().to_glib_none().0,
-                item.as_ref().to_glib_none().0,
-                position,
-            );
-        }
-    }
-
-    fn last(&self) -> Option<ContextMenuItem> {
-        unsafe {
-            from_glib_none(ffi::webkit_context_menu_last(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    fn move_item(&self, item: &impl IsA<ContextMenuItem>, position: i32) {
-        unsafe {
-            ffi::webkit_context_menu_move_item(
-                self.as_ref().to_glib_none().0,
-                item.as_ref().to_glib_none().0,
-                position,
-            );
-        }
-    }
-
-    fn prepend(&self, item: &impl IsA<ContextMenuItem>) {
-        unsafe {
-            ffi::webkit_context_menu_prepend(
-                self.as_ref().to_glib_none().0,
-                item.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn remove(&self, item: &impl IsA<ContextMenuItem>) {
-        unsafe {
-            ffi::webkit_context_menu_remove(
-                self.as_ref().to_glib_none().0,
-                item.as_ref().to_glib_none().0,
-            );
-        }
-    }
-
-    fn remove_all(&self) {
-        unsafe {
-            ffi::webkit_context_menu_remove_all(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    fn set_user_data(&self, user_data: &glib::Variant) {
+    pub fn set_user_data(&self, user_data: &glib::Variant) {
         unsafe {
             ffi::webkit_context_menu_set_user_data(
-                self.as_ref().to_glib_none().0,
+                self.to_glib_none().0,
                 user_data.to_glib_none().0,
             );
         }
+    }
+}
+
+impl Default for ContextMenu {
+    fn default() -> Self {
+        Self::new()
     }
 }
 

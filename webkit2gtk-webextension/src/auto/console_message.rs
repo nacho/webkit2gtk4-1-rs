@@ -19,7 +19,6 @@ glib::wrapper! {
 }
 
 impl ConsoleMessage {
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_console_message_get_level")]
     #[doc(alias = "get_level")]
     pub fn level(&mut self) -> ConsoleMessageLevel {
@@ -30,14 +29,12 @@ impl ConsoleMessage {
         }
     }
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_console_message_get_line")]
     #[doc(alias = "get_line")]
     pub fn line(&mut self) -> u32 {
         unsafe { ffi::webkit_console_message_get_line(self.to_glib_none_mut().0) }
     }
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_console_message_get_source")]
     #[doc(alias = "get_source")]
     pub fn source(&mut self) -> ConsoleMessageSource {
@@ -48,7 +45,6 @@ impl ConsoleMessage {
         }
     }
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_console_message_get_source_id")]
     #[doc(alias = "get_source_id")]
     pub fn source_id(&mut self) -> Option<glib::GString> {
@@ -59,7 +55,6 @@ impl ConsoleMessage {
         }
     }
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_console_message_get_text")]
     #[doc(alias = "get_text")]
     pub fn text(&mut self) -> Option<glib::GString> {

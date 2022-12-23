@@ -721,13 +721,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "WebKitPermissionState",
-        Layout {
-            size: size_of::<WebKitPermissionState>(),
-            alignment: align_of::<WebKitPermissionState>(),
-        },
-    ),
-    (
         "WebKitPlugin",
         Layout {
             size: size_of::<WebKitPlugin>(),
@@ -1445,9 +1438,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_CUSTOM", "2"),
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_DEFAULT", "0"),
     ("(gint) WEBKIT_NETWORK_PROXY_MODE_NO_PROXY", "1"),
-    ("(gint) WEBKIT_PERMISSION_STATE_DENIED", "1"),
-    ("(gint) WEBKIT_PERMISSION_STATE_GRANTED", "0"),
-    ("(gint) WEBKIT_PERMISSION_STATE_PROMPT", "2"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CANNOT_FIND_PLUGIN", "200"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CANNOT_LOAD_PLUGIN", "201"),
     ("(gint) WEBKIT_PLUGIN_ERROR_CONNECTION_CANCELLED", "203"),

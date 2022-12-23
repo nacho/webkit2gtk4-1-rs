@@ -1314,11 +1314,6 @@ pub trait WebViewExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    //#[doc(alias = "query-permission-state")]
-    //fn connect_query_permission_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
     #[doc(alias = "ready-to-show")]
     fn connect_ready_to_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -3084,12 +3079,6 @@ impl<O: IsA<WebView>> WebViewExt for O {
             )
         }
     }
-
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    //fn connect_query_permission_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
-    //    Ignored query: WebKit2.PermissionStateQuery
-    //}
 
     fn connect_ready_to_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_to_show_trampoline<P: IsA<WebView>, F: Fn(&P) + 'static>(

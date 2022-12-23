@@ -320,25 +320,19 @@ pub trait DOMElementExt: 'static {
     #[doc(alias = "webkit_dom_element_has_attributes")]
     fn has_attributes(&self) -> bool;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_element_html_input_element_get_auto_filled")]
     fn html_input_element_get_auto_filled(&self) -> bool;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_element_html_input_element_is_user_edited")]
     fn html_input_element_is_user_edited(&self) -> bool;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_element_html_input_element_set_auto_filled")]
     fn html_input_element_set_auto_filled(&self, auto_filled: bool);
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_dom_element_html_input_element_set_editing_value")]
@@ -1001,8 +995,6 @@ impl<O: IsA<DOMElement>> DOMElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn html_input_element_get_auto_filled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_element_html_input_element_get_auto_filled(

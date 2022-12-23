@@ -48,7 +48,6 @@ pub trait FrameExt: 'static {
         world: &impl IsA<ScriptWorld>,
     ) -> Option<javascriptcore::Context>;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object")]
     #[doc(alias = "get_js_value_for_dom_object")]
     fn js_value_for_dom_object(
@@ -56,7 +55,6 @@ pub trait FrameExt: 'static {
         dom_object: &impl IsA<DOMObject>,
     ) -> Option<javascriptcore::Value>;
 
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object_in_script_world")]
     #[doc(alias = "get_js_value_for_dom_object_in_script_world")]
     fn js_value_for_dom_object_in_script_world(

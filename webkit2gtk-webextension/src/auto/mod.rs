@@ -391,8 +391,6 @@ pub use self::flags::HitTestResultContext;
 
 #[doc(hidden)]
 pub mod traits {
-    pub use super::context_menu::ContextMenuExt;
-    pub use super::context_menu_item::ContextMenuItemExt;
     pub use super::dom_attr::DOMAttrExt;
     pub use super::dom_blob::DOMBlobExt;
     pub use super::dom_character_data::DOMCharacterDataExt;

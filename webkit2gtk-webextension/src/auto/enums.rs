@@ -18,7 +18,6 @@ use glib::StaticType;
 use glib::Type;
 use std::fmt;
 
-#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -134,7 +133,6 @@ impl ToValue for ConsoleMessageLevel {
     }
 }
 
-#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
@@ -538,7 +536,6 @@ impl FromGlib<ffi::WebKitContextMenuAction> for ContextMenuAction {
     }
 }
 
-#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
 #[cfg(any(feature = "v2_20", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]

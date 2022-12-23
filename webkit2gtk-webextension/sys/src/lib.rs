@@ -1993,20 +1993,6 @@ pub type WebKitWebExtensionPrivate = *mut _WebKitWebExtensionPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct WebKitWebFormManagerClass {
-    pub parent_class: gobject::GObjectClass,
-}
-
-impl ::std::fmt::Debug for WebKitWebFormManagerClass {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebFormManagerClass @ {:p}", self))
-            .field("parent_class", &self.parent_class)
-            .finish()
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
 pub struct WebKitWebHitTestResultClass {
     pub parent_class: WebKitHitTestResultClass,
     pub _webkit_reserved0: Option<unsafe extern "C" fn()>,
@@ -2058,32 +2044,28 @@ pub struct _WebKitWebPagePrivate {
 pub type WebKitWebPagePrivate = *mut _WebKitWebPagePrivate;
 
 // Classes
-#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitContextMenu {
-    pub parent: gobject::GObject,
-    pub priv_: *mut WebKitContextMenuPrivate,
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
 impl ::std::fmt::Debug for WebKitContextMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitContextMenu @ {:p}", self))
-            .field("parent", &self.parent)
             .finish()
     }
 }
 
-#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitContextMenuItem {
-    pub parent: gobject::GInitiallyUnowned,
-    pub priv_: *mut WebKitContextMenuItemPrivate,
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
 }
 
 impl ::std::fmt::Debug for WebKitContextMenuItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitContextMenuItem @ {:p}", self))
-            .field("parent", &self.parent)
             .finish()
     }
 }
@@ -3615,20 +3597,6 @@ impl ::std::fmt::Debug for WebKitWebExtension {
 
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct WebKitWebFormManager {
-    pub parent: gobject::GObject,
-}
-
-impl ::std::fmt::Debug for WebKitWebFormManager {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebFormManager @ {:p}", self))
-            .field("parent", &self.parent)
-            .finish()
-    }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
 pub struct WebKitWebHitTestResult {
     pub parent: WebKitHitTestResult,
     pub priv_: *mut WebKitWebHitTestResultPrivate,
@@ -3696,7 +3664,6 @@ impl ::std::fmt::Debug for WebKitDOMXPathNSResolver {
 }
 
 #[link(name = "webkit2gtk-4.1")]
-#[link(name = "javascriptcoregtk-4.1")]
 extern "C" {
 
     //=========================================================================
@@ -3767,9 +3734,6 @@ extern "C" {
         item: *mut WebKitContextMenuItem,
     );
     pub fn webkit_context_menu_first(menu: *mut WebKitContextMenu) -> *mut WebKitContextMenuItem;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_context_menu_get_event(menu: *mut WebKitContextMenu) -> *mut gdk::GdkEvent;
     pub fn webkit_context_menu_get_item_at_position(
         menu: *mut WebKitContextMenu,
         position: c_uint,
@@ -5155,8 +5119,6 @@ extern "C" {
         localName: *const c_char,
     ) -> gboolean;
     pub fn webkit_dom_element_has_attributes(self_: *mut WebKitDOMElement) -> gboolean;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_element_html_input_element_get_auto_filled(
         element: *mut WebKitDOMElement,
     ) -> gboolean;
@@ -8783,40 +8745,11 @@ extern "C" {
     ) -> *mut WebKitUserMessage;
 
     //=========================================================================
-    // WebKitWebFormManager
-    //=========================================================================
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_form_manager_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_form_manager_input_element_auto_fill(
-        element: *mut java_script_core::JSCValue,
-        value: *const c_char,
-    );
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_form_manager_input_element_is_auto_filled(
-        element: *mut java_script_core::JSCValue,
-    ) -> gboolean;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_form_manager_input_element_is_user_edited(
-        element: *mut java_script_core::JSCValue,
-    ) -> gboolean;
-
-    //=========================================================================
     // WebKitWebHitTestResult
     //=========================================================================
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     pub fn webkit_web_hit_test_result_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_hit_test_result_get_js_node(
-        hit_test_result: *mut WebKitWebHitTestResult,
-        world: *mut WebKitScriptWorld,
-    ) -> *mut java_script_core::JSCValue;
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     pub fn webkit_web_hit_test_result_get_node(
@@ -8832,12 +8765,6 @@ extern "C" {
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_page_get_editor(web_page: *mut WebKitWebPage) -> *mut WebKitWebEditor;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_web_page_get_form_manager(
-        web_page: *mut WebKitWebPage,
-        world: *mut WebKitScriptWorld,
-    ) -> *mut WebKitWebFormManager;
     pub fn webkit_web_page_get_id(web_page: *mut WebKitWebPage) -> u64;
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]

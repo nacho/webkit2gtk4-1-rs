@@ -177,11 +177,6 @@ pub const WEBKIT_NETWORK_PROXY_MODE_DEFAULT: WebKitNetworkProxyMode = 0;
 pub const WEBKIT_NETWORK_PROXY_MODE_NO_PROXY: WebKitNetworkProxyMode = 1;
 pub const WEBKIT_NETWORK_PROXY_MODE_CUSTOM: WebKitNetworkProxyMode = 2;
 
-pub type WebKitPermissionState = c_int;
-pub const WEBKIT_PERMISSION_STATE_GRANTED: WebKitPermissionState = 0;
-pub const WEBKIT_PERMISSION_STATE_DENIED: WebKitPermissionState = 1;
-pub const WEBKIT_PERMISSION_STATE_PROMPT: WebKitPermissionState = 2;
-
 pub type WebKitPluginError = c_int;
 pub const WEBKIT_PLUGIN_ERROR_FAILED: WebKitPluginError = 299;
 pub const WEBKIT_PLUGIN_ERROR_CANNOT_FIND_PLUGIN: WebKitPluginError = 200;
@@ -1324,19 +1319,6 @@ impl ::std::fmt::Debug for WebKitPermissionRequestIface {
     }
 }
 
-#[repr(C)]
-pub struct WebKitPermissionStateQuery {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-impl ::std::fmt::Debug for WebKitPermissionStateQuery {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPermissionStateQuery @ {:p}", self))
-            .finish()
-    }
-}
-
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitPluginClass {
@@ -1541,19 +1523,6 @@ pub struct WebKitScriptDialog {
 impl ::std::fmt::Debug for WebKitScriptDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitScriptDialog @ {:p}", self))
-            .finish()
-    }
-}
-
-#[repr(C)]
-pub struct WebKitScriptMessageReply {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
-}
-
-impl ::std::fmt::Debug for WebKitScriptMessageReply {
-    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitScriptMessageReply @ {:p}", self))
             .finish()
     }
 }
@@ -2123,18 +2092,15 @@ pub struct WebKitWebViewClass {
     pub show_option_menu: Option<
         unsafe extern "C" fn(
             *mut WebKitWebView,
-            *mut WebKitOptionMenu,
-            *mut gdk::GdkEvent,
             *mut gdk::GdkRectangle,
+            *mut WebKitOptionMenu,
         ) -> gboolean,
     >,
     pub web_process_terminated:
         Option<unsafe extern "C" fn(*mut WebKitWebView, WebKitWebProcessTerminationReason)>,
     pub user_message_received:
         Option<unsafe extern "C" fn(*mut WebKitWebView, *mut WebKitUserMessage) -> gboolean>,
-    pub query_permission_state: Option<
-        unsafe extern "C" fn(*mut WebKitWebView, *mut WebKitPermissionStateQuery) -> gboolean,
-    >,
+    pub _webkit_reserved0: Option<unsafe extern "C" fn()>,
 }
 
 impl ::std::fmt::Debug for WebKitWebViewClass {
@@ -2171,7 +2137,7 @@ impl ::std::fmt::Debug for WebKitWebViewClass {
             .field("show_option_menu", &self.show_option_menu)
             .field("web_process_terminated", &self.web_process_terminated)
             .field("user_message_received", &self.user_message_received)
-            .field("query_permission_state", &self.query_permission_state)
+            .field("_webkit_reserved0", &self._webkit_reserved0)
             .finish()
     }
 }
@@ -2436,6 +2402,7 @@ impl ::std::fmt::Debug for WebKitContextMenuItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitContextMenuItem @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3108,7 +3075,6 @@ impl ::std::fmt::Debug for WebKitPermissionRequest {
 }
 
 #[link(name = "webkit2gtk-4.1")]
-#[link(name = "javascriptcoregtk-4.1")]
 extern "C" {
 
     //=========================================================================
@@ -3221,13 +3187,6 @@ extern "C" {
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     pub fn webkit_network_proxy_mode_get_type() -> GType;
-
-    //=========================================================================
-    // WebKitPermissionState
-    //=========================================================================
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_get_type() -> GType;
 
     //=========================================================================
     // WebKitPluginError
@@ -3794,35 +3753,6 @@ extern "C" {
     pub fn webkit_option_menu_item_is_selected(item: *mut WebKitOptionMenuItem) -> gboolean;
 
     //=========================================================================
-    // WebKitPermissionStateQuery
-    //=========================================================================
-    pub fn webkit_permission_state_query_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_query_finish(
-        query: *mut WebKitPermissionStateQuery,
-        state: WebKitPermissionState,
-    );
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_query_get_name(
-        query: *mut WebKitPermissionStateQuery,
-    ) -> *const c_char;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_query_get_security_origin(
-        query: *mut WebKitPermissionStateQuery,
-    ) -> *mut WebKitSecurityOrigin;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_query_ref(
-        query: *mut WebKitPermissionStateQuery,
-    ) -> *mut WebKitPermissionStateQuery;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_permission_state_query_unref(query: *mut WebKitPermissionStateQuery);
-
-    //=========================================================================
     // WebKitScriptDialog
     //=========================================================================
     pub fn webkit_script_dialog_get_type() -> GType;
@@ -3850,33 +3780,6 @@ extern "C" {
     #[cfg(any(feature = "v2_24", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
     pub fn webkit_script_dialog_unref(dialog: *mut WebKitScriptDialog);
-
-    //=========================================================================
-    // WebKitScriptMessageReply
-    //=========================================================================
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_script_message_reply_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_script_message_reply_ref(
-        script_message_reply: *mut WebKitScriptMessageReply,
-    ) -> *mut WebKitScriptMessageReply;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_script_message_reply_return_error_message(
-        script_message_reply: *mut WebKitScriptMessageReply,
-        error_message: *const c_char,
-    );
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_script_message_reply_return_value(
-        script_message_reply: *mut WebKitScriptMessageReply,
-        reply_value: *mut java_script_core::JSCValue,
-    );
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_script_message_reply_unref(script_message_reply: *mut WebKitScriptMessageReply);
 
     //=========================================================================
     // WebKitSecurityOrigin
@@ -4223,9 +4126,6 @@ extern "C" {
         item: *mut WebKitContextMenuItem,
     );
     pub fn webkit_context_menu_first(menu: *mut WebKitContextMenu) -> *mut WebKitContextMenuItem;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_context_menu_get_event(menu: *mut WebKitContextMenu) -> *mut gdk::GdkEvent;
     pub fn webkit_context_menu_get_item_at_position(
         menu: *mut WebKitContextMenu,
         position: c_uint,
@@ -4772,9 +4672,6 @@ extern "C" {
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     pub fn webkit_option_menu_close(menu: *mut WebKitOptionMenu);
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_option_menu_get_event(menu: *mut WebKitOptionMenu) -> *mut gdk::GdkEvent;
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     pub fn webkit_option_menu_get_item(
@@ -4876,11 +4773,6 @@ extern "C" {
     pub fn webkit_response_policy_decision_get_response(
         decision: *mut WebKitResponsePolicyDecision,
     ) -> *mut WebKitURIResponse;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_response_policy_decision_is_main_frame_main_resource(
-        decision: *mut WebKitResponsePolicyDecision,
-    ) -> gboolean;
     pub fn webkit_response_policy_decision_is_mime_type_supported(
         decision: *mut WebKitResponsePolicyDecision,
     ) -> gboolean;
@@ -5543,13 +5435,6 @@ extern "C" {
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_user_content_manager_register_script_message_handler_in_world(
-        manager: *mut WebKitUserContentManager,
-        name: *const c_char,
-        world_name: *const c_char,
-    ) -> gboolean;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    pub fn webkit_user_content_manager_register_script_message_handler_with_reply(
         manager: *mut WebKitUserContentManager,
         name: *const c_char,
         world_name: *const c_char,
