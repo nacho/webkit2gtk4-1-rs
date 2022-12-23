@@ -6,8 +6,8 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gio = { git = "https://github.com/gtk-rs/gtk-rs-core", package = "gio"}
-gtk = { git = "https://github.com/gtk-rs/gtk3-rs", package = "gtk"}
+gio = { package = "gio", version="0.16" }
+gtk = { package = "gtk", versoin="0.16" }
 webkit2gtk = { path = "../webkit2gtk", package = "webkit2gtk4", features = ["v2_34"]}
 
 [[bin]]
