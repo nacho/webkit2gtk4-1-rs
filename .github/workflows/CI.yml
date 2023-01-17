@@ -16,7 +16,7 @@ jobs:
           - nightly
           - "1.63.0"
     steps:
-      - run: sudo apt-get install libwebkit2gtk-4.0-dev -y
+      - run: sudo apt-get install libwebkit2gtk-4.1-dev -y
       - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:

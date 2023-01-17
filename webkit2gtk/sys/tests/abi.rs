@@ -13,7 +13,7 @@ use std::str;
 use tempfile::Builder;
 use webkit2gtk_sys::*;
 
-static PACKAGES: &[&str] = &["webkit2gtk-4.0"];
+static PACKAGES: &[&str] = &["webkit2gtk-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -1078,6 +1078,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "WebKitWebExtensionMode",
+        Layout {
+            size: size_of::<WebKitWebExtensionMode>(),
+            alignment: align_of::<WebKitWebExtensionMode>(),
+        },
+    ),
+    (
         "WebKitWebInspector",
         Layout {
             size: size_of::<WebKitWebInspector>(),
@@ -1415,8 +1422,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_ACTIVE", "1"),
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_MUTED", "2"),
     ("(gint) WEBKIT_MEDIA_CAPTURE_STATE_NONE", "0"),
-    ("WEBKIT_MICRO_VERSION", "0"),
-    ("WEBKIT_MINOR_VERSION", "36"),
+    ("WEBKIT_MICRO_VERSION", "2"),
+    ("WEBKIT_MINOR_VERSION", "38"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_BACK_FORWARD", "2"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_FORM_RESUBMITTED", "4"),
     ("(gint) WEBKIT_NAVIGATION_TYPE_FORM_SUBMITTED", "1"),
@@ -1510,6 +1517,9 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ),
     ("(guint) WEBKIT_WEBSITE_DATA_SESSION_STORAGE", "8"),
     ("(guint) WEBKIT_WEBSITE_DATA_WEBSQL_DATABASES", "32"),
+    ("(gint) WEBKIT_WEB_EXTENSION_MODE_MANIFESTV2", "1"),
+    ("(gint) WEBKIT_WEB_EXTENSION_MODE_MANIFESTV3", "2"),
+    ("(gint) WEBKIT_WEB_EXTENSION_MODE_NONE", "0"),
     ("(gint) WEBKIT_WEB_PROCESS_CRASHED", "0"),
     ("(gint) WEBKIT_WEB_PROCESS_EXCEEDED_MEMORY_LIMIT", "1"),
     ("(gint) WEBKIT_WEB_PROCESS_TERMINATED_BY_API", "2"),

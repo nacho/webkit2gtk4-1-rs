@@ -3,28 +3,14 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use crate::WebPage;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use glib::object::Cast;
 use glib::object::IsA;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use glib::signal::connect_raw;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use glib::translate::*;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use std::boxed::Box as Box_;
 use std::fmt;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -41,8 +27,6 @@ impl WebEditor {
 }
 
 pub trait WebEditorExt: 'static {
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[doc(alias = "webkit_web_editor_get_page")]
     #[doc(alias = "get_page")]
     fn page(&self) -> Option<WebPage>;
@@ -54,8 +38,6 @@ pub trait WebEditorExt: 'static {
 }
 
 impl<O: IsA<WebEditor>> WebEditorExt for O {
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     fn page(&self) -> Option<WebPage> {
         unsafe {
             from_glib_none(ffi::webkit_web_editor_get_page(

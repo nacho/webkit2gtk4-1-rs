@@ -192,6 +192,9 @@ pub struct WebViewBuilder {
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     camera_capture_state: Option<MediaCaptureState>,
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    default_content_security_policy: Option<String>,
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     display_capture_state: Option<MediaCaptureState>,
@@ -220,6 +223,7 @@ pub struct WebViewBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     user_content_manager: Option<UserContentManager>,
     web_context: Option<WebContext>,
+    //web-extension-mode: /*Unknown type*/,
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     website_policies: Option<WebsitePolicies>,
@@ -320,6 +324,13 @@ impl WebViewBuilder {
         #[cfg(any(feature = "v2_34", feature = "dox"))]
         if let Some(ref camera_capture_state) = self.camera_capture_state {
             properties.push(("camera-capture-state", camera_capture_state));
+        }
+        #[cfg(any(feature = "v2_38", feature = "dox"))]
+        if let Some(ref default_content_security_policy) = self.default_content_security_policy {
+            properties.push((
+                "default-content-security-policy",
+                default_content_security_policy,
+            ));
         }
         #[cfg(any(feature = "v2_34", feature = "dox"))]
         if let Some(ref display_capture_state) = self.display_capture_state {
@@ -495,6 +506,16 @@ impl WebViewBuilder {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     pub fn camera_capture_state(mut self, camera_capture_state: MediaCaptureState) -> Self {
         self.camera_capture_state = Some(camera_capture_state);
+        self
+    }
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn default_content_security_policy(
+        mut self,
+        default_content_security_policy: &str,
+    ) -> Self {
+        self.default_content_security_policy = Some(default_content_security_policy.to_string());
         self
     }
 
@@ -840,6 +861,12 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_custom_charset")]
     fn custom_charset(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "webkit_web_view_get_default_content_security_policy")]
+    #[doc(alias = "get_default_content_security_policy")]
+    fn default_content_security_policy(&self) -> Option<glib::GString>;
+
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     #[doc(alias = "webkit_web_view_get_display_capture_state")]
@@ -880,6 +907,8 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_is_muted")]
     fn is_muted(&self) -> bool;
 
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     #[doc(alias = "webkit_web_view_get_is_web_process_responsive")]
     #[doc(alias = "get_is_web_process_responsive")]
     fn is_web_process_responsive(&self) -> bool;
@@ -947,6 +976,12 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "get_user_content_manager")]
     fn user_content_manager(&self) -> Option<UserContentManager>;
 
+    //#[cfg(any(feature = "v2_38", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[doc(alias = "webkit_web_view_get_web_extension_mode")]
+    //#[doc(alias = "get_web_extension_mode")]
+    //fn web_extension_mode(&self) -> /*Ignored*/WebExtensionMode;
+
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_web_view_get_website_data_manager")]
@@ -981,6 +1016,8 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "webkit_web_view_is_controlled_by_automation")]
     fn is_controlled_by_automation(&self) -> bool;
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_web_view_is_editable")]
     fn is_editable(&self) -> bool;
 
@@ -1033,6 +1070,9 @@ pub trait WebViewExt: 'static {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
     #[doc(alias = "webkit_web_view_restore_session_state")]
     fn restore_session_state(&self, state: &WebViewSessionState);
+
+    //#[doc(alias = "webkit_web_view_run_async_javascript_function_in_world")]
+    //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P);
 
     #[doc(alias = "webkit_web_view_run_javascript")]
     fn run_javascript<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
@@ -1604,6 +1644,16 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    fn default_content_security_policy(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::webkit_web_view_get_default_content_security_policy(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
+
     #[cfg(any(feature = "v2_34", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     fn display_capture_state(&self) -> MediaCaptureState {
@@ -1672,6 +1722,8 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
     fn is_web_process_responsive(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_web_view_get_is_web_process_responsive(
@@ -1828,6 +1880,12 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    //#[cfg(any(feature = "v2_38", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //fn web_extension_mode(&self) -> /*Ignored*/WebExtensionMode {
+    //    unsafe { TODO: call ffi:webkit_web_view_get_web_extension_mode() }
+    //}
+
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     fn website_data_manager(&self) -> Option<WebsiteDataManager> {
@@ -1891,6 +1949,8 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn is_editable(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_web_view_is_editable(
@@ -2014,6 +2074,10 @@ impl<O: IsA<WebView>> WebViewExt for O {
             );
         }
     }
+
+    //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
+    //    unsafe { TODO: call ffi:webkit_web_view_run_async_javascript_function_in_world() }
+    //}
 
     fn run_javascript<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,

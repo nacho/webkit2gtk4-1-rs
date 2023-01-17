@@ -43,10 +43,24 @@ pub const JSC_OPTION_DOUBLE: JSCOptionType = 4;
 pub const JSC_OPTION_STRING: JSCOptionType = 5;
 pub const JSC_OPTION_RANGE_STRING: JSCOptionType = 6;
 
+pub type JSCTypedArrayType = c_int;
+pub const JSC_TYPED_ARRAY_NONE: JSCTypedArrayType = 0;
+pub const JSC_TYPED_ARRAY_INT8: JSCTypedArrayType = 1;
+pub const JSC_TYPED_ARRAY_INT16: JSCTypedArrayType = 2;
+pub const JSC_TYPED_ARRAY_INT32: JSCTypedArrayType = 3;
+pub const JSC_TYPED_ARRAY_INT64: JSCTypedArrayType = 4;
+pub const JSC_TYPED_ARRAY_UINT8: JSCTypedArrayType = 5;
+pub const JSC_TYPED_ARRAY_UINT8_CLAMPED: JSCTypedArrayType = 6;
+pub const JSC_TYPED_ARRAY_UINT16: JSCTypedArrayType = 7;
+pub const JSC_TYPED_ARRAY_UINT32: JSCTypedArrayType = 8;
+pub const JSC_TYPED_ARRAY_UINT64: JSCTypedArrayType = 9;
+pub const JSC_TYPED_ARRAY_FLOAT32: JSCTypedArrayType = 10;
+pub const JSC_TYPED_ARRAY_FLOAT64: JSCTypedArrayType = 11;
+
 // Constants
 pub const JSC_MAJOR_VERSION: c_int = 2;
-pub const JSC_MICRO_VERSION: c_int = 0;
-pub const JSC_MINOR_VERSION: c_int = 36;
+pub const JSC_MICRO_VERSION: c_int = 2;
+pub const JSC_MINOR_VERSION: c_int = 38;
 pub const JSC_OPTIONS_USE_DFG: *const c_char = b"useDFGJIT\0" as *const u8 as *const c_char;
 pub const JSC_OPTIONS_USE_FTL: *const c_char = b"useFTLJIT\0" as *const u8 as *const c_char;
 pub const JSC_OPTIONS_USE_JIT: *const c_char = b"useJIT\0" as *const u8 as *const c_char;
@@ -394,7 +408,7 @@ impl ::std::fmt::Debug for JSCWeakValue {
     }
 }
 
-#[link(name = "javascriptcoregtk-4.0")]
+#[link(name = "javascriptcoregtk-4.1")]
 extern "C" {
 
     //=========================================================================
@@ -631,6 +645,15 @@ extern "C" {
         first_item_type: GType,
         ...
     ) -> *mut JSCValue;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_new_array_buffer(
+        context: *mut JSCContext,
+        data: gpointer,
+        size: size_t,
+        destroy_notify: glib::GDestroyNotify,
+        user_data: gpointer,
+    ) -> *mut JSCValue;
     pub fn jsc_value_new_array_from_garray(
         context: *mut JSCContext,
         array: *mut glib::GPtrArray,
@@ -683,7 +706,20 @@ extern "C" {
         context: *mut JSCContext,
         bytes: *mut glib::GBytes,
     ) -> *mut JSCValue;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_new_typed_array(
+        context: *mut JSCContext,
+        type_: JSCTypedArrayType,
+        length: size_t,
+    ) -> *mut JSCValue;
     pub fn jsc_value_new_undefined(context: *mut JSCContext) -> *mut JSCValue;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_array_buffer_get_data(value: *mut JSCValue, size: *mut size_t) -> gpointer;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_array_buffer_get_size(value: *mut JSCValue) -> size_t;
     pub fn jsc_value_constructor_call(
         value: *mut JSCValue,
         first_parameter_type: GType,
@@ -706,6 +742,9 @@ extern "C" {
     ) -> *mut JSCValue;
     pub fn jsc_value_get_context(value: *mut JSCValue) -> *mut JSCContext;
     pub fn jsc_value_is_array(value: *mut JSCValue) -> gboolean;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_is_array_buffer(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_boolean(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_constructor(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_function(value: *mut JSCValue) -> gboolean;
@@ -713,7 +752,18 @@ extern "C" {
     pub fn jsc_value_is_number(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_object(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_string(value: *mut JSCValue) -> gboolean;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_is_typed_array(value: *mut JSCValue) -> gboolean;
     pub fn jsc_value_is_undefined(value: *mut JSCValue) -> gboolean;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_new_typed_array_with_buffer(
+        array_buffer: *mut JSCValue,
+        type_: JSCTypedArrayType,
+        offset: size_t,
+        length: ssize_t,
+    ) -> *mut JSCValue;
     pub fn jsc_value_object_define_property_accessor(
         value: *mut JSCValue,
         property_name: *const c_char,
@@ -772,6 +822,24 @@ extern "C" {
     pub fn jsc_value_to_json(value: *mut JSCValue, indent: c_uint) -> *mut c_char;
     pub fn jsc_value_to_string(value: *mut JSCValue) -> *mut c_char;
     pub fn jsc_value_to_string_as_bytes(value: *mut JSCValue) -> *mut glib::GBytes;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_buffer(value: *mut JSCValue) -> *mut JSCValue;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_data(value: *mut JSCValue, length: *mut size_t) -> gpointer;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_length(value: *mut JSCValue) -> size_t;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_offset(value: *mut JSCValue) -> size_t;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_size(value: *mut JSCValue) -> size_t;
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn jsc_value_typed_array_get_type(value: *mut JSCValue) -> JSCTypedArrayType;
 
     //=========================================================================
     // JSCVirtualMachine

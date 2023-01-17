@@ -40,6 +40,8 @@ pub trait URISchemeRequestExt: 'static {
     //#[doc(alias = "webkit_uri_scheme_request_finish_with_response")]
     //fn finish_with_response(&self, response: /*Ignored*/&URISchemeResponse);
 
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
     //#[doc(alias = "webkit_uri_scheme_request_get_http_headers")]
     //#[doc(alias = "get_http_headers")]
     //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders>;
@@ -101,6 +103,8 @@ impl<O: IsA<URISchemeRequest>> URISchemeRequestExt for O {
     //    unsafe { TODO: call ffi:webkit_uri_scheme_request_finish_with_response() }
     //}
 
+    //#[cfg(any(feature = "v2_36", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
     //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders> {
     //    unsafe { TODO: call ffi:webkit_uri_scheme_request_get_http_headers() }
     //}

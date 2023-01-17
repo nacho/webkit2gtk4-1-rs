@@ -3,7 +3,7 @@ import os
 import shutil
 
 GIR_FILES=[
-"Soup-2.4", "WebKit2-4.0", "WebKit2WebExtension-4.0", "JavaScriptCore-4.0",
+"Soup-3.0", "WebKit2-4.1", "WebKit2WebExtension-4.1", "JavaScriptCore-4.1",
 ]
 
 dest_dir = os.path.abspath("./")

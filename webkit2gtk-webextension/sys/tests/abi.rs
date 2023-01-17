@@ -13,7 +13,7 @@ use std::str;
 use tempfile::Builder;
 use webkit2gtk_webextension_sys::*;
 
-static PACKAGES: &[&str] = &["webkit2gtk-web-extension-4.0"];
+static PACKAGES: &[&str] = &["webkit2gtk-web-extension-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
