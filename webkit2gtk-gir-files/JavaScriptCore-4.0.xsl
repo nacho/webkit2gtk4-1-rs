@@ -11,7 +11,7 @@
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
       <xsl:text>&#xa;</xsl:text>
-      <xsl:apply-templates select="document('JavaScriptCore-4.1-patch.gir')/gir:repository/gir:namespace/*"/>
+      <xsl:apply-templates select="document('JavaScriptCore-4.0-patch.gir')/gir:repository/gir:namespace/*"/>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>

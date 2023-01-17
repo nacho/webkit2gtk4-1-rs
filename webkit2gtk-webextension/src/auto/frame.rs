@@ -3,9 +3,15 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+#[cfg(any(feature = "v2_22", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
 use crate::DOMObject;
+#[cfg(any(feature = "v2_22", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
 use crate::ScriptWorld;
 use glib::object::IsA;
+#[cfg(any(feature = "v2_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
 use glib::translate::*;
 use std::fmt;
 
@@ -23,24 +29,34 @@ impl Frame {
 }
 
 pub trait FrameExt: 'static {
+    #[cfg(any(feature = "v2_26", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     #[doc(alias = "webkit_frame_get_id")]
     #[doc(alias = "get_id")]
     fn id(&self) -> u64;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[cfg(any(feature = "v2_2", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //#[doc(alias = "webkit_frame_get_javascript_context_for_script_world")]
     //#[doc(alias = "get_javascript_context_for_script_world")]
     //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[cfg(any(feature = "v2_2", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //#[doc(alias = "webkit_frame_get_javascript_global_context")]
     //#[doc(alias = "get_javascript_global_context")]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_frame_get_js_context")]
     #[doc(alias = "get_js_context")]
     fn js_context(&self) -> Option<javascriptcore::Context>;
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_frame_get_js_context_for_script_world")]
     #[doc(alias = "get_js_context_for_script_world")]
     fn js_context_for_script_world(
@@ -48,6 +64,8 @@ pub trait FrameExt: 'static {
         world: &impl IsA<ScriptWorld>,
     ) -> Option<javascriptcore::Context>;
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object")]
     #[doc(alias = "get_js_value_for_dom_object")]
     fn js_value_for_dom_object(
@@ -55,6 +73,8 @@ pub trait FrameExt: 'static {
         dom_object: &impl IsA<DOMObject>,
     ) -> Option<javascriptcore::Value>;
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object_in_script_world")]
     #[doc(alias = "get_js_value_for_dom_object_in_script_world")]
     fn js_value_for_dom_object_in_script_world(
@@ -63,27 +83,39 @@ pub trait FrameExt: 'static {
         world: &impl IsA<ScriptWorld>,
     ) -> Option<javascriptcore::Value>;
 
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     #[doc(alias = "webkit_frame_get_uri")]
     #[doc(alias = "get_uri")]
     fn uri(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     #[doc(alias = "webkit_frame_is_main_frame")]
     fn is_main_frame(&self) -> bool;
 }
 
 impl<O: IsA<Frame>> FrameExt for O {
+    #[cfg(any(feature = "v2_26", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     fn id(&self) -> u64 {
         unsafe { ffi::webkit_frame_get_id(self.as_ref().to_glib_none().0) }
     }
 
+    //#[cfg(any(feature = "v2_2", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_context_for_script_world() }
     //}
 
+    //#[cfg(any(feature = "v2_2", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_global_context() }
     //}
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn js_context(&self) -> Option<javascriptcore::Context> {
         unsafe {
             from_glib_full(ffi::webkit_frame_get_js_context(
@@ -92,6 +124,8 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn js_context_for_script_world(
         &self,
         world: &impl IsA<ScriptWorld>,
@@ -104,6 +138,8 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn js_value_for_dom_object(
         &self,
         dom_object: &impl IsA<DOMObject>,
@@ -116,6 +152,8 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn js_value_for_dom_object_in_script_world(
         &self,
         dom_object: &impl IsA<DOMObject>,
@@ -132,10 +170,14 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     fn uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::webkit_frame_get_uri(self.as_ref().to_glib_none().0)) }
     }
 
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     fn is_main_frame(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_frame_is_main_frame(

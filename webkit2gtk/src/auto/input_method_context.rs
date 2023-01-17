@@ -10,6 +10,8 @@ use glib::object::IsA;
 use glib::signal::connect_raw;
 use glib::signal::SignalHandlerId;
 use glib::translate::*;
+use glib::StaticType;
+use glib::ToValue;
 use std::boxed::Box as Box_;
 use std::fmt;
 use std::mem::transmute;
@@ -67,6 +69,18 @@ pub trait InputMethodContextExt: 'static {
     #[doc(alias = "webkit_input_method_context_set_input_purpose")]
     fn set_input_purpose(&self, purpose: InputPurpose);
 
+    #[doc(alias = "input-hints")]
+    fn get_property_input_hints(&self) -> InputHints;
+
+    #[doc(alias = "input-hints")]
+    fn set_property_input_hints(&self, input_hints: InputHints);
+
+    #[doc(alias = "input-purpose")]
+    fn get_property_input_purpose(&self) -> InputPurpose;
+
+    #[doc(alias = "input-purpose")]
+    fn set_property_input_purpose(&self, input_purpose: InputPurpose);
+
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "committed")]
@@ -93,13 +107,9 @@ pub trait InputMethodContextExt: 'static {
     #[doc(alias = "preedit-started")]
     fn connect_preedit_started<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "input-hints")]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "input-purpose")]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -197,6 +207,22 @@ impl<O: IsA<InputMethodContext>> InputMethodContextExt for O {
                 purpose.into_glib(),
             );
         }
+    }
+
+    fn get_property_input_hints(&self) -> InputHints {
+        glib::ObjectExt::property(self.as_ref(), "input-hints")
+    }
+
+    fn set_property_input_hints(&self, input_hints: InputHints) {
+        glib::ObjectExt::set_property(self.as_ref(), "input-hints", &input_hints)
+    }
+
+    fn get_property_input_purpose(&self) -> InputPurpose {
+        glib::ObjectExt::property(self.as_ref(), "input-purpose")
+    }
+
+    fn set_property_input_purpose(&self, input_purpose: InputPurpose) {
+        glib::ObjectExt::set_property(self.as_ref(), "input-purpose", &input_purpose)
     }
 
     #[cfg(any(feature = "v2_28", feature = "dox"))]
@@ -342,8 +368,6 @@ impl<O: IsA<InputMethodContext>> InputMethodContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn connect_input_hints_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_hints_trampoline<
             P: IsA<InputMethodContext>,
@@ -369,8 +393,6 @@ impl<O: IsA<InputMethodContext>> InputMethodContextExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn connect_input_purpose_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_input_purpose_trampoline<
             P: IsA<InputMethodContext>,

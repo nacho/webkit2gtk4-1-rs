@@ -3,15 +3,31 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use crate::ApplicationInfo;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use crate::WebView;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::signal::connect_raw;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::signal::SignalHandlerId;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use glib::translate::*;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use std::boxed::Box as Box_;
 use std::fmt;
+#[cfg(any(feature = "v2_18", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -28,14 +44,20 @@ impl AutomationSession {
 }
 
 pub trait AutomationSessionExt: 'static {
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     #[doc(alias = "webkit_automation_session_get_application_info")]
     #[doc(alias = "get_application_info")]
     fn application_info(&self) -> Option<ApplicationInfo>;
 
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     #[doc(alias = "webkit_automation_session_get_id")]
     #[doc(alias = "get_id")]
     fn id(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     #[doc(alias = "webkit_automation_session_set_application_info")]
     fn set_application_info(&self, info: &ApplicationInfo);
 
@@ -50,6 +72,8 @@ pub trait AutomationSessionExt: 'static {
 }
 
 impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     fn application_info(&self) -> Option<ApplicationInfo> {
         unsafe {
             from_glib_none(ffi::webkit_automation_session_get_application_info(
@@ -58,6 +82,8 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     fn id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_automation_session_get_id(
@@ -66,6 +92,8 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     fn set_application_info(&self, info: &ApplicationInfo) {
         unsafe {
             ffi::webkit_automation_session_set_application_info(

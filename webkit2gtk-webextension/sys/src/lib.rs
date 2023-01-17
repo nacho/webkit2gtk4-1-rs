@@ -3483,6 +3483,7 @@ impl ::std::fmt::Debug for WebKitFrame {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitFrame @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3498,6 +3499,7 @@ impl ::std::fmt::Debug for WebKitHitTestResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitHitTestResult @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3559,6 +3561,7 @@ impl ::std::fmt::Debug for WebKitUserMessage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitUserMessage @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3622,6 +3625,7 @@ impl ::std::fmt::Debug for WebKitWebPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebPage @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3663,7 +3667,8 @@ impl ::std::fmt::Debug for WebKitDOMXPathNSResolver {
     }
 }
 
-#[link(name = "webkit2gtk-4.1")]
+#[link(name = "webkit2gtk-4.0")]
+#[link(name = "javascriptcoregtk-4.0")]
 extern "C" {
 
     //=========================================================================
@@ -8534,52 +8539,42 @@ extern "C" {
     //=========================================================================
     // WebKitFrame
     //=========================================================================
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_type() -> GType;
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_id(frame: *mut WebKitFrame) -> u64;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_javascript_context_for_script_world(
         frame: *mut WebKitFrame,
         world: *mut WebKitScriptWorld,
     ) -> java_script_core::JSGlobalContextRef;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_javascript_global_context(
         frame: *mut WebKitFrame,
     ) -> java_script_core::JSGlobalContextRef;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_frame_get_js_context(
         frame: *mut WebKitFrame,
     ) -> *mut java_script_core::JSCContext;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_frame_get_js_context_for_script_world(
         frame: *mut WebKitFrame,
         world: *mut WebKitScriptWorld,
     ) -> *mut java_script_core::JSCContext;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_frame_get_js_value_for_dom_object(
         frame: *mut WebKitFrame,
         dom_object: *mut WebKitDOMObject,
     ) -> *mut java_script_core::JSCValue;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_22", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_frame_get_js_value_for_dom_object_in_script_world(
         frame: *mut WebKitFrame,
         dom_object: *mut WebKitDOMObject,
         world: *mut WebKitScriptWorld,
     ) -> *mut java_script_core::JSCValue;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_uri(frame: *mut WebKitFrame) -> *const c_char;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_is_main_frame(frame: *mut WebKitFrame) -> gboolean;
 
     //=========================================================================
@@ -8670,8 +8665,6 @@ extern "C" {
     //=========================================================================
     // WebKitUserMessage
     //=========================================================================
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_get_type() -> GType;
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
@@ -8686,8 +8679,6 @@ extern "C" {
         parameters: *mut glib::GVariant,
         fd_list: *mut gio::GUnixFDList,
     ) -> *mut WebKitUserMessage;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_error_quark() -> glib::GQuark;
     #[cfg(any(feature = "v2_28", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
@@ -8712,8 +8703,6 @@ extern "C" {
     //=========================================================================
     // WebKitWebEditor
     //=========================================================================
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_editor_get_type() -> GType;
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
@@ -8747,8 +8736,6 @@ extern "C" {
     //=========================================================================
     // WebKitWebHitTestResult
     //=========================================================================
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     pub fn webkit_web_hit_test_result_get_type() -> GType;
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
@@ -8766,8 +8753,6 @@ extern "C" {
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_page_get_editor(web_page: *mut WebKitWebPage) -> *mut WebKitWebEditor;
     pub fn webkit_web_page_get_id(web_page: *mut WebKitWebPage) -> u64;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     pub fn webkit_web_page_get_main_frame(web_page: *mut WebKitWebPage) -> *mut WebKitFrame;
     pub fn webkit_web_page_get_uri(web_page: *mut WebKitWebPage) -> *const c_char;
     #[cfg(any(feature = "v2_28", feature = "dox"))]

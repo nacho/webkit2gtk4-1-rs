@@ -10,8 +10,8 @@ use crate::ConsoleMessage;
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use crate::ContextMenu;
 use crate::DOMDocument;
-#[cfg(any(feature = "v2_26", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+#[cfg(any(feature = "v2_2", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
 use crate::Frame;
 use crate::URIRequest;
 use crate::URIResponse;
@@ -67,8 +67,8 @@ pub trait WebPageExt: 'static {
     #[doc(alias = "get_id")]
     fn id(&self) -> u64;
 
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     #[doc(alias = "webkit_web_page_get_main_frame")]
     #[doc(alias = "get_main_frame")]
     fn main_frame(&self) -> Option<Frame>;
@@ -170,8 +170,8 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         unsafe { ffi::webkit_web_page_get_id(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(any(feature = "v2_2", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
     fn main_frame(&self) -> Option<Frame> {
         unsafe {
             from_glib_none(ffi::webkit_web_page_get_main_frame(

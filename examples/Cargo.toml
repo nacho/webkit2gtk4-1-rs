@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 gio = { package = "gio", version="0.16" }
-gtk = { package = "gtk", versoin="0.16" }
+gtk = { package = "gtk", version="0.16" }
 webkit2gtk = { path = "../webkit2gtk", package = "webkit2gtk4", features = ["v2_34"]}
 
 [[bin]]

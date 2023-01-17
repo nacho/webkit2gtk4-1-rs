@@ -19,6 +19,8 @@ glib::wrapper! {
 impl UserMessage {
     pub const NONE: Option<&'static UserMessage> = None;
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_new")]
     pub fn new(name: &str, parameters: Option<&glib::Variant>) -> UserMessage {
         assert_initialized_main_thread!();
@@ -30,6 +32,8 @@ impl UserMessage {
         }
     }
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_new_with_fd_list")]
     #[doc(alias = "new_with_fd_list")]
     pub fn with_fd_list(
@@ -55,23 +59,33 @@ impl UserMessage {
 }
 
 pub trait UserMessageExt: 'static {
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_get_fd_list")]
     #[doc(alias = "get_fd_list")]
     fn fd_list(&self) -> Option<gio::UnixFDList>;
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_get_parameters")]
     #[doc(alias = "get_parameters")]
     fn parameters(&self) -> Option<glib::Variant>;
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     #[doc(alias = "webkit_user_message_send_reply")]
     fn send_reply(&self, reply: &impl IsA<UserMessage>);
 }
 
 impl<O: IsA<UserMessage>> UserMessageExt for O {
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn fd_list(&self) -> Option<gio::UnixFDList> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_fd_list(
@@ -80,6 +94,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_name(
@@ -88,6 +104,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn parameters(&self) -> Option<glib::Variant> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_parameters(
@@ -96,6 +114,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
     fn send_reply(&self, reply: &impl IsA<UserMessage>) {
         unsafe {
             ffi::webkit_user_message_send_reply(

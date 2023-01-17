@@ -24,6 +24,8 @@ impl WebHitTestResult {
 }
 
 pub trait WebHitTestResultExt: 'static {
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_web_hit_test_result_get_node")]
     #[doc(alias = "get_node")]
     fn node(&self) -> Option<DOMNode>;
@@ -32,6 +34,8 @@ pub trait WebHitTestResultExt: 'static {
 }
 
 impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_web_hit_test_result_get_node(

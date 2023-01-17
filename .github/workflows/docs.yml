@@ -8,7 +8,7 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get install libwebkit2gtk-4.1-dev -y
+      - run: sudo apt-get install libwebkit2gtk-4.0-dev -y
       - uses: actions/checkout@v2
         with:
           submodules: "recursive"

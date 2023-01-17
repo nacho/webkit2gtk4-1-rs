@@ -4,9 +4,9 @@ To affect the contents of this file, edit the original C definitions,
 and/or use gtk-doc annotations.  -->
 <repository xmlns="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" version="1.2">
   <include name="GObject" version="2.0"/>
-  <package name="javascriptcoregtk-4.1"/>
+  <package name="javascriptcoregtk-4.0"/>
   <c:include name="jsc/jsc.h"/>
-  <namespace name="JavaScriptCore" version="4.1" shared-library="libjavascriptcoregtk-4.1.so.0" c:identifier-prefixes="JSC" c:symbol-prefixes="jsc">
+  <namespace name="JavaScriptCore" version="4.0" shared-library="libjavascriptcoregtk-4.0.so.18" c:identifier-prefixes="JSC" c:symbol-prefixes="jsc">
     <callback name="Constructor" c:type="JSCConstructor">
       <return-value transfer-ownership="full">
         <type name="gpointer" c:type="gpointer"/>
@@ -350,7 +350,6 @@ and/or use gtk-doc annotations.  -->
       </method>
     </record>
     <function-macro name="CHECK_VERSION" c:identifier="JSC_CHECK_VERSION" introspectable="0">
-      <doc xml:space="preserve">Check the version of JSC header files at compile time.</doc>
       <parameters>
         <parameter name="major">
           <doc xml:space="preserve">major version (e.g. 1 for version 1.2.5)</doc>
@@ -418,11 +417,6 @@ and/or use gtk-doc annotations.  -->
       </member>
     </enumeration>
     <class name="Class" c:symbol-prefix="class" c:type="JSCClass" parent="GObject.Object" glib:type-name="JSCClass" glib:get-type="jsc_class_get_type" glib:type-struct="ClassClass">
-      <doc xml:space="preserve">A JSSClass represents a custom JavaScript class registered by the user in a #JSCContext.
-It allows to create new JavaScripts objects whose instances are created by the user using
-this API.
-It's possible to add constructors, properties and methods for a JSSClass by providing
-#GCallback&lt;!-- --&gt;s to implement them.</doc>
       <method name="add_constructor" c:identifier="jsc_class_add_constructor" shadowed-by="add_constructorv" introspectable="0">
         <doc xml:space="preserve">Add a constructor to @jsc_class. If @name is %NULL, the class name will be used. When &lt;function&gt;new&lt;/function&gt;
 is used with the constructor or jsc_value_constructor_call() is called, @callback is invoked receiving the
@@ -750,7 +744,7 @@ with jsc_value_new_object() that receives the copy as the instance parameter.</d
           </parameter>
         </parameters>
       </method>
-      <method name="get_name" c:identifier="jsc_class_get_name" glib:get-property="name">
+      <method name="get_name" c:identifier="jsc_class_get_name">
         <doc xml:space="preserve">Get the class name of @jsc_class</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">the name of @jsc_class</doc>
@@ -763,7 +757,7 @@ with jsc_value_new_object() that receives the copy as the instance parameter.</d
           </instance-parameter>
         </parameters>
       </method>
-      <method name="get_parent" c:identifier="jsc_class_get_parent" glib:get-property="parent">
+      <method name="get_parent" c:identifier="jsc_class_get_parent">
         <doc xml:space="preserve">Get the parent class of @jsc_class</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">the parent class of @jsc_class</doc>
@@ -780,11 +774,11 @@ with jsc_value_new_object() that receives the copy as the instance parameter.</d
         <doc xml:space="preserve">The #JSCContext in which the class was registered.</doc>
         <type name="Context"/>
       </property>
-      <property name="name" writable="1" construct-only="1" transfer-ownership="none" getter="get_name">
+      <property name="name" writable="1" construct-only="1" transfer-ownership="none">
         <doc xml:space="preserve">The name of the class.</doc>
         <type name="utf8" c:type="gchar*"/>
       </property>
-      <property name="parent" writable="1" construct-only="1" transfer-ownership="none" getter="get_parent">
+      <property name="parent" writable="1" construct-only="1" transfer-ownership="none">
         <doc xml:space="preserve">The parent class or %NULL in case of final classes.</doc>
         <type name="Class"/>
       </property>
@@ -979,13 +973,6 @@ to provide a custom implementation for the class. All virtual functions are opti
       </field>
     </record>
     <class name="Context" c:symbol-prefix="context" c:type="JSCContext" parent="GObject.Object" glib:type-name="JSCContext" glib:get-type="jsc_context_get_type" glib:type-struct="ContextClass">
-      <doc xml:space="preserve">JSCContext represents a JavaScript execution context, where all operations
-take place and where the values will be associated.
-
-When a new context is created, a global object is allocated and the built-in JavaScript
-objects (Object, Function, String, Array) are populated. You can execute JavaScript in
-the context by using jsc_context_evaluate() or jsc_context_evaluate_with_source_uri().
-It's also possible to register custom objects in the context with jsc_context_register_class().</doc>
       <constructor name="new" c:identifier="jsc_context_new">
         <doc xml:space="preserve">Create a new #JSCContext. The context is created in a new #JSCVirtualMachine.
 Use jsc_context_new_with_virtual_machine() to create a new #JSCContext in an
@@ -1209,7 +1196,7 @@ they don't affect the behavior of the script.</doc>
           </parameter>
         </parameters>
       </method>
-      <method name="get_virtual_machine" c:identifier="jsc_context_get_virtual_machine" glib:get-property="virtual-machine">
+      <method name="get_virtual_machine" c:identifier="jsc_context_get_virtual_machine">
         <doc xml:space="preserve">Get the #JSCVirtualMachine where @context was created.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">the #JSCVirtualMachine where the #JSCContext was created.</doc>
@@ -1420,7 +1407,7 @@ The created #JSCException can be retrieved with jsc_context_get_exception().</do
           </parameter>
         </parameters>
       </method>
-      <property name="virtual-machine" writable="1" construct-only="1" transfer-ownership="none" getter="get_virtual_machine">
+      <property name="virtual-machine" writable="1" construct-only="1" transfer-ownership="none">
         <doc xml:space="preserve">The #JSCVirtualMachine in which the context was created.</doc>
         <type name="VirtualMachine"/>
       </property>
@@ -1465,6 +1452,12 @@ The created #JSCException can be retrieved with jsc_context_get_exception().</do
       </field>
     </record>
     <record name="ContextPrivate" c:type="JSCContextPrivate" disguised="1"/>
+    <function-macro name="DEPRECATED_FOR" c:identifier="JSC_DEPRECATED_FOR" introspectable="0">
+      <parameters>
+        <parameter name="f">
+        </parameter>
+      </parameters>
+    </function-macro>
     <function-macro name="EXCEPTION" c:identifier="JSC_EXCEPTION" introspectable="0">
       <parameters>
         <parameter name="obj">
@@ -1484,7 +1477,6 @@ The created #JSCException can be retrieved with jsc_context_get_exception().</do
       </parameters>
     </function-macro>
     <class name="Exception" c:symbol-prefix="exception" c:type="JSCException" parent="GObject.Object" glib:type-name="JSCException" glib:get-type="jsc_exception_get_type" glib:type-struct="ExceptionClass">
-      <doc xml:space="preserve">JSCException represents a JavaScript exception.</doc>
       <constructor name="new" c:identifier="jsc_exception_new">
         <doc xml:space="preserve">Create a new #JSCException in @context with @message.</doc>
         <return-value transfer-ownership="full">
@@ -1853,6 +1845,25 @@ source URI, line, column and backtrace, and formatted to be printed.</doc>
         </parameter>
       </parameters>
     </function-macro>
+    <docsection name="JSCClass">
+      <doc xml:space="preserve">A JSSClass represents a custom JavaScript class registered by the user in a #JSCContext.
+It allows to create new JavaScripts objects whose instances are created by the user using
+this API.
+It's possible to add constructors, properties and methods for a JSSClass by providing
+#GCallback&lt;!-- --&gt;s to implement them.</doc>
+    </docsection>
+    <docsection name="JSCContext">
+      <doc xml:space="preserve">JSCContext represents a JavaScript execution context, where all operations
+take place and where the values will be associated.
+
+When a new context is created, a global object is allocated and the built-in JavaScript
+objects (Object, Function, String, Array) are populated. You can execute JavaScript in
+the context by using jsc_context_evaluate() or jsc_context_evaluate_with_source_uri().
+It's also possible to register custom objects in the context with jsc_context_register_class().</doc>
+    </docsection>
+    <docsection name="JSCException">
+      <doc xml:space="preserve">JSCException represents a JavaScript exception.</doc>
+    </docsection>
     <docsection name="JSCOptions">
       <doc xml:space="preserve">JavaScript options allow changing the behavior of the JavaScript engine.
 They affect the way the engine works, so the options must be set
@@ -1867,19 +1878,44 @@ passing a #JSCOptionsFunc callback. If your application uses #GOptionContext to 
 command line arguments, you can easily integrate the JSCOptions by adding the
 #GOptionGroup returned by jsc_options_get_option_group().</doc>
     </docsection>
+    <docsection name="JSCValue">
+      <doc xml:space="preserve">JSCValue represents a reference to a value in a #JSCContext. The JSCValue
+protects the referenced value from being garbage collected.</doc>
+    </docsection>
+    <docsection name="JSCVersion">
+      <doc xml:space="preserve">Provides convenience functions returning JavaScriptCore's major, minor and
+micro versions of the JavaScriptCore library your code is running
+against. This is not necessarily the same as the
+#JSC_MAJOR_VERSION, #JSC_MINOR_VERSION or
+#JSC_MICRO_VERSION, which represent the version of the JavaScriptCore
+headers included when compiling the code.</doc>
+    </docsection>
+    <docsection name="JSCVirtualMachine">
+      <doc xml:space="preserve">JSCVirtualMachine represents a group of JSCContext&lt;!-- --&gt;s. It allows
+concurrent JavaScript execution by creating a different instance of
+JSCVirtualMachine in each thread.
+
+To create a group of JSCContext&lt;!-- --&gt;s pass the same JSCVirtualMachine
+instance to every JSCContext constructor.</doc>
+    </docsection>
+    <docsection name="JSCWeakValue">
+      <doc xml:space="preserve">JSCWeakValue represents a weak reference to a value in a #JSCContext. It can be used
+to keep a reference to a JavaScript value without protecting it from being garbage
+collected and without referencing the #JSCContext either.</doc>
+    </docsection>
     <constant name="MAJOR_VERSION" value="2" c:type="JSC_MAJOR_VERSION">
       <doc xml:space="preserve">Like jsc_get_major_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="2" c:type="JSC_MICRO_VERSION">
+    <constant name="MICRO_VERSION" value="0" c:type="JSC_MICRO_VERSION">
       <doc xml:space="preserve">Like jsc_get_micro_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MINOR_VERSION" value="38" c:type="JSC_MINOR_VERSION">
+    <constant name="MINOR_VERSION" value="36" c:type="JSC_MINOR_VERSION">
       <doc xml:space="preserve">Like jsc_get_minor_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
@@ -1960,45 +1996,6 @@ Not that @description string is not localized.</doc>
         </parameter>
       </parameters>
     </callback>
-    <enumeration name="TypedArrayType" version="2.38" c:type="JSCTypedArrayType">
-      <doc xml:space="preserve">Possible types of the elements contained in a typed array.</doc>
-      <member name="none" value="0" c:identifier="JSC_TYPED_ARRAY_NONE">
-        <doc xml:space="preserve">Not a typed array, or type unsupported.</doc>
-      </member>
-      <member name="int8" value="1" c:identifier="JSC_TYPED_ARRAY_INT8">
-        <doc xml:space="preserve">Array elements are 8-bit signed integers (int8_t).</doc>
-      </member>
-      <member name="int16" value="2" c:identifier="JSC_TYPED_ARRAY_INT16">
-        <doc xml:space="preserve">Array elements are 16-bit signed integers (int16_t).</doc>
-      </member>
-      <member name="int32" value="3" c:identifier="JSC_TYPED_ARRAY_INT32">
-        <doc xml:space="preserve">Array elements are 32-bit signed integers (int32_t).</doc>
-      </member>
-      <member name="int64" value="4" c:identifier="JSC_TYPED_ARRAY_INT64">
-        <doc xml:space="preserve">Array elements are 64-bit signed integers (int64_t).</doc>
-      </member>
-      <member name="uint8" value="5" c:identifier="JSC_TYPED_ARRAY_UINT8">
-        <doc xml:space="preserve">Array elements are 8-bit unsigned integers (uint8_t).</doc>
-      </member>
-      <member name="uint8_clamped" value="6" c:identifier="JSC_TYPED_ARRAY_UINT8_CLAMPED">
-        <doc xml:space="preserve">Array elements are 8-bit unsigned integers (uint8_t).</doc>
-      </member>
-      <member name="uint16" value="7" c:identifier="JSC_TYPED_ARRAY_UINT16">
-        <doc xml:space="preserve">Array elements are 16-bit unsigned integers (uint16_t).</doc>
-      </member>
-      <member name="uint32" value="8" c:identifier="JSC_TYPED_ARRAY_UINT32">
-        <doc xml:space="preserve">Array elements are 32-bit unsigned integers (uint32_t).</doc>
-      </member>
-      <member name="uint64" value="9" c:identifier="JSC_TYPED_ARRAY_UINT64">
-        <doc xml:space="preserve">Array elements are 64-bit unsigned integers (uint64_t).</doc>
-      </member>
-      <member name="float32" value="10" c:identifier="JSC_TYPED_ARRAY_FLOAT32">
-        <doc xml:space="preserve">Array elements are 32-bit floating point numbers (float).</doc>
-      </member>
-      <member name="float64" value="11" c:identifier="JSC_TYPED_ARRAY_FLOAT64">
-        <doc xml:space="preserve">Array elements are 64-bit floating point numbers (double).</doc>
-      </member>
-    </enumeration>
     <function-macro name="VALUE" c:identifier="JSC_VALUE" introspectable="0">
       <parameters>
         <parameter name="obj">
@@ -2036,8 +2033,6 @@ Not that @description string is not localized.</doc>
       </parameters>
     </function-macro>
     <class name="Value" c:symbol-prefix="value" c:type="JSCValue" parent="GObject.Object" glib:type-name="JSCValue" glib:get-type="jsc_value_get_type" glib:type-struct="ValueClass">
-      <doc xml:space="preserve">JSCValue represents a reference to a value in a #JSCContext. The JSCValue
-protects the referenced value from being garbage collected.</doc>
       <constructor name="new_array" c:identifier="jsc_value_new_array" introspectable="0">
         <doc xml:space="preserve">Create a new #JSCValue referencing an array with the given items. If @first_item_type
 is %G_TYPE_NONE an empty array is created.</doc>
@@ -2057,58 +2052,6 @@ is %G_TYPE_NONE an empty array is created.</doc>
           <parameter name="..." transfer-ownership="none">
             <doc xml:space="preserve">value of the first item, followed optionally by more type/value pairs, followed by %G_TYPE_NONE.</doc>
             <varargs/>
-          </parameter>
-        </parameters>
-      </constructor>
-      <constructor name="new_array_buffer" c:identifier="jsc_value_new_array_buffer" version="2.38">
-        <doc xml:space="preserve">Creates a new %ArrayBuffer from existing @data in memory.
-
-The @data is not copied: while this allows sharing data with JavaScript
-efficiently, the caller must ensure that the memory region remains valid
-until the newly created object is released by JSC.
-
-Optionally, a @destroy_notify callback can be provided, which will be
-invoked with @user_data as parameter when the %ArrayBuffer object is
-released. This is intended to be used for freeing resources related to
-the memory region which contains the data:
-
-|[!&lt;-- language="C" --&gt;
-GMappedFile *f = g_mapped_file_new (file_path, TRUE, NULL);
-JSCValue *value = jsc_value_new_array_buffer (context,
-    g_mapped_file_get_contents (f), g_mapped_file_get_length (f),
-    (GDestroyNotify) g_mapped_file_unref, f);
-]|
-
-Note that the @user_data can be the same value as @data:
-
-|[!&lt;-- language="C" --&gt;
-void *bytes = g_malloc0 (100);
-JSCValue *value = jsc_value_new_array_buffer (context, bytes, 100, g_free, bytes);
-]|</doc>
-        <return-value transfer-ownership="full" nullable="1">
-          <doc xml:space="preserve">A #JSCValue, or %NULL in case of exception.</doc>
-          <type name="Value" c:type="JSCValue*"/>
-        </return-value>
-        <parameters>
-          <parameter name="context" transfer-ownership="none">
-            <doc xml:space="preserve">A #JSCContext</doc>
-            <type name="Context" c:type="JSCContext*"/>
-          </parameter>
-          <parameter name="data" transfer-ownership="none" nullable="1" allow-none="1">
-            <doc xml:space="preserve">Pointer to a region of memory.</doc>
-            <type name="gpointer" c:type="gpointer"/>
-          </parameter>
-          <parameter name="size" transfer-ownership="none">
-            <doc xml:space="preserve">Size in bytes of the memory region.</doc>
-            <type name="gsize" c:type="gsize"/>
-          </parameter>
-          <parameter name="destroy_notify" transfer-ownership="none" nullable="1" allow-none="1" scope="async">
-            <doc xml:space="preserve">destroy notifier for @user_data.</doc>
-            <type name="GLib.DestroyNotify" c:type="GDestroyNotify"/>
-          </parameter>
-          <parameter name="user_data" transfer-ownership="none" nullable="1" allow-none="1">
-            <doc xml:space="preserve">user data.</doc>
-            <type name="gpointer" c:type="gpointer"/>
           </parameter>
         </parameters>
       </constructor>
@@ -2416,34 +2359,6 @@ string containing null characters, use jsc_value_new_string_from_bytes() instead
           </parameter>
         </parameters>
       </constructor>
-      <constructor name="new_typed_array" c:identifier="jsc_value_new_typed_array" version="2.38">
-        <doc xml:space="preserve">Create a new typed array containing a given amount of elements.
-
-Create a #JSCValue referencing a new typed array with space for @length
-elements of a given @type. As all typed arrays must have an associated
-`ArrayBuffer`, a new one of suitable size will be allocated to store
-the elements, which will be initialized to zero.
-
-The @type must *not* be %JSC_TYPED_ARRAY_NONE.</doc>
-        <return-value transfer-ownership="full">
-          <doc xml:space="preserve">a #JSCValue</doc>
-          <type name="Value" c:type="JSCValue*"/>
-        </return-value>
-        <parameters>
-          <parameter name="context" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCContext</doc>
-            <type name="Context" c:type="JSCContext*"/>
-          </parameter>
-          <parameter name="type" transfer-ownership="none">
-            <doc xml:space="preserve">the type of array elements</doc>
-            <type name="TypedArrayType" c:type="JSCTypedArrayType"/>
-          </parameter>
-          <parameter name="length" transfer-ownership="none">
-            <doc xml:space="preserve">number of elements in the array</doc>
-            <type name="gsize" c:type="gsize"/>
-          </parameter>
-        </parameters>
-      </constructor>
       <constructor name="new_undefined" c:identifier="jsc_value_new_undefined">
         <doc xml:space="preserve">Create a new #JSCValue referencing &lt;function&gt;undefined&lt;/function&gt; in @context.</doc>
         <return-value transfer-ownership="full">
@@ -2457,53 +2372,6 @@ The @type must *not* be %JSC_TYPED_ARRAY_NONE.</doc>
           </parameter>
         </parameters>
       </constructor>
-      <method name="array_buffer_get_data" c:identifier="jsc_value_array_buffer_get_data" version="2.38">
-        <doc xml:space="preserve">Gets a pointer to memory that contains the array buffer data.
-
-Obtains a pointer to the memory region that holds the contents of the
-%ArrayBuffer; modifications done to the data will be visible to JavaScript
-code. If @size is not %NULL, the size in bytes of the memory region
-will also be stored in the pointed location.
-
-Note that the pointer returned by this function is not guaranteed to remain
-the same after calls to other JSC API functions. If you plan to access the
-data of the %ArrayBuffer later, you can keep a reference to the @value and
-obtain the data pointer at a later point. Keep in mind that if JavaScript
-code has a chance to run, for example due to main loop events that result
-in JSC being called, the contents of the memory region might be modified in
-the meantime. Consider taking a copy of the data and using the copy instead
-in asynchronous code.</doc>
-        <return-value transfer-ownership="none" nullable="1">
-          <doc xml:space="preserve">pointer to memory.</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">A #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-          <parameter name="size" transfer-ownership="none" nullable="1" allow-none="1">
-            <doc xml:space="preserve">location where to store the size of the memory region.</doc>
-            <type name="gsize" c:type="gsize*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="array_buffer_get_size" c:identifier="jsc_value_array_buffer_get_size" version="2.38">
-        <doc xml:space="preserve">Gets the size in bytes of the array buffer.
-
-Obtains the size in bytes of the memory region that holds the contents of
-an %ArrayBuffer.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">size, in bytes.</doc>
-          <type name="gsize" c:type="gsize"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">A #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
       <method name="constructor_call" c:identifier="jsc_value_constructor_call" shadowed-by="constructor_callv" introspectable="0">
         <doc xml:space="preserve">Invoke &lt;function&gt;new&lt;/function&gt; with constructor referenced by @value. If @first_parameter_type
 is %G_TYPE_NONE no parameters will be passed to the constructor.</doc>
@@ -2602,7 +2470,7 @@ This function always returns a #JSCValue, in case of void functions a #JSCValue 
           </parameter>
         </parameters>
       </method>
-      <method name="get_context" c:identifier="jsc_value_get_context" glib:get-property="context">
+      <method name="get_context" c:identifier="jsc_value_get_context">
         <doc xml:space="preserve">Get the #JSCContext in which @value was created.</doc>
         <return-value transfer-ownership="none">
           <doc xml:space="preserve">the #JSCValue context.</doc>
@@ -2624,19 +2492,6 @@ This function always returns a #JSCValue, in case of void functions a #JSCValue 
         <parameters>
           <instance-parameter name="value" transfer-ownership="none">
             <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="is_array_buffer" c:identifier="jsc_value_is_array_buffer" version="2.38">
-        <doc xml:space="preserve">Check whether the @value is an %ArrayBuffer.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">whether the value is an %ArrayBuffer</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">A #JSCValue.</doc>
             <type name="Value" c:type="JSCValue*"/>
           </instance-parameter>
         </parameters>
@@ -2732,19 +2587,6 @@ This function always returns a #JSCValue, in case of void functions a #JSCValue 
           </instance-parameter>
         </parameters>
       </method>
-      <method name="is_typed_array" c:identifier="jsc_value_is_typed_array" version="2.38">
-        <doc xml:space="preserve">Determines whether a value is a typed array.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">Whether @value is a typed array.</doc>
-          <type name="gboolean" c:type="gboolean"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
       <method name="is_undefined" c:identifier="jsc_value_is_undefined">
         <doc xml:space="preserve">Get whether the value referenced by @value is &lt;function&gt;undefined&lt;/function&gt;.</doc>
         <return-value transfer-ownership="none">
@@ -2756,44 +2598,6 @@ This function always returns a #JSCValue, in case of void functions a #JSCValue 
             <doc xml:space="preserve">a #JSCValue</doc>
             <type name="Value" c:type="JSCValue*"/>
           </instance-parameter>
-        </parameters>
-      </method>
-      <method name="new_typed_array_with_buffer" c:identifier="jsc_value_new_typed_array_with_buffer" version="2.38">
-        <doc xml:space="preserve">Create a new typed array value with elements from an array buffer.
-
-Create a #JSCValue referencing a new typed array value containing
-elements of the given @type, where the elements are stored at the memory
-region represented by the @array_buffer.
-
-The @type must *not* be %JSC_TYPED_ARRAY_NONE.
-
-The @offset and @length parameters can be used to indicate which part of
-the array buffer can be accessed through the typed array. If both are
-omitted (passing zero as @offset, and `-1` as @length), the whole
-@array_buffer is exposed through the typed array. Omitting the @length
-with a non-zero @offset will expose the remainder of the @array_buffer
-starting at the indicated offset.</doc>
-        <return-value transfer-ownership="full">
-          <doc xml:space="preserve">a #JSCValue</doc>
-          <type name="Value" c:type="JSCValue*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="array_buffer" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue.</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-          <parameter name="type" transfer-ownership="none">
-            <doc xml:space="preserve">type of array elements.</doc>
-            <type name="TypedArrayType" c:type="JSCTypedArrayType"/>
-          </parameter>
-          <parameter name="offset" transfer-ownership="none">
-            <doc xml:space="preserve">offset, in bytes.</doc>
-            <type name="gsize" c:type="gsize"/>
-          </parameter>
-          <parameter name="length" transfer-ownership="none">
-            <doc xml:space="preserve">number of array elements, or `-1`.</doc>
-            <type name="gssize" c:type="gssize"/>
-          </parameter>
         </parameters>
       </method>
       <method name="object_define_property_accessor" c:identifier="jsc_value_object_define_property_accessor">
@@ -3167,111 +2971,7 @@ to handle strings with null characters.</doc>
           </instance-parameter>
         </parameters>
       </method>
-      <method name="typed_array_get_buffer" c:identifier="jsc_value_typed_array_get_buffer" version="2.38">
-        <doc xml:space="preserve">Obtain the %ArrayBuffer for the memory region of the typed array elements.</doc>
-        <return-value transfer-ownership="full">
-          <doc xml:space="preserve">A #JSCValue</doc>
-          <type name="Value" c:type="JSCValue*"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="typed_array_get_data" c:identifier="jsc_value_typed_array_get_data" version="2.38">
-        <doc xml:space="preserve">Obtains a pointer to the memory region that holds the elements of the typed
-array; modifications done to them will be visible to JavaScript code. If
-@length is not %NULL, the number of elements contained in the typed array
-are also stored in the pointed location.
-
-The returned pointer needs to be casted to the appropriate type (see
-#JSCTypedArrayType), and has the `offset` over the underlying array
-buffer data applied&#x2014;that is, points to the first element of the typed
-array:
-
-|[&lt;!-- language="C" --&gt;
-if (jsc_value_typed_array_get_type(value) != JSC_TYPED_ARRAY_UINT32)
-    g_error ("Only arrays of uint32_t are supported");
-
-gsize count = 0;
-uint32_t *elements = jsc_value_typed_array_get_contents (value, &amp;count);
-for (gsize i = 0; i &lt; count; i++)
-     g_print ("index %zu, value %" PRIu32 "\n", i, elements[i]);
-]|
-
-Note that the pointer returned by this function is not guaranteed to remain
-the same after calls to other JSC API functions. See
-jsc_value_array_buffer_get_data() for details.</doc>
-        <return-value transfer-ownership="none" nullable="1">
-          <doc xml:space="preserve">pointer to memory.</doc>
-          <type name="gpointer" c:type="gpointer"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-          <parameter name="length" direction="out" caller-allocates="0" transfer-ownership="full" nullable="1">
-            <doc xml:space="preserve">location to return the number of elements contained</doc>
-            <type name="gsize" c:type="gsize*"/>
-          </parameter>
-        </parameters>
-      </method>
-      <method name="typed_array_get_length" c:identifier="jsc_value_typed_array_get_length" version="2.38">
-        <doc xml:space="preserve">Gets the number of elements in a typed array.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">number of elements.</doc>
-          <type name="gsize" c:type="gsize"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="typed_array_get_offset" c:identifier="jsc_value_typed_array_get_offset" version="2.38">
-        <doc xml:space="preserve">Gets the offset over the underlying array buffer data.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">offset, in bytes.</doc>
-          <type name="gsize" c:type="gsize"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">A #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="typed_array_get_size" c:identifier="jsc_value_typed_array_get_size" version="2.38">
-        <doc xml:space="preserve">Gets the size of a typed array.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">size, in bytes.</doc>
-          <type name="gsize" c:type="gsize"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <method name="typed_array_get_type" c:identifier="jsc_value_typed_array_get_type" version="2.38">
-        <doc xml:space="preserve">Gets the type of elements contained in a typed array.</doc>
-        <return-value transfer-ownership="none">
-          <doc xml:space="preserve">type of the elements, or %JSC_TYPED_ARRAY_NONE if @value is not a typed array.</doc>
-          <type name="TypedArrayType" c:type="JSCTypedArrayType"/>
-        </return-value>
-        <parameters>
-          <instance-parameter name="value" transfer-ownership="none">
-            <doc xml:space="preserve">a #JSCValue</doc>
-            <type name="Value" c:type="JSCValue*"/>
-          </instance-parameter>
-        </parameters>
-      </method>
-      <property name="context" writable="1" construct-only="1" transfer-ownership="none" getter="get_context">
+      <property name="context" writable="1" construct-only="1" transfer-ownership="none">
         <doc xml:space="preserve">The #JSCContext in which the value was created.</doc>
         <type name="Context"/>
       </property>
@@ -3333,12 +3033,6 @@ jsc_value_object_define_property_accessor().</doc>
       </member>
     </bitfield>
     <class name="VirtualMachine" c:symbol-prefix="virtual_machine" c:type="JSCVirtualMachine" parent="GObject.Object" glib:type-name="JSCVirtualMachine" glib:get-type="jsc_virtual_machine_get_type" glib:type-struct="VirtualMachineClass">
-      <doc xml:space="preserve">JSCVirtualMachine represents a group of JSCContext&lt;!-- --&gt;s. It allows
-concurrent JavaScript execution by creating a different instance of
-JSCVirtualMachine in each thread.
-
-To create a group of JSCContext&lt;!-- --&gt;s pass the same JSCVirtualMachine
-instance to every JSCContext constructor.</doc>
       <constructor name="new" c:identifier="jsc_virtual_machine_new">
         <doc xml:space="preserve">Create a new #JSCVirtualMachine.</doc>
         <return-value transfer-ownership="full">
@@ -3406,9 +3100,6 @@ instance to every JSCContext constructor.</doc>
       </parameters>
     </function-macro>
     <class name="WeakValue" c:symbol-prefix="weak_value" c:type="JSCWeakValue" parent="GObject.Object" glib:type-name="JSCWeakValue" glib:get-type="jsc_weak_value_get_type" glib:type-struct="WeakValueClass">
-      <doc xml:space="preserve">JSCWeakValue represents a weak reference to a value in a #JSCContext. It can be used
-to keep a reference to a JavaScript value without protecting it from being garbage
-collected and without referencing the #JSCContext either.</doc>
       <constructor name="new" c:identifier="jsc_weak_value_new">
         <doc xml:space="preserve">Create a new #JSCWeakValue for the JavaScript value referenced by @value.</doc>
         <return-value transfer-ownership="full">

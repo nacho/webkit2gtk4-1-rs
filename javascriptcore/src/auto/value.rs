@@ -29,13 +29,6 @@ impl Value {
     //    unsafe { TODO: call ffi:jsc_value_new_array() }
     //}
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_new_array_buffer")]
-    //pub fn new_array_buffer(context: &impl IsA<Context>, data: /*Unimplemented*/Option<Basic: Pointer>, size: usize, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> Option<Value> {
-    //    unsafe { TODO: call ffi:jsc_value_new_array_buffer() }
-    //}
-
     #[doc(alias = "jsc_value_new_array_from_garray")]
     pub fn new_array_from_garray(context: &impl IsA<Context>, array: &[Value]) -> Value {
         unsafe {
@@ -137,13 +130,6 @@ impl Value {
         }
     }
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_new_typed_array")]
-    //pub fn new_typed_array(context: &impl IsA<Context>, type_: /*Ignored*/TypedArrayType, length: usize) -> Value {
-    //    unsafe { TODO: call ffi:jsc_value_new_typed_array() }
-    //}
-
     #[doc(alias = "jsc_value_new_undefined")]
     pub fn new_undefined(context: &impl IsA<Context>) -> Value {
         unsafe {
@@ -204,16 +190,6 @@ impl ValueBuilder {
 }
 
 pub trait ValueExt: 'static {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_array_buffer_get_data")]
-    //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer>;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_array_buffer_get_size")]
-    fn array_buffer_get_size(&self) -> usize;
-
     //#[doc(alias = "jsc_value_constructor_call")]
     //#[must_use]
     //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
@@ -237,11 +213,6 @@ pub trait ValueExt: 'static {
     #[doc(alias = "jsc_value_is_array")]
     fn is_array(&self) -> bool;
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_is_array_buffer")]
-    fn is_array_buffer(&self) -> bool;
-
     #[doc(alias = "jsc_value_is_boolean")]
     fn is_boolean(&self) -> bool;
 
@@ -263,19 +234,8 @@ pub trait ValueExt: 'static {
     #[doc(alias = "jsc_value_is_string")]
     fn is_string(&self) -> bool;
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_is_typed_array")]
-    fn is_typed_array(&self) -> bool;
-
     #[doc(alias = "jsc_value_is_undefined")]
     fn is_undefined(&self) -> bool;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_new_typed_array_with_buffer")]
-    //#[must_use]
-    //fn new_typed_array_with_buffer(&self, type_: /*Ignored*/TypedArrayType, offset: usize, length: isize) -> Option<Value>;
 
     #[doc(alias = "jsc_value_object_define_property_data")]
     fn object_define_property_data(
@@ -339,52 +299,9 @@ pub trait ValueExt: 'static {
 
     #[doc(alias = "jsc_value_to_string_as_bytes")]
     fn to_string_as_bytes(&self) -> Option<glib::Bytes>;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_buffer")]
-    #[must_use]
-    fn typed_array_get_buffer(&self) -> Option<Value>;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_typed_array_get_data")]
-    //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize);
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_length")]
-    fn typed_array_get_length(&self) -> usize;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_offset")]
-    fn typed_array_get_offset(&self) -> usize;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_size")]
-    fn typed_array_get_size(&self) -> usize;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_typed_array_get_type")]
-    //fn typed_array_get_type(&self) -> /*Ignored*/TypedArrayType;
 }
 
 impl<O: IsA<Value>> ValueExt for O {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer> {
-    //    unsafe { TODO: call ffi:jsc_value_array_buffer_get_data() }
-    //}
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn array_buffer_get_size(&self) -> usize {
-        unsafe { ffi::jsc_value_array_buffer_get_size(self.as_ref().to_glib_none().0) }
-    }
-
     //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_constructor_call() }
     //}
@@ -423,16 +340,6 @@ impl<O: IsA<Value>> ValueExt for O {
         unsafe { from_glib(ffi::jsc_value_is_array(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn is_array_buffer(&self) -> bool {
-        unsafe {
-            from_glib(ffi::jsc_value_is_array_buffer(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn is_boolean(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_boolean(self.as_ref().to_glib_none().0)) }
     }
@@ -465,25 +372,9 @@ impl<O: IsA<Value>> ValueExt for O {
         unsafe { from_glib(ffi::jsc_value_is_string(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn is_typed_array(&self) -> bool {
-        unsafe {
-            from_glib(ffi::jsc_value_is_typed_array(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
     fn is_undefined(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_undefined(self.as_ref().to_glib_none().0)) }
     }
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn new_typed_array_with_buffer(&self, type_: /*Ignored*/TypedArrayType, offset: usize, length: isize) -> Option<Value> {
-    //    unsafe { TODO: call ffi:jsc_value_new_typed_array_with_buffer() }
-    //}
 
     fn object_define_property_data(
         &self,
@@ -624,44 +515,4 @@ impl<O: IsA<Value>> ValueExt for O {
             ))
         }
     }
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn typed_array_get_buffer(&self) -> Option<Value> {
-        unsafe {
-            from_glib_full(ffi::jsc_value_typed_array_get_buffer(
-                self.as_ref().to_glib_none().0,
-            ))
-        }
-    }
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize) {
-    //    unsafe { TODO: call ffi:jsc_value_typed_array_get_data() }
-    //}
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn typed_array_get_length(&self) -> usize {
-        unsafe { ffi::jsc_value_typed_array_get_length(self.as_ref().to_glib_none().0) }
-    }
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn typed_array_get_offset(&self) -> usize {
-        unsafe { ffi::jsc_value_typed_array_get_offset(self.as_ref().to_glib_none().0) }
-    }
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    fn typed_array_get_size(&self) -> usize {
-        unsafe { ffi::jsc_value_typed_array_get_size(self.as_ref().to_glib_none().0) }
-    }
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn typed_array_get_type(&self) -> /*Ignored*/TypedArrayType {
-    //    unsafe { TODO: call ffi:jsc_value_typed_array_get_type() }
-    //}
 }

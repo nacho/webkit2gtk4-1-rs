@@ -13,7 +13,7 @@ use std::process::Command;
 use std::str;
 use tempfile::Builder;
 
-static PACKAGES: &[&str] = &["javascriptcoregtk-4.1"];
+static PACKAGES: &[&str] = &["javascriptcoregtk-4.0"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -259,13 +259,6 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
-        "JSCTypedArrayType",
-        Layout {
-            size: size_of::<JSCTypedArrayType>(),
-            alignment: align_of::<JSCTypedArrayType>(),
-        },
-    ),
-    (
         "JSCValue",
         Layout {
             size: size_of::<JSCValue>(),
@@ -329,8 +322,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
         "3",
     ),
     ("JSC_MAJOR_VERSION", "2"),
-    ("JSC_MICRO_VERSION", "2"),
-    ("JSC_MINOR_VERSION", "38"),
+    ("JSC_MICRO_VERSION", "0"),
+    ("JSC_MINOR_VERSION", "36"),
     ("JSC_OPTIONS_USE_DFG", "useDFGJIT"),
     ("JSC_OPTIONS_USE_FTL", "useFTLJIT"),
     ("JSC_OPTIONS_USE_JIT", "useJIT"),
@@ -342,18 +335,6 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) JSC_OPTION_SIZE", "3"),
     ("(gint) JSC_OPTION_STRING", "5"),
     ("(gint) JSC_OPTION_UINT", "2"),
-    ("(gint) JSC_TYPED_ARRAY_FLOAT32", "10"),
-    ("(gint) JSC_TYPED_ARRAY_FLOAT64", "11"),
-    ("(gint) JSC_TYPED_ARRAY_INT16", "2"),
-    ("(gint) JSC_TYPED_ARRAY_INT32", "3"),
-    ("(gint) JSC_TYPED_ARRAY_INT64", "4"),
-    ("(gint) JSC_TYPED_ARRAY_INT8", "1"),
-    ("(gint) JSC_TYPED_ARRAY_NONE", "0"),
-    ("(gint) JSC_TYPED_ARRAY_UINT16", "7"),
-    ("(gint) JSC_TYPED_ARRAY_UINT32", "8"),
-    ("(gint) JSC_TYPED_ARRAY_UINT64", "9"),
-    ("(gint) JSC_TYPED_ARRAY_UINT8", "5"),
-    ("(gint) JSC_TYPED_ARRAY_UINT8_CLAMPED", "6"),
     ("(guint) JSC_VALUE_PROPERTY_CONFIGURABLE", "1"),
     ("(guint) JSC_VALUE_PROPERTY_ENUMERABLE", "2"),
     ("(guint) JSC_VALUE_PROPERTY_WRITABLE", "4"),

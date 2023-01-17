@@ -5,23 +5,13 @@
 
 use glib::object::Cast;
 use glib::object::IsA;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::connect_raw;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::translate::*;
 use glib::StaticType;
 use glib::ToValue;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use std::boxed::Box as Box_;
 use std::fmt;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -52,8 +42,6 @@ impl ColorChooserRequest {
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ColorChooserRequestBuilder {
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     rgba: Option<gdk::RGBA>,
 }
 
@@ -69,15 +57,12 @@ impl ColorChooserRequestBuilder {
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> ColorChooserRequest {
         let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_8", feature = "dox"))]
         if let Some(ref rgba) = self.rgba {
             properties.push(("rgba", rgba));
         }
         glib::Object::new::<ColorChooserRequest>(&properties)
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     pub fn rgba(mut self, rgba: &gdk::RGBA) -> Self {
         self.rgba = Some(rgba.clone());
         self
@@ -112,13 +97,15 @@ pub trait ColorChooserRequestExt: 'static {
     #[doc(alias = "webkit_color_chooser_request_set_rgba")]
     fn set_rgba(&self, rgba: &gdk::RGBA);
 
+    fn get_property_rgba(&self) -> Option<gdk::RGBA>;
+
+    fn set_property_rgba(&self, rgba: Option<&gdk::RGBA>);
+
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "finished")]
     fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 }
@@ -177,6 +164,14 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
+    fn get_property_rgba(&self) -> Option<gdk::RGBA> {
+        glib::ObjectExt::property(self.as_ref(), "rgba")
+    }
+
+    fn set_property_rgba(&self, rgba: Option<&gdk::RGBA>) {
+        glib::ObjectExt::set_property(self.as_ref(), "rgba", &rgba)
+    }
+
     #[cfg(any(feature = "v2_8", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
@@ -203,8 +198,6 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<
             P: IsA<ColorChooserRequest>,

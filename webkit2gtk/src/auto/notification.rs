@@ -3,13 +3,25 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::object::Cast;
 use glib::object::IsA;
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::connect_raw;
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::signal::SignalHandlerId;
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use glib::translate::*;
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use std::boxed::Box as Box_;
 use std::fmt;
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
 use std::mem::transmute;
 
 glib::wrapper! {
@@ -31,13 +43,19 @@ pub trait NotificationExt: 'static {
     #[doc(alias = "webkit_notification_clicked")]
     fn clicked(&self);
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_notification_close")]
     fn close(&self);
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_notification_get_body")]
     #[doc(alias = "get_body")]
     fn body(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_notification_get_id")]
     #[doc(alias = "get_id")]
     fn id(&self) -> u64;
@@ -48,6 +66,8 @@ pub trait NotificationExt: 'static {
     #[doc(alias = "get_tag")]
     fn tag(&self) -> Option<glib::GString>;
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     #[doc(alias = "webkit_notification_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
@@ -92,12 +112,16 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn close(&self) {
         unsafe {
             ffi::webkit_notification_close(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn body(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_notification_get_body(
@@ -106,6 +130,8 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn id(&self) -> u64 {
         unsafe { ffi::webkit_notification_get_id(self.as_ref().to_glib_none().0) }
     }
@@ -120,6 +146,8 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_notification_get_title(
