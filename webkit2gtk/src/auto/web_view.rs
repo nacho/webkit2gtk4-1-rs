@@ -1242,7 +1242,7 @@ pub trait WebViewExt: 'static {
 
     #[doc(alias = "context-menu")]
     fn connect_context_menu<
-        F: Fn(&Self, &ContextMenu, &gdk::Event, &HitTestResult) -> bool + 'static,
+        F: Fn(&Self, &ContextMenu, &gdk::Event, &HitTestResult) -> glib::signal::Inhibit + 'static,
     >(
         &self,
         f: F,
@@ -2669,14 +2669,14 @@ impl<O: IsA<WebView>> WebViewExt for O {
     }
 
     fn connect_context_menu<
-        F: Fn(&Self, &ContextMenu, &gdk::Event, &HitTestResult) -> bool + 'static,
+        F: Fn(&Self, &ContextMenu, &gdk::Event, &HitTestResult) -> glib::signal::Inhibit + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn context_menu_trampoline<
             P: IsA<WebView>,
-            F: Fn(&P, &ContextMenu, &gdk::Event, &HitTestResult) -> bool + 'static,
+            F: Fn(&P, &ContextMenu, &gdk::Event, &HitTestResult) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut ffi::WebKitWebView,
             context_menu: *mut ffi::WebKitContextMenu,

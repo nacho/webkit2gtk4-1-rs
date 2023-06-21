@@ -343,6 +343,9 @@ generate_builder = true
     [[object.signal]]
     name = "script-dialog"
     version = "2.24"
+    [[object.signal]]
+    name = "context-menu"
+    inhibit = true
 
 [[object]]
 name = "WebKit2.WebViewSessionState"
