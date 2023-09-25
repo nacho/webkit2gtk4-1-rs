@@ -217,6 +217,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "WebKitContextMenu",
+        Layout {
+            size: size_of::<WebKitContextMenu>(),
+            alignment: align_of::<WebKitContextMenu>(),
+        },
+    ),
+    (
         "WebKitContextMenuAction",
         Layout {
             size: size_of::<WebKitContextMenuAction>(),
@@ -228,6 +235,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<WebKitContextMenuClass>(),
             alignment: align_of::<WebKitContextMenuClass>(),
+        },
+    ),
+    (
+        "WebKitContextMenuItem",
+        Layout {
+            size: size_of::<WebKitContextMenuItem>(),
+            alignment: align_of::<WebKitContextMenuItem>(),
         },
     ),
     (
@@ -1789,6 +1803,20 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         Layout {
             size: size_of::<WebKitWebExtensionClass>(),
             alignment: align_of::<WebKitWebExtensionClass>(),
+        },
+    ),
+    (
+        "WebKitWebFormManager",
+        Layout {
+            size: size_of::<WebKitWebFormManager>(),
+            alignment: align_of::<WebKitWebFormManager>(),
+        },
+    ),
+    (
+        "WebKitWebFormManagerClass",
+        Layout {
+            size: size_of::<WebKitWebFormManagerClass>(),
+            alignment: align_of::<WebKitWebFormManagerClass>(),
         },
     ),
     (

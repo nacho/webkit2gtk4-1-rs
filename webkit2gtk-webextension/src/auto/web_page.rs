@@ -53,6 +53,7 @@ impl WebPage {
 }
 
 pub trait WebPageExt: 'static {
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_web_page_get_dom_document")]
     #[doc(alias = "get_dom_document")]
     fn dom_document(&self) -> Option<DOMDocument>;
@@ -62,6 +63,12 @@ pub trait WebPageExt: 'static {
     #[doc(alias = "webkit_web_page_get_editor")]
     #[doc(alias = "get_editor")]
     fn editor(&self) -> Option<WebEditor>;
+
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //#[doc(alias = "webkit_web_page_get_form_manager")]
+    //#[doc(alias = "get_form_manager")]
+    //fn form_manager(&self, world: Option<&impl IsA<ScriptWorld>>) -> /*Ignored*/Option<WebFormManager>;
 
     #[doc(alias = "webkit_web_page_get_id")]
     #[doc(alias = "get_id")]
@@ -94,6 +101,7 @@ pub trait WebPageExt: 'static {
         message: &(impl IsA<UserMessage> + Clone + 'static),
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserMessage, glib::Error>> + 'static>>;
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
     #[doc(alias = "console-message-sent")]
@@ -119,6 +127,7 @@ pub trait WebPageExt: 'static {
     //#[doc(alias = "form-controls-associated")]
     //fn connect_form_controls_associated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
 
+    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     //#[cfg(any(feature = "v2_26", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     //#[doc(alias = "form-controls-associated-for-frame")]
@@ -138,6 +147,7 @@ pub trait WebPageExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     //#[cfg(any(feature = "v2_20", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
     //#[doc(alias = "will-submit-form")]
@@ -165,6 +175,12 @@ impl<O: IsA<WebPage>> WebPageExt for O {
             ))
         }
     }
+
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn form_manager(&self, world: Option<&impl IsA<ScriptWorld>>) -> /*Ignored*/Option<WebFormManager> {
+    //    unsafe { TODO: call ffi:webkit_web_page_get_form_manager() }
+    //}
 
     fn id(&self) -> u64 {
         unsafe { ffi::webkit_web_page_get_id(self.as_ref().to_glib_none().0) }

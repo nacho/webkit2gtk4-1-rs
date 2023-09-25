@@ -59,8 +59,8 @@ pub const JSC_TYPED_ARRAY_FLOAT64: JSCTypedArrayType = 11;
 
 // Constants
 pub const JSC_MAJOR_VERSION: c_int = 2;
-pub const JSC_MICRO_VERSION: c_int = 2;
-pub const JSC_MINOR_VERSION: c_int = 38;
+pub const JSC_MICRO_VERSION: c_int = 5;
+pub const JSC_MINOR_VERSION: c_int = 40;
 pub const JSC_OPTIONS_USE_DFG: *const c_char = b"useDFGJIT\0" as *const u8 as *const c_char;
 pub const JSC_OPTIONS_USE_FTL: *const c_char = b"useFTLJIT\0" as *const u8 as *const c_char;
 pub const JSC_OPTIONS_USE_JIT: *const c_char = b"useJIT\0" as *const u8 as *const c_char;
@@ -115,6 +115,14 @@ pub struct _JSCClassClass {
 }
 
 pub type JSCClassClass = *mut _JSCClassClass;
+
+#[repr(C)]
+pub struct _JSCClassPrivate {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+pub type JSCClassPrivate = *mut _JSCClassPrivate;
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -321,15 +329,19 @@ pub struct _JSValueRef {
 pub type JSValueRef = *mut _JSValueRef;
 
 // Classes
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct JSCClass {
-    _data: [u8; 0],
-    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+    pub parent: gobject::GObject,
+    pub priv_: *mut JSCClassPrivate,
 }
 
 impl ::std::fmt::Debug for JSCClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("JSCClass @ {:p}", self)).finish()
+        f.debug_struct(&format!("JSCClass @ {:p}", self))
+            .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
+            .finish()
     }
 }
 
@@ -344,6 +356,7 @@ impl ::std::fmt::Debug for JSCContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("JSCContext @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -359,6 +372,7 @@ impl ::std::fmt::Debug for JSCException {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("JSCException @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -374,6 +388,7 @@ impl ::std::fmt::Debug for JSCValue {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("JSCValue @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -389,6 +404,7 @@ impl ::std::fmt::Debug for JSCVirtualMachine {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("JSCVirtualMachine @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -404,6 +420,7 @@ impl ::std::fmt::Debug for JSCWeakValue {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("JSCWeakValue @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }

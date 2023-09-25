@@ -10,6 +10,7 @@
 int main() {
     printf("%s;%zu;%zu\n", "JSCCheckSyntaxMode", sizeof(JSCCheckSyntaxMode), alignof(JSCCheckSyntaxMode));
     printf("%s;%zu;%zu\n", "JSCCheckSyntaxResult", sizeof(JSCCheckSyntaxResult), alignof(JSCCheckSyntaxResult));
+    printf("%s;%zu;%zu\n", "JSCClass", sizeof(JSCClass), alignof(JSCClass));
     printf("%s;%zu;%zu\n", "JSCClassVTable", sizeof(JSCClassVTable), alignof(JSCClassVTable));
     printf("%s;%zu;%zu\n", "JSCContext", sizeof(JSCContext), alignof(JSCContext));
     printf("%s;%zu;%zu\n", "JSCContextClass", sizeof(JSCContextClass), alignof(JSCContextClass));

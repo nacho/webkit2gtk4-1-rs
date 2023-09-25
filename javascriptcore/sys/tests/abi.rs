@@ -217,6 +217,13 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
         },
     ),
     (
+        "JSCClass",
+        Layout {
+            size: size_of::<JSCClass>(),
+            alignment: align_of::<JSCClass>(),
+        },
+    ),
+    (
         "JSCClassVTable",
         Layout {
             size: size_of::<JSCClassVTable>(),
@@ -329,8 +336,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
         "3",
     ),
     ("JSC_MAJOR_VERSION", "2"),
-    ("JSC_MICRO_VERSION", "2"),
-    ("JSC_MINOR_VERSION", "38"),
+    ("JSC_MICRO_VERSION", "5"),
+    ("JSC_MINOR_VERSION", "40"),
     ("JSC_OPTIONS_USE_DFG", "useDFGJIT"),
     ("JSC_OPTIONS_USE_FTL", "useFTLJIT"),
     ("JSC_OPTIONS_USE_JIT", "useJIT"),

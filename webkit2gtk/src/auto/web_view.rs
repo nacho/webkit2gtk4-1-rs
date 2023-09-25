@@ -798,6 +798,16 @@ impl WebViewBuilder {
 }
 
 pub trait WebViewExt: 'static {
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //#[doc(alias = "webkit_web_view_call_async_javascript_function")]
+    //fn call_async_javascript_function<P: FnOnce(Result</*Ignored*/javascriptcore::Value, glib::Error>) + 'static>(&self, body: &str, arguments: Option<&glib::Variant>, world_name: Option<&str>, source_uri: Option<&str>, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P);
+
+    //
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn call_async_javascript_function_future(&self, body: &str, arguments: Option<&glib::Variant>, world_name: Option<&str>, source_uri: Option<&str>) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/javascriptcore::Value, glib::Error>> + 'static>>;
+
     #[doc(alias = "webkit_web_view_can_execute_editing_command")]
     fn can_execute_editing_command<P: FnOnce(Result<(), glib::Error>) + 'static>(
         &self,
@@ -822,6 +832,16 @@ pub trait WebViewExt: 'static {
 
     #[doc(alias = "webkit_web_view_download_uri")]
     fn download_uri(&self, uri: &str) -> Option<Download>;
+
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //#[doc(alias = "webkit_web_view_evaluate_javascript")]
+    //fn evaluate_javascript<P: FnOnce(Result</*Ignored*/javascriptcore::Value, glib::Error>) + 'static>(&self, script: &str, world_name: Option<&str>, source_uri: Option<&str>, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P);
+
+    //
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn evaluate_javascript_future(&self, script: &str, world_name: Option<&str>, source_uri: Option<&str>) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/javascriptcore::Value, glib::Error>> + 'static>>;
 
     #[doc(alias = "webkit_web_view_execute_editing_command")]
     fn execute_editing_command(&self, command: &str);
@@ -1071,9 +1091,13 @@ pub trait WebViewExt: 'static {
     #[doc(alias = "webkit_web_view_restore_session_state")]
     fn restore_session_state(&self, state: &WebViewSessionState);
 
+    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    //#[cfg(any(feature = "v2_38", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     //#[doc(alias = "webkit_web_view_run_async_javascript_function_in_world")]
     //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P);
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_web_view_run_javascript")]
     fn run_javascript<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
@@ -1082,11 +1106,14 @@ pub trait WebViewExt: 'static {
         callback: P,
     );
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+
     fn run_javascript_future(
         &self,
         script: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<JavascriptResult, glib::Error>> + 'static>>;
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[doc(alias = "webkit_web_view_run_javascript_from_gresource")]
     fn run_javascript_from_gresource<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
@@ -1095,11 +1122,14 @@ pub trait WebViewExt: 'static {
         callback: P,
     );
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+
     fn run_javascript_from_gresource_future(
         &self,
         resource: &str,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<JavascriptResult, glib::Error>> + 'static>>;
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_web_view_run_javascript_in_world")]
@@ -1111,6 +1141,7 @@ pub trait WebViewExt: 'static {
         callback: P,
     );
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     fn run_javascript_in_world_future(
@@ -1314,6 +1345,11 @@ pub trait WebViewExt: 'static {
         f: F,
     ) -> SignalHandlerId;
 
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //#[doc(alias = "query-permission-state")]
+    //fn connect_query_permission_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
+
     #[doc(alias = "ready-to-show")]
     fn connect_ready_to_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
 
@@ -1467,6 +1503,35 @@ pub trait WebViewExt: 'static {
 }
 
 impl<O: IsA<WebView>> WebViewExt for O {
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn call_async_javascript_function<P: FnOnce(Result</*Ignored*/javascriptcore::Value, glib::Error>) + 'static>(&self, body: &str, arguments: Option<&glib::Variant>, world_name: Option<&str>, source_uri: Option<&str>, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
+    //    unsafe { TODO: call ffi:webkit_web_view_call_async_javascript_function() }
+    //}
+
+    //
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn call_async_javascript_function_future(&self, body: &str, arguments: Option<&glib::Variant>, world_name: Option<&str>, source_uri: Option<&str>) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/javascriptcore::Value, glib::Error>> + 'static>> {
+
+    //let body = String::from(body);
+    //let arguments = arguments.map(ToOwned::to_owned);
+    //let world_name = world_name.map(ToOwned::to_owned);
+    //let source_uri = source_uri.map(ToOwned::to_owned);
+    //Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    //    obj.call_async_javascript_function(
+    //        &body,
+    //        arguments.as_ref().map(::std::borrow::Borrow::borrow),
+    //        world_name.as_ref().map(::std::borrow::Borrow::borrow),
+    //        source_uri.as_ref().map(::std::borrow::Borrow::borrow),
+    //        Some(cancellable),
+    //        move |res| {
+    //            send.resolve(res);
+    //        },
+    //    );
+    //}))
+    //}
+
     fn can_execute_editing_command<P: FnOnce(Result<(), glib::Error>) + 'static>(
         &self,
         command: &str,
@@ -1565,6 +1630,33 @@ impl<O: IsA<WebView>> WebViewExt for O {
             ))
         }
     }
+
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn evaluate_javascript<P: FnOnce(Result</*Ignored*/javascriptcore::Value, glib::Error>) + 'static>(&self, script: &str, world_name: Option<&str>, source_uri: Option<&str>, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
+    //    unsafe { TODO: call ffi:webkit_web_view_evaluate_javascript() }
+    //}
+
+    //
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn evaluate_javascript_future(&self, script: &str, world_name: Option<&str>, source_uri: Option<&str>) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/javascriptcore::Value, glib::Error>> + 'static>> {
+
+    //let script = String::from(script);
+    //let world_name = world_name.map(ToOwned::to_owned);
+    //let source_uri = source_uri.map(ToOwned::to_owned);
+    //Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+    //    obj.evaluate_javascript(
+    //        &script,
+    //        world_name.as_ref().map(::std::borrow::Borrow::borrow),
+    //        source_uri.as_ref().map(::std::borrow::Borrow::borrow),
+    //        Some(cancellable),
+    //        move |res| {
+    //            send.resolve(res);
+    //        },
+    //    );
+    //}))
+    //}
 
     fn execute_editing_command(&self, command: &str) {
         unsafe {
@@ -2075,6 +2167,8 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    //#[cfg(any(feature = "v2_38", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
     //    unsafe { TODO: call ffi:webkit_web_view_run_async_javascript_function_in_world() }
     //}
@@ -3079,6 +3173,12 @@ impl<O: IsA<WebView>> WebViewExt for O {
             )
         }
     }
+
+    //#[cfg(any(feature = "v2_40", feature = "dox"))]
+    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //fn connect_query_permission_state<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
+    //    Ignored query: WebKit2.PermissionStateQuery
+    //}
 
     fn connect_ready_to_show<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn ready_to_show_trampoline<P: IsA<WebView>, F: Fn(&P) + 'static>(
