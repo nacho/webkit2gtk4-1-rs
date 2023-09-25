@@ -267,19 +267,15 @@ pub const WEBKIT_WEB_PROCESS_EXCEEDED_MEMORY_LIMIT: WebKitWebProcessTerminationR
 pub const WEBKIT_WEB_PROCESS_TERMINATED_BY_API: WebKitWebProcessTerminationReason = 2;
 
 // Constants
-pub const WEBKIT_EDITING_COMMAND_COPY: *const c_char = b"Copy\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_CREATE_LINK: *const c_char =
-    b"CreateLink\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_CUT: *const c_char = b"Cut\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_INSERT_IMAGE: *const c_char =
-    b"InsertImage\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_PASTE: *const c_char = b"Paste\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_PASTE_AS_PLAIN_TEXT: *const c_char =
-    b"PasteAsPlainText\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_REDO: *const c_char = b"Redo\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_SELECT_ALL: *const c_char =
-    b"SelectAll\0" as *const u8 as *const c_char;
-pub const WEBKIT_EDITING_COMMAND_UNDO: *const c_char = b"Undo\0" as *const u8 as *const c_char;
+pub const WEBKIT_EDITING_COMMAND_COPY: &[u8] = b"Copy\0";
+pub const WEBKIT_EDITING_COMMAND_CREATE_LINK: &[u8] = b"CreateLink\0";
+pub const WEBKIT_EDITING_COMMAND_CUT: &[u8] = b"Cut\0";
+pub const WEBKIT_EDITING_COMMAND_INSERT_IMAGE: &[u8] = b"InsertImage\0";
+pub const WEBKIT_EDITING_COMMAND_PASTE: &[u8] = b"Paste\0";
+pub const WEBKIT_EDITING_COMMAND_PASTE_AS_PLAIN_TEXT: &[u8] = b"PasteAsPlainText\0";
+pub const WEBKIT_EDITING_COMMAND_REDO: &[u8] = b"Redo\0";
+pub const WEBKIT_EDITING_COMMAND_SELECT_ALL: &[u8] = b"SelectAll\0";
+pub const WEBKIT_EDITING_COMMAND_UNDO: &[u8] = b"Undo\0";
 pub const WEBKIT_MAJOR_VERSION: c_int = 2;
 pub const WEBKIT_MICRO_VERSION: c_int = 5;
 pub const WEBKIT_MINOR_VERSION: c_int = 40;
@@ -353,7 +349,7 @@ pub struct WebKitApplicationInfo {
 
 impl ::std::fmt::Debug for WebKitApplicationInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitApplicationInfo @ {:p}", self))
+        f.debug_struct(&format!("WebKitApplicationInfo @ {self:p}"))
             .finish()
     }
 }
@@ -370,7 +366,7 @@ pub struct WebKitAuthenticationRequestClass {
 
 impl ::std::fmt::Debug for WebKitAuthenticationRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitAuthenticationRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitAuthenticationRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -400,7 +396,7 @@ pub struct WebKitAutomationSessionClass {
 
 impl ::std::fmt::Debug for WebKitAutomationSessionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitAutomationSessionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitAutomationSessionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -430,7 +426,7 @@ pub struct WebKitBackForwardListClass {
 
 impl ::std::fmt::Debug for WebKitBackForwardListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitBackForwardListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitBackForwardListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -452,7 +448,7 @@ pub struct WebKitBackForwardListItemClass {
 
 impl ::std::fmt::Debug for WebKitBackForwardListItemClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitBackForwardListItemClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitBackForwardListItemClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -486,7 +482,7 @@ pub struct WebKitColorChooserRequestClass {
 
 impl ::std::fmt::Debug for WebKitColorChooserRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitColorChooserRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitColorChooserRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -512,7 +508,7 @@ pub struct WebKitContextMenuClass {
 
 impl ::std::fmt::Debug for WebKitContextMenuClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -534,7 +530,7 @@ pub struct WebKitContextMenuItemClass {
 
 impl ::std::fmt::Debug for WebKitContextMenuItemClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuItemClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuItemClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -572,7 +568,7 @@ pub struct WebKitCookieManagerClass {
 
 impl ::std::fmt::Debug for WebKitCookieManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitCookieManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitCookieManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -598,7 +594,7 @@ pub struct WebKitCredential {
 
 impl ::std::fmt::Debug for WebKitCredential {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitCredential @ {:p}", self))
+        f.debug_struct(&format!("WebKitCredential @ {self:p}"))
             .finish()
     }
 }
@@ -616,8 +612,7 @@ pub struct WebKitDeviceInfoPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitDeviceInfoPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitDeviceInfoPermissionRequestClass @ {:p}",
-            self
+            "WebKitDeviceInfoPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -650,7 +645,7 @@ pub struct WebKitDownloadClass {
 
 impl ::std::fmt::Debug for WebKitDownloadClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDownloadClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDownloadClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("decide_destination", &self.decide_destination)
             .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -681,7 +676,7 @@ pub struct WebKitEditorStateClass {
 
 impl ::std::fmt::Debug for WebKitEditorStateClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitEditorStateClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitEditorStateClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -711,7 +706,7 @@ pub struct WebKitFaviconDatabaseClass {
 
 impl ::std::fmt::Debug for WebKitFaviconDatabaseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFaviconDatabaseClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitFaviconDatabaseClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -741,7 +736,7 @@ pub struct WebKitFileChooserRequestClass {
 
 impl ::std::fmt::Debug for WebKitFileChooserRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFileChooserRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitFileChooserRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -771,7 +766,7 @@ pub struct WebKitFindControllerClass {
 
 impl ::std::fmt::Debug for WebKitFindControllerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFindControllerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitFindControllerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -801,7 +796,7 @@ pub struct WebKitFormSubmissionRequestClass {
 
 impl ::std::fmt::Debug for WebKitFormSubmissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFormSubmissionRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitFormSubmissionRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -831,7 +826,7 @@ pub struct WebKitGeolocationManagerClass {
 
 impl ::std::fmt::Debug for WebKitGeolocationManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitGeolocationManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitGeolocationManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -862,8 +857,7 @@ pub struct WebKitGeolocationPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitGeolocationPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitGeolocationPermissionRequestClass @ {:p}",
-            self
+            "WebKitGeolocationPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -891,7 +885,7 @@ pub struct WebKitGeolocationPosition {
 
 impl ::std::fmt::Debug for WebKitGeolocationPosition {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitGeolocationPosition @ {:p}", self))
+        f.debug_struct(&format!("WebKitGeolocationPosition @ {self:p}"))
             .finish()
     }
 }
@@ -908,7 +902,7 @@ pub struct WebKitHitTestResultClass {
 
 impl ::std::fmt::Debug for WebKitHitTestResultClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitHitTestResultClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitHitTestResultClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -934,7 +928,7 @@ pub struct WebKitITPFirstParty {
 
 impl ::std::fmt::Debug for WebKitITPFirstParty {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitITPFirstParty @ {:p}", self))
+        f.debug_struct(&format!("WebKitITPFirstParty @ {self:p}"))
             .finish()
     }
 }
@@ -947,7 +941,7 @@ pub struct WebKitITPThirdParty {
 
 impl ::std::fmt::Debug for WebKitITPThirdParty {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitITPThirdParty @ {:p}", self))
+        f.debug_struct(&format!("WebKitITPThirdParty @ {self:p}"))
             .finish()
     }
 }
@@ -994,7 +988,7 @@ pub struct WebKitInputMethodContextClass {
 
 impl ::std::fmt::Debug for WebKitInputMethodContextClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitInputMethodContextClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitInputMethodContextClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("preedit_started", &self.preedit_started)
             .field("preedit_changed", &self.preedit_changed)
@@ -1037,7 +1031,7 @@ pub struct WebKitInputMethodUnderline {
 
 impl ::std::fmt::Debug for WebKitInputMethodUnderline {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitInputMethodUnderline @ {:p}", self))
+        f.debug_struct(&format!("WebKitInputMethodUnderline @ {self:p}"))
             .finish()
     }
 }
@@ -1055,8 +1049,7 @@ pub struct WebKitInstallMissingMediaPluginsPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitInstallMissingMediaPluginsPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitInstallMissingMediaPluginsPermissionRequestClass @ {:p}",
-            self
+            "WebKitInstallMissingMediaPluginsPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -1084,7 +1077,7 @@ pub struct WebKitJavascriptResult {
 
 impl ::std::fmt::Debug for WebKitJavascriptResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitJavascriptResult @ {:p}", self))
+        f.debug_struct(&format!("WebKitJavascriptResult @ {self:p}"))
             .finish()
     }
 }
@@ -1102,8 +1095,7 @@ pub struct WebKitMediaKeySystemPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitMediaKeySystemPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitMediaKeySystemPermissionRequestClass @ {:p}",
-            self
+            "WebKitMediaKeySystemPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -1131,7 +1123,7 @@ pub struct WebKitMemoryPressureSettings {
 
 impl ::std::fmt::Debug for WebKitMemoryPressureSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitMemoryPressureSettings @ {:p}", self))
+        f.debug_struct(&format!("WebKitMemoryPressureSettings @ {self:p}"))
             .finish()
     }
 }
@@ -1144,7 +1136,7 @@ pub struct WebKitMimeInfo {
 
 impl ::std::fmt::Debug for WebKitMimeInfo {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitMimeInfo @ {:p}", self))
+        f.debug_struct(&format!("WebKitMimeInfo @ {self:p}"))
             .finish()
     }
 }
@@ -1157,7 +1149,7 @@ pub struct WebKitNavigationAction {
 
 impl ::std::fmt::Debug for WebKitNavigationAction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNavigationAction @ {:p}", self))
+        f.debug_struct(&format!("WebKitNavigationAction @ {self:p}"))
             .finish()
     }
 }
@@ -1174,7 +1166,7 @@ pub struct WebKitNavigationPolicyDecisionClass {
 
 impl ::std::fmt::Debug for WebKitNavigationPolicyDecisionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNavigationPolicyDecisionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitNavigationPolicyDecisionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1200,7 +1192,7 @@ pub struct WebKitNetworkProxySettings {
 
 impl ::std::fmt::Debug for WebKitNetworkProxySettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNetworkProxySettings @ {:p}", self))
+        f.debug_struct(&format!("WebKitNetworkProxySettings @ {self:p}"))
             .finish()
     }
 }
@@ -1219,7 +1211,7 @@ pub struct WebKitNotificationClass {
 
 impl ::std::fmt::Debug for WebKitNotificationClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNotificationClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitNotificationClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1240,8 +1232,7 @@ pub struct WebKitNotificationPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitNotificationPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitNotificationPermissionRequestClass @ {:p}",
-            self
+            "WebKitNotificationPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .finish()
@@ -1277,7 +1268,7 @@ pub struct WebKitOptionMenuClass {
 
 impl ::std::fmt::Debug for WebKitOptionMenuClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitOptionMenuClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitOptionMenuClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1295,7 +1286,7 @@ pub struct WebKitOptionMenuItem {
 
 impl ::std::fmt::Debug for WebKitOptionMenuItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitOptionMenuItem @ {:p}", self))
+        f.debug_struct(&format!("WebKitOptionMenuItem @ {self:p}"))
             .finish()
     }
 }
@@ -1318,7 +1309,7 @@ pub struct WebKitPermissionRequestIface {
 
 impl ::std::fmt::Debug for WebKitPermissionRequestIface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPermissionRequestIface @ {:p}", self))
+        f.debug_struct(&format!("WebKitPermissionRequestIface @ {self:p}"))
             .field("parent_interface", &self.parent_interface)
             .field("allow", &self.allow)
             .field("deny", &self.deny)
@@ -1334,7 +1325,7 @@ pub struct WebKitPermissionStateQuery {
 
 impl ::std::fmt::Debug for WebKitPermissionStateQuery {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPermissionStateQuery @ {:p}", self))
+        f.debug_struct(&format!("WebKitPermissionStateQuery @ {self:p}"))
             .finish()
     }
 }
@@ -1351,7 +1342,7 @@ pub struct WebKitPluginClass {
 
 impl ::std::fmt::Debug for WebKitPluginClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPluginClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitPluginClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1382,8 +1373,7 @@ pub struct WebKitPointerLockPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitPointerLockPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitPointerLockPermissionRequestClass @ {:p}",
-            self
+            "WebKitPointerLockPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -1415,7 +1405,7 @@ pub struct WebKitPolicyDecisionClass {
 
 impl ::std::fmt::Debug for WebKitPolicyDecisionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPolicyDecisionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitPolicyDecisionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1454,7 +1444,7 @@ pub struct WebKitPrintCustomWidgetClass {
 
 impl ::std::fmt::Debug for WebKitPrintCustomWidgetClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPrintCustomWidgetClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitPrintCustomWidgetClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("apply", &self.apply)
             .field("update", &self.update)
@@ -1486,7 +1476,7 @@ pub struct WebKitPrintOperationClass {
 
 impl ::std::fmt::Debug for WebKitPrintOperationClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPrintOperationClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitPrintOperationClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1516,7 +1506,7 @@ pub struct WebKitResponsePolicyDecisionClass {
 
 impl ::std::fmt::Debug for WebKitResponsePolicyDecisionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitResponsePolicyDecisionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitResponsePolicyDecisionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1542,7 +1532,7 @@ pub struct WebKitScriptDialog {
 
 impl ::std::fmt::Debug for WebKitScriptDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitScriptDialog @ {:p}", self))
+        f.debug_struct(&format!("WebKitScriptDialog @ {self:p}"))
             .finish()
     }
 }
@@ -1555,7 +1545,7 @@ pub struct WebKitScriptMessageReply {
 
 impl ::std::fmt::Debug for WebKitScriptMessageReply {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitScriptMessageReply @ {:p}", self))
+        f.debug_struct(&format!("WebKitScriptMessageReply @ {self:p}"))
             .finish()
     }
 }
@@ -1572,7 +1562,7 @@ pub struct WebKitSecurityManagerClass {
 
 impl ::std::fmt::Debug for WebKitSecurityManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitSecurityManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitSecurityManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1598,7 +1588,7 @@ pub struct WebKitSecurityOrigin {
 
 impl ::std::fmt::Debug for WebKitSecurityOrigin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitSecurityOrigin @ {:p}", self))
+        f.debug_struct(&format!("WebKitSecurityOrigin @ {self:p}"))
             .finish()
     }
 }
@@ -1615,7 +1605,7 @@ pub struct WebKitSettingsClass {
 
 impl ::std::fmt::Debug for WebKitSettingsClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitSettingsClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitSettingsClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1645,7 +1635,7 @@ pub struct WebKitURIRequestClass {
 
 impl ::std::fmt::Debug for WebKitURIRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1675,7 +1665,7 @@ pub struct WebKitURIResponseClass {
 
 impl ::std::fmt::Debug for WebKitURIResponseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIResponseClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIResponseClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1705,7 +1695,7 @@ pub struct WebKitURISchemeRequestClass {
 
 impl ::std::fmt::Debug for WebKitURISchemeRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURISchemeRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURISchemeRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1735,7 +1725,7 @@ pub struct WebKitURISchemeResponseClass {
 
 impl ::std::fmt::Debug for WebKitURISchemeResponseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURISchemeResponseClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURISchemeResponseClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1761,7 +1751,7 @@ pub struct WebKitUserContentFilter {
 
 impl ::std::fmt::Debug for WebKitUserContentFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserContentFilter @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserContentFilter @ {self:p}"))
             .finish()
     }
 }
@@ -1778,7 +1768,7 @@ pub struct WebKitUserContentFilterStoreClass {
 
 impl ::std::fmt::Debug for WebKitUserContentFilterStoreClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserContentFilterStoreClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserContentFilterStoreClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1808,7 +1798,7 @@ pub struct WebKitUserContentManagerClass {
 
 impl ::std::fmt::Debug for WebKitUserContentManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserContentManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserContentManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1838,16 +1828,13 @@ pub struct WebKitUserMediaPermissionRequestClass {
 
 impl ::std::fmt::Debug for WebKitUserMediaPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "WebKitUserMediaPermissionRequestClass @ {:p}",
-            self
-        ))
-        .field("parent_class", &self.parent_class)
-        .field("_webkit_reserved0", &self._webkit_reserved0)
-        .field("_webkit_reserved1", &self._webkit_reserved1)
-        .field("_webkit_reserved2", &self._webkit_reserved2)
-        .field("_webkit_reserved3", &self._webkit_reserved3)
-        .finish()
+        f.debug_struct(&format!("WebKitUserMediaPermissionRequestClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .field("_webkit_reserved0", &self._webkit_reserved0)
+            .field("_webkit_reserved1", &self._webkit_reserved1)
+            .field("_webkit_reserved2", &self._webkit_reserved2)
+            .field("_webkit_reserved3", &self._webkit_reserved3)
+            .finish()
     }
 }
 
@@ -1871,7 +1858,7 @@ pub struct WebKitUserMessageClass {
 
 impl ::std::fmt::Debug for WebKitUserMessageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserMessageClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserMessageClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1897,7 +1884,7 @@ pub struct WebKitUserScript {
 
 impl ::std::fmt::Debug for WebKitUserScript {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserScript @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserScript @ {self:p}"))
             .finish()
     }
 }
@@ -1910,7 +1897,7 @@ pub struct WebKitUserStyleSheet {
 
 impl ::std::fmt::Debug for WebKitUserStyleSheet {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserStyleSheet @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserStyleSheet @ {self:p}"))
             .finish()
     }
 }
@@ -1933,7 +1920,7 @@ pub struct WebKitWebContextClass {
 
 impl ::std::fmt::Debug for WebKitWebContextClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebContextClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebContextClass @ {self:p}"))
             .field("parent", &self.parent)
             .field("download_started", &self.download_started)
             .field("initialize_web_extensions", &self.initialize_web_extensions)
@@ -1970,7 +1957,7 @@ pub struct WebKitWebInspectorClass {
 
 impl ::std::fmt::Debug for WebKitWebInspectorClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebInspectorClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebInspectorClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2000,7 +1987,7 @@ pub struct WebKitWebResourceClass {
 
 impl ::std::fmt::Debug for WebKitWebResourceClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebResourceClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebResourceClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2030,7 +2017,7 @@ pub struct WebKitWebViewBaseClass {
 
 impl ::std::fmt::Debug for WebKitWebViewBaseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebViewBaseClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebViewBaseClass @ {self:p}"))
             .field("parentClass", &self.parentClass)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2141,7 +2128,7 @@ pub struct WebKitWebViewClass {
 
 impl ::std::fmt::Debug for WebKitWebViewClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebViewClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebViewClass @ {self:p}"))
             .field("parent", &self.parent)
             .field("load_changed", &self.load_changed)
             .field("load_failed", &self.load_failed)
@@ -2194,7 +2181,7 @@ pub struct WebKitWebViewSessionState {
 
 impl ::std::fmt::Debug for WebKitWebViewSessionState {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebViewSessionState @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebViewSessionState @ {self:p}"))
             .finish()
     }
 }
@@ -2207,7 +2194,7 @@ pub struct WebKitWebsiteData {
 
 impl ::std::fmt::Debug for WebKitWebsiteData {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebsiteData @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebsiteData @ {self:p}"))
             .finish()
     }
 }
@@ -2225,8 +2212,7 @@ pub struct WebKitWebsiteDataAccessPermissionRequestClass {
 impl ::std::fmt::Debug for WebKitWebsiteDataAccessPermissionRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitWebsiteDataAccessPermissionRequestClass @ {:p}",
-            self
+            "WebKitWebsiteDataAccessPermissionRequestClass @ {self:p}"
         ))
         .field("parent_class", &self.parent_class)
         .field("_webkit_reserved0", &self._webkit_reserved0)
@@ -2258,7 +2244,7 @@ pub struct WebKitWebsiteDataManagerClass {
 
 impl ::std::fmt::Debug for WebKitWebsiteDataManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebsiteDataManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebsiteDataManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2288,7 +2274,7 @@ pub struct WebKitWebsitePoliciesClass {
 
 impl ::std::fmt::Debug for WebKitWebsitePoliciesClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebsitePoliciesClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebsitePoliciesClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2318,7 +2304,7 @@ pub struct WebKitWindowPropertiesClass {
 
 impl ::std::fmt::Debug for WebKitWindowPropertiesClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWindowPropertiesClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWindowPropertiesClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2346,7 +2332,7 @@ pub struct WebKitAuthenticationRequest {
 
 impl ::std::fmt::Debug for WebKitAuthenticationRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitAuthenticationRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitAuthenticationRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2362,7 +2348,7 @@ pub struct WebKitAutomationSession {
 
 impl ::std::fmt::Debug for WebKitAutomationSession {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitAutomationSession @ {:p}", self))
+        f.debug_struct(&format!("WebKitAutomationSession @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2378,7 +2364,7 @@ pub struct WebKitBackForwardList {
 
 impl ::std::fmt::Debug for WebKitBackForwardList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitBackForwardList @ {:p}", self))
+        f.debug_struct(&format!("WebKitBackForwardList @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2394,7 +2380,7 @@ pub struct WebKitBackForwardListItem {
 
 impl ::std::fmt::Debug for WebKitBackForwardListItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitBackForwardListItem @ {:p}", self))
+        f.debug_struct(&format!("WebKitBackForwardListItem @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2410,7 +2396,7 @@ pub struct WebKitColorChooserRequest {
 
 impl ::std::fmt::Debug for WebKitColorChooserRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitColorChooserRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitColorChooserRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2426,7 +2412,7 @@ pub struct WebKitContextMenu {
 
 impl ::std::fmt::Debug for WebKitContextMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenu @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenu @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2442,7 +2428,7 @@ pub struct WebKitContextMenuItem {
 
 impl ::std::fmt::Debug for WebKitContextMenuItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuItem @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuItem @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2458,7 +2444,7 @@ pub struct WebKitCookieManager {
 
 impl ::std::fmt::Debug for WebKitCookieManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitCookieManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitCookieManager @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2474,7 +2460,7 @@ pub struct WebKitDeviceInfoPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitDeviceInfoPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDeviceInfoPermissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitDeviceInfoPermissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2490,7 +2476,7 @@ pub struct WebKitDownload {
 
 impl ::std::fmt::Debug for WebKitDownload {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDownload @ {:p}", self))
+        f.debug_struct(&format!("WebKitDownload @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2506,7 +2492,7 @@ pub struct WebKitEditorState {
 
 impl ::std::fmt::Debug for WebKitEditorState {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitEditorState @ {:p}", self))
+        f.debug_struct(&format!("WebKitEditorState @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2522,7 +2508,7 @@ pub struct WebKitFaviconDatabase {
 
 impl ::std::fmt::Debug for WebKitFaviconDatabase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFaviconDatabase @ {:p}", self))
+        f.debug_struct(&format!("WebKitFaviconDatabase @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2538,7 +2524,7 @@ pub struct WebKitFileChooserRequest {
 
 impl ::std::fmt::Debug for WebKitFileChooserRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFileChooserRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitFileChooserRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2554,7 +2540,7 @@ pub struct WebKitFindController {
 
 impl ::std::fmt::Debug for WebKitFindController {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFindController @ {:p}", self))
+        f.debug_struct(&format!("WebKitFindController @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2570,7 +2556,7 @@ pub struct WebKitFormSubmissionRequest {
 
 impl ::std::fmt::Debug for WebKitFormSubmissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFormSubmissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitFormSubmissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2586,7 +2572,7 @@ pub struct WebKitGeolocationManager {
 
 impl ::std::fmt::Debug for WebKitGeolocationManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitGeolocationManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitGeolocationManager @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2602,7 +2588,7 @@ pub struct WebKitGeolocationPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitGeolocationPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitGeolocationPermissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitGeolocationPermissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2618,7 +2604,7 @@ pub struct WebKitHitTestResult {
 
 impl ::std::fmt::Debug for WebKitHitTestResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitHitTestResult @ {:p}", self))
+        f.debug_struct(&format!("WebKitHitTestResult @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2634,7 +2620,7 @@ pub struct WebKitInputMethodContext {
 
 impl ::std::fmt::Debug for WebKitInputMethodContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitInputMethodContext @ {:p}", self))
+        f.debug_struct(&format!("WebKitInputMethodContext @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2651,8 +2637,7 @@ pub struct WebKitInstallMissingMediaPluginsPermissionRequest {
 impl ::std::fmt::Debug for WebKitInstallMissingMediaPluginsPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitInstallMissingMediaPluginsPermissionRequest @ {:p}",
-            self
+            "WebKitInstallMissingMediaPluginsPermissionRequest @ {self:p}"
         ))
         .field("parent", &self.parent)
         .finish()
@@ -2668,13 +2653,10 @@ pub struct WebKitMediaKeySystemPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitMediaKeySystemPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "WebKitMediaKeySystemPermissionRequest @ {:p}",
-            self
-        ))
-        .field("parent", &self.parent)
-        .field("priv_", &self.priv_)
-        .finish()
+        f.debug_struct(&format!("WebKitMediaKeySystemPermissionRequest @ {self:p}"))
+            .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
+            .finish()
     }
 }
 
@@ -2687,7 +2669,7 @@ pub struct WebKitNavigationPolicyDecision {
 
 impl ::std::fmt::Debug for WebKitNavigationPolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNavigationPolicyDecision @ {:p}", self))
+        f.debug_struct(&format!("WebKitNavigationPolicyDecision @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2703,7 +2685,7 @@ pub struct WebKitNotification {
 
 impl ::std::fmt::Debug for WebKitNotification {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNotification @ {:p}", self))
+        f.debug_struct(&format!("WebKitNotification @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2719,7 +2701,7 @@ pub struct WebKitNotificationPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitNotificationPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitNotificationPermissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitNotificationPermissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2735,7 +2717,7 @@ pub struct WebKitOptionMenu {
 
 impl ::std::fmt::Debug for WebKitOptionMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitOptionMenu @ {:p}", self))
+        f.debug_struct(&format!("WebKitOptionMenu @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2751,7 +2733,7 @@ pub struct WebKitPlugin {
 
 impl ::std::fmt::Debug for WebKitPlugin {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPlugin @ {:p}", self))
+        f.debug_struct(&format!("WebKitPlugin @ {self:p}"))
             .field("parent", &self.parent)
             .finish()
     }
@@ -2766,7 +2748,7 @@ pub struct WebKitPointerLockPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitPointerLockPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPointerLockPermissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitPointerLockPermissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2782,7 +2764,7 @@ pub struct WebKitPolicyDecision {
 
 impl ::std::fmt::Debug for WebKitPolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPolicyDecision @ {:p}", self))
+        f.debug_struct(&format!("WebKitPolicyDecision @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2798,7 +2780,7 @@ pub struct WebKitPrintCustomWidget {
 
 impl ::std::fmt::Debug for WebKitPrintCustomWidget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPrintCustomWidget @ {:p}", self))
+        f.debug_struct(&format!("WebKitPrintCustomWidget @ {self:p}"))
             .field("parent", &self.parent)
             .finish()
     }
@@ -2813,7 +2795,7 @@ pub struct WebKitPrintOperation {
 
 impl ::std::fmt::Debug for WebKitPrintOperation {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitPrintOperation @ {:p}", self))
+        f.debug_struct(&format!("WebKitPrintOperation @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2829,7 +2811,7 @@ pub struct WebKitResponsePolicyDecision {
 
 impl ::std::fmt::Debug for WebKitResponsePolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitResponsePolicyDecision @ {:p}", self))
+        f.debug_struct(&format!("WebKitResponsePolicyDecision @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2845,7 +2827,7 @@ pub struct WebKitSecurityManager {
 
 impl ::std::fmt::Debug for WebKitSecurityManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitSecurityManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitSecurityManager @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2861,7 +2843,7 @@ pub struct WebKitSettings {
 
 impl ::std::fmt::Debug for WebKitSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitSettings @ {:p}", self))
+        f.debug_struct(&format!("WebKitSettings @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2877,7 +2859,7 @@ pub struct WebKitURIRequest {
 
 impl ::std::fmt::Debug for WebKitURIRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2893,7 +2875,7 @@ pub struct WebKitURIResponse {
 
 impl ::std::fmt::Debug for WebKitURIResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIResponse @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIResponse @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2909,7 +2891,7 @@ pub struct WebKitURISchemeRequest {
 
 impl ::std::fmt::Debug for WebKitURISchemeRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURISchemeRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitURISchemeRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2925,7 +2907,7 @@ pub struct WebKitURISchemeResponse {
 
 impl ::std::fmt::Debug for WebKitURISchemeResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURISchemeResponse @ {:p}", self))
+        f.debug_struct(&format!("WebKitURISchemeResponse @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2941,7 +2923,7 @@ pub struct WebKitUserContentFilterStore {
 
 impl ::std::fmt::Debug for WebKitUserContentFilterStore {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserContentFilterStore @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserContentFilterStore @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2957,7 +2939,7 @@ pub struct WebKitUserContentManager {
 
 impl ::std::fmt::Debug for WebKitUserContentManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserContentManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserContentManager @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2973,7 +2955,7 @@ pub struct WebKitUserMediaPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitUserMediaPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserMediaPermissionRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserMediaPermissionRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2989,7 +2971,7 @@ pub struct WebKitUserMessage {
 
 impl ::std::fmt::Debug for WebKitUserMessage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserMessage @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserMessage @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3005,7 +2987,7 @@ pub struct WebKitWebContext {
 
 impl ::std::fmt::Debug for WebKitWebContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebContext @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebContext @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3021,7 +3003,7 @@ pub struct WebKitWebInspector {
 
 impl ::std::fmt::Debug for WebKitWebInspector {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebInspector @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebInspector @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3037,7 +3019,7 @@ pub struct WebKitWebResource {
 
 impl ::std::fmt::Debug for WebKitWebResource {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebResource @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebResource @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3053,7 +3035,7 @@ pub struct WebKitWebView {
 
 impl ::std::fmt::Debug for WebKitWebView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebView @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebView @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3069,7 +3051,7 @@ pub struct WebKitWebViewBase {
 
 impl ::std::fmt::Debug for WebKitWebViewBase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebViewBase @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebViewBase @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3086,8 +3068,7 @@ pub struct WebKitWebsiteDataAccessPermissionRequest {
 impl ::std::fmt::Debug for WebKitWebsiteDataAccessPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!(
-            "WebKitWebsiteDataAccessPermissionRequest @ {:p}",
-            self
+            "WebKitWebsiteDataAccessPermissionRequest @ {self:p}"
         ))
         .field("parent", &self.parent)
         .field("priv_", &self.priv_)
@@ -3104,7 +3085,7 @@ pub struct WebKitWebsiteDataManager {
 
 impl ::std::fmt::Debug for WebKitWebsiteDataManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebsiteDataManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebsiteDataManager @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3120,7 +3101,7 @@ pub struct WebKitWebsitePolicies {
 
 impl ::std::fmt::Debug for WebKitWebsitePolicies {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebsitePolicies @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebsitePolicies @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3136,7 +3117,7 @@ pub struct WebKitWindowProperties {
 
 impl ::std::fmt::Debug for WebKitWindowProperties {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWindowProperties @ {:p}", self))
+        f.debug_struct(&format!("WebKitWindowProperties @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3152,7 +3133,7 @@ pub struct WebKitPermissionRequest {
 
 impl ::std::fmt::Debug for WebKitPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "WebKitPermissionRequest @ {:p}", self)
+        write!(f, "WebKitPermissionRequest @ {self:p}")
     }
 }
 

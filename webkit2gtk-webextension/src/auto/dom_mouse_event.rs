@@ -2,21 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMDOMWindow;
-use crate::DOMEvent;
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use crate::DOMUIEvent;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMDOMWindow, DOMEvent, DOMEventTarget, DOMNode, DOMObject, DOMUIEvent};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMMouseEvent")]
@@ -33,86 +27,103 @@ impl DOMMouseEvent {
 
 pub trait DOMMouseEventExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_alt_key")]
     #[doc(alias = "get_alt_key")]
     fn is_alt_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_button")]
     #[doc(alias = "get_button")]
     fn button(&self) -> libc::c_ushort;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_client_x")]
     #[doc(alias = "get_client_x")]
     fn client_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_client_y")]
     #[doc(alias = "get_client_y")]
     fn client_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_ctrl_key")]
     #[doc(alias = "get_ctrl_key")]
     fn is_ctrl_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_from_element")]
     #[doc(alias = "get_from_element")]
     fn from_element(&self) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_meta_key")]
     #[doc(alias = "get_meta_key")]
     fn is_meta_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_offset_x")]
     #[doc(alias = "get_offset_x")]
     fn offset_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_offset_y")]
     #[doc(alias = "get_offset_y")]
     fn offset_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_related_target")]
     #[doc(alias = "get_related_target")]
     fn related_target(&self) -> Option<DOMEventTarget>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_screen_x")]
     #[doc(alias = "get_screen_x")]
     fn screen_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_screen_y")]
     #[doc(alias = "get_screen_y")]
     fn screen_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_shift_key")]
     #[doc(alias = "get_shift_key")]
     fn is_shift_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_to_element")]
     #[doc(alias = "get_to_element")]
     fn to_element(&self) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_x")]
     #[doc(alias = "get_x")]
     fn x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_get_y")]
     #[doc(alias = "get_y")]
     fn y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_mouse_event_init_mouse_event")]
     fn init_mouse_event(
         &self,
@@ -183,6 +194,7 @@ pub trait DOMMouseEventExt: 'static {
 }
 
 impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
+    #[allow(deprecated)]
     fn is_alt_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_mouse_event_get_alt_key(
@@ -191,18 +203,22 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn button(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_mouse_event_get_button(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn client_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_client_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn client_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_client_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn is_ctrl_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_mouse_event_get_ctrl_key(
@@ -211,6 +227,7 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn from_element(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_mouse_event_get_from_element(
@@ -219,6 +236,7 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_meta_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_mouse_event_get_meta_key(
@@ -227,14 +245,17 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn offset_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_offset_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn offset_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_offset_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn related_target(&self) -> Option<DOMEventTarget> {
         unsafe {
             from_glib_full(ffi::webkit_dom_mouse_event_get_related_target(
@@ -243,14 +264,17 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn screen_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_screen_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn screen_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_screen_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn is_shift_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_mouse_event_get_shift_key(
@@ -259,6 +283,7 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn to_element(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_mouse_event_get_to_element(
@@ -267,14 +292,17 @@ impl<O: IsA<DOMMouseEvent>> DOMMouseEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_mouse_event_get_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn init_mouse_event(
         &self,
         type_: &str,

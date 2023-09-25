@@ -2,11 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::ContextMenu;
-use crate::ContextMenuAction;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{ContextMenu, ContextMenuAction};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -22,6 +21,7 @@ impl ContextMenuItem {
     pub const NONE: Option<&'static ContextMenuItem> = None;
 
     //#[cfg_attr(feature = "v2_18", deprecated = "Since 2.18")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_context_menu_item_new")]
     //pub fn new(action: /*Ignored*/&gtk::Action) -> ContextMenuItem {
     //    unsafe { TODO: call ffi:webkit_context_menu_item_new() }
@@ -92,6 +92,7 @@ impl ContextMenuItem {
 
 pub trait ContextMenuItemExt: 'static {
     //#[cfg_attr(feature = "v2_18", deprecated = "Since 2.18")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_context_menu_item_get_action")]
     //#[doc(alias = "get_action")]
     //fn action(&self) -> /*Ignored*/Option<gtk::Action>;
@@ -118,6 +119,7 @@ pub trait ContextMenuItemExt: 'static {
 }
 
 impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
+    //#[allow(deprecated)]
     //fn action(&self) -> /*Ignored*/Option<gtk::Action> {
     //    unsafe { TODO: call ffi:webkit_context_menu_item_get_action() }
     //}

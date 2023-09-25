@@ -3,16 +3,12 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitURIRequest")]
@@ -37,47 +33,43 @@ impl URIRequest {
     ///
     /// This method returns an instance of [`URIRequestBuilder`](crate::builders::URIRequestBuilder) which can be used to create [`URIRequest`] objects.
     pub fn builder() -> URIRequestBuilder {
-        URIRequestBuilder::default()
+        URIRequestBuilder::new()
     }
 }
 
 impl Default for URIRequest {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`URIRequest`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct URIRequestBuilder {
-    uri: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, URIRequest>,
 }
 
 impl URIRequestBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`URIRequestBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn uri(self, uri: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("uri", uri.into()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`URIRequest`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> URIRequest {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref uri) = self.uri {
-            properties.push(("uri", uri));
-        }
-        glib::Object::new::<URIRequest>(&properties)
-    }
-
-    pub fn uri(mut self, uri: &str) -> Self {
-        self.uri = Some(uri.to_string());
-        self
+        self.builder.build()
     }
 }
 

@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLFontElement")]
@@ -32,29 +27,35 @@ impl DOMHTMLFontElement {
 
 pub trait DOMHTMLFontElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_get_color")]
     #[doc(alias = "get_color")]
     fn color(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_get_face")]
     #[doc(alias = "get_face")]
     fn face(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_get_size")]
     #[doc(alias = "get_size")]
     fn size(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_set_color")]
     fn set_color(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_set_face")]
     fn set_face(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_set_size")]
     fn set_size(&self, value: &str);
 
@@ -69,6 +70,7 @@ pub trait DOMHTMLFontElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
+    #[allow(deprecated)]
     fn color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_color(
@@ -77,6 +79,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn face(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_face(
@@ -85,6 +88,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn size(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_size(
@@ -93,6 +97,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_color(
@@ -102,6 +107,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_face(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_face(
@@ -111,6 +117,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_size(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_size(

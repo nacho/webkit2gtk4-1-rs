@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCSSRule;
-use crate::DOMCSSRuleList;
-use crate::DOMObject;
-use crate::DOMStyleSheet;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMCSSRule, DOMCSSRuleList, DOMObject, DOMStyleSheet};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMCSSStyleSheet")]
@@ -32,6 +27,7 @@ impl DOMCSSStyleSheet {
 
 pub trait DOMCSSStyleSheetExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_add_rule")]
     fn add_rule(
         &self,
@@ -41,29 +37,35 @@ pub trait DOMCSSStyleSheetExt: 'static {
     ) -> Result<libc::c_long, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_delete_rule")]
     fn delete_rule(&self, index: libc::c_ulong) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_get_css_rules")]
     #[doc(alias = "get_css_rules")]
     fn css_rules(&self) -> Option<DOMCSSRuleList>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_get_owner_rule")]
     #[doc(alias = "get_owner_rule")]
     fn owner_rule(&self) -> Option<DOMCSSRule>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_get_rules")]
     #[doc(alias = "get_rules")]
     fn rules(&self) -> Option<DOMCSSRuleList>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_insert_rule")]
     fn insert_rule(&self, rule: &str, index: libc::c_ulong) -> Result<libc::c_ulong, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_sheet_remove_rule")]
     fn remove_rule(&self, index: libc::c_ulong) -> Result<(), glib::Error>;
 
@@ -78,6 +80,7 @@ pub trait DOMCSSStyleSheetExt: 'static {
 }
 
 impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
+    #[allow(deprecated)]
     fn add_rule(
         &self,
         selector: &str,
@@ -101,6 +104,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn delete_rule(&self, index: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -117,6 +121,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn css_rules(&self) -> Option<DOMCSSRuleList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_sheet_get_css_rules(
@@ -125,6 +130,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn owner_rule(&self) -> Option<DOMCSSRule> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_sheet_get_owner_rule(
@@ -133,6 +139,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn rules(&self) -> Option<DOMCSSRuleList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_sheet_get_rules(
@@ -141,6 +148,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn insert_rule(&self, rule: &str, index: libc::c_ulong) -> Result<libc::c_ulong, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -158,6 +166,7 @@ impl<O: IsA<DOMCSSStyleSheet>> DOMCSSStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn remove_rule(&self, index: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

@@ -4,8 +4,7 @@
 // DO NOT EDIT
 
 use crate::BackForwardListItem;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

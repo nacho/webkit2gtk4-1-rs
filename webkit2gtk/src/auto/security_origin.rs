@@ -64,6 +64,7 @@ impl SecurityOrigin {
     }
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_security_origin_is_opaque")]
     pub fn is_opaque(&self) -> bool {
         unsafe { from_glib(ffi::webkit_security_origin_is_opaque(self.to_glib_none().0)) }

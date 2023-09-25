@@ -2,18 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMXPathResult")]
@@ -30,45 +27,54 @@ impl DOMXPathResult {
 
 pub trait DOMXPathResultExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_boolean_value")]
     #[doc(alias = "get_boolean_value")]
     fn boolean_value(&self) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_invalid_iterator_state")]
     #[doc(alias = "get_invalid_iterator_state")]
     fn is_invalid_iterator_state(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_number_value")]
     #[doc(alias = "get_number_value")]
     fn number_value(&self) -> Result<f64, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_result_type")]
     #[doc(alias = "get_result_type")]
     fn result_type(&self) -> libc::c_ushort;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_single_node_value")]
     #[doc(alias = "get_single_node_value")]
     fn single_node_value(&self) -> Result<DOMNode, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_snapshot_length")]
     #[doc(alias = "get_snapshot_length")]
     fn snapshot_length(&self) -> Result<libc::c_ulong, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_string_value")]
     #[doc(alias = "get_string_value")]
     fn string_value(&self) -> Result<glib::GString, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_iterate_next")]
     fn iterate_next(&self) -> Result<DOMNode, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_snapshot_item")]
     fn snapshot_item(&self, index: libc::c_ulong) -> Result<DOMNode, glib::Error>;
 
@@ -98,6 +104,7 @@ pub trait DOMXPathResultExt: 'static {
 }
 
 impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
+    #[allow(deprecated)]
     fn boolean_value(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -105,7 +112,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
                 self.as_ref().to_glib_none().0,
                 &mut error,
             );
-            assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -114,6 +121,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_invalid_iterator_state(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_xpath_result_get_invalid_iterator_state(
@@ -122,6 +130,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn number_value(&self) -> Result<f64, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -137,10 +146,12 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn result_type(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_xpath_result_get_result_type(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn single_node_value(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -156,6 +167,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn snapshot_length(&self) -> Result<libc::c_ulong, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -171,6 +183,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn string_value(&self) -> Result<glib::GString, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -186,6 +199,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn iterate_next(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -201,6 +215,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn snapshot_item(&self, index: libc::c_ulong) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

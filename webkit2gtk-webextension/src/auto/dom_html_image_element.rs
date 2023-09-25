@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLImageElement")]
@@ -32,144 +27,175 @@ impl DOMHTMLImageElement {
 
 pub trait DOMHTMLImageElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_align")]
     #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_alt")]
     #[doc(alias = "get_alt")]
     fn alt(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_border")]
     #[doc(alias = "get_border")]
     fn border(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_complete")]
     #[doc(alias = "get_complete")]
     fn is_complete(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_hspace")]
     #[doc(alias = "get_hspace")]
     fn hspace(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_is_map")]
     #[doc(alias = "get_is_map")]
     fn is_map(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_long_desc")]
     #[doc(alias = "get_long_desc")]
     fn long_desc(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_lowsrc")]
     #[doc(alias = "get_lowsrc")]
     fn lowsrc(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_natural_height")]
     #[doc(alias = "get_natural_height")]
     fn natural_height(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_natural_width")]
     #[doc(alias = "get_natural_width")]
     fn natural_width(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_src")]
     #[doc(alias = "get_src")]
     fn src(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_use_map")]
     #[doc(alias = "get_use_map")]
     fn use_map(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_vspace")]
     #[doc(alias = "get_vspace")]
     fn vspace(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_width")]
     #[doc(alias = "get_width")]
     fn width(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_x")]
     #[doc(alias = "get_x")]
     fn x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_get_y")]
     #[doc(alias = "get_y")]
     fn y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_align")]
     fn set_align(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_alt")]
     fn set_alt(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_border")]
     fn set_border(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_height")]
     fn set_height(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_hspace")]
     fn set_hspace(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_is_map")]
     fn set_is_map(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_long_desc")]
     fn set_long_desc(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_lowsrc")]
     fn set_lowsrc(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_name")]
     fn set_name(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_src")]
     fn set_src(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_use_map")]
     fn set_use_map(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_vspace")]
     fn set_vspace(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_image_element_set_width")]
     fn set_width(&self, value: libc::c_long);
 
@@ -229,6 +255,7 @@ pub trait DOMHTMLImageElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
+    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_align(
@@ -237,6 +264,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn alt(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_alt(
@@ -245,6 +273,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn border(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_border(
@@ -253,6 +282,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_complete(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_image_element_get_complete(
@@ -261,14 +291,17 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn hspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_hspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn is_map(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_image_element_get_is_map(
@@ -277,6 +310,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn long_desc(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_long_desc(
@@ -285,6 +319,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn lowsrc(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_lowsrc(
@@ -293,6 +328,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_name(
@@ -301,18 +337,21 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn natural_height(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_image_element_get_natural_height(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[allow(deprecated)]
     fn natural_width(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_image_element_get_natural_width(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[allow(deprecated)]
     fn src(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_src(
@@ -321,6 +360,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn use_map(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_image_element_get_use_map(
@@ -329,22 +369,27 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn vspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_vspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_image_element_get_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_align(
@@ -354,6 +399,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_alt(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_alt(
@@ -363,6 +409,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_border(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_border(
@@ -372,18 +419,21 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_height(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_height(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_hspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_hspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_is_map(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_is_map(
@@ -393,6 +443,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_long_desc(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_long_desc(
@@ -402,6 +453,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_lowsrc(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_lowsrc(
@@ -411,6 +463,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_name(
@@ -420,6 +473,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_src(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_src(
@@ -429,6 +483,7 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_use_map(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_use_map(
@@ -438,12 +493,14 @@ impl<O: IsA<DOMHTMLImageElement>> DOMHTMLImageElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_vspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_vspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_width(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_image_element_set_width(self.as_ref().to_glib_none().0, value);

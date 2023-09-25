@@ -4,9 +4,7 @@
 // DO NOT EDIT
 
 use crate::AutoplayPolicy;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

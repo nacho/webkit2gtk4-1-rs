@@ -2,18 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMDOMWindow;
-use crate::DOMEvent;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMDOMWindow, DOMEvent, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMUIEvent")]
@@ -30,46 +27,55 @@ impl DOMUIEvent {
 
 pub trait DOMUIEventExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_char_code")]
     #[doc(alias = "get_char_code")]
     fn char_code(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_detail")]
     #[doc(alias = "get_detail")]
     fn detail(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_key_code")]
     #[doc(alias = "get_key_code")]
     fn key_code(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_layer_x")]
     #[doc(alias = "get_layer_x")]
     fn layer_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_layer_y")]
     #[doc(alias = "get_layer_y")]
     fn layer_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_page_x")]
     #[doc(alias = "get_page_x")]
     fn page_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_page_y")]
     #[doc(alias = "get_page_y")]
     fn page_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_view")]
     #[doc(alias = "get_view")]
     fn view(&self) -> Option<DOMDOMWindow>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_init_ui_event")]
     fn init_ui_event(
         &self,
@@ -106,34 +112,42 @@ pub trait DOMUIEventExt: 'static {
 }
 
 impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
+    #[allow(deprecated)]
     fn char_code(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_char_code(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn detail(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_detail(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn key_code(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_key_code(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn layer_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_layer_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn layer_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_layer_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn page_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_page_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn page_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_ui_event_get_page_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn view(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_ui_event_get_view(
@@ -142,6 +156,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn init_ui_event(
         &self,
         type_: &str,

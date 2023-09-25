@@ -2,14 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -27,21 +23,25 @@ impl DOMHTMLMarqueeElement {
 
 pub trait DOMHTMLMarqueeElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_marquee_element_start")]
     fn start(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_marquee_element_stop")]
     fn stop(&self);
 }
 
 impl<O: IsA<DOMHTMLMarqueeElement>> DOMHTMLMarqueeElementExt for O {
+    #[allow(deprecated)]
     fn start(&self) {
         unsafe {
             ffi::webkit_dom_html_marquee_element_start(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[allow(deprecated)]
     fn stop(&self) {
         unsafe {
             ffi::webkit_dom_html_marquee_element_stop(self.as_ref().to_glib_none().0);

@@ -2,70 +2,26 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 #[cfg(any(feature = "v2_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
 use crate::AuthenticationRequest;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use crate::AutomationBrowsingContextPresentation;
-use crate::BackForwardList;
-use crate::BackForwardListItem;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use crate::ColorChooserRequest;
-use crate::ContextMenu;
-use crate::Download;
 #[cfg(any(feature = "v2_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use crate::EditorState;
-use crate::FileChooserRequest;
-use crate::FindController;
-use crate::FormSubmissionRequest;
-use crate::HitTestResult;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use crate::InputMethodContext;
-use crate::InsecureContentEvent;
-use crate::JavascriptResult;
-use crate::LoadEvent;
 #[cfg(any(feature = "v2_34", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
 use crate::MediaCaptureState;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-use crate::NavigationAction;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use crate::Notification;
 #[cfg(any(feature = "v2_18", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use crate::OptionMenu;
-use crate::PermissionRequest;
-use crate::PolicyDecision;
-use crate::PolicyDecisionType;
-use crate::PrintOperation;
-use crate::SaveMode;
 #[cfg(any(feature = "v2_24", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 use crate::ScriptDialog;
-use crate::Settings;
-use crate::SnapshotOptions;
-use crate::SnapshotRegion;
-use crate::URIRequest;
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-use crate::UserContentManager;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use crate::UserMessage;
-use crate::WebContext;
-use crate::WebInspector;
 #[cfg(any(feature = "v2_20", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
 use crate::WebProcessTerminationReason;
-use crate::WebResource;
-use crate::WebViewBase;
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 use crate::WebViewSessionState;
@@ -75,20 +31,28 @@ use crate::WebsiteDataManager;
 #[cfg(any(feature = "v2_30", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
 use crate::WebsitePolicies;
-use crate::WindowProperties;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
-use std::pin::Pin;
-use std::ptr;
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+use crate::{AutomationBrowsingContextPresentation, InputMethodContext, UserMessage};
+use crate::{
+    BackForwardList, BackForwardListItem, ContextMenu, Download, FileChooserRequest,
+    FindController, FormSubmissionRequest, HitTestResult, InsecureContentEvent, JavascriptResult,
+    LoadEvent, PermissionRequest, PolicyDecision, PolicyDecisionType, PrintOperation, SaveMode,
+    Settings, SnapshotOptions, SnapshotRegion, URIRequest, WebContext, WebInspector, WebResource,
+    WebViewBase, WindowProperties,
+};
+#[cfg(any(feature = "v2_8", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+use crate::{ColorChooserRequest, Notification};
+#[cfg(any(feature = "v2_6", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+use crate::{NavigationAction, UserContentManager};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebView")]
@@ -169,7 +133,7 @@ impl WebView {
     ///
     /// This method returns an instance of [`WebViewBuilder`](crate::builders::WebViewBuilder) which can be used to create [`WebView`] objects.
     pub fn builder() -> WebViewBuilder {
-        WebViewBuilder::default()
+        WebViewBuilder::new()
     }
 }
 
@@ -179,621 +143,426 @@ impl Default for WebView {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WebView`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WebViewBuilder {
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    automation_presentation_type: Option<AutomationBrowsingContextPresentation>,
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    camera_capture_state: Option<MediaCaptureState>,
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    default_content_security_policy: Option<String>,
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    display_capture_state: Option<MediaCaptureState>,
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    editable: Option<bool>,
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    is_controlled_by_automation: Option<bool>,
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    is_ephemeral: Option<bool>,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    is_muted: Option<bool>,
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    microphone_capture_state: Option<MediaCaptureState>,
-    #[cfg(any(feature = "v2_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
-    related_view: Option<WebView>,
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    settings: Option<Settings>,
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    user_content_manager: Option<UserContentManager>,
-    web_context: Option<WebContext>,
-    //web-extension-mode: /*Unknown type*/,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    website_policies: Option<WebsitePolicies>,
-    zoom_level: Option<f64>,
-    app_paintable: Option<bool>,
-    can_default: Option<bool>,
-    can_focus: Option<bool>,
-    #[cfg(any(feature = "gtk_v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_18")))]
-    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
-    double_buffered: Option<bool>,
-    //events: /*Unknown type*/,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    expand: Option<bool>,
-    #[cfg(any(feature = "gtk_v3_20", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_20")))]
-    focus_on_click: Option<bool>,
-    //halign: /*Unknown type*/,
-    has_default: Option<bool>,
-    has_focus: Option<bool>,
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    has_tooltip: Option<bool>,
-    height_request: Option<i32>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    hexpand: Option<bool>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    hexpand_set: Option<bool>,
-    is_focus: Option<bool>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    margin: Option<i32>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    margin_bottom: Option<i32>,
-    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
-    margin_end: Option<i32>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
-    margin_left: Option<i32>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
-    margin_right: Option<i32>,
-    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
-    margin_start: Option<i32>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    margin_top: Option<i32>,
-    name: Option<String>,
-    no_show_all: Option<bool>,
-    #[cfg(any(feature = "gtk_v3_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_8")))]
-    opacity: Option<f64>,
-    //parent: /*Unknown type*/,
-    receives_default: Option<bool>,
-    sensitive: Option<bool>,
-    //style: /*Unknown type*/,
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    tooltip_markup: Option<String>,
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    tooltip_text: Option<String>,
-    //valign: /*Unknown type*/,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    vexpand: Option<bool>,
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    vexpand_set: Option<bool>,
-    visible: Option<bool>,
-    width_request: Option<i32>,
+    builder: glib::object::ObjectBuilder<'static, WebView>,
 }
 
 impl WebViewBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WebViewBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    pub fn automation_presentation_type(
+        self,
+        automation_presentation_type: AutomationBrowsingContextPresentation,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("automation-presentation-type", automation_presentation_type),
+        }
+    }
+
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn camera_capture_state(self, camera_capture_state: MediaCaptureState) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("camera-capture-state", camera_capture_state),
+        }
+    }
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn default_content_security_policy(
+        self,
+        default_content_security_policy: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "default-content-security-policy",
+                default_content_security_policy.into(),
+            ),
+        }
+    }
+
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn display_capture_state(self, display_capture_state: MediaCaptureState) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("display-capture-state", display_capture_state),
+        }
+    }
+
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    pub fn editable(self, editable: bool) -> Self {
+        Self {
+            builder: self.builder.property("editable", editable),
+        }
+    }
+
+    #[cfg(any(feature = "v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    pub fn is_controlled_by_automation(self, is_controlled_by_automation: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("is-controlled-by-automation", is_controlled_by_automation),
+        }
+    }
+
+    #[cfg(any(feature = "v2_16", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    pub fn is_ephemeral(self, is_ephemeral: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-ephemeral", is_ephemeral),
+        }
+    }
+
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    pub fn is_muted(self, is_muted: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-muted", is_muted),
+        }
+    }
+
+    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    pub fn microphone_capture_state(self, microphone_capture_state: MediaCaptureState) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("microphone-capture-state", microphone_capture_state),
+        }
+    }
+
+    #[cfg(any(feature = "v2_4", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+    pub fn related_view(self, related_view: &impl IsA<WebView>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("related-view", related_view.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v2_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+    pub fn settings(self, settings: &impl IsA<Settings>) -> Self {
+        Self {
+            builder: self.builder.property("settings", settings.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v2_6", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+    pub fn user_content_manager(self, user_content_manager: &impl IsA<UserContentManager>) -> Self {
+        Self {
+            builder: self.builder.property(
+                "user-content-manager",
+                user_content_manager.clone().upcast(),
+            ),
+        }
+    }
+
+    pub fn web_context(self, web_context: &impl IsA<WebContext>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("web-context", web_context.clone().upcast()),
+        }
+    }
+
+    //    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //pub fn web_extension_mode(self, web_extension_mode: /*Ignored*/WebExtensionMode) -> Self {
+    //    Self { builder: self.builder.property("web-extension-mode", web_extension_mode), }
+    //}
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    pub fn website_policies(self, website_policies: &impl IsA<WebsitePolicies>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("website-policies", website_policies.clone().upcast()),
+        }
+    }
+
+    pub fn zoom_level(self, zoom_level: f64) -> Self {
+        Self {
+            builder: self.builder.property("zoom-level", zoom_level),
+        }
+    }
+
+    pub fn app_paintable(self, app_paintable: bool) -> Self {
+        Self {
+            builder: self.builder.property("app-paintable", app_paintable),
+        }
+    }
+
+    pub fn can_default(self, can_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-default", can_default),
+        }
+    }
+
+    pub fn can_focus(self, can_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("can-focus", can_focus),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v2_18", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_18")))]
+    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
+    pub fn double_buffered(self, double_buffered: bool) -> Self {
+        Self {
+            builder: self.builder.property("double-buffered", double_buffered),
+        }
+    }
+
+    //pub fn events(self, events: /*Ignored*/gdk::EventMask) -> Self {
+    //    Self { builder: self.builder.property("events", events), }
+    //}
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn expand(self, expand: bool) -> Self {
+        Self {
+            builder: self.builder.property("expand", expand),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3_20", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_20")))]
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+        Self {
+            builder: self.builder.property("focus-on-click", focus_on_click),
+        }
+    }
+
+    //    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    //pub fn halign(self, halign: /*Ignored*/gtk::Align) -> Self {
+    //    Self { builder: self.builder.property("halign", halign), }
+    //}
+
+    pub fn has_default(self, has_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-default", has_default),
+        }
+    }
+
+    pub fn has_focus(self, has_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-focus", has_focus),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+        Self {
+            builder: self.builder.property("has-tooltip", has_tooltip),
+        }
+    }
+
+    pub fn height_request(self, height_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("height-request", height_request),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn hexpand(self, hexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand", hexpand),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("hexpand-set", hexpand_set),
+        }
+    }
+
+    pub fn is_focus(self, is_focus: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-focus", is_focus),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn margin(self, margin: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin", margin),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-bottom", margin_bottom),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
+    pub fn margin_end(self, margin_end: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-end", margin_end),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
+    pub fn margin_left(self, margin_left: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-left", margin_left),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
+    pub fn margin_right(self, margin_right: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-right", margin_right),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
+    pub fn margin_start(self, margin_start: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-start", margin_start),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn margin_top(self, margin_top: i32) -> Self {
+        Self {
+            builder: self.builder.property("margin-top", margin_top),
+        }
+    }
+
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    pub fn no_show_all(self, no_show_all: bool) -> Self {
+        Self {
+            builder: self.builder.property("no-show-all", no_show_all),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_8")))]
+    pub fn opacity(self, opacity: f64) -> Self {
+        Self {
+            builder: self.builder.property("opacity", opacity),
+        }
+    }
+
+    //pub fn parent(self, parent: &impl IsA</*Ignored*/gtk::Container>) -> Self {
+    //    Self { builder: self.builder.property("parent", parent.clone().upcast()), }
+    //}
+
+    pub fn receives_default(self, receives_default: bool) -> Self {
+        Self {
+            builder: self.builder.property("receives-default", receives_default),
+        }
+    }
+
+    pub fn sensitive(self, sensitive: bool) -> Self {
+        Self {
+            builder: self.builder.property("sensitive", sensitive),
+        }
+    }
+
+    //pub fn style(self, style: &impl IsA</*Ignored*/gtk::Style>) -> Self {
+    //    Self { builder: self.builder.property("style", style.clone().upcast()), }
+    //}
+
+    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("tooltip-markup", tooltip_markup.into()),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("tooltip-text", tooltip_text.into()),
+        }
+    }
+
+    //    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    //pub fn valign(self, valign: /*Ignored*/gtk::Align) -> Self {
+    //    Self { builder: self.builder.property("valign", valign), }
+    //}
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn vexpand(self, vexpand: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand", vexpand),
+        }
+    }
+
+    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+        Self {
+            builder: self.builder.property("vexpand-set", vexpand_set),
+        }
+    }
+
+    pub fn visible(self, visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("visible", visible),
+        }
+    }
+
+    pub fn width_request(self, width_request: i32) -> Self {
+        Self {
+            builder: self.builder.property("width-request", width_request),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WebView`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> WebView {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_28", feature = "dox"))]
-        if let Some(ref automation_presentation_type) = self.automation_presentation_type {
-            properties.push(("automation-presentation-type", automation_presentation_type));
-        }
-        #[cfg(any(feature = "v2_34", feature = "dox"))]
-        if let Some(ref camera_capture_state) = self.camera_capture_state {
-            properties.push(("camera-capture-state", camera_capture_state));
-        }
-        #[cfg(any(feature = "v2_38", feature = "dox"))]
-        if let Some(ref default_content_security_policy) = self.default_content_security_policy {
-            properties.push((
-                "default-content-security-policy",
-                default_content_security_policy,
-            ));
-        }
-        #[cfg(any(feature = "v2_34", feature = "dox"))]
-        if let Some(ref display_capture_state) = self.display_capture_state {
-            properties.push(("display-capture-state", display_capture_state));
-        }
-        #[cfg(any(feature = "v2_8", feature = "dox"))]
-        if let Some(ref editable) = self.editable {
-            properties.push(("editable", editable));
-        }
-        #[cfg(any(feature = "v2_18", feature = "dox"))]
-        if let Some(ref is_controlled_by_automation) = self.is_controlled_by_automation {
-            properties.push(("is-controlled-by-automation", is_controlled_by_automation));
-        }
-        #[cfg(any(feature = "v2_16", feature = "dox"))]
-        if let Some(ref is_ephemeral) = self.is_ephemeral {
-            properties.push(("is-ephemeral", is_ephemeral));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref is_muted) = self.is_muted {
-            properties.push(("is-muted", is_muted));
-        }
-        #[cfg(any(feature = "v2_34", feature = "dox"))]
-        if let Some(ref microphone_capture_state) = self.microphone_capture_state {
-            properties.push(("microphone-capture-state", microphone_capture_state));
-        }
-        #[cfg(any(feature = "v2_4", feature = "dox"))]
-        if let Some(ref related_view) = self.related_view {
-            properties.push(("related-view", related_view));
-        }
-        #[cfg(any(feature = "v2_6", feature = "dox"))]
-        if let Some(ref settings) = self.settings {
-            properties.push(("settings", settings));
-        }
-        #[cfg(any(feature = "v2_6", feature = "dox"))]
-        if let Some(ref user_content_manager) = self.user_content_manager {
-            properties.push(("user-content-manager", user_content_manager));
-        }
-        if let Some(ref web_context) = self.web_context {
-            properties.push(("web-context", web_context));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref website_policies) = self.website_policies {
-            properties.push(("website-policies", website_policies));
-        }
-        if let Some(ref zoom_level) = self.zoom_level {
-            properties.push(("zoom-level", zoom_level));
-        }
-        if let Some(ref app_paintable) = self.app_paintable {
-            properties.push(("app-paintable", app_paintable));
-        }
-        if let Some(ref can_default) = self.can_default {
-            properties.push(("can-default", can_default));
-        }
-        if let Some(ref can_focus) = self.can_focus {
-            properties.push(("can-focus", can_focus));
-        }
-        #[cfg(any(feature = "gtk_v2_18", feature = "dox"))]
-        if let Some(ref double_buffered) = self.double_buffered {
-            properties.push(("double-buffered", double_buffered));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref expand) = self.expand {
-            properties.push(("expand", expand));
-        }
-        #[cfg(any(feature = "gtk_v3_20", feature = "dox"))]
-        if let Some(ref focus_on_click) = self.focus_on_click {
-            properties.push(("focus-on-click", focus_on_click));
-        }
-        if let Some(ref has_default) = self.has_default {
-            properties.push(("has-default", has_default));
-        }
-        if let Some(ref has_focus) = self.has_focus {
-            properties.push(("has-focus", has_focus));
-        }
-        #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-        if let Some(ref has_tooltip) = self.has_tooltip {
-            properties.push(("has-tooltip", has_tooltip));
-        }
-        if let Some(ref height_request) = self.height_request {
-            properties.push(("height-request", height_request));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref hexpand) = self.hexpand {
-            properties.push(("hexpand", hexpand));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref hexpand_set) = self.hexpand_set {
-            properties.push(("hexpand-set", hexpand_set));
-        }
-        if let Some(ref is_focus) = self.is_focus {
-            properties.push(("is-focus", is_focus));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref margin) = self.margin {
-            properties.push(("margin", margin));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref margin_bottom) = self.margin_bottom {
-            properties.push(("margin-bottom", margin_bottom));
-        }
-        #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-        if let Some(ref margin_end) = self.margin_end {
-            properties.push(("margin-end", margin_end));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref margin_left) = self.margin_left {
-            properties.push(("margin-left", margin_left));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref margin_right) = self.margin_right {
-            properties.push(("margin-right", margin_right));
-        }
-        #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-        if let Some(ref margin_start) = self.margin_start {
-            properties.push(("margin-start", margin_start));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref margin_top) = self.margin_top {
-            properties.push(("margin-top", margin_top));
-        }
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        if let Some(ref no_show_all) = self.no_show_all {
-            properties.push(("no-show-all", no_show_all));
-        }
-        #[cfg(any(feature = "gtk_v3_8", feature = "dox"))]
-        if let Some(ref opacity) = self.opacity {
-            properties.push(("opacity", opacity));
-        }
-        if let Some(ref receives_default) = self.receives_default {
-            properties.push(("receives-default", receives_default));
-        }
-        if let Some(ref sensitive) = self.sensitive {
-            properties.push(("sensitive", sensitive));
-        }
-        #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-        if let Some(ref tooltip_markup) = self.tooltip_markup {
-            properties.push(("tooltip-markup", tooltip_markup));
-        }
-        #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-        if let Some(ref tooltip_text) = self.tooltip_text {
-            properties.push(("tooltip-text", tooltip_text));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref vexpand) = self.vexpand {
-            properties.push(("vexpand", vexpand));
-        }
-        #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-        if let Some(ref vexpand_set) = self.vexpand_set {
-            properties.push(("vexpand-set", vexpand_set));
-        }
-        if let Some(ref visible) = self.visible {
-            properties.push(("visible", visible));
-        }
-        if let Some(ref width_request) = self.width_request {
-            properties.push(("width-request", width_request));
-        }
-        glib::Object::new::<WebView>(&properties)
-    }
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    pub fn automation_presentation_type(
-        mut self,
-        automation_presentation_type: AutomationBrowsingContextPresentation,
-    ) -> Self {
-        self.automation_presentation_type = Some(automation_presentation_type);
-        self
-    }
-
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    pub fn camera_capture_state(mut self, camera_capture_state: MediaCaptureState) -> Self {
-        self.camera_capture_state = Some(camera_capture_state);
-        self
-    }
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    pub fn default_content_security_policy(
-        mut self,
-        default_content_security_policy: &str,
-    ) -> Self {
-        self.default_content_security_policy = Some(default_content_security_policy.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    pub fn display_capture_state(mut self, display_capture_state: MediaCaptureState) -> Self {
-        self.display_capture_state = Some(display_capture_state);
-        self
-    }
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    pub fn editable(mut self, editable: bool) -> Self {
-        self.editable = Some(editable);
-        self
-    }
-
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    pub fn is_controlled_by_automation(mut self, is_controlled_by_automation: bool) -> Self {
-        self.is_controlled_by_automation = Some(is_controlled_by_automation);
-        self
-    }
-
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    pub fn is_ephemeral(mut self, is_ephemeral: bool) -> Self {
-        self.is_ephemeral = Some(is_ephemeral);
-        self
-    }
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    pub fn is_muted(mut self, is_muted: bool) -> Self {
-        self.is_muted = Some(is_muted);
-        self
-    }
-
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    pub fn microphone_capture_state(mut self, microphone_capture_state: MediaCaptureState) -> Self {
-        self.microphone_capture_state = Some(microphone_capture_state);
-        self
-    }
-
-    #[cfg(any(feature = "v2_4", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
-    pub fn related_view(mut self, related_view: &impl IsA<WebView>) -> Self {
-        self.related_view = Some(related_view.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    pub fn settings(mut self, settings: &impl IsA<Settings>) -> Self {
-        self.settings = Some(settings.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    pub fn user_content_manager(
-        mut self,
-        user_content_manager: &impl IsA<UserContentManager>,
-    ) -> Self {
-        self.user_content_manager = Some(user_content_manager.clone().upcast());
-        self
-    }
-
-    pub fn web_context(mut self, web_context: &impl IsA<WebContext>) -> Self {
-        self.web_context = Some(web_context.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    pub fn website_policies(mut self, website_policies: &impl IsA<WebsitePolicies>) -> Self {
-        self.website_policies = Some(website_policies.clone().upcast());
-        self
-    }
-
-    pub fn zoom_level(mut self, zoom_level: f64) -> Self {
-        self.zoom_level = Some(zoom_level);
-        self
-    }
-
-    pub fn app_paintable(mut self, app_paintable: bool) -> Self {
-        self.app_paintable = Some(app_paintable);
-        self
-    }
-
-    pub fn can_default(mut self, can_default: bool) -> Self {
-        self.can_default = Some(can_default);
-        self
-    }
-
-    pub fn can_focus(mut self, can_focus: bool) -> Self {
-        self.can_focus = Some(can_focus);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_18")))]
-    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
-    pub fn double_buffered(mut self, double_buffered: bool) -> Self {
-        self.double_buffered = Some(double_buffered);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn expand(mut self, expand: bool) -> Self {
-        self.expand = Some(expand);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3_20", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_20")))]
-    pub fn focus_on_click(mut self, focus_on_click: bool) -> Self {
-        self.focus_on_click = Some(focus_on_click);
-        self
-    }
-
-    pub fn has_default(mut self, has_default: bool) -> Self {
-        self.has_default = Some(has_default);
-        self
-    }
-
-    pub fn has_focus(mut self, has_focus: bool) -> Self {
-        self.has_focus = Some(has_focus);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    pub fn has_tooltip(mut self, has_tooltip: bool) -> Self {
-        self.has_tooltip = Some(has_tooltip);
-        self
-    }
-
-    pub fn height_request(mut self, height_request: i32) -> Self {
-        self.height_request = Some(height_request);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn hexpand(mut self, hexpand: bool) -> Self {
-        self.hexpand = Some(hexpand);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn hexpand_set(mut self, hexpand_set: bool) -> Self {
-        self.hexpand_set = Some(hexpand_set);
-        self
-    }
-
-    pub fn is_focus(mut self, is_focus: bool) -> Self {
-        self.is_focus = Some(is_focus);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn margin(mut self, margin: i32) -> Self {
-        self.margin = Some(margin);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn margin_bottom(mut self, margin_bottom: i32) -> Self {
-        self.margin_bottom = Some(margin_bottom);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
-    pub fn margin_end(mut self, margin_end: i32) -> Self {
-        self.margin_end = Some(margin_end);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
-    pub fn margin_left(mut self, margin_left: i32) -> Self {
-        self.margin_left = Some(margin_left);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
-    pub fn margin_right(mut self, margin_right: i32) -> Self {
-        self.margin_right = Some(margin_right);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_12")))]
-    pub fn margin_start(mut self, margin_start: i32) -> Self {
-        self.margin_start = Some(margin_start);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn margin_top(mut self, margin_top: i32) -> Self {
-        self.margin_top = Some(margin_top);
-        self
-    }
-
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    pub fn no_show_all(mut self, no_show_all: bool) -> Self {
-        self.no_show_all = Some(no_show_all);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3_8")))]
-    pub fn opacity(mut self, opacity: f64) -> Self {
-        self.opacity = Some(opacity);
-        self
-    }
-
-    pub fn receives_default(mut self, receives_default: bool) -> Self {
-        self.receives_default = Some(receives_default);
-        self
-    }
-
-    pub fn sensitive(mut self, sensitive: bool) -> Self {
-        self.sensitive = Some(sensitive);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    pub fn tooltip_markup(mut self, tooltip_markup: &str) -> Self {
-        self.tooltip_markup = Some(tooltip_markup.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v2_12")))]
-    pub fn tooltip_text(mut self, tooltip_text: &str) -> Self {
-        self.tooltip_text = Some(tooltip_text.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn vexpand(mut self, vexpand: bool) -> Self {
-        self.vexpand = Some(vexpand);
-        self
-    }
-
-    #[cfg(any(feature = "gtk_v3", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "gtk_v3")))]
-    pub fn vexpand_set(mut self, vexpand_set: bool) -> Self {
-        self.vexpand_set = Some(vexpand_set);
-        self
-    }
-
-    pub fn visible(mut self, visible: bool) -> Self {
-        self.visible = Some(visible);
-        self
-    }
-
-    pub fn width_request(mut self, width_request: i32) -> Self {
-        self.width_request = Some(width_request);
-        self
+        self.builder.build()
     }
 }
 
@@ -934,6 +703,7 @@ pub trait WebViewExt: 'static {
     fn is_web_process_responsive(&self) -> bool;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_web_view_get_javascript_global_context")]
     //#[doc(alias = "get_javascript_global_context")]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
@@ -1094,10 +864,12 @@ pub trait WebViewExt: 'static {
     //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     //#[cfg(any(feature = "v2_38", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_web_view_run_async_javascript_function_in_world")]
     //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P);
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_view_run_javascript")]
     fn run_javascript<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
@@ -1114,6 +886,7 @@ pub trait WebViewExt: 'static {
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<JavascriptResult, glib::Error>> + 'static>>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_view_run_javascript_from_gresource")]
     fn run_javascript_from_gresource<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
@@ -1132,6 +905,7 @@ pub trait WebViewExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_view_run_javascript_in_world")]
     fn run_javascript_in_world<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
@@ -1824,6 +1598,7 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }
     }
 
+    //#[allow(deprecated)]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_web_view_get_javascript_global_context() }
     //}
@@ -2169,10 +1944,12 @@ impl<O: IsA<WebView>> WebViewExt for O {
 
     //#[cfg(any(feature = "v2_38", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[allow(deprecated)]
     //fn run_async_javascript_function_in_world<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, body: &str, arguments: &glib::Variant, world_name: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
     //    unsafe { TODO: call ffi:webkit_web_view_run_async_javascript_function_in_world() }
     //}
 
+    #[allow(deprecated)]
     fn run_javascript<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
         script: &str,
@@ -2239,6 +2016,7 @@ impl<O: IsA<WebView>> WebViewExt for O {
         }))
     }
 
+    #[allow(deprecated)]
     fn run_javascript_from_gresource<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
         resource: &str,
@@ -2307,6 +2085,7 @@ impl<O: IsA<WebView>> WebViewExt for O {
 
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[allow(deprecated)]
     fn run_javascript_in_world<P: FnOnce(Result<JavascriptResult, glib::Error>) + 'static>(
         &self,
         script: &str,

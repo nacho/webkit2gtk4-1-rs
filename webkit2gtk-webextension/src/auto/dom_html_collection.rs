@@ -2,17 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLCollection")]
@@ -29,15 +27,18 @@ impl DOMHTMLCollection {
 
 pub trait DOMHTMLCollectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_collection_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_collection_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_collection_named_item")]
     fn named_item(&self, name: &str) -> Option<DOMNode>;
 
@@ -46,10 +47,12 @@ pub trait DOMHTMLCollectionExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_collection_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_collection_item(
@@ -59,6 +62,7 @@ impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn named_item(&self, name: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_collection_named_item(

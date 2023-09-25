@@ -2,18 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCSSRule;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMCSSRule, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMCSSStyleDeclaration")]
@@ -30,52 +27,63 @@ impl DOMCSSStyleDeclaration {
 
 pub trait DOMCSSStyleDeclarationExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_css_text")]
     #[doc(alias = "get_css_text")]
     fn css_text(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_parent_rule")]
     #[doc(alias = "get_parent_rule")]
     fn parent_rule(&self) -> Option<DOMCSSRule>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_property_priority")]
     #[doc(alias = "get_property_priority")]
     fn property_priority(&self, propertyName: &str) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_property_shorthand")]
     #[doc(alias = "get_property_shorthand")]
     fn property_shorthand(&self, propertyName: &str) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_get_property_value")]
     #[doc(alias = "get_property_value")]
     fn property_value(&self, propertyName: &str) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_is_property_implicit")]
     fn is_property_implicit(&self, propertyName: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_item")]
     fn item(&self, index: libc::c_ulong) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_remove_property")]
     fn remove_property(&self, propertyName: &str) -> Result<glib::GString, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_set_css_text")]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_style_declaration_set_property")]
     fn set_property(
         &self,
@@ -95,6 +103,7 @@ pub trait DOMCSSStyleDeclarationExt: 'static {
 }
 
 impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
+    #[allow(deprecated)]
     fn css_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_declaration_get_css_text(
@@ -103,10 +112,12 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_css_style_declaration_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn parent_rule(&self) -> Option<DOMCSSRule> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_declaration_get_parent_rule(
@@ -115,6 +126,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn property_priority(&self, propertyName: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_declaration_get_property_priority(
@@ -124,6 +136,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn property_shorthand(&self, propertyName: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(
@@ -135,6 +148,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn property_value(&self, propertyName: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_declaration_get_property_value(
@@ -144,6 +158,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_property_implicit(&self, propertyName: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_css_style_declaration_is_property_implicit(
@@ -153,6 +168,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn item(&self, index: libc::c_ulong) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_style_declaration_item(
@@ -162,6 +178,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn remove_property(&self, propertyName: &str) -> Result<glib::GString, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -178,6 +195,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -194,6 +212,7 @@ impl<O: IsA<DOMCSSStyleDeclaration>> DOMCSSStyleDeclarationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_property(
         &self,
         propertyName: &str,

@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMDOMWindow;
-use crate::DOMEvent;
-use crate::DOMObject;
-use crate::DOMUIEvent;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMDOMWindow, DOMEvent, DOMObject, DOMUIEvent};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMKeyboardEvent")]
@@ -31,46 +27,55 @@ impl DOMKeyboardEvent {
 
 pub trait DOMKeyboardEventExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_alt_graph_key")]
     #[doc(alias = "get_alt_graph_key")]
     fn is_alt_graph_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_alt_key")]
     #[doc(alias = "get_alt_key")]
     fn is_alt_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_ctrl_key")]
     #[doc(alias = "get_ctrl_key")]
     fn is_ctrl_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_key_identifier")]
     #[doc(alias = "get_key_identifier")]
     fn key_identifier(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_key_location")]
     #[doc(alias = "get_key_location")]
     fn key_location(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_meta_key")]
     #[doc(alias = "get_meta_key")]
     fn is_meta_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_modifier_state")]
     #[doc(alias = "get_modifier_state")]
     fn is_modifier_state(&self, keyIdentifierArg: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_get_shift_key")]
     #[doc(alias = "get_shift_key")]
     fn is_shift_key(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_keyboard_event_init_keyboard_event")]
     fn init_keyboard_event(
         &self,
@@ -110,6 +115,7 @@ pub trait DOMKeyboardEventExt: 'static {
 }
 
 impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
+    #[allow(deprecated)]
     fn is_alt_graph_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_alt_graph_key(
@@ -118,6 +124,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_alt_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_alt_key(
@@ -126,6 +133,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_ctrl_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_ctrl_key(
@@ -134,6 +142,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn key_identifier(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_keyboard_event_get_key_identifier(
@@ -142,10 +151,12 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn key_location(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_keyboard_event_get_key_location(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn is_meta_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_meta_key(
@@ -154,6 +165,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_modifier_state(&self, keyIdentifierArg: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_modifier_state(
@@ -163,6 +175,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_shift_key(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_keyboard_event_get_shift_key(
@@ -171,6 +184,7 @@ impl<O: IsA<DOMKeyboardEvent>> DOMKeyboardEventExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn init_keyboard_event(
         &self,
         type_: &str,

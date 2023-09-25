@@ -3,8 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

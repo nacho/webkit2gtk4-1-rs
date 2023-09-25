@@ -4,8 +4,7 @@
 // DO NOT EDIT
 
 use crate::PermissionRequest;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {

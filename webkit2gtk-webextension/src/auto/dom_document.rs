@@ -2,49 +2,25 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMAttr;
-use crate::DOMCDATASection;
-use crate::DOMCSSStyleDeclaration;
-use crate::DOMComment;
-use crate::DOMDOMImplementation;
-use crate::DOMDOMWindow;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::DOMDocumentFragment;
-use crate::DOMDocumentType;
-use crate::DOMElement;
-use crate::DOMEntityReference;
-use crate::DOMEvent;
-use crate::DOMEventTarget;
-use crate::DOMHTMLCollection;
-use crate::DOMHTMLElement;
-use crate::DOMHTMLHeadElement;
-use crate::DOMHTMLScriptElement;
-use crate::DOMNode;
-use crate::DOMNodeFilter;
-use crate::DOMNodeIterator;
-use crate::DOMNodeList;
-use crate::DOMObject;
-use crate::DOMProcessingInstruction;
-use crate::DOMRange;
-use crate::DOMStyleSheetList;
-use crate::DOMText;
-use crate::DOMTreeWalker;
-use crate::DOMXPathExpression;
-use crate::DOMXPathNSResolver;
-use crate::DOMXPathResult;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    DOMAttr, DOMCDATASection, DOMCSSStyleDeclaration, DOMComment, DOMDOMImplementation,
+    DOMDOMWindow, DOMDocumentType, DOMElement, DOMEntityReference, DOMEvent, DOMEventTarget,
+    DOMHTMLCollection, DOMHTMLElement, DOMHTMLHeadElement, DOMHTMLScriptElement, DOMNode,
+    DOMNodeFilter, DOMNodeIterator, DOMNodeList, DOMObject, DOMProcessingInstruction, DOMRange,
+    DOMStyleSheetList, DOMText, DOMTreeWalker, DOMXPathExpression, DOMXPathNSResolver,
+    DOMXPathResult,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDocument")]
@@ -61,20 +37,24 @@ impl DOMDocument {
 
 pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_adopt_node")]
     fn adopt_node(&self, source: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_caret_range_from_point")]
     fn caret_range_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMRange>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_attribute")]
     fn create_attribute(&self, name: &str) -> Result<DOMAttr, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_attribute_ns")]
     fn create_attribute_ns(
         &self,
@@ -83,28 +63,34 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMAttr, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_cdata_section")]
     fn create_cdata_section(&self, data: &str) -> Result<DOMCDATASection, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_comment")]
     fn create_comment(&self, data: &str) -> Option<DOMComment>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_css_style_declaration")]
     fn create_css_style_declaration(&self) -> Option<DOMCSSStyleDeclaration>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_document_fragment")]
     fn create_document_fragment(&self) -> Option<DOMDocumentFragment>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_element")]
     fn create_element(&self, tagName: &str) -> Result<DOMElement, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_element_ns")]
     fn create_element_ns(
         &self,
@@ -113,6 +99,7 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMElement, glib::Error>;
 
     #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_entity_reference")]
     fn create_entity_reference(
         &self,
@@ -120,10 +107,12 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMEntityReference, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_event")]
     fn create_event(&self, eventType: &str) -> Result<DOMEvent, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_expression")]
     fn create_expression(
         &self,
@@ -132,6 +121,7 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMXPathExpression, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_node_iterator")]
     fn create_node_iterator(
         &self,
@@ -142,10 +132,12 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMNodeIterator, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_ns_resolver")]
     fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> Option<DOMXPathNSResolver>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_processing_instruction")]
     fn create_processing_instruction(
         &self,
@@ -154,14 +146,17 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMProcessingInstruction, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_range")]
     fn create_range(&self) -> Option<DOMRange>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_text_node")]
     fn create_text_node(&self, data: &str) -> Option<DOMText>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_create_tree_walker")]
     fn create_tree_walker(
         &self,
@@ -172,10 +167,12 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMTreeWalker, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_element_from_point")]
     fn element_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_evaluate")]
     fn evaluate(
         &self,
@@ -187,41 +184,49 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMXPathResult, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_exec_command")]
     fn exec_command(&self, command: &str, userInterface: bool, value: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_exit_pointer_lock")]
     fn exit_pointer_lock(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_active_element")]
     #[doc(alias = "get_active_element")]
     fn active_element(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_anchors")]
     #[doc(alias = "get_anchors")]
     fn anchors(&self) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_applets")]
     #[doc(alias = "get_applets")]
     fn applets(&self) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_body")]
     #[doc(alias = "get_body")]
     fn body(&self) -> Option<DOMHTMLElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_character_set")]
     #[doc(alias = "get_character_set")]
     fn character_set(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_charset")]
     #[doc(alias = "get_charset")]
     fn charset(&self) -> Option<glib::GString>;
@@ -229,6 +234,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_child_element_count")]
     #[doc(alias = "get_child_element_count")]
     fn child_element_count(&self) -> libc::c_ulong;
@@ -236,6 +242,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_children")]
     #[doc(alias = "get_children")]
     fn children(&self) -> Option<DOMHTMLCollection>;
@@ -243,6 +250,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_compat_mode")]
     #[doc(alias = "get_compat_mode")]
     fn compat_mode(&self) -> Option<glib::GString>;
@@ -250,11 +258,13 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_content_type")]
     #[doc(alias = "get_content_type")]
     fn content_type(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_cookie")]
     #[doc(alias = "get_cookie")]
     fn cookie(&self) -> Result<glib::GString, glib::Error>;
@@ -262,16 +272,19 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_current_script")]
     #[doc(alias = "get_current_script")]
     fn current_script(&self) -> Option<DOMHTMLScriptElement>;
 
     #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_default_charset")]
     #[doc(alias = "get_default_charset")]
     fn default_charset(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_default_view")]
     #[doc(alias = "get_default_view")]
     fn default_view(&self) -> Option<DOMDOMWindow>;
@@ -279,6 +292,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_design_mode")]
     #[doc(alias = "get_design_mode")]
     fn design_mode(&self) -> Option<glib::GString>;
@@ -286,36 +300,43 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_dir")]
     #[doc(alias = "get_dir")]
     fn dir(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_doctype")]
     #[doc(alias = "get_doctype")]
     fn doctype(&self) -> Option<DOMDocumentType>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_document_element")]
     #[doc(alias = "get_document_element")]
     fn document_element(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_document_uri")]
     #[doc(alias = "get_document_uri")]
     fn document_uri(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_domain")]
     #[doc(alias = "get_domain")]
     fn domain(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_element_by_id")]
     #[doc(alias = "get_element_by_id")]
     fn element_by_id(&self, elementId: &str) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_class_name")]
     #[doc(alias = "get_elements_by_class_name")]
     fn elements_by_class_name(&self, class_name: &str) -> Option<DOMNodeList>;
@@ -323,6 +344,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_class_name_as_html_collection")]
     #[doc(alias = "get_elements_by_class_name_as_html_collection")]
     fn elements_by_class_name_as_html_collection(
@@ -331,11 +353,13 @@ pub trait DOMDocumentExt: 'static {
     ) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_name")]
     #[doc(alias = "get_elements_by_name")]
     fn elements_by_name(&self, elementName: &str) -> Option<DOMNodeList>;
 
     #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_tag_name")]
     #[doc(alias = "get_elements_by_tag_name")]
     fn elements_by_tag_name(&self, tag_name: &str) -> Option<DOMNodeList>;
@@ -343,11 +367,13 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_tag_name_as_html_collection")]
     #[doc(alias = "get_elements_by_tag_name_as_html_collection")]
     fn elements_by_tag_name_as_html_collection(&self, tagname: &str) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_tag_name_ns")]
     #[doc(alias = "get_elements_by_tag_name_ns")]
     fn elements_by_tag_name_ns(&self, namespace_uri: &str, tag_name: &str) -> Option<DOMNodeList>;
@@ -355,6 +381,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_elements_by_tag_name_ns_as_html_collection")]
     #[doc(alias = "get_elements_by_tag_name_ns_as_html_collection")]
     fn elements_by_tag_name_ns_as_html_collection(
@@ -366,6 +393,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_embeds")]
     #[doc(alias = "get_embeds")]
     fn embeds(&self) -> Option<DOMHTMLCollection>;
@@ -373,16 +401,19 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_first_element_child")]
     #[doc(alias = "get_first_element_child")]
     fn first_element_child(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_forms")]
     #[doc(alias = "get_forms")]
     fn forms(&self) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_head")]
     #[doc(alias = "get_head")]
     fn head(&self) -> Option<DOMHTMLHeadElement>;
@@ -390,21 +421,25 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_hidden")]
     #[doc(alias = "get_hidden")]
     fn is_hidden(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_images")]
     #[doc(alias = "get_images")]
     fn images(&self) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_implementation")]
     #[doc(alias = "get_implementation")]
     fn implementation(&self) -> Option<DOMDOMImplementation>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_input_encoding")]
     #[doc(alias = "get_input_encoding")]
     fn input_encoding(&self) -> Option<glib::GString>;
@@ -412,16 +447,19 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_last_element_child")]
     #[doc(alias = "get_last_element_child")]
     fn last_element_child(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_last_modified")]
     #[doc(alias = "get_last_modified")]
     fn last_modified(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_links")]
     #[doc(alias = "get_links")]
     fn links(&self) -> Option<DOMHTMLCollection>;
@@ -429,11 +467,13 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_origin")]
     #[doc(alias = "get_origin")]
     fn origin(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_override_style")]
     #[doc(alias = "get_override_style")]
     fn override_style(
@@ -445,6 +485,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_plugins")]
     #[doc(alias = "get_plugins")]
     fn plugins(&self) -> Option<DOMHTMLCollection>;
@@ -452,21 +493,25 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_pointer_lock_element")]
     #[doc(alias = "get_pointer_lock_element")]
     fn pointer_lock_element(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_preferred_stylesheet_set")]
     #[doc(alias = "get_preferred_stylesheet_set")]
     fn preferred_stylesheet_set(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_ready_state")]
     #[doc(alias = "get_ready_state")]
     fn ready_state(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_referrer")]
     #[doc(alias = "get_referrer")]
     fn referrer(&self) -> Option<glib::GString>;
@@ -474,6 +519,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_scripts")]
     #[doc(alias = "get_scripts")]
     fn scripts(&self) -> Option<DOMHTMLCollection>;
@@ -481,26 +527,31 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_scrolling_element")]
     #[doc(alias = "get_scrolling_element")]
     fn scrolling_element(&self) -> Option<DOMElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_selected_stylesheet_set")]
     #[doc(alias = "get_selected_stylesheet_set")]
     fn selected_stylesheet_set(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_style_sheets")]
     #[doc(alias = "get_style_sheets")]
     fn style_sheets(&self) -> Option<DOMStyleSheetList>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_url")]
     #[doc(alias = "get_url")]
     fn url(&self) -> Option<glib::GString>;
@@ -508,6 +559,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_visibility_state")]
     #[doc(alias = "get_visibility_state")]
     fn visibility_state(&self) -> Option<glib::GString>;
@@ -515,6 +567,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_webkit_current_fullscreen_element")]
     #[doc(alias = "get_webkit_current_fullscreen_element")]
     fn webkit_current_fullscreen_element(&self) -> Option<DOMElement>;
@@ -522,6 +575,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_webkit_fullscreen_element")]
     #[doc(alias = "get_webkit_fullscreen_element")]
     fn webkit_fullscreen_element(&self) -> Option<DOMElement>;
@@ -529,6 +583,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_webkit_fullscreen_enabled")]
     #[doc(alias = "get_webkit_fullscreen_enabled")]
     fn is_webkit_fullscreen_enabled(&self) -> bool;
@@ -536,6 +591,7 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_webkit_fullscreen_keyboard_input_allowed")]
     #[doc(alias = "get_webkit_fullscreen_keyboard_input_allowed")]
     fn is_webkit_fullscreen_keyboard_input_allowed(&self) -> bool;
@@ -543,30 +599,36 @@ pub trait DOMDocumentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_webkit_is_fullscreen")]
     #[doc(alias = "get_webkit_is_fullscreen")]
     fn is_webkit_is_fullscreen(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_xml_encoding")]
     #[doc(alias = "get_xml_encoding")]
     fn xml_encoding(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_xml_standalone")]
     #[doc(alias = "get_xml_standalone")]
     fn is_xml_standalone(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_get_xml_version")]
     #[doc(alias = "get_xml_version")]
     fn xml_version(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_has_focus")]
     fn has_focus(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_import_node")]
     fn import_node(
         &self,
@@ -575,86 +637,105 @@ pub trait DOMDocumentExt: 'static {
     ) -> Result<DOMNode, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_command_enabled")]
     fn query_command_enabled(&self, command: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_command_indeterm")]
     fn query_command_indeterm(&self, command: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_command_state")]
     fn query_command_state(&self, command: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_command_supported")]
     fn query_command_supported(&self, command: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_command_value")]
     fn query_command_value(&self, command: &str) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_selector")]
     fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_query_selector_all")]
     fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_body")]
     fn set_body(&self, value: &impl IsA<DOMHTMLElement>) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_charset")]
     fn set_charset(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_cookie")]
     fn set_cookie(&self, value: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_design_mode")]
     fn set_design_mode(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_dir")]
     fn set_dir(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_document_uri")]
     fn set_document_uri(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_selected_stylesheet_set")]
     fn set_selected_stylesheet_set(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_title")]
     fn set_title(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_xml_standalone")]
     fn set_xml_standalone(&self, value: bool) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_set_xml_version")]
     fn set_xml_version(&self, value: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_webkit_cancel_fullscreen")]
     fn webkit_cancel_fullscreen(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_webkit_exit_fullscreen")]
     fn webkit_exit_fullscreen(&self);
 
@@ -896,6 +977,7 @@ pub trait DOMDocumentExt: 'static {
 }
 
 impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
+    #[allow(deprecated)]
     fn adopt_node(&self, source: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -914,6 +996,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn caret_range_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMRange> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_caret_range_from_point(
@@ -924,6 +1007,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_attribute(&self, name: &str) -> Result<DOMAttr, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -940,6 +1024,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_attribute_ns(
         &self,
         namespaceURI: Option<&str>,
@@ -961,6 +1046,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_cdata_section(&self, data: &str) -> Result<DOMCDATASection, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -977,6 +1063,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_comment(&self, data: &str) -> Option<DOMComment> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_create_comment(
@@ -986,6 +1073,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_css_style_declaration(&self) -> Option<DOMCSSStyleDeclaration> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_create_css_style_declaration(
@@ -996,6 +1084,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn create_document_fragment(&self) -> Option<DOMDocumentFragment> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_create_document_fragment(
@@ -1004,6 +1093,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_element(&self, tagName: &str) -> Result<DOMElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1020,6 +1110,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_element_ns(
         &self,
         namespaceURI: Option<&str>,
@@ -1041,6 +1132,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_entity_reference(
         &self,
         name: Option<&str>,
@@ -1060,6 +1152,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_event(&self, eventType: &str) -> Result<DOMEvent, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1076,6 +1169,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_expression(
         &self,
         expression: &str,
@@ -1097,6 +1191,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_node_iterator(
         &self,
         root: &impl IsA<DOMNode>,
@@ -1122,6 +1217,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_ns_resolver(&self, nodeResolver: &impl IsA<DOMNode>) -> Option<DOMXPathNSResolver> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_create_ns_resolver(
@@ -1131,6 +1227,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_processing_instruction(
         &self,
         target: &str,
@@ -1152,6 +1249,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_range(&self) -> Option<DOMRange> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_create_range(
@@ -1160,6 +1258,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_text_node(&self, data: &str) -> Option<DOMText> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_create_text_node(
@@ -1169,6 +1268,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_tree_walker(
         &self,
         root: &impl IsA<DOMNode>,
@@ -1194,6 +1294,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn element_from_point(&self, x: libc::c_long, y: libc::c_long) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_element_from_point(
@@ -1204,6 +1305,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn evaluate(
         &self,
         expression: &str,
@@ -1231,6 +1333,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn exec_command(&self, command: &str, userInterface: bool, value: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_exec_command(
@@ -1244,12 +1347,14 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn exit_pointer_lock(&self) {
         unsafe {
             ffi::webkit_dom_document_exit_pointer_lock(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[allow(deprecated)]
     fn active_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_active_element(
@@ -1258,6 +1363,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn anchors(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_anchors(
@@ -1266,6 +1372,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn applets(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_applets(
@@ -1274,6 +1381,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn body(&self) -> Option<DOMHTMLElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_body(
@@ -1282,6 +1390,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn character_set(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_character_set(
@@ -1290,6 +1399,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn charset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_charset(
@@ -1300,12 +1410,14 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn child_element_count(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_document_get_child_element_count(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn children(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_children(
@@ -1316,6 +1428,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn compat_mode(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_compat_mode(
@@ -1326,6 +1439,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn content_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_content_type(
@@ -1334,6 +1448,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn cookie(&self) -> Result<glib::GString, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1349,6 +1464,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn current_script(&self) -> Option<DOMHTMLScriptElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_current_script(
@@ -1357,6 +1473,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn default_charset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_default_charset(
@@ -1365,6 +1482,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn default_view(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_default_view(
@@ -1375,6 +1493,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn design_mode(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_design_mode(
@@ -1385,6 +1504,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn dir(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_dir(
@@ -1393,6 +1513,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn doctype(&self) -> Option<DOMDocumentType> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_doctype(
@@ -1401,6 +1522,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn document_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_document_element(
@@ -1409,6 +1531,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn document_uri(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_document_uri(
@@ -1417,6 +1540,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_domain(
@@ -1425,6 +1549,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn element_by_id(&self, elementId: &str) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_element_by_id(
@@ -1434,6 +1559,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn elements_by_class_name(&self, class_name: &str) -> Option<DOMNodeList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_elements_by_class_name(
@@ -1445,6 +1571,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     fn elements_by_class_name_as_html_collection(
         &self,
         classNames: &str,
@@ -1459,6 +1586,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn elements_by_name(&self, elementName: &str) -> Option<DOMNodeList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_elements_by_name(
@@ -1468,6 +1596,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn elements_by_tag_name(&self, tag_name: &str) -> Option<DOMNodeList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_elements_by_tag_name(
@@ -1479,6 +1608,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     fn elements_by_tag_name_as_html_collection(&self, tagname: &str) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(
@@ -1490,6 +1620,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn elements_by_tag_name_ns(&self, namespace_uri: &str, tag_name: &str) -> Option<DOMNodeList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_elements_by_tag_name_ns(
@@ -1502,6 +1633,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_12", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[allow(deprecated)]
     fn elements_by_tag_name_ns_as_html_collection(
         &self,
         namespaceURI: &str,
@@ -1520,6 +1652,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn embeds(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_embeds(
@@ -1530,6 +1663,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn first_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_first_element_child(
@@ -1538,6 +1672,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn forms(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_forms(
@@ -1546,6 +1681,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn head(&self) -> Option<DOMHTMLHeadElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_head(
@@ -1556,6 +1692,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn is_hidden(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_get_hidden(
@@ -1564,6 +1701,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn images(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_images(
@@ -1572,6 +1710,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn implementation(&self) -> Option<DOMDOMImplementation> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_implementation(
@@ -1580,6 +1719,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn input_encoding(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_input_encoding(
@@ -1590,6 +1730,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn last_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_last_element_child(
@@ -1598,6 +1739,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn last_modified(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_last_modified(
@@ -1606,6 +1748,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn links(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_links(
@@ -1616,6 +1759,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn origin(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_origin(
@@ -1624,6 +1768,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn override_style(
         &self,
         element: &impl IsA<DOMElement>,
@@ -1640,6 +1785,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn plugins(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_plugins(
@@ -1650,6 +1796,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn pointer_lock_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_pointer_lock_element(
@@ -1658,6 +1805,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn preferred_stylesheet_set(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_preferred_stylesheet_set(
@@ -1666,6 +1814,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn ready_state(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_ready_state(
@@ -1674,6 +1823,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn referrer(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_referrer(
@@ -1684,6 +1834,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn scripts(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_scripts(
@@ -1694,6 +1845,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn scrolling_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_scrolling_element(
@@ -1702,6 +1854,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn selected_stylesheet_set(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_selected_stylesheet_set(
@@ -1710,6 +1863,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn style_sheets(&self) -> Option<DOMStyleSheetList> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_style_sheets(
@@ -1718,6 +1872,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_title(
@@ -1726,6 +1881,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn url(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_url(
@@ -1736,6 +1892,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn visibility_state(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_visibility_state(
@@ -1746,6 +1903,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn webkit_current_fullscreen_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(
@@ -1758,6 +1916,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn webkit_fullscreen_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_get_webkit_fullscreen_element(
@@ -1768,6 +1927,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn is_webkit_fullscreen_enabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_get_webkit_fullscreen_enabled(
@@ -1778,6 +1938,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn is_webkit_fullscreen_keyboard_input_allowed(&self) -> bool {
         unsafe {
             from_glib(
@@ -1790,6 +1951,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn is_webkit_is_fullscreen(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_get_webkit_is_fullscreen(
@@ -1798,6 +1960,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn xml_encoding(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_xml_encoding(
@@ -1806,6 +1969,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_xml_standalone(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_get_xml_standalone(
@@ -1814,6 +1978,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn xml_version(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_get_xml_version(
@@ -1822,6 +1987,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn has_focus(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_has_focus(
@@ -1830,6 +1996,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn import_node(
         &self,
         importedNode: &impl IsA<DOMNode>,
@@ -1851,6 +2018,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_command_enabled(&self, command: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_query_command_enabled(
@@ -1860,6 +2028,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_command_indeterm(&self, command: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_query_command_indeterm(
@@ -1869,6 +2038,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_command_state(&self, command: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_query_command_state(
@@ -1878,6 +2048,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_command_supported(&self, command: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_document_query_command_supported(
@@ -1887,6 +2058,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_command_value(&self, command: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_query_command_value(
@@ -1896,6 +2068,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1912,6 +2085,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1928,6 +2102,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_body(&self, value: &impl IsA<DOMHTMLElement>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1944,6 +2119,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_charset(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_charset(
@@ -1953,6 +2129,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_cookie(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -1971,6 +2148,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn set_design_mode(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_design_mode(
@@ -1982,6 +2160,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_dir(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_dir(
@@ -1991,6 +2170,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_document_uri(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_document_uri(
@@ -2000,6 +2180,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_selected_stylesheet_set(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_selected_stylesheet_set(
@@ -2009,6 +2190,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_title(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_document_set_title(
@@ -2018,6 +2200,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_xml_standalone(&self, value: bool) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -2034,6 +2217,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_xml_version(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -2052,6 +2236,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn webkit_cancel_fullscreen(&self) {
         unsafe {
             ffi::webkit_dom_document_webkit_cancel_fullscreen(self.as_ref().to_glib_none().0);
@@ -2060,6 +2245,7 @@ impl<O: IsA<DOMDocument>> DOMDocumentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn webkit_exit_fullscreen(&self) {
         unsafe {
             ffi::webkit_dom_document_webkit_exit_fullscreen(self.as_ref().to_glib_none().0);

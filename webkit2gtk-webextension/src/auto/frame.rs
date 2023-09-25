@@ -2,11 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMObject;
-use crate::ScriptWorld;
-use glib::object::IsA;
-use glib::translate::*;
+use crate::{DOMObject, ScriptWorld};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -28,11 +27,13 @@ pub trait FrameExt: 'static {
     fn id(&self) -> u64;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_frame_get_javascript_context_for_script_world")]
     //#[doc(alias = "get_javascript_context_for_script_world")]
     //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_frame_get_javascript_global_context")]
     //#[doc(alias = "get_javascript_global_context")]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef>;
@@ -49,6 +50,7 @@ pub trait FrameExt: 'static {
     ) -> Option<javascriptcore::Context>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object")]
     #[doc(alias = "get_js_value_for_dom_object")]
     fn js_value_for_dom_object(
@@ -57,6 +59,7 @@ pub trait FrameExt: 'static {
     ) -> Option<javascriptcore::Value>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_frame_get_js_value_for_dom_object_in_script_world")]
     #[doc(alias = "get_js_value_for_dom_object_in_script_world")]
     fn js_value_for_dom_object_in_script_world(
@@ -78,10 +81,12 @@ impl<O: IsA<Frame>> FrameExt for O {
         unsafe { ffi::webkit_frame_get_id(self.as_ref().to_glib_none().0) }
     }
 
+    //#[allow(deprecated)]
     //fn javascript_context_for_script_world(&self, world: &impl IsA<ScriptWorld>) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_context_for_script_world() }
     //}
 
+    //#[allow(deprecated)]
     //fn javascript_global_context(&self) -> /*Ignored*/Option<javascriptcore::GlobalContextRef> {
     //    unsafe { TODO: call ffi:webkit_frame_get_javascript_global_context() }
     //}
@@ -106,6 +111,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn js_value_for_dom_object(
         &self,
         dom_object: &impl IsA<DOMObject>,
@@ -118,6 +124,7 @@ impl<O: IsA<Frame>> FrameExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn js_value_for_dom_object_in_script_world(
         &self,
         dom_object: &impl IsA<DOMObject>,

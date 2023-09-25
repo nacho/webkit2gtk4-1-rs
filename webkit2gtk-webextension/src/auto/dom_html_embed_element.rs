@@ -2,22 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLEmbedElement")]
@@ -34,56 +27,68 @@ impl DOMHTMLEmbedElement {
 
 pub trait DOMHTMLEmbedElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_align")]
     #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_src")]
     #[doc(alias = "get_src")]
     fn src(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_type_attr")]
     #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_get_width")]
     #[doc(alias = "get_width")]
     fn width(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_align")]
     fn set_align(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_height")]
     fn set_height(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_name")]
     fn set_name(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_src")]
     fn set_src(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_type_attr")]
     fn set_type_attr(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_embed_element_set_width")]
     fn set_width(&self, value: libc::c_long);
 
@@ -113,6 +118,7 @@ pub trait DOMHTMLEmbedElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
+    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_embed_element_get_align(
@@ -121,10 +127,12 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_embed_element_get_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_embed_element_get_name(
@@ -133,6 +141,7 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn src(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_embed_element_get_src(
@@ -141,6 +150,7 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_embed_element_get_type_attr(
@@ -149,10 +159,12 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_embed_element_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_align(
@@ -162,12 +174,14 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_height(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_height(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_name(
@@ -177,6 +191,7 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_src(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_src(
@@ -186,6 +201,7 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_type_attr(
@@ -195,6 +211,7 @@ impl<O: IsA<DOMHTMLEmbedElement>> DOMHTMLEmbedElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_width(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_embed_element_set_width(self.as_ref().to_glib_none().0, value);

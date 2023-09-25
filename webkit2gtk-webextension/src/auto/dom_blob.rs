@@ -2,16 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMBlob")]
@@ -28,6 +27,7 @@ impl DOMBlob {
 
 pub trait DOMBlobExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_blob_get_size")]
     #[doc(alias = "get_size")]
     fn size(&self) -> u64;
@@ -37,6 +37,7 @@ pub trait DOMBlobExt: 'static {
 }
 
 impl<O: IsA<DOMBlob>> DOMBlobExt for O {
+    #[allow(deprecated)]
     fn size(&self) -> u64 {
         unsafe { ffi::webkit_dom_blob_get_size(self.as_ref().to_glib_none().0) }
     }

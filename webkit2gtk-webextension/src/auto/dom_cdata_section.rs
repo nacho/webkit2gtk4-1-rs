@@ -3,11 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::DOMCharacterData;
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use crate::DOMText;
+use crate::{DOMCharacterData, DOMEventTarget, DOMNode, DOMObject, DOMText};
 use std::fmt;
 
 glib::wrapper! {

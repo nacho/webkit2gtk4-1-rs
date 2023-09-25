@@ -3,8 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::NavigationType;
-use crate::URIRequest;
+use crate::{NavigationType, URIRequest};
 use glib::translate::*;
 
 glib::wrapper! {

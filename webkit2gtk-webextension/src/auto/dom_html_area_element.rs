@@ -2,21 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLAreaElement")]
@@ -33,131 +27,157 @@ impl DOMHTMLAreaElement {
 
 pub trait DOMHTMLAreaElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_alt")]
     #[doc(alias = "get_alt")]
     fn alt(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_coords")]
     #[doc(alias = "get_coords")]
     fn coords(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_hash")]
     #[doc(alias = "get_hash")]
     fn hash(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_host")]
     #[doc(alias = "get_host")]
     fn host(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_hostname")]
     #[doc(alias = "get_hostname")]
     fn hostname(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_href")]
     #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_no_href")]
     #[doc(alias = "get_no_href")]
     fn is_no_href(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_pathname")]
     #[doc(alias = "get_pathname")]
     fn pathname(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_port")]
     #[doc(alias = "get_port")]
     fn port(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_protocol")]
     #[doc(alias = "get_protocol")]
     fn protocol(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_search")]
     #[doc(alias = "get_search")]
     fn search(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_shape")]
     #[doc(alias = "get_shape")]
     fn shape(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_target")]
     #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_alt")]
     fn set_alt(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_coords")]
     fn set_coords(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_hash")]
     fn set_hash(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_host")]
     fn set_host(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_hostname")]
     fn set_hostname(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_href")]
     fn set_href(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_no_href")]
     fn set_no_href(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_pathname")]
     fn set_pathname(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_port")]
     fn set_port(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_protocol")]
     fn set_protocol(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_search")]
     fn set_search(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_shape")]
     fn set_shape(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_set_target")]
     fn set_target(&self, value: &str);
 
@@ -214,6 +234,7 @@ pub trait DOMHTMLAreaElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
+    #[allow(deprecated)]
     fn alt(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_alt(
@@ -222,6 +243,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn coords(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_coords(
@@ -230,6 +252,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn hash(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_hash(
@@ -238,6 +261,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn host(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_host(
@@ -246,6 +270,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn hostname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_hostname(
@@ -254,6 +279,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_href(
@@ -262,6 +288,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_no_href(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_area_element_get_no_href(
@@ -270,6 +297,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn pathname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_pathname(
@@ -278,6 +306,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn port(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_port(
@@ -286,6 +315,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn protocol(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_protocol(
@@ -294,6 +324,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn search(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_search(
@@ -302,6 +333,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn shape(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_shape(
@@ -310,6 +342,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_target(
@@ -318,6 +351,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_alt(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_alt(
@@ -327,6 +361,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_coords(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_coords(
@@ -336,6 +371,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_hash(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_hash(
@@ -347,6 +383,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_host(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_host(
@@ -358,6 +395,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_hostname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_hostname(
@@ -367,6 +405,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_href(
@@ -376,6 +415,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_no_href(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_no_href(
@@ -387,6 +427,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_pathname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_pathname(
@@ -398,6 +439,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_port(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_port(
@@ -409,6 +451,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_protocol(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_protocol(
@@ -420,6 +463,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_search(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_search(
@@ -429,6 +473,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_shape(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_shape(
@@ -438,6 +483,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_target(

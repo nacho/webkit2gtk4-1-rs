@@ -36,6 +36,7 @@ impl fmt::Display for CheckSyntaxMode {
 impl IntoGlib for CheckSyntaxMode {
     type GlibType = ffi::JSCCheckSyntaxMode;
 
+    #[inline]
     fn into_glib(self) -> ffi::JSCCheckSyntaxMode {
         match self {
             Self::Script => ffi::JSC_CHECK_SYNTAX_MODE_SCRIPT,
@@ -47,6 +48,7 @@ impl IntoGlib for CheckSyntaxMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCCheckSyntaxMode> for CheckSyntaxMode {
+    #[inline]
     unsafe fn from_glib(value: ffi::JSCCheckSyntaxMode) -> Self {
         match value {
             ffi::JSC_CHECK_SYNTAX_MODE_SCRIPT => Self::Script,
@@ -98,6 +100,7 @@ impl fmt::Display for CheckSyntaxResult {
 impl IntoGlib for CheckSyntaxResult {
     type GlibType = ffi::JSCCheckSyntaxResult;
 
+    #[inline]
     fn into_glib(self) -> ffi::JSCCheckSyntaxResult {
         match self {
             Self::Success => ffi::JSC_CHECK_SYNTAX_RESULT_SUCCESS,
@@ -115,6 +118,7 @@ impl IntoGlib for CheckSyntaxResult {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCCheckSyntaxResult> for CheckSyntaxResult {
+    #[inline]
     unsafe fn from_glib(value: ffi::JSCCheckSyntaxResult) -> Self {
         match value {
             ffi::JSC_CHECK_SYNTAX_RESULT_SUCCESS => Self::Success,
@@ -175,6 +179,7 @@ impl fmt::Display for OptionType {
 impl IntoGlib for OptionType {
     type GlibType = ffi::JSCOptionType;
 
+    #[inline]
     fn into_glib(self) -> ffi::JSCOptionType {
         match self {
             Self::Boolean => ffi::JSC_OPTION_BOOLEAN,
@@ -191,6 +196,7 @@ impl IntoGlib for OptionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCOptionType> for OptionType {
+    #[inline]
     unsafe fn from_glib(value: ffi::JSCOptionType) -> Self {
         match value {
             ffi::JSC_OPTION_BOOLEAN => Self::Boolean,

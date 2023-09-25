@@ -2,17 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMObject;
-use crate::DOMStyleSheet;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMObject, DOMStyleSheet};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMStyleSheetList")]
@@ -29,11 +27,13 @@ impl DOMStyleSheetList {
 
 pub trait DOMStyleSheetListExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_list_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMStyleSheet>;
 
@@ -42,10 +42,12 @@ pub trait DOMStyleSheetListExt: 'static {
 }
 
 impl<O: IsA<DOMStyleSheetList>> DOMStyleSheetListExt for O {
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_style_sheet_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn item(&self, index: libc::c_ulong) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_list_item(

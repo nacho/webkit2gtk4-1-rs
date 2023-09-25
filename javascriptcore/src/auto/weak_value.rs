@@ -4,16 +4,12 @@
 // DO NOT EDIT
 
 use crate::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "JSCWeakValue")]
@@ -37,47 +33,43 @@ impl WeakValue {
     ///
     /// This method returns an instance of [`WeakValueBuilder`](crate::builders::WeakValueBuilder) which can be used to create [`WeakValue`] objects.
     pub fn builder() -> WeakValueBuilder {
-        WeakValueBuilder::default()
+        WeakValueBuilder::new()
     }
 }
 
 impl Default for WeakValue {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WeakValue`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WeakValueBuilder {
-    value: Option<Value>,
+    builder: glib::object::ObjectBuilder<'static, WeakValue>,
 }
 
 impl WeakValueBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WeakValueBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn value(self, value: &impl IsA<Value>) -> Self {
+        Self {
+            builder: self.builder.property("value", value.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WeakValue`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> WeakValue {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref value) = self.value {
-            properties.push(("value", value));
-        }
-        glib::Object::new::<WeakValue>(&properties)
-    }
-
-    pub fn value(mut self, value: &impl IsA<Value>) -> Self {
-        self.value = Some(value.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

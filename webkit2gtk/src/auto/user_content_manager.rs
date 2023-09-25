@@ -9,26 +9,15 @@ use crate::JavascriptResult;
 #[cfg(any(feature = "v2_24", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
 use crate::UserContentFilter;
-use crate::UserScript;
-use crate::UserStyleSheet;
+use crate::{UserScript, UserStyleSheet};
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use glib::object::Cast;
-use glib::object::IsA;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use glib::signal::connect_raw;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use std::boxed::Box as Box_;
+use glib::signal::{connect_raw, SignalHandlerId};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use std::mem::transmute;
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitUserContentManager")]
@@ -324,7 +313,7 @@ impl<O: IsA<UserContentManager>> UserContentManagerExt for O {
         unsafe {
             let f: Box_<F> = Box_::new(f);
             let detailed_signal_name =
-                detail.map(|name| format!("script-message-received::{}\0", name));
+                detail.map(|name| format!("script-message-received::{name}\0"));
             let signal_name: &[u8] = detailed_signal_name
                 .as_ref()
                 .map_or(&b"script-message-received\0"[..], |n| n.as_bytes());

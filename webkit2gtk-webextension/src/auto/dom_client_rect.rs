@@ -2,17 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMClientRect")]
@@ -31,6 +29,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_bottom")]
     #[doc(alias = "get_bottom")]
     fn bottom(&self) -> f32;
@@ -38,6 +37,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_height")]
     #[doc(alias = "get_height")]
     fn height(&self) -> f32;
@@ -45,6 +45,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_left")]
     #[doc(alias = "get_left")]
     fn left(&self) -> f32;
@@ -52,6 +53,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_right")]
     #[doc(alias = "get_right")]
     fn right(&self) -> f32;
@@ -59,6 +61,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_top")]
     #[doc(alias = "get_top")]
     fn top(&self) -> f32;
@@ -66,6 +69,7 @@ pub trait DOMClientRectExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_width")]
     #[doc(alias = "get_width")]
     fn width(&self) -> f32;
@@ -104,36 +108,42 @@ pub trait DOMClientRectExt: 'static {
 impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn bottom(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_bottom(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn height(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_height(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn left(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_left(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn right(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_right(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn top(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_top(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[allow(deprecated)]
     fn width(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_width(self.as_ref().to_glib_none().0) }
     }

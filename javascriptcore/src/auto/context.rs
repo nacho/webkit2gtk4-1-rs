@@ -3,19 +3,9 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::CheckSyntaxMode;
-use crate::CheckSyntaxResult;
-use crate::Exception;
-use crate::Value;
-use crate::VirtualMachine;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::ptr;
+use crate::{CheckSyntaxMode, CheckSyntaxResult, Exception, Value, VirtualMachine};
+use glib::{prelude::*, translate::*};
+use std::{boxed::Box as Box_, fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "JSCContext")]
@@ -49,7 +39,7 @@ impl Context {
     ///
     /// This method returns an instance of [`ContextBuilder`](crate::builders::ContextBuilder) which can be used to create [`Context`] objects.
     pub fn builder() -> ContextBuilder {
-        ContextBuilder::default()
+        ContextBuilder::new()
     }
 
     #[doc(alias = "jsc_context_get_current")]
@@ -65,37 +55,35 @@ impl Default for Context {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Context`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ContextBuilder {
-    virtual_machine: Option<VirtualMachine>,
+    builder: glib::object::ObjectBuilder<'static, Context>,
 }
 
 impl ContextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ContextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn virtual_machine(self, virtual_machine: &impl IsA<VirtualMachine>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("virtual-machine", virtual_machine.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Context`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Context {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref virtual_machine) = self.virtual_machine {
-            properties.push(("virtual-machine", virtual_machine));
-        }
-        glib::Object::new::<Context>(&properties)
-    }
-
-    pub fn virtual_machine(mut self, virtual_machine: &impl IsA<VirtualMachine>) -> Self {
-        self.virtual_machine = Some(virtual_machine.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 
@@ -173,7 +161,7 @@ impl<O: IsA<Context>> ContextExt for O {
         uri: &str,
         line_number: u32,
     ) -> (CheckSyntaxResult, Exception) {
-        let length = code.len() as isize;
+        let length = code.len() as _;
         unsafe {
             let mut exception = ptr::null_mut();
             let ret = from_glib(ffi::jsc_context_check_syntax(
@@ -196,7 +184,7 @@ impl<O: IsA<Context>> ContextExt for O {
     }
 
     fn evaluate(&self, code: &str) -> Option<Value> {
-        let length = code.len() as isize;
+        let length = code.len() as _;
         unsafe {
             from_glib_full(ffi::jsc_context_evaluate(
                 self.as_ref().to_glib_none().0,
@@ -211,7 +199,7 @@ impl<O: IsA<Context>> ContextExt for O {
     //}
 
     fn evaluate_with_source_uri(&self, code: &str, uri: &str, line_number: u32) -> Option<Value> {
-        let length = code.len() as isize;
+        let length = code.len() as _;
         unsafe {
             from_glib_full(ffi::jsc_context_evaluate_with_source_uri(
                 self.as_ref().to_glib_none().0,
@@ -272,7 +260,7 @@ impl<O: IsA<Context>> ContextExt for O {
             let context = from_glib_borrow(context);
             let exception = from_glib_borrow(exception);
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&context, &exception);
+            (*callback)(&context, &exception)
         }
         let handler = Some(handler_func::<P> as _);
         unsafe extern "C" fn destroy_notify_func<P: Fn(&Context, &Exception) + 'static>(

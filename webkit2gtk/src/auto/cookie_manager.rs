@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::CookieAcceptPolicy;
-use crate::CookiePersistentStorage;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::pin::Pin;
-use std::ptr;
+use crate::{CookieAcceptPolicy, CookiePersistentStorage};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitCookieManager")]
@@ -41,6 +37,7 @@ pub trait CookieManagerExt: 'static {
     //fn add_cookie_future(&self, cookie: /*Ignored*/&mut soup::Cookie) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_cookie_manager_delete_all_cookies")]
     fn delete_all_cookies(&self);
 
@@ -55,6 +52,7 @@ pub trait CookieManagerExt: 'static {
     //fn delete_cookie_future(&self, cookie: /*Ignored*/&mut soup::Cookie) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
 
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_cookie_manager_delete_cookies_for_domain")]
     fn delete_cookies_for_domain(&self, domain: &str);
 
@@ -84,6 +82,7 @@ pub trait CookieManagerExt: 'static {
     //fn cookies_future(&self, uri: &str) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/Vec<soup::Cookie>, glib::Error>> + 'static>>;
 
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_cookie_manager_get_domains_with_cookies")]
     #[doc(alias = "get_domains_with_cookies")]
     fn domains_with_cookies<P: FnOnce(Result<Vec<glib::GString>, glib::Error>) + 'static>(
@@ -134,6 +133,7 @@ impl<O: IsA<CookieManager>> CookieManagerExt for O {
     //}))
     //}
 
+    #[allow(deprecated)]
     fn delete_all_cookies(&self) {
         unsafe {
             ffi::webkit_cookie_manager_delete_all_cookies(self.as_ref().to_glib_none().0);
@@ -163,6 +163,7 @@ impl<O: IsA<CookieManager>> CookieManagerExt for O {
     //}))
     //}
 
+    #[allow(deprecated)]
     fn delete_cookies_for_domain(&self, domain: &str) {
         unsafe {
             ffi::webkit_cookie_manager_delete_cookies_for_domain(
@@ -258,6 +259,7 @@ impl<O: IsA<CookieManager>> CookieManagerExt for O {
     //}))
     //}
 
+    #[allow(deprecated)]
     fn domains_with_cookies<P: FnOnce(Result<Vec<glib::GString>, glib::Error>) + 'static>(
         &self,
         cancellable: Option<&impl IsA<gio::Cancellable>>,

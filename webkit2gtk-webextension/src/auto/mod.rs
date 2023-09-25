@@ -374,13 +374,16 @@ pub use self::console_message::ConsoleMessage;
 mod enums;
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[allow(deprecated)]
 pub use self::enums::ConsoleMessageLevel;
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[allow(deprecated)]
 pub use self::enums::ConsoleMessageSource;
 pub use self::enums::ContextMenuAction;
 #[cfg(any(feature = "v2_20", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[allow(deprecated)]
 pub use self::enums::FormSubmissionStep;
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]

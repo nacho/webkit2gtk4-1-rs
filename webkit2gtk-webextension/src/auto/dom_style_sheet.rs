@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMMediaList;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMMediaList, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMStyleSheet")]
@@ -31,42 +27,50 @@ impl DOMStyleSheet {
 
 pub trait DOMStyleSheetExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_content_type")]
     #[doc(alias = "get_content_type")]
     fn content_type(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_disabled")]
     #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_href")]
     #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_media")]
     #[doc(alias = "get_media")]
     fn media(&self) -> Option<DOMMediaList>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_owner_node")]
     #[doc(alias = "get_owner_node")]
     fn owner_node(&self) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_parent_style_sheet")]
     #[doc(alias = "get_parent_style_sheet")]
     #[must_use]
     fn parent_style_sheet(&self) -> Option<DOMStyleSheet>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_get_title")]
     #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_set_disabled")]
     fn set_disabled(&self, value: bool);
 
@@ -96,6 +100,7 @@ pub trait DOMStyleSheetExt: 'static {
 }
 
 impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
+    #[allow(deprecated)]
     fn content_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_get_content_type(
@@ -104,6 +109,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_style_sheet_get_disabled(
@@ -112,6 +118,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_get_href(
@@ -120,6 +127,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn media(&self) -> Option<DOMMediaList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_get_media(
@@ -128,6 +136,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn owner_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_style_sheet_get_owner_node(
@@ -136,6 +145,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn parent_style_sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_get_parent_style_sheet(
@@ -144,6 +154,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_get_title(
@@ -152,6 +163,7 @@ impl<O: IsA<DOMStyleSheet>> DOMStyleSheetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_style_sheet_set_disabled(

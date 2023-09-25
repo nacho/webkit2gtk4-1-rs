@@ -2,14 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMNode;
-use crate::DOMObject;
-use crate::DOMXPathResult;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use crate::{DOMNode, DOMObject, DOMXPathResult};
+use glib::{prelude::*, translate::*};
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMXPathExpression")]
@@ -26,6 +23,7 @@ impl DOMXPathExpression {
 
 pub trait DOMXPathExpressionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_expression_evaluate")]
     fn evaluate(
         &self,
@@ -36,6 +34,7 @@ pub trait DOMXPathExpressionExt: 'static {
 }
 
 impl<O: IsA<DOMXPathExpression>> DOMXPathExpressionExt for O {
+    #[allow(deprecated)]
     fn evaluate(
         &self,
         contextNode: &impl IsA<DOMNode>,

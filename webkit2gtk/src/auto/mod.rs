@@ -382,6 +382,7 @@ pub use self::enums::PrintError;
 pub use self::enums::PrintOperationResponse;
 #[cfg(any(feature = "v2_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+#[allow(deprecated)]
 pub use self::enums::ProcessModel;
 pub use self::enums::SaveMode;
 pub use self::enums::ScriptDialogType;

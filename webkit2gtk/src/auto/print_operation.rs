@@ -6,18 +6,13 @@
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::PrintCustomWidget;
-use crate::PrintOperationResponse;
-use crate::WebView;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{PrintOperationResponse, WebView};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitPrintOperation")]
@@ -46,65 +41,57 @@ impl PrintOperation {
     ///
     /// This method returns an instance of [`PrintOperationBuilder`](crate::builders::PrintOperationBuilder) which can be used to create [`PrintOperation`] objects.
     pub fn builder() -> PrintOperationBuilder {
-        PrintOperationBuilder::default()
+        PrintOperationBuilder::new()
     }
 }
 
 impl Default for PrintOperation {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`PrintOperation`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct PrintOperationBuilder {
-    page_setup: Option<gtk::PageSetup>,
-    print_settings: Option<gtk::PrintSettings>,
-    web_view: Option<WebView>,
+    builder: glib::object::ObjectBuilder<'static, PrintOperation>,
 }
 
 impl PrintOperationBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`PrintOperationBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn page_setup(self, page_setup: &gtk::PageSetup) -> Self {
+        Self {
+            builder: self.builder.property("page-setup", page_setup.clone()),
+        }
+    }
+
+    pub fn print_settings(self, print_settings: &gtk::PrintSettings) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("print-settings", print_settings.clone()),
+        }
+    }
+
+    pub fn web_view(self, web_view: &impl IsA<WebView>) -> Self {
+        Self {
+            builder: self.builder.property("web-view", web_view.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`PrintOperation`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> PrintOperation {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref page_setup) = self.page_setup {
-            properties.push(("page-setup", page_setup));
-        }
-        if let Some(ref print_settings) = self.print_settings {
-            properties.push(("print-settings", print_settings));
-        }
-        if let Some(ref web_view) = self.web_view {
-            properties.push(("web-view", web_view));
-        }
-        glib::Object::new::<PrintOperation>(&properties)
-    }
-
-    pub fn page_setup(mut self, page_setup: &gtk::PageSetup) -> Self {
-        self.page_setup = Some(page_setup.clone());
-        self
-    }
-
-    pub fn print_settings(mut self, print_settings: &gtk::PrintSettings) -> Self {
-        self.print_settings = Some(print_settings.clone());
-        self
-    }
-
-    pub fn web_view(mut self, web_view: &impl IsA<WebView>) -> Self {
-        self.web_view = Some(web_view.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

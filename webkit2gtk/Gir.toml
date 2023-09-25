@@ -88,7 +88,6 @@ generate = [
     "WebKit2.UserStyleLevel",
     "WebKit2.WebInspector",
     "WebKit2.WebProcessTerminationReason",
-    "WebKit2.WebResource",
     "WebKit2.WebViewBase",
     "WebKit2.WebsiteDataAccessPermissionRequest",
     "WebKit2.WebsiteDataTypes",
@@ -368,3 +367,11 @@ version = "2.24"
     [[object.function]]
     name = "fetch_identifiers_finish"
     ignore = true
+
+[[object]]
+name = "WebKit2.WebResource"
+status = "generate"
+[[object.function]]
+name = "get_data"
+# rename WebResourceExt::data to WebResourceExt::the_data to avoid conflict with glib::ObjectExt::data
+rename = "the_data"

@@ -206,7 +206,7 @@ pub struct WebKitConsoleMessage {
 
 impl ::std::fmt::Debug for WebKitConsoleMessage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitConsoleMessage @ {:p}", self))
+        f.debug_struct(&format!("WebKitConsoleMessage @ {self:p}"))
             .finish()
     }
 }
@@ -223,7 +223,7 @@ pub struct WebKitContextMenuClass {
 
 impl ::std::fmt::Debug for WebKitContextMenuClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -245,7 +245,7 @@ pub struct WebKitContextMenuItemClass {
 
 impl ::std::fmt::Debug for WebKitContextMenuItemClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuItemClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuItemClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -279,7 +279,7 @@ pub struct WebKitDOMAttrClass {
 
 impl ::std::fmt::Debug for WebKitDOMAttrClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMAttrClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMAttrClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -293,7 +293,7 @@ pub struct WebKitDOMBlobClass {
 
 impl ::std::fmt::Debug for WebKitDOMBlobClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMBlobClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMBlobClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -307,7 +307,7 @@ pub struct WebKitDOMCDATASectionClass {
 
 impl ::std::fmt::Debug for WebKitDOMCDATASectionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCDATASectionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCDATASectionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -321,7 +321,7 @@ pub struct WebKitDOMCSSRuleClass {
 
 impl ::std::fmt::Debug for WebKitDOMCSSRuleClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSRuleClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSRuleClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -335,7 +335,7 @@ pub struct WebKitDOMCSSRuleListClass {
 
 impl ::std::fmt::Debug for WebKitDOMCSSRuleListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSRuleListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSRuleListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -349,7 +349,7 @@ pub struct WebKitDOMCSSStyleDeclarationClass {
 
 impl ::std::fmt::Debug for WebKitDOMCSSStyleDeclarationClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSStyleDeclarationClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSStyleDeclarationClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -363,7 +363,7 @@ pub struct WebKitDOMCSSStyleSheetClass {
 
 impl ::std::fmt::Debug for WebKitDOMCSSStyleSheetClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSStyleSheetClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSStyleSheetClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -377,7 +377,7 @@ pub struct WebKitDOMCSSValueClass {
 
 impl ::std::fmt::Debug for WebKitDOMCSSValueClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSValueClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSValueClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -391,7 +391,7 @@ pub struct WebKitDOMCharacterDataClass {
 
 impl ::std::fmt::Debug for WebKitDOMCharacterDataClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCharacterDataClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCharacterDataClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -405,7 +405,7 @@ pub struct WebKitDOMClientRectClass {
 
 impl ::std::fmt::Debug for WebKitDOMClientRectClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMClientRectClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMClientRectClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -419,7 +419,7 @@ pub struct WebKitDOMClientRectListClass {
 
 impl ::std::fmt::Debug for WebKitDOMClientRectListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMClientRectListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMClientRectListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -433,7 +433,7 @@ pub struct WebKitDOMCommentClass {
 
 impl ::std::fmt::Debug for WebKitDOMCommentClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCommentClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCommentClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -447,7 +447,7 @@ pub struct WebKitDOMDOMImplementationClass {
 
 impl ::std::fmt::Debug for WebKitDOMDOMImplementationClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMImplementationClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMImplementationClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -461,7 +461,7 @@ pub struct WebKitDOMDOMSelectionClass {
 
 impl ::std::fmt::Debug for WebKitDOMDOMSelectionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMSelectionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMSelectionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -475,7 +475,7 @@ pub struct WebKitDOMDOMTokenListClass {
 
 impl ::std::fmt::Debug for WebKitDOMDOMTokenListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMTokenListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMTokenListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -489,7 +489,7 @@ pub struct WebKitDOMDOMWindowClass {
 
 impl ::std::fmt::Debug for WebKitDOMDOMWindowClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMWindowClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMWindowClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -503,7 +503,7 @@ pub struct WebKitDOMDocumentClass {
 
 impl ::std::fmt::Debug for WebKitDOMDocumentClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocumentClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocumentClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -517,7 +517,7 @@ pub struct WebKitDOMDocumentFragmentClass {
 
 impl ::std::fmt::Debug for WebKitDOMDocumentFragmentClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocumentFragmentClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocumentFragmentClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -531,7 +531,7 @@ pub struct WebKitDOMDocumentTypeClass {
 
 impl ::std::fmt::Debug for WebKitDOMDocumentTypeClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocumentTypeClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocumentTypeClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -545,7 +545,7 @@ pub struct WebKitDOMElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -559,7 +559,7 @@ pub struct WebKitDOMEntityReferenceClass {
 
 impl ::std::fmt::Debug for WebKitDOMEntityReferenceClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMEntityReferenceClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMEntityReferenceClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -573,7 +573,7 @@ pub struct WebKitDOMEventClass {
 
 impl ::std::fmt::Debug for WebKitDOMEventClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMEventClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMEventClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -614,7 +614,7 @@ pub struct WebKitDOMEventTargetIface {
 
 impl ::std::fmt::Debug for WebKitDOMEventTargetIface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMEventTargetIface @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMEventTargetIface @ {self:p}"))
             .field("gIface", &self.gIface)
             .field("dispatch_event", &self.dispatch_event)
             .field("add_event_listener", &self.add_event_listener)
@@ -635,7 +635,7 @@ pub struct WebKitDOMFileClass {
 
 impl ::std::fmt::Debug for WebKitDOMFileClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMFileClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMFileClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -649,7 +649,7 @@ pub struct WebKitDOMFileListClass {
 
 impl ::std::fmt::Debug for WebKitDOMFileListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMFileListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMFileListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -663,7 +663,7 @@ pub struct WebKitDOMHTMLAnchorElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAnchorElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAnchorElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAnchorElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -677,7 +677,7 @@ pub struct WebKitDOMHTMLAppletElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAppletElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAppletElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAppletElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -691,7 +691,7 @@ pub struct WebKitDOMHTMLAreaElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAreaElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAreaElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAreaElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -705,7 +705,7 @@ pub struct WebKitDOMHTMLBRElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBRElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBRElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBRElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -719,7 +719,7 @@ pub struct WebKitDOMHTMLBaseElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBaseElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBaseElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBaseElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -733,7 +733,7 @@ pub struct WebKitDOMHTMLBaseFontElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBaseFontElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBaseFontElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBaseFontElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -747,7 +747,7 @@ pub struct WebKitDOMHTMLBodyElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBodyElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBodyElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBodyElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -761,7 +761,7 @@ pub struct WebKitDOMHTMLButtonElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLButtonElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLButtonElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLButtonElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -775,7 +775,7 @@ pub struct WebKitDOMHTMLCanvasElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLCanvasElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLCanvasElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLCanvasElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -789,7 +789,7 @@ pub struct WebKitDOMHTMLCollectionClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLCollectionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLCollectionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLCollectionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -803,7 +803,7 @@ pub struct WebKitDOMHTMLDListElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDListElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDListElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDListElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -817,7 +817,7 @@ pub struct WebKitDOMHTMLDirectoryElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDirectoryElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDirectoryElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDirectoryElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -831,7 +831,7 @@ pub struct WebKitDOMHTMLDivElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDivElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDivElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDivElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -845,7 +845,7 @@ pub struct WebKitDOMHTMLDocumentClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDocumentClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDocumentClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDocumentClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -859,7 +859,7 @@ pub struct WebKitDOMHTMLElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -873,7 +873,7 @@ pub struct WebKitDOMHTMLEmbedElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLEmbedElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLEmbedElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLEmbedElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -887,7 +887,7 @@ pub struct WebKitDOMHTMLFieldSetElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFieldSetElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFieldSetElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFieldSetElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -901,7 +901,7 @@ pub struct WebKitDOMHTMLFontElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFontElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFontElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFontElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -915,7 +915,7 @@ pub struct WebKitDOMHTMLFormElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFormElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFormElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFormElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -929,7 +929,7 @@ pub struct WebKitDOMHTMLFrameElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFrameElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFrameElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFrameElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -943,7 +943,7 @@ pub struct WebKitDOMHTMLFrameSetElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFrameSetElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFrameSetElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFrameSetElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -957,7 +957,7 @@ pub struct WebKitDOMHTMLHRElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHRElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHRElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHRElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -971,7 +971,7 @@ pub struct WebKitDOMHTMLHeadElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHeadElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHeadElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHeadElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -985,7 +985,7 @@ pub struct WebKitDOMHTMLHeadingElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHeadingElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHeadingElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHeadingElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -999,7 +999,7 @@ pub struct WebKitDOMHTMLHtmlElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHtmlElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHtmlElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHtmlElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1013,7 +1013,7 @@ pub struct WebKitDOMHTMLIFrameElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLIFrameElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLIFrameElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLIFrameElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1027,7 +1027,7 @@ pub struct WebKitDOMHTMLImageElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLImageElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLImageElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLImageElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1041,7 +1041,7 @@ pub struct WebKitDOMHTMLInputElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLInputElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLInputElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLInputElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1055,7 +1055,7 @@ pub struct WebKitDOMHTMLLIElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLIElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLIElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLIElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1069,7 +1069,7 @@ pub struct WebKitDOMHTMLLabelElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLabelElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLabelElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLabelElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1083,7 +1083,7 @@ pub struct WebKitDOMHTMLLegendElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLegendElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLegendElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLegendElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1097,7 +1097,7 @@ pub struct WebKitDOMHTMLLinkElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLinkElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLinkElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLinkElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1111,7 +1111,7 @@ pub struct WebKitDOMHTMLMapElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMapElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMapElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMapElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1125,7 +1125,7 @@ pub struct WebKitDOMHTMLMarqueeElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMarqueeElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMarqueeElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMarqueeElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1139,7 +1139,7 @@ pub struct WebKitDOMHTMLMenuElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMenuElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMenuElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMenuElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1153,7 +1153,7 @@ pub struct WebKitDOMHTMLMetaElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMetaElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMetaElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMetaElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1167,7 +1167,7 @@ pub struct WebKitDOMHTMLModElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLModElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLModElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLModElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1181,7 +1181,7 @@ pub struct WebKitDOMHTMLOListElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOListElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOListElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOListElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1195,7 +1195,7 @@ pub struct WebKitDOMHTMLObjectElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLObjectElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLObjectElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLObjectElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1209,7 +1209,7 @@ pub struct WebKitDOMHTMLOptGroupElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptGroupElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptGroupElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptGroupElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1223,7 +1223,7 @@ pub struct WebKitDOMHTMLOptionElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptionElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptionElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptionElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1237,7 +1237,7 @@ pub struct WebKitDOMHTMLOptionsCollectionClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptionsCollectionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptionsCollectionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptionsCollectionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1251,7 +1251,7 @@ pub struct WebKitDOMHTMLParagraphElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLParagraphElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLParagraphElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLParagraphElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1265,7 +1265,7 @@ pub struct WebKitDOMHTMLParamElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLParamElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLParamElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLParamElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1279,7 +1279,7 @@ pub struct WebKitDOMHTMLPreElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLPreElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLPreElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLPreElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1293,7 +1293,7 @@ pub struct WebKitDOMHTMLQuoteElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLQuoteElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLQuoteElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLQuoteElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1307,7 +1307,7 @@ pub struct WebKitDOMHTMLScriptElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLScriptElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLScriptElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLScriptElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1321,7 +1321,7 @@ pub struct WebKitDOMHTMLSelectElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLSelectElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLSelectElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLSelectElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1335,7 +1335,7 @@ pub struct WebKitDOMHTMLStyleElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLStyleElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLStyleElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLStyleElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1349,12 +1349,9 @@ pub struct WebKitDOMHTMLTableCaptionElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableCaptionElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "WebKitDOMHTMLTableCaptionElementClass @ {:p}",
-            self
-        ))
-        .field("parent_class", &self.parent_class)
-        .finish()
+        f.debug_struct(&format!("WebKitDOMHTMLTableCaptionElementClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
     }
 }
 
@@ -1366,7 +1363,7 @@ pub struct WebKitDOMHTMLTableCellElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableCellElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableCellElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableCellElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1380,7 +1377,7 @@ pub struct WebKitDOMHTMLTableColElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableColElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableColElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableColElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1394,7 +1391,7 @@ pub struct WebKitDOMHTMLTableElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1408,7 +1405,7 @@ pub struct WebKitDOMHTMLTableRowElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableRowElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableRowElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableRowElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1422,12 +1419,9 @@ pub struct WebKitDOMHTMLTableSectionElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableSectionElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!(
-            "WebKitDOMHTMLTableSectionElementClass @ {:p}",
-            self
-        ))
-        .field("parent_class", &self.parent_class)
-        .finish()
+        f.debug_struct(&format!("WebKitDOMHTMLTableSectionElementClass @ {self:p}"))
+            .field("parent_class", &self.parent_class)
+            .finish()
     }
 }
 
@@ -1439,7 +1433,7 @@ pub struct WebKitDOMHTMLTextAreaElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTextAreaElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTextAreaElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTextAreaElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1453,7 +1447,7 @@ pub struct WebKitDOMHTMLTitleElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTitleElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTitleElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTitleElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1467,7 +1461,7 @@ pub struct WebKitDOMHTMLUListElementClass {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLUListElementClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLUListElementClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLUListElementClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1481,7 +1475,7 @@ pub struct WebKitDOMKeyboardEventClass {
 
 impl ::std::fmt::Debug for WebKitDOMKeyboardEventClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMKeyboardEventClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMKeyboardEventClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1495,7 +1489,7 @@ pub struct WebKitDOMMediaListClass {
 
 impl ::std::fmt::Debug for WebKitDOMMediaListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMMediaListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMMediaListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1509,7 +1503,7 @@ pub struct WebKitDOMMouseEventClass {
 
 impl ::std::fmt::Debug for WebKitDOMMouseEventClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMMouseEventClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMMouseEventClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1523,7 +1517,7 @@ pub struct WebKitDOMNamedNodeMapClass {
 
 impl ::std::fmt::Debug for WebKitDOMNamedNodeMapClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNamedNodeMapClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNamedNodeMapClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1537,7 +1531,7 @@ pub struct WebKitDOMNodeClass {
 
 impl ::std::fmt::Debug for WebKitDOMNodeClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1557,7 +1551,7 @@ pub struct WebKitDOMNodeFilterIface {
 
 impl ::std::fmt::Debug for WebKitDOMNodeFilterIface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeFilterIface @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeFilterIface @ {self:p}"))
             .field("gIface", &self.gIface)
             .field("accept_node", &self.accept_node)
             .field("_webkitdom_reserved0", &self._webkitdom_reserved0)
@@ -1576,7 +1570,7 @@ pub struct WebKitDOMNodeIteratorClass {
 
 impl ::std::fmt::Debug for WebKitDOMNodeIteratorClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeIteratorClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeIteratorClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1590,7 +1584,7 @@ pub struct WebKitDOMNodeListClass {
 
 impl ::std::fmt::Debug for WebKitDOMNodeListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1604,7 +1598,7 @@ pub struct WebKitDOMObjectClass {
 
 impl ::std::fmt::Debug for WebKitDOMObjectClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMObjectClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMObjectClass @ {self:p}"))
             .field("parentClass", &self.parentClass)
             .finish()
     }
@@ -1618,7 +1612,7 @@ pub struct WebKitDOMProcessingInstructionClass {
 
 impl ::std::fmt::Debug for WebKitDOMProcessingInstructionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMProcessingInstructionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMProcessingInstructionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1632,7 +1626,7 @@ pub struct WebKitDOMRangeClass {
 
 impl ::std::fmt::Debug for WebKitDOMRangeClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMRangeClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMRangeClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1646,7 +1640,7 @@ pub struct WebKitDOMStyleSheetClass {
 
 impl ::std::fmt::Debug for WebKitDOMStyleSheetClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMStyleSheetClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMStyleSheetClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1660,7 +1654,7 @@ pub struct WebKitDOMStyleSheetListClass {
 
 impl ::std::fmt::Debug for WebKitDOMStyleSheetListClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMStyleSheetListClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMStyleSheetListClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1674,7 +1668,7 @@ pub struct WebKitDOMTextClass {
 
 impl ::std::fmt::Debug for WebKitDOMTextClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMTextClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMTextClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1688,7 +1682,7 @@ pub struct WebKitDOMTreeWalkerClass {
 
 impl ::std::fmt::Debug for WebKitDOMTreeWalkerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMTreeWalkerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMTreeWalkerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1702,7 +1696,7 @@ pub struct WebKitDOMUIEventClass {
 
 impl ::std::fmt::Debug for WebKitDOMUIEventClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMUIEventClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMUIEventClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1716,7 +1710,7 @@ pub struct WebKitDOMWheelEventClass {
 
 impl ::std::fmt::Debug for WebKitDOMWheelEventClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMWheelEventClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMWheelEventClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1730,7 +1724,7 @@ pub struct WebKitDOMXPathExpressionClass {
 
 impl ::std::fmt::Debug for WebKitDOMXPathExpressionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMXPathExpressionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMXPathExpressionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1750,7 +1744,7 @@ pub struct WebKitDOMXPathNSResolverIface {
 
 impl ::std::fmt::Debug for WebKitDOMXPathNSResolverIface {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMXPathNSResolverIface @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMXPathNSResolverIface @ {self:p}"))
             .field("gIface", &self.gIface)
             .field("lookup_namespace_uri", &self.lookup_namespace_uri)
             .field("_webkitdom_reserved0", &self._webkitdom_reserved0)
@@ -1769,7 +1763,7 @@ pub struct WebKitDOMXPathResultClass {
 
 impl ::std::fmt::Debug for WebKitDOMXPathResultClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMXPathResultClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMXPathResultClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1783,7 +1777,7 @@ pub struct WebKitFrameClass {
 
 impl ::std::fmt::Debug for WebKitFrameClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFrameClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitFrameClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1809,7 +1803,7 @@ pub struct WebKitHitTestResultClass {
 
 impl ::std::fmt::Debug for WebKitHitTestResultClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitHitTestResultClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitHitTestResultClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1839,7 +1833,7 @@ pub struct WebKitScriptWorldClass {
 
 impl ::std::fmt::Debug for WebKitScriptWorldClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitScriptWorldClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitScriptWorldClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1869,7 +1863,7 @@ pub struct WebKitURIRequestClass {
 
 impl ::std::fmt::Debug for WebKitURIRequestClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIRequestClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIRequestClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1899,7 +1893,7 @@ pub struct WebKitURIResponseClass {
 
 impl ::std::fmt::Debug for WebKitURIResponseClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIResponseClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIResponseClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1929,7 +1923,7 @@ pub struct WebKitUserMessageClass {
 
 impl ::std::fmt::Debug for WebKitUserMessageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserMessageClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserMessageClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -1955,7 +1949,7 @@ pub struct WebKitWebEditorClass {
 
 impl ::std::fmt::Debug for WebKitWebEditorClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebEditorClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebEditorClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1977,7 +1971,7 @@ pub struct WebKitWebExtensionClass {
 
 impl ::std::fmt::Debug for WebKitWebExtensionClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebExtensionClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebExtensionClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -1999,7 +1993,7 @@ pub struct WebKitWebFormManagerClass {
 
 impl ::std::fmt::Debug for WebKitWebFormManagerClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebFormManagerClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebFormManagerClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -2017,7 +2011,7 @@ pub struct WebKitWebHitTestResultClass {
 
 impl ::std::fmt::Debug for WebKitWebHitTestResultClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebHitTestResultClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebHitTestResultClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .field("_webkit_reserved0", &self._webkit_reserved0)
             .field("_webkit_reserved1", &self._webkit_reserved1)
@@ -2043,7 +2037,7 @@ pub struct WebKitWebPageClass {
 
 impl ::std::fmt::Debug for WebKitWebPageClass {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebPageClass @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebPageClass @ {self:p}"))
             .field("parent_class", &self.parent_class)
             .finish()
     }
@@ -2067,7 +2061,7 @@ pub struct WebKitContextMenu {
 
 impl ::std::fmt::Debug for WebKitContextMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenu @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenu @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2083,7 +2077,7 @@ pub struct WebKitContextMenuItem {
 
 impl ::std::fmt::Debug for WebKitContextMenuItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitContextMenuItem @ {:p}", self))
+        f.debug_struct(&format!("WebKitContextMenuItem @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -2098,7 +2092,7 @@ pub struct WebKitDOMAttr {
 
 impl ::std::fmt::Debug for WebKitDOMAttr {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMAttr @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMAttr @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2112,7 +2106,7 @@ pub struct WebKitDOMBlob {
 
 impl ::std::fmt::Debug for WebKitDOMBlob {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMBlob @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMBlob @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2126,7 +2120,7 @@ pub struct WebKitDOMCDATASection {
 
 impl ::std::fmt::Debug for WebKitDOMCDATASection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCDATASection @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCDATASection @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2140,7 +2134,7 @@ pub struct WebKitDOMCSSRule {
 
 impl ::std::fmt::Debug for WebKitDOMCSSRule {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSRule @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSRule @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2154,7 +2148,7 @@ pub struct WebKitDOMCSSRuleList {
 
 impl ::std::fmt::Debug for WebKitDOMCSSRuleList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSRuleList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSRuleList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2168,7 +2162,7 @@ pub struct WebKitDOMCSSStyleDeclaration {
 
 impl ::std::fmt::Debug for WebKitDOMCSSStyleDeclaration {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSStyleDeclaration @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSStyleDeclaration @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2182,7 +2176,7 @@ pub struct WebKitDOMCSSStyleSheet {
 
 impl ::std::fmt::Debug for WebKitDOMCSSStyleSheet {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSStyleSheet @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSStyleSheet @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2196,7 +2190,7 @@ pub struct WebKitDOMCSSValue {
 
 impl ::std::fmt::Debug for WebKitDOMCSSValue {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCSSValue @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCSSValue @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2210,7 +2204,7 @@ pub struct WebKitDOMCharacterData {
 
 impl ::std::fmt::Debug for WebKitDOMCharacterData {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMCharacterData @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMCharacterData @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2224,7 +2218,7 @@ pub struct WebKitDOMClientRect {
 
 impl ::std::fmt::Debug for WebKitDOMClientRect {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMClientRect @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMClientRect @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2238,7 +2232,7 @@ pub struct WebKitDOMClientRectList {
 
 impl ::std::fmt::Debug for WebKitDOMClientRectList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMClientRectList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMClientRectList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2252,7 +2246,7 @@ pub struct WebKitDOMComment {
 
 impl ::std::fmt::Debug for WebKitDOMComment {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMComment @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMComment @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2266,7 +2260,7 @@ pub struct WebKitDOMDOMImplementation {
 
 impl ::std::fmt::Debug for WebKitDOMDOMImplementation {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMImplementation @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMImplementation @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2280,7 +2274,7 @@ pub struct WebKitDOMDOMSelection {
 
 impl ::std::fmt::Debug for WebKitDOMDOMSelection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMSelection @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMSelection @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2294,7 +2288,7 @@ pub struct WebKitDOMDOMTokenList {
 
 impl ::std::fmt::Debug for WebKitDOMDOMTokenList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMTokenList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMTokenList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2308,7 +2302,7 @@ pub struct WebKitDOMDOMWindow {
 
 impl ::std::fmt::Debug for WebKitDOMDOMWindow {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDOMWindow @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDOMWindow @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2322,7 +2316,7 @@ pub struct WebKitDOMDocument {
 
 impl ::std::fmt::Debug for WebKitDOMDocument {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocument @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocument @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2336,7 +2330,7 @@ pub struct WebKitDOMDocumentFragment {
 
 impl ::std::fmt::Debug for WebKitDOMDocumentFragment {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocumentFragment @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocumentFragment @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2350,7 +2344,7 @@ pub struct WebKitDOMDocumentType {
 
 impl ::std::fmt::Debug for WebKitDOMDocumentType {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMDocumentType @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMDocumentType @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2364,7 +2358,7 @@ pub struct WebKitDOMElement {
 
 impl ::std::fmt::Debug for WebKitDOMElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2378,7 +2372,7 @@ pub struct WebKitDOMEntityReference {
 
 impl ::std::fmt::Debug for WebKitDOMEntityReference {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMEntityReference @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMEntityReference @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2392,7 +2386,7 @@ pub struct WebKitDOMEvent {
 
 impl ::std::fmt::Debug for WebKitDOMEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMEvent @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMEvent @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2406,7 +2400,7 @@ pub struct WebKitDOMFile {
 
 impl ::std::fmt::Debug for WebKitDOMFile {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMFile @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMFile @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2420,7 +2414,7 @@ pub struct WebKitDOMFileList {
 
 impl ::std::fmt::Debug for WebKitDOMFileList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMFileList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMFileList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2434,7 +2428,7 @@ pub struct WebKitDOMHTMLAnchorElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAnchorElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAnchorElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAnchorElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2448,7 +2442,7 @@ pub struct WebKitDOMHTMLAppletElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAppletElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAppletElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAppletElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2462,7 +2456,7 @@ pub struct WebKitDOMHTMLAreaElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLAreaElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLAreaElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLAreaElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2476,7 +2470,7 @@ pub struct WebKitDOMHTMLBRElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBRElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBRElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBRElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2490,7 +2484,7 @@ pub struct WebKitDOMHTMLBaseElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBaseElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBaseElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBaseElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2504,7 +2498,7 @@ pub struct WebKitDOMHTMLBaseFontElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBaseFontElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBaseFontElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBaseFontElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2518,7 +2512,7 @@ pub struct WebKitDOMHTMLBodyElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLBodyElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLBodyElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLBodyElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2532,7 +2526,7 @@ pub struct WebKitDOMHTMLButtonElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLButtonElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLButtonElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLButtonElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2546,7 +2540,7 @@ pub struct WebKitDOMHTMLCanvasElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLCanvasElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLCanvasElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLCanvasElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2560,7 +2554,7 @@ pub struct WebKitDOMHTMLCollection {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLCollection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLCollection @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLCollection @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2574,7 +2568,7 @@ pub struct WebKitDOMHTMLDListElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDListElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDListElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDListElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2588,7 +2582,7 @@ pub struct WebKitDOMHTMLDirectoryElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDirectoryElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDirectoryElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDirectoryElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2602,7 +2596,7 @@ pub struct WebKitDOMHTMLDivElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDivElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDivElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDivElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2616,7 +2610,7 @@ pub struct WebKitDOMHTMLDocument {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLDocument {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLDocument @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLDocument @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2630,7 +2624,7 @@ pub struct WebKitDOMHTMLElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2644,7 +2638,7 @@ pub struct WebKitDOMHTMLEmbedElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLEmbedElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLEmbedElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLEmbedElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2658,7 +2652,7 @@ pub struct WebKitDOMHTMLFieldSetElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFieldSetElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFieldSetElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFieldSetElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2672,7 +2666,7 @@ pub struct WebKitDOMHTMLFontElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFontElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFontElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFontElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2686,7 +2680,7 @@ pub struct WebKitDOMHTMLFormElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFormElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFormElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFormElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2700,7 +2694,7 @@ pub struct WebKitDOMHTMLFrameElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFrameElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFrameElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFrameElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2714,7 +2708,7 @@ pub struct WebKitDOMHTMLFrameSetElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLFrameSetElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLFrameSetElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLFrameSetElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2728,7 +2722,7 @@ pub struct WebKitDOMHTMLHRElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHRElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHRElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHRElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2742,7 +2736,7 @@ pub struct WebKitDOMHTMLHeadElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHeadElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHeadElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHeadElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2756,7 +2750,7 @@ pub struct WebKitDOMHTMLHeadingElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHeadingElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHeadingElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHeadingElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2770,7 +2764,7 @@ pub struct WebKitDOMHTMLHtmlElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLHtmlElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLHtmlElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLHtmlElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2784,7 +2778,7 @@ pub struct WebKitDOMHTMLIFrameElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLIFrameElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLIFrameElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLIFrameElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2798,7 +2792,7 @@ pub struct WebKitDOMHTMLImageElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLImageElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLImageElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLImageElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2812,7 +2806,7 @@ pub struct WebKitDOMHTMLInputElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLInputElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLInputElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLInputElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2826,7 +2820,7 @@ pub struct WebKitDOMHTMLLIElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLIElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLIElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLIElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2840,7 +2834,7 @@ pub struct WebKitDOMHTMLLabelElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLabelElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLabelElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLabelElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2854,7 +2848,7 @@ pub struct WebKitDOMHTMLLegendElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLegendElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLegendElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLegendElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2868,7 +2862,7 @@ pub struct WebKitDOMHTMLLinkElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLLinkElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLLinkElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLLinkElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2882,7 +2876,7 @@ pub struct WebKitDOMHTMLMapElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMapElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMapElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMapElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2896,7 +2890,7 @@ pub struct WebKitDOMHTMLMarqueeElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMarqueeElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMarqueeElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMarqueeElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2910,7 +2904,7 @@ pub struct WebKitDOMHTMLMenuElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMenuElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMenuElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMenuElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2924,7 +2918,7 @@ pub struct WebKitDOMHTMLMetaElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLMetaElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLMetaElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLMetaElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2938,7 +2932,7 @@ pub struct WebKitDOMHTMLModElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLModElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLModElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLModElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2952,7 +2946,7 @@ pub struct WebKitDOMHTMLOListElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOListElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOListElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOListElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2966,7 +2960,7 @@ pub struct WebKitDOMHTMLObjectElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLObjectElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLObjectElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLObjectElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2980,7 +2974,7 @@ pub struct WebKitDOMHTMLOptGroupElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptGroupElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptGroupElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptGroupElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -2994,7 +2988,7 @@ pub struct WebKitDOMHTMLOptionElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptionElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptionElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptionElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3008,7 +3002,7 @@ pub struct WebKitDOMHTMLOptionsCollection {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLOptionsCollection {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLOptionsCollection @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLOptionsCollection @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3022,7 +3016,7 @@ pub struct WebKitDOMHTMLParagraphElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLParagraphElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLParagraphElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLParagraphElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3036,7 +3030,7 @@ pub struct WebKitDOMHTMLParamElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLParamElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLParamElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLParamElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3050,7 +3044,7 @@ pub struct WebKitDOMHTMLPreElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLPreElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLPreElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLPreElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3064,7 +3058,7 @@ pub struct WebKitDOMHTMLQuoteElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLQuoteElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLQuoteElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLQuoteElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3078,7 +3072,7 @@ pub struct WebKitDOMHTMLScriptElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLScriptElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLScriptElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLScriptElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3092,7 +3086,7 @@ pub struct WebKitDOMHTMLSelectElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLSelectElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLSelectElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLSelectElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3106,7 +3100,7 @@ pub struct WebKitDOMHTMLStyleElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLStyleElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLStyleElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLStyleElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3120,7 +3114,7 @@ pub struct WebKitDOMHTMLTableCaptionElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableCaptionElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableCaptionElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableCaptionElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3134,7 +3128,7 @@ pub struct WebKitDOMHTMLTableCellElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableCellElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableCellElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableCellElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3148,7 +3142,7 @@ pub struct WebKitDOMHTMLTableColElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableColElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableColElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableColElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3162,7 +3156,7 @@ pub struct WebKitDOMHTMLTableElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3176,7 +3170,7 @@ pub struct WebKitDOMHTMLTableRowElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableRowElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableRowElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableRowElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3190,7 +3184,7 @@ pub struct WebKitDOMHTMLTableSectionElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTableSectionElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTableSectionElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTableSectionElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3204,7 +3198,7 @@ pub struct WebKitDOMHTMLTextAreaElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTextAreaElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTextAreaElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTextAreaElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3218,7 +3212,7 @@ pub struct WebKitDOMHTMLTitleElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLTitleElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLTitleElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLTitleElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3232,7 +3226,7 @@ pub struct WebKitDOMHTMLUListElement {
 
 impl ::std::fmt::Debug for WebKitDOMHTMLUListElement {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMHTMLUListElement @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMHTMLUListElement @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3246,7 +3240,7 @@ pub struct WebKitDOMKeyboardEvent {
 
 impl ::std::fmt::Debug for WebKitDOMKeyboardEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMKeyboardEvent @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMKeyboardEvent @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3260,7 +3254,7 @@ pub struct WebKitDOMMediaList {
 
 impl ::std::fmt::Debug for WebKitDOMMediaList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMMediaList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMMediaList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3274,7 +3268,7 @@ pub struct WebKitDOMMouseEvent {
 
 impl ::std::fmt::Debug for WebKitDOMMouseEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMMouseEvent @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMMouseEvent @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3288,7 +3282,7 @@ pub struct WebKitDOMNamedNodeMap {
 
 impl ::std::fmt::Debug for WebKitDOMNamedNodeMap {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNamedNodeMap @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNamedNodeMap @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3302,7 +3296,7 @@ pub struct WebKitDOMNode {
 
 impl ::std::fmt::Debug for WebKitDOMNode {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNode @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNode @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3316,7 +3310,7 @@ pub struct WebKitDOMNodeIterator {
 
 impl ::std::fmt::Debug for WebKitDOMNodeIterator {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeIterator @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeIterator @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3330,7 +3324,7 @@ pub struct WebKitDOMNodeList {
 
 impl ::std::fmt::Debug for WebKitDOMNodeList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMNodeList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMNodeList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3345,7 +3339,7 @@ pub struct WebKitDOMObject {
 
 impl ::std::fmt::Debug for WebKitDOMObject {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMObject @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMObject @ {self:p}"))
             .field("parentInstance", &self.parentInstance)
             .field("coreObject", &self.coreObject)
             .finish()
@@ -3360,7 +3354,7 @@ pub struct WebKitDOMProcessingInstruction {
 
 impl ::std::fmt::Debug for WebKitDOMProcessingInstruction {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMProcessingInstruction @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMProcessingInstruction @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3374,7 +3368,7 @@ pub struct WebKitDOMRange {
 
 impl ::std::fmt::Debug for WebKitDOMRange {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMRange @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMRange @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3388,7 +3382,7 @@ pub struct WebKitDOMStyleSheet {
 
 impl ::std::fmt::Debug for WebKitDOMStyleSheet {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMStyleSheet @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMStyleSheet @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3402,7 +3396,7 @@ pub struct WebKitDOMStyleSheetList {
 
 impl ::std::fmt::Debug for WebKitDOMStyleSheetList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMStyleSheetList @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMStyleSheetList @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3416,7 +3410,7 @@ pub struct WebKitDOMText {
 
 impl ::std::fmt::Debug for WebKitDOMText {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMText @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMText @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3430,7 +3424,7 @@ pub struct WebKitDOMTreeWalker {
 
 impl ::std::fmt::Debug for WebKitDOMTreeWalker {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMTreeWalker @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMTreeWalker @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3444,7 +3438,7 @@ pub struct WebKitDOMUIEvent {
 
 impl ::std::fmt::Debug for WebKitDOMUIEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMUIEvent @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMUIEvent @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3458,7 +3452,7 @@ pub struct WebKitDOMWheelEvent {
 
 impl ::std::fmt::Debug for WebKitDOMWheelEvent {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMWheelEvent @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMWheelEvent @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3472,7 +3466,7 @@ pub struct WebKitDOMXPathExpression {
 
 impl ::std::fmt::Debug for WebKitDOMXPathExpression {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMXPathExpression @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMXPathExpression @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3486,7 +3480,7 @@ pub struct WebKitDOMXPathResult {
 
 impl ::std::fmt::Debug for WebKitDOMXPathResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitDOMXPathResult @ {:p}", self))
+        f.debug_struct(&format!("WebKitDOMXPathResult @ {self:p}"))
             .field("parent_instance", &self.parent_instance)
             .finish()
     }
@@ -3501,7 +3495,7 @@ pub struct WebKitFrame {
 
 impl ::std::fmt::Debug for WebKitFrame {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitFrame @ {:p}", self))
+        f.debug_struct(&format!("WebKitFrame @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3517,7 +3511,7 @@ pub struct WebKitHitTestResult {
 
 impl ::std::fmt::Debug for WebKitHitTestResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitHitTestResult @ {:p}", self))
+        f.debug_struct(&format!("WebKitHitTestResult @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3533,7 +3527,7 @@ pub struct WebKitScriptWorld {
 
 impl ::std::fmt::Debug for WebKitScriptWorld {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitScriptWorld @ {:p}", self))
+        f.debug_struct(&format!("WebKitScriptWorld @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3549,7 +3543,7 @@ pub struct WebKitURIRequest {
 
 impl ::std::fmt::Debug for WebKitURIRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIRequest @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIRequest @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3565,7 +3559,7 @@ pub struct WebKitURIResponse {
 
 impl ::std::fmt::Debug for WebKitURIResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitURIResponse @ {:p}", self))
+        f.debug_struct(&format!("WebKitURIResponse @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3581,7 +3575,7 @@ pub struct WebKitUserMessage {
 
 impl ::std::fmt::Debug for WebKitUserMessage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitUserMessage @ {:p}", self))
+        f.debug_struct(&format!("WebKitUserMessage @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3597,7 +3591,7 @@ pub struct WebKitWebEditor {
 
 impl ::std::fmt::Debug for WebKitWebEditor {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebEditor @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebEditor @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3613,7 +3607,7 @@ pub struct WebKitWebExtension {
 
 impl ::std::fmt::Debug for WebKitWebExtension {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebExtension @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebExtension @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3628,7 +3622,7 @@ pub struct WebKitWebFormManager {
 
 impl ::std::fmt::Debug for WebKitWebFormManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebFormManager @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebFormManager @ {self:p}"))
             .field("parent", &self.parent)
             .finish()
     }
@@ -3643,7 +3637,7 @@ pub struct WebKitWebHitTestResult {
 
 impl ::std::fmt::Debug for WebKitWebHitTestResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebHitTestResult @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebHitTestResult @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3659,7 +3653,7 @@ pub struct WebKitWebPage {
 
 impl ::std::fmt::Debug for WebKitWebPage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        f.debug_struct(&format!("WebKitWebPage @ {:p}", self))
+        f.debug_struct(&format!("WebKitWebPage @ {self:p}"))
             .field("parent", &self.parent)
             .field("priv_", &self.priv_)
             .finish()
@@ -3675,7 +3669,7 @@ pub struct WebKitDOMEventTarget {
 
 impl ::std::fmt::Debug for WebKitDOMEventTarget {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "WebKitDOMEventTarget @ {:p}", self)
+        write!(f, "WebKitDOMEventTarget @ {self:p}")
     }
 }
 
@@ -3687,7 +3681,7 @@ pub struct WebKitDOMNodeFilter {
 
 impl ::std::fmt::Debug for WebKitDOMNodeFilter {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "WebKitDOMNodeFilter @ {:p}", self)
+        write!(f, "WebKitDOMNodeFilter @ {self:p}")
     }
 }
 
@@ -3699,7 +3693,7 @@ pub struct WebKitDOMXPathNSResolver {
 
 impl ::std::fmt::Debug for WebKitDOMXPathNSResolver {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
-        write!(f, "WebKitDOMXPathNSResolver @ {:p}", self)
+        write!(f, "WebKitDOMXPathNSResolver @ {self:p}")
     }
 }
 

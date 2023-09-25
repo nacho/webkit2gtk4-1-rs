@@ -7,20 +7,15 @@
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 use crate::UserMessage;
 use crate::WebPage;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use std::pin::Pin;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use std::ptr;
+use std::{pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebExtension")]

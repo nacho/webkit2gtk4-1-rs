@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMDOMWindow;
-use crate::DOMEvent;
-use crate::DOMMouseEvent;
-use crate::DOMObject;
-use crate::DOMUIEvent;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMDOMWindow, DOMEvent, DOMMouseEvent, DOMObject, DOMUIEvent};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMWheelEvent")]
@@ -32,21 +27,25 @@ impl DOMWheelEvent {
 
 pub trait DOMWheelEventExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta")]
     #[doc(alias = "get_wheel_delta")]
     fn wheel_delta(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta_x")]
     #[doc(alias = "get_wheel_delta_x")]
     fn wheel_delta_x(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta_y")]
     #[doc(alias = "get_wheel_delta_y")]
     fn wheel_delta_y(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_init_wheel_event")]
     fn init_wheel_event(
         &self,
@@ -74,18 +73,22 @@ pub trait DOMWheelEventExt: 'static {
 }
 
 impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
+    #[allow(deprecated)]
     fn wheel_delta(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn wheel_delta_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta_x(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn wheel_delta_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn init_wheel_event(
         &self,
         wheelDeltaX: libc::c_long,

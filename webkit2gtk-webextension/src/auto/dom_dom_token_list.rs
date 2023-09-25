@@ -2,21 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::ptr;
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDOMTokenList")]
@@ -35,18 +32,21 @@ pub trait DOMDOMTokenListExt: 'static {
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_dom_dom_token_list_add")]
     //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_contains")]
     fn contains(&self, token: &str) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
@@ -54,6 +54,7 @@ pub trait DOMDOMTokenListExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_get_value")]
     #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString>;
@@ -61,30 +62,35 @@ pub trait DOMDOMTokenListExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<glib::GString>;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_dom_dom_token_list_remove")]
     //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_replace")]
     fn replace(&self, token: &str, newToken: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_set_value")]
     fn set_value(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_token_list_toggle")]
     fn toggle(&self, token: &str, force: bool) -> Result<(), glib::Error>;
 
@@ -104,12 +110,14 @@ pub trait DOMDOMTokenListExt: 'static {
 impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    //#[allow(deprecated)]
     //fn add(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:webkit_dom_dom_token_list_add() }
     //}
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn contains(&self, token: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_token_list_contains(
@@ -121,12 +129,14 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_token_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_token_list_get_value(
@@ -137,6 +147,7 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn item(&self, index: libc::c_ulong) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_token_list_item(
@@ -148,12 +159,14 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     //#[cfg(any(feature = "v2_16", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    //#[allow(deprecated)]
     //fn remove(&self, error: &mut glib::Error, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:webkit_dom_dom_token_list_remove() }
     //}
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn replace(&self, token: &str, newToken: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -173,6 +186,7 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_dom_token_list_set_value(
@@ -184,6 +198,7 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn toggle(&self, token: &str, force: bool) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -193,7 +208,7 @@ impl<O: IsA<DOMDOMTokenList>> DOMDOMTokenListExt for O {
                 force.into_glib(),
                 &mut error,
             );
-            assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
