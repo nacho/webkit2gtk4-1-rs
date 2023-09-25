@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCSSStyleSheet;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMCSSStyleSheet, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMCSSRule")]
@@ -31,27 +27,32 @@ impl DOMCSSRule {
 
 pub trait DOMCSSRuleExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_get_css_text")]
     #[doc(alias = "get_css_text")]
     fn css_text(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_get_parent_rule")]
     #[doc(alias = "get_parent_rule")]
     #[must_use]
     fn parent_rule(&self) -> Option<DOMCSSRule>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_get_parent_style_sheet")]
     #[doc(alias = "get_parent_style_sheet")]
     fn parent_style_sheet(&self) -> Option<DOMCSSStyleSheet>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_get_rule_type")]
     #[doc(alias = "get_rule_type")]
     fn rule_type(&self) -> libc::c_ushort;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_set_css_text")]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error>;
 
@@ -72,6 +73,7 @@ pub trait DOMCSSRuleExt: 'static {
 }
 
 impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
+    #[allow(deprecated)]
     fn css_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_css_text(
@@ -80,6 +82,7 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn parent_rule(&self) -> Option<DOMCSSRule> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_parent_rule(
@@ -88,6 +91,7 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn parent_style_sheet(&self) -> Option<DOMCSSStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_parent_style_sheet(
@@ -96,10 +100,12 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn rule_type(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_css_rule_get_rule_type(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

@@ -3,35 +3,23 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use crate::AuthenticationScheme;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use crate::Credential;
 #[cfg(any(feature = "v2_30", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
 use crate::SecurityOrigin;
 #[cfg(any(feature = "v2_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use glib::object::Cast;
-use glib::object::IsA;
+use crate::{AuthenticationScheme, Credential};
+use glib::prelude::*;
 #[cfg(any(feature = "v2_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use glib::signal::connect_raw;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use glib::signal::SignalHandlerId;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use glib::translate::*;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use std::boxed::Box as Box_;
+use glib::{
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 use std::fmt;
 #[cfg(any(feature = "v2_2", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-use std::mem::transmute;
+use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitAuthenticationRequest")]

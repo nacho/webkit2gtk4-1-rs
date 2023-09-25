@@ -2,24 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMNode;
-use crate::DOMObject;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::DOMRange;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::ptr;
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDOMSelection")]
@@ -38,54 +35,63 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_add_range")]
     fn add_range(&self, range: &impl IsA<DOMRange>);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_collapse")]
     fn collapse(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_collapse_to_end")]
     fn collapse_to_end(&self) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_collapse_to_start")]
     fn collapse_to_start(&self) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_contains_node")]
     fn contains_node(&self, node: &impl IsA<DOMNode>, allowPartial: bool) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_delete_from_document")]
     fn delete_from_document(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_empty")]
     fn empty(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_extend")]
     fn extend(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_anchor_node")]
     #[doc(alias = "get_anchor_node")]
     fn anchor_node(&self) -> Option<DOMNode>;
@@ -93,6 +99,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_anchor_offset")]
     #[doc(alias = "get_anchor_offset")]
     fn anchor_offset(&self) -> libc::c_ulong;
@@ -100,6 +107,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_base_node")]
     #[doc(alias = "get_base_node")]
     fn base_node(&self) -> Option<DOMNode>;
@@ -107,6 +115,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_base_offset")]
     #[doc(alias = "get_base_offset")]
     fn base_offset(&self) -> libc::c_ulong;
@@ -114,6 +123,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_extent_node")]
     #[doc(alias = "get_extent_node")]
     fn extent_node(&self) -> Option<DOMNode>;
@@ -121,6 +131,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_extent_offset")]
     #[doc(alias = "get_extent_offset")]
     fn extent_offset(&self) -> libc::c_ulong;
@@ -128,6 +139,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_focus_node")]
     #[doc(alias = "get_focus_node")]
     fn focus_node(&self) -> Option<DOMNode>;
@@ -135,6 +147,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_focus_offset")]
     #[doc(alias = "get_focus_offset")]
     fn focus_offset(&self) -> libc::c_ulong;
@@ -142,6 +155,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_is_collapsed")]
     #[doc(alias = "get_is_collapsed")]
     fn is_collapsed(&self) -> bool;
@@ -149,6 +163,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_range_at")]
     #[doc(alias = "get_range_at")]
     fn range_at(&self, index: libc::c_ulong) -> Result<DOMRange, glib::Error>;
@@ -156,6 +171,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_range_count")]
     #[doc(alias = "get_range_count")]
     fn range_count(&self) -> libc::c_ulong;
@@ -163,6 +179,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_get_selection_type")]
     #[doc(alias = "get_selection_type")]
     fn selection_type(&self) -> Option<glib::GString>;
@@ -170,24 +187,28 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_modify")]
     fn modify(&self, alter: &str, direction: &str, granularity: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_remove_all_ranges")]
     fn remove_all_ranges(&self);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_select_all_children")]
     fn select_all_children(&self, node: &impl IsA<DOMNode>);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_set_base_and_extent")]
     fn set_base_and_extent(
         &self,
@@ -200,6 +221,7 @@ pub trait DOMDOMSelectionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_selection_set_position")]
     fn set_position(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong);
 
@@ -273,6 +295,7 @@ pub trait DOMDOMSelectionExt: 'static {
 impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn add_range(&self, range: &impl IsA<DOMRange>) {
         unsafe {
             ffi::webkit_dom_dom_selection_add_range(
@@ -284,6 +307,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn collapse(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong) {
         unsafe {
             ffi::webkit_dom_dom_selection_collapse(
@@ -296,6 +320,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn collapse_to_end(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -313,6 +338,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn collapse_to_start(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -330,6 +356,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn contains_node(&self, node: &impl IsA<DOMNode>, allowPartial: bool) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_selection_contains_node(
@@ -342,6 +369,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn delete_from_document(&self) {
         unsafe {
             ffi::webkit_dom_dom_selection_delete_from_document(self.as_ref().to_glib_none().0);
@@ -350,6 +378,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn empty(&self) {
         unsafe {
             ffi::webkit_dom_dom_selection_empty(self.as_ref().to_glib_none().0);
@@ -358,6 +387,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn extend(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -377,6 +407,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn anchor_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_selection_get_anchor_node(
@@ -387,12 +418,14 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn anchor_offset(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_selection_get_anchor_offset(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn base_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_selection_get_base_node(
@@ -403,12 +436,14 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn base_offset(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_selection_get_base_offset(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn extent_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_selection_get_extent_node(
@@ -419,12 +454,14 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn extent_offset(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_selection_get_extent_offset(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn focus_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_selection_get_focus_node(
@@ -435,12 +472,14 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn focus_offset(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_selection_get_focus_offset(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn is_collapsed(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_selection_get_is_collapsed(
@@ -451,6 +490,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn range_at(&self, index: libc::c_ulong) -> Result<DOMRange, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -469,12 +509,14 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn range_count(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_selection_get_range_count(self.as_ref().to_glib_none().0) }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn selection_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_selection_get_selection_type(
@@ -485,6 +527,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn modify(&self, alter: &str, direction: &str, granularity: &str) {
         unsafe {
             ffi::webkit_dom_dom_selection_modify(
@@ -498,6 +541,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn remove_all_ranges(&self) {
         unsafe {
             ffi::webkit_dom_dom_selection_remove_all_ranges(self.as_ref().to_glib_none().0);
@@ -506,6 +550,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn select_all_children(&self, node: &impl IsA<DOMNode>) {
         unsafe {
             ffi::webkit_dom_dom_selection_select_all_children(
@@ -517,6 +562,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_base_and_extent(
         &self,
         baseNode: &impl IsA<DOMNode>,
@@ -537,6 +583,7 @@ impl<O: IsA<DOMDOMSelection>> DOMDOMSelectionExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn set_position(&self, node: &impl IsA<DOMNode>, offset: libc::c_ulong) {
         unsafe {
             ffi::webkit_dom_dom_selection_set_position(

@@ -2,16 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCSSStyleSheet;
-use crate::DOMDocument;
-use crate::DOMDocumentType;
-use crate::DOMHTMLDocument;
-use crate::DOMObject;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use crate::{DOMCSSStyleSheet, DOMDocument, DOMDocumentType, DOMHTMLDocument, DOMObject};
+use glib::{prelude::*, translate::*};
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDOMImplementation")]
@@ -28,6 +23,7 @@ impl DOMDOMImplementation {
 
 pub trait DOMDOMImplementationExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_create_css_style_sheet")]
     fn create_css_style_sheet(
         &self,
@@ -36,6 +32,7 @@ pub trait DOMDOMImplementationExt: 'static {
     ) -> Result<DOMCSSStyleSheet, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_create_document")]
     fn create_document(
         &self,
@@ -45,6 +42,7 @@ pub trait DOMDOMImplementationExt: 'static {
     ) -> Result<DOMDocument, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_create_document_type")]
     fn create_document_type(
         &self,
@@ -54,15 +52,18 @@ pub trait DOMDOMImplementationExt: 'static {
     ) -> Result<DOMDocumentType, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_create_html_document")]
     fn create_html_document(&self, title: &str) -> Option<DOMHTMLDocument>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_has_feature")]
     fn has_feature(&self, feature: &str, version: &str) -> bool;
 }
 
 impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
+    #[allow(deprecated)]
     fn create_css_style_sheet(
         &self,
         title: &str,
@@ -84,6 +85,7 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_document(
         &self,
         namespaceURI: Option<&str>,
@@ -107,6 +109,7 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_document_type(
         &self,
         qualifiedName: &str,
@@ -130,6 +133,7 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn create_html_document(&self, title: &str) -> Option<DOMHTMLDocument> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_implementation_create_html_document(
@@ -139,6 +143,7 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn has_feature(&self, feature: &str, version: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_implementation_has_feature(

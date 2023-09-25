@@ -11,19 +11,19 @@ bitflags! {
     #[doc(alias = "WebKitHitTestResultContext")]
     pub struct HitTestResultContext: u32 {
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT")]
-        const DOCUMENT = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT as u32;
+        const DOCUMENT = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK")]
-        const LINK = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK as u32;
+        const LINK = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE")]
-        const IMAGE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE as u32;
+        const IMAGE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA")]
-        const MEDIA = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA as u32;
+        const MEDIA = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE")]
-        const EDITABLE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE as u32;
+        const EDITABLE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR")]
-        const SCROLLBAR = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR as u32;
+        const SCROLLBAR = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION")]
-        const SELECTION = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION as u32;
+        const SELECTION = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION as _;
     }
 }
 
@@ -37,6 +37,7 @@ impl fmt::Display for HitTestResultContext {
 impl IntoGlib for HitTestResultContext {
     type GlibType = ffi::WebKitHitTestResultContext;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitHitTestResultContext {
         self.bits()
     }
@@ -44,6 +45,7 @@ impl IntoGlib for HitTestResultContext {
 
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitHitTestResultContext> for HitTestResultContext {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitHitTestResultContext) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)

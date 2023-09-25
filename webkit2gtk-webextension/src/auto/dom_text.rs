@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCharacterData;
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMCharacterData, DOMEventTarget, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMText")]
@@ -32,15 +27,18 @@ impl DOMText {
 
 pub trait DOMTextExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_text_get_whole_text")]
     #[doc(alias = "get_whole_text")]
     fn whole_text(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_text_replace_whole_text")]
     fn replace_whole_text(&self, content: &str) -> Result<DOMText, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_text_split_text")]
     fn split_text(&self, offset: libc::c_ulong) -> Result<DOMText, glib::Error>;
 
@@ -49,6 +47,7 @@ pub trait DOMTextExt: 'static {
 }
 
 impl<O: IsA<DOMText>> DOMTextExt for O {
+    #[allow(deprecated)]
     fn whole_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_text_get_whole_text(
@@ -57,6 +56,7 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn replace_whole_text(&self, content: &str) -> Result<DOMText, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -73,6 +73,7 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn split_text(&self, offset: libc::c_ulong) -> Result<DOMText, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

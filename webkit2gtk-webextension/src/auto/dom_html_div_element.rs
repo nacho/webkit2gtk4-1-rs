@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLDivElement")]
@@ -32,11 +27,13 @@ impl DOMHTMLDivElement {
 
 pub trait DOMHTMLDivElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_div_element_get_align")]
     #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_div_element_set_align")]
     fn set_align(&self, value: &str);
 
@@ -45,6 +42,7 @@ pub trait DOMHTMLDivElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLDivElement>> DOMHTMLDivElementExt for O {
+    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_div_element_get_align(
@@ -53,6 +51,7 @@ impl<O: IsA<DOMHTMLDivElement>> DOMHTMLDivElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_div_element_set_align(

@@ -3,16 +3,13 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::InputHints;
-use crate::InputPurpose;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{InputHints, InputPurpose};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitInputMethodContext")]
@@ -154,7 +151,7 @@ impl<O: IsA<InputMethodContext>> InputMethodContextExt for O {
     }
 
     fn notify_surrounding(&self, text: &str, cursor_index: u32, selection_index: u32) {
-        let length = text.len() as i32;
+        let length = text.len() as _;
         unsafe {
             ffi::webkit_input_method_context_notify_surrounding(
                 self.as_ref().to_glib_none().0,

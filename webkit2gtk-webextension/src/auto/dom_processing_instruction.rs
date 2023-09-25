@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMCharacterData;
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use crate::DOMStyleSheet;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMCharacterData, DOMEventTarget, DOMNode, DOMObject, DOMStyleSheet};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMProcessingInstruction")]
@@ -32,11 +27,13 @@ impl DOMProcessingInstruction {
 
 pub trait DOMProcessingInstructionExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_processing_instruction_get_sheet")]
     #[doc(alias = "get_sheet")]
     fn sheet(&self) -> Option<DOMStyleSheet>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_processing_instruction_get_target")]
     #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString>;
@@ -49,6 +46,7 @@ pub trait DOMProcessingInstructionExt: 'static {
 }
 
 impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
+    #[allow(deprecated)]
     fn sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_processing_instruction_get_sheet(
@@ -57,6 +55,7 @@ impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_processing_instruction_get_target(

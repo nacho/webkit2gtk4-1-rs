@@ -3,16 +3,13 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::ApplicationInfo;
-use crate::WebView;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{ApplicationInfo, WebView};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitAutomationSession")]
@@ -96,7 +93,7 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            let detailed_signal_name = detail.map(|name| format!("create-web-view::{}\0", name));
+            let detailed_signal_name = detail.map(|name| format!("create-web-view::{name}\0"));
             let signal_name: &[u8] = detailed_signal_name
                 .as_ref()
                 .map_or(&b"create-web-view\0"[..], |n| n.as_bytes());

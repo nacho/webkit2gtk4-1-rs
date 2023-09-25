@@ -3,8 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::UserContentInjectedFrames;
-use crate::UserStyleLevel;
+use crate::{UserContentInjectedFrames, UserStyleLevel};
 use glib::translate::*;
 
 glib::wrapper! {

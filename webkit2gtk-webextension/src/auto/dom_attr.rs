@@ -2,21 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMElement, DOMEventTarget, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMAttr")]
@@ -35,11 +29,13 @@ pub trait DOMAttrExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_local_name")]
     #[doc(alias = "get_local_name")]
     fn local_name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
@@ -47,11 +43,13 @@ pub trait DOMAttrExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_namespace_uri")]
     #[doc(alias = "get_namespace_uri")]
     fn namespace_uri(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_owner_element")]
     #[doc(alias = "get_owner_element")]
     fn owner_element(&self) -> Option<DOMElement>;
@@ -59,21 +57,25 @@ pub trait DOMAttrExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_prefix")]
     #[doc(alias = "get_prefix")]
     fn prefix(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_specified")]
     #[doc(alias = "get_specified")]
     fn is_specified(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_value")]
     #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_set_value")]
     fn set_value(&self, value: &str) -> Result<(), glib::Error>;
 
@@ -110,6 +112,7 @@ pub trait DOMAttrExt: 'static {
 impl<O: IsA<DOMAttr>> DOMAttrExt for O {
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn local_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_local_name(
@@ -118,6 +121,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_name(
@@ -128,6 +132,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn namespace_uri(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_namespace_uri(
@@ -136,6 +141,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn owner_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_attr_get_owner_element(
@@ -146,6 +152,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
 
     #[cfg(any(feature = "v2_14", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[allow(deprecated)]
     fn prefix(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_prefix(
@@ -154,6 +161,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_specified(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_attr_get_specified(
@@ -162,6 +170,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_value(
@@ -170,6 +179,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_value(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

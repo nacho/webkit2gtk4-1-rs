@@ -4,11 +4,7 @@
 // DO NOT EDIT
 
 use bitflags::bitflags;
-use glib::translate::*;
-use glib::value::FromValue;
-use glib::value::ToValue;
-use glib::StaticType;
-use glib::Type;
+use glib::{translate::*, value::FromValue, value::ToValue, StaticType, Type};
 use std::fmt;
 
 #[cfg(any(feature = "v2_10", feature = "dox"))]
@@ -17,15 +13,15 @@ bitflags! {
     #[doc(alias = "WebKitEditorTypingAttributes")]
     pub struct EditorTypingAttributes: u32 {
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_NONE")]
-        const NONE = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_NONE as u32;
+        const NONE = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_NONE as _;
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_BOLD")]
-        const BOLD = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_BOLD as u32;
+        const BOLD = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_BOLD as _;
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_ITALIC")]
-        const ITALIC = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_ITALIC as u32;
+        const ITALIC = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_ITALIC as _;
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_UNDERLINE")]
-        const UNDERLINE = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_UNDERLINE as u32;
+        const UNDERLINE = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_UNDERLINE as _;
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_STRIKETHROUGH")]
-        const STRIKETHROUGH = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_STRIKETHROUGH as u32;
+        const STRIKETHROUGH = ffi::WEBKIT_EDITOR_TYPING_ATTRIBUTE_STRIKETHROUGH as _;
     }
 }
 
@@ -43,6 +39,7 @@ impl fmt::Display for EditorTypingAttributes {
 impl IntoGlib for EditorTypingAttributes {
     type GlibType = ffi::WebKitEditorTypingAttributes;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitEditorTypingAttributes {
         self.bits()
     }
@@ -52,6 +49,7 @@ impl IntoGlib for EditorTypingAttributes {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitEditorTypingAttributes> for EditorTypingAttributes {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitEditorTypingAttributes) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -61,8 +59,21 @@ impl FromGlib<ffi::WebKitEditorTypingAttributes> for EditorTypingAttributes {
 #[cfg(any(feature = "v2_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 impl StaticType for EditorTypingAttributes {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_editor_typing_attributes_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v2_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+impl glib::HasParamSpec for EditorTypingAttributes {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -77,6 +88,7 @@ impl glib::value::ValueType for EditorTypingAttributes {
 unsafe impl<'a> FromValue<'a> for EditorTypingAttributes {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -86,6 +98,7 @@ unsafe impl<'a> FromValue<'a> for EditorTypingAttributes {
 #[cfg(any(feature = "v2_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 impl ToValue for EditorTypingAttributes {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -94,8 +107,19 @@ impl ToValue for EditorTypingAttributes {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v2_10", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+impl From<EditorTypingAttributes> for glib::Value {
+    #[inline]
+    fn from(v: EditorTypingAttributes) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -103,17 +127,17 @@ bitflags! {
     #[doc(alias = "WebKitFindOptions")]
     pub struct FindOptions: u32 {
         #[doc(alias = "WEBKIT_FIND_OPTIONS_NONE")]
-        const NONE = ffi::WEBKIT_FIND_OPTIONS_NONE as u32;
+        const NONE = ffi::WEBKIT_FIND_OPTIONS_NONE as _;
         #[doc(alias = "WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE")]
-        const CASE_INSENSITIVE = ffi::WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE as u32;
+        const CASE_INSENSITIVE = ffi::WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE as _;
         #[doc(alias = "WEBKIT_FIND_OPTIONS_AT_WORD_STARTS")]
-        const AT_WORD_STARTS = ffi::WEBKIT_FIND_OPTIONS_AT_WORD_STARTS as u32;
+        const AT_WORD_STARTS = ffi::WEBKIT_FIND_OPTIONS_AT_WORD_STARTS as _;
         #[doc(alias = "WEBKIT_FIND_OPTIONS_TREAT_MEDIAL_CAPITAL_AS_WORD_START")]
-        const TREAT_MEDIAL_CAPITAL_AS_WORD_START = ffi::WEBKIT_FIND_OPTIONS_TREAT_MEDIAL_CAPITAL_AS_WORD_START as u32;
+        const TREAT_MEDIAL_CAPITAL_AS_WORD_START = ffi::WEBKIT_FIND_OPTIONS_TREAT_MEDIAL_CAPITAL_AS_WORD_START as _;
         #[doc(alias = "WEBKIT_FIND_OPTIONS_BACKWARDS")]
-        const BACKWARDS = ffi::WEBKIT_FIND_OPTIONS_BACKWARDS as u32;
+        const BACKWARDS = ffi::WEBKIT_FIND_OPTIONS_BACKWARDS as _;
         #[doc(alias = "WEBKIT_FIND_OPTIONS_WRAP_AROUND")]
-        const WRAP_AROUND = ffi::WEBKIT_FIND_OPTIONS_WRAP_AROUND as u32;
+        const WRAP_AROUND = ffi::WEBKIT_FIND_OPTIONS_WRAP_AROUND as _;
     }
 }
 
@@ -127,6 +151,7 @@ impl fmt::Display for FindOptions {
 impl IntoGlib for FindOptions {
     type GlibType = ffi::WebKitFindOptions;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitFindOptions {
         self.bits()
     }
@@ -134,6 +159,7 @@ impl IntoGlib for FindOptions {
 
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitFindOptions> for FindOptions {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitFindOptions) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -141,8 +167,19 @@ impl FromGlib<ffi::WebKitFindOptions> for FindOptions {
 }
 
 impl StaticType for FindOptions {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_find_options_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for FindOptions {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -153,6 +190,7 @@ impl glib::value::ValueType for FindOptions {
 unsafe impl<'a> FromValue<'a> for FindOptions {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -160,6 +198,7 @@ unsafe impl<'a> FromValue<'a> for FindOptions {
 }
 
 impl ToValue for FindOptions {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -168,8 +207,17 @@ impl ToValue for FindOptions {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<FindOptions> for glib::Value {
+    #[inline]
+    fn from(v: FindOptions) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -177,19 +225,19 @@ bitflags! {
     #[doc(alias = "WebKitHitTestResultContext")]
     pub struct HitTestResultContext: u32 {
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT")]
-        const DOCUMENT = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT as u32;
+        const DOCUMENT = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK")]
-        const LINK = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK as u32;
+        const LINK = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_LINK as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE")]
-        const IMAGE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE as u32;
+        const IMAGE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_IMAGE as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA")]
-        const MEDIA = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA as u32;
+        const MEDIA = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_MEDIA as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE")]
-        const EDITABLE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE as u32;
+        const EDITABLE = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_EDITABLE as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR")]
-        const SCROLLBAR = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR as u32;
+        const SCROLLBAR = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SCROLLBAR as _;
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION")]
-        const SELECTION = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION as u32;
+        const SELECTION = ffi::WEBKIT_HIT_TEST_RESULT_CONTEXT_SELECTION as _;
     }
 }
 
@@ -203,6 +251,7 @@ impl fmt::Display for HitTestResultContext {
 impl IntoGlib for HitTestResultContext {
     type GlibType = ffi::WebKitHitTestResultContext;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitHitTestResultContext {
         self.bits()
     }
@@ -210,6 +259,7 @@ impl IntoGlib for HitTestResultContext {
 
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitHitTestResultContext> for HitTestResultContext {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitHitTestResultContext) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -217,8 +267,19 @@ impl FromGlib<ffi::WebKitHitTestResultContext> for HitTestResultContext {
 }
 
 impl StaticType for HitTestResultContext {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_hit_test_result_context_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for HitTestResultContext {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -229,6 +290,7 @@ impl glib::value::ValueType for HitTestResultContext {
 unsafe impl<'a> FromValue<'a> for HitTestResultContext {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -236,6 +298,7 @@ unsafe impl<'a> FromValue<'a> for HitTestResultContext {
 }
 
 impl ToValue for HitTestResultContext {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -244,8 +307,17 @@ impl ToValue for HitTestResultContext {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<HitTestResultContext> for glib::Value {
+    #[inline]
+    fn from(v: HitTestResultContext) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -255,19 +327,19 @@ bitflags! {
     #[doc(alias = "WebKitInputHints")]
     pub struct InputHints: u32 {
         #[doc(alias = "WEBKIT_INPUT_HINT_NONE")]
-        const NONE = ffi::WEBKIT_INPUT_HINT_NONE as u32;
+        const NONE = ffi::WEBKIT_INPUT_HINT_NONE as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_SPELLCHECK")]
-        const SPELLCHECK = ffi::WEBKIT_INPUT_HINT_SPELLCHECK as u32;
+        const SPELLCHECK = ffi::WEBKIT_INPUT_HINT_SPELLCHECK as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_LOWERCASE")]
-        const LOWERCASE = ffi::WEBKIT_INPUT_HINT_LOWERCASE as u32;
+        const LOWERCASE = ffi::WEBKIT_INPUT_HINT_LOWERCASE as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_UPPERCASE_CHARS")]
-        const UPPERCASE_CHARS = ffi::WEBKIT_INPUT_HINT_UPPERCASE_CHARS as u32;
+        const UPPERCASE_CHARS = ffi::WEBKIT_INPUT_HINT_UPPERCASE_CHARS as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_UPPERCASE_WORDS")]
-        const UPPERCASE_WORDS = ffi::WEBKIT_INPUT_HINT_UPPERCASE_WORDS as u32;
+        const UPPERCASE_WORDS = ffi::WEBKIT_INPUT_HINT_UPPERCASE_WORDS as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_UPPERCASE_SENTENCES")]
-        const UPPERCASE_SENTENCES = ffi::WEBKIT_INPUT_HINT_UPPERCASE_SENTENCES as u32;
+        const UPPERCASE_SENTENCES = ffi::WEBKIT_INPUT_HINT_UPPERCASE_SENTENCES as _;
         #[doc(alias = "WEBKIT_INPUT_HINT_INHIBIT_OSK")]
-        const INHIBIT_OSK = ffi::WEBKIT_INPUT_HINT_INHIBIT_OSK as u32;
+        const INHIBIT_OSK = ffi::WEBKIT_INPUT_HINT_INHIBIT_OSK as _;
     }
 }
 
@@ -285,6 +357,7 @@ impl fmt::Display for InputHints {
 impl IntoGlib for InputHints {
     type GlibType = ffi::WebKitInputHints;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitInputHints {
         self.bits()
     }
@@ -294,6 +367,7 @@ impl IntoGlib for InputHints {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitInputHints> for InputHints {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitInputHints) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -303,8 +377,21 @@ impl FromGlib<ffi::WebKitInputHints> for InputHints {
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 impl StaticType for InputHints {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_input_hints_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+impl glib::HasParamSpec for InputHints {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -319,6 +406,7 @@ impl glib::value::ValueType for InputHints {
 unsafe impl<'a> FromValue<'a> for InputHints {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -328,6 +416,7 @@ unsafe impl<'a> FromValue<'a> for InputHints {
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 impl ToValue for InputHints {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -336,8 +425,19 @@ impl ToValue for InputHints {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+impl From<InputHints> for glib::Value {
+    #[inline]
+    fn from(v: InputHints) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -345,11 +445,11 @@ bitflags! {
     #[doc(alias = "WebKitSnapshotOptions")]
     pub struct SnapshotOptions: u32 {
         #[doc(alias = "WEBKIT_SNAPSHOT_OPTIONS_NONE")]
-        const NONE = ffi::WEBKIT_SNAPSHOT_OPTIONS_NONE as u32;
+        const NONE = ffi::WEBKIT_SNAPSHOT_OPTIONS_NONE as _;
         #[doc(alias = "WEBKIT_SNAPSHOT_OPTIONS_INCLUDE_SELECTION_HIGHLIGHTING")]
-        const INCLUDE_SELECTION_HIGHLIGHTING = ffi::WEBKIT_SNAPSHOT_OPTIONS_INCLUDE_SELECTION_HIGHLIGHTING as u32;
+        const INCLUDE_SELECTION_HIGHLIGHTING = ffi::WEBKIT_SNAPSHOT_OPTIONS_INCLUDE_SELECTION_HIGHLIGHTING as _;
         #[doc(alias = "WEBKIT_SNAPSHOT_OPTIONS_TRANSPARENT_BACKGROUND")]
-        const TRANSPARENT_BACKGROUND = ffi::WEBKIT_SNAPSHOT_OPTIONS_TRANSPARENT_BACKGROUND as u32;
+        const TRANSPARENT_BACKGROUND = ffi::WEBKIT_SNAPSHOT_OPTIONS_TRANSPARENT_BACKGROUND as _;
     }
 }
 
@@ -363,6 +463,7 @@ impl fmt::Display for SnapshotOptions {
 impl IntoGlib for SnapshotOptions {
     type GlibType = ffi::WebKitSnapshotOptions;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitSnapshotOptions {
         self.bits()
     }
@@ -370,6 +471,7 @@ impl IntoGlib for SnapshotOptions {
 
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitSnapshotOptions> for SnapshotOptions {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitSnapshotOptions) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -377,8 +479,19 @@ impl FromGlib<ffi::WebKitSnapshotOptions> for SnapshotOptions {
 }
 
 impl StaticType for SnapshotOptions {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_snapshot_options_get_type()) }
+    }
+}
+
+impl glib::HasParamSpec for SnapshotOptions {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -389,6 +502,7 @@ impl glib::value::ValueType for SnapshotOptions {
 unsafe impl<'a> FromValue<'a> for SnapshotOptions {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -396,6 +510,7 @@ unsafe impl<'a> FromValue<'a> for SnapshotOptions {
 }
 
 impl ToValue for SnapshotOptions {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -404,8 +519,17 @@ impl ToValue for SnapshotOptions {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+impl From<SnapshotOptions> for glib::Value {
+    #[inline]
+    fn from(v: SnapshotOptions) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }
 
@@ -415,35 +539,35 @@ bitflags! {
     #[doc(alias = "WebKitWebsiteDataTypes")]
     pub struct WebsiteDataTypes: u32 {
         #[doc(alias = "WEBKIT_WEBSITE_DATA_MEMORY_CACHE")]
-        const MEMORY_CACHE = ffi::WEBKIT_WEBSITE_DATA_MEMORY_CACHE as u32;
+        const MEMORY_CACHE = ffi::WEBKIT_WEBSITE_DATA_MEMORY_CACHE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_DISK_CACHE")]
-        const DISK_CACHE = ffi::WEBKIT_WEBSITE_DATA_DISK_CACHE as u32;
+        const DISK_CACHE = ffi::WEBKIT_WEBSITE_DATA_DISK_CACHE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_OFFLINE_APPLICATION_CACHE")]
-        const OFFLINE_APPLICATION_CACHE = ffi::WEBKIT_WEBSITE_DATA_OFFLINE_APPLICATION_CACHE as u32;
+        const OFFLINE_APPLICATION_CACHE = ffi::WEBKIT_WEBSITE_DATA_OFFLINE_APPLICATION_CACHE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_SESSION_STORAGE")]
-        const SESSION_STORAGE = ffi::WEBKIT_WEBSITE_DATA_SESSION_STORAGE as u32;
+        const SESSION_STORAGE = ffi::WEBKIT_WEBSITE_DATA_SESSION_STORAGE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_LOCAL_STORAGE")]
-        const LOCAL_STORAGE = ffi::WEBKIT_WEBSITE_DATA_LOCAL_STORAGE as u32;
+        const LOCAL_STORAGE = ffi::WEBKIT_WEBSITE_DATA_LOCAL_STORAGE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_WEBSQL_DATABASES")]
-        const WEBSQL_DATABASES = ffi::WEBKIT_WEBSITE_DATA_WEBSQL_DATABASES as u32;
+        const WEBSQL_DATABASES = ffi::WEBKIT_WEBSITE_DATA_WEBSQL_DATABASES as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_INDEXEDDB_DATABASES")]
-        const INDEXEDDB_DATABASES = ffi::WEBKIT_WEBSITE_DATA_INDEXEDDB_DATABASES as u32;
+        const INDEXEDDB_DATABASES = ffi::WEBKIT_WEBSITE_DATA_INDEXEDDB_DATABASES as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_PLUGIN_DATA")]
-        const PLUGIN_DATA = ffi::WEBKIT_WEBSITE_DATA_PLUGIN_DATA as u32;
+        const PLUGIN_DATA = ffi::WEBKIT_WEBSITE_DATA_PLUGIN_DATA as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_COOKIES")]
-        const COOKIES = ffi::WEBKIT_WEBSITE_DATA_COOKIES as u32;
+        const COOKIES = ffi::WEBKIT_WEBSITE_DATA_COOKIES as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_DEVICE_ID_HASH_SALT")]
-        const DEVICE_ID_HASH_SALT = ffi::WEBKIT_WEBSITE_DATA_DEVICE_ID_HASH_SALT as u32;
+        const DEVICE_ID_HASH_SALT = ffi::WEBKIT_WEBSITE_DATA_DEVICE_ID_HASH_SALT as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_HSTS_CACHE")]
-        const HSTS_CACHE = ffi::WEBKIT_WEBSITE_DATA_HSTS_CACHE as u32;
+        const HSTS_CACHE = ffi::WEBKIT_WEBSITE_DATA_HSTS_CACHE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_ITP")]
-        const ITP = ffi::WEBKIT_WEBSITE_DATA_ITP as u32;
+        const ITP = ffi::WEBKIT_WEBSITE_DATA_ITP as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_SERVICE_WORKER_REGISTRATIONS")]
-        const SERVICE_WORKER_REGISTRATIONS = ffi::WEBKIT_WEBSITE_DATA_SERVICE_WORKER_REGISTRATIONS as u32;
+        const SERVICE_WORKER_REGISTRATIONS = ffi::WEBKIT_WEBSITE_DATA_SERVICE_WORKER_REGISTRATIONS as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_DOM_CACHE")]
-        const DOM_CACHE = ffi::WEBKIT_WEBSITE_DATA_DOM_CACHE as u32;
+        const DOM_CACHE = ffi::WEBKIT_WEBSITE_DATA_DOM_CACHE as _;
         #[doc(alias = "WEBKIT_WEBSITE_DATA_ALL")]
-        const ALL = ffi::WEBKIT_WEBSITE_DATA_ALL as u32;
+        const ALL = ffi::WEBKIT_WEBSITE_DATA_ALL as _;
     }
 }
 
@@ -461,6 +585,7 @@ impl fmt::Display for WebsiteDataTypes {
 impl IntoGlib for WebsiteDataTypes {
     type GlibType = ffi::WebKitWebsiteDataTypes;
 
+    #[inline]
     fn into_glib(self) -> ffi::WebKitWebsiteDataTypes {
         self.bits()
     }
@@ -470,6 +595,7 @@ impl IntoGlib for WebsiteDataTypes {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitWebsiteDataTypes> for WebsiteDataTypes {
+    #[inline]
     unsafe fn from_glib(value: ffi::WebKitWebsiteDataTypes) -> Self {
         skip_assert_initialized!();
         Self::from_bits_truncate(value)
@@ -479,8 +605,21 @@ impl FromGlib<ffi::WebKitWebsiteDataTypes> for WebsiteDataTypes {
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 impl StaticType for WebsiteDataTypes {
+    #[inline]
     fn static_type() -> Type {
         unsafe { from_glib(ffi::webkit_website_data_types_get_type()) }
+    }
+}
+
+#[cfg(any(feature = "v2_16", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+impl glib::HasParamSpec for WebsiteDataTypes {
+    type ParamSpec = glib::ParamSpecFlags;
+    type SetValue = Self;
+    type BuilderFn = fn(&str) -> glib::ParamSpecFlagsBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        |name| Self::ParamSpec::builder(name)
     }
 }
 
@@ -495,6 +634,7 @@ impl glib::value::ValueType for WebsiteDataTypes {
 unsafe impl<'a> FromValue<'a> for WebsiteDataTypes {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
+    #[inline]
     unsafe fn from_value(value: &'a glib::Value) -> Self {
         skip_assert_initialized!();
         from_glib(glib::gobject_ffi::g_value_get_flags(value.to_glib_none().0))
@@ -504,6 +644,7 @@ unsafe impl<'a> FromValue<'a> for WebsiteDataTypes {
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 impl ToValue for WebsiteDataTypes {
+    #[inline]
     fn to_value(&self) -> glib::Value {
         let mut value = glib::Value::for_value_type::<Self>();
         unsafe {
@@ -512,7 +653,18 @@ impl ToValue for WebsiteDataTypes {
         value
     }
 
+    #[inline]
     fn value_type(&self) -> glib::Type {
         Self::static_type()
+    }
+}
+
+#[cfg(any(feature = "v2_16", feature = "dox"))]
+#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+impl From<WebsiteDataTypes> for glib::Value {
+    #[inline]
+    fn from(v: WebsiteDataTypes) -> Self {
+        skip_assert_initialized!();
+        ToValue::to_value(&v)
     }
 }

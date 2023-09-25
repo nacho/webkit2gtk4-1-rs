@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{DOMEventTarget, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMCharacterData")]
@@ -31,28 +27,34 @@ impl DOMCharacterData {
 
 pub trait DOMCharacterDataExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_append_data")]
     fn append_data(&self, data: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_delete_data")]
     fn delete_data(&self, offset: libc::c_ulong, length: libc::c_ulong) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_get_data")]
     #[doc(alias = "get_data")]
     fn data(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_insert_data")]
     fn insert_data(&self, offset: libc::c_ulong, data: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_replace_data")]
     fn replace_data(
         &self,
@@ -62,10 +64,12 @@ pub trait DOMCharacterDataExt: 'static {
     ) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_set_data")]
     fn set_data(&self, value: &str) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_character_data_substring_data")]
     fn substring_data(
         &self,
@@ -81,6 +85,7 @@ pub trait DOMCharacterDataExt: 'static {
 }
 
 impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
+    #[allow(deprecated)]
     fn append_data(&self, data: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -97,6 +102,7 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn delete_data(&self, offset: libc::c_ulong, length: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -114,6 +120,7 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn data(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_character_data_get_data(
@@ -122,10 +129,12 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_character_data_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn insert_data(&self, offset: libc::c_ulong, data: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -143,6 +152,7 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn replace_data(
         &self,
         offset: libc::c_ulong,
@@ -166,6 +176,7 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_data(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -182,6 +193,7 @@ impl<O: IsA<DOMCharacterData>> DOMCharacterDataExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn substring_data(
         &self,
         offset: libc::c_ulong,

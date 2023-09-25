@@ -2,15 +2,13 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMNode;
-use crate::HitTestResult;
 #[cfg(any(feature = "v2_40", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
 use crate::ScriptWorld;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
+use crate::{DOMNode, HitTestResult};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -34,6 +32,7 @@ pub trait WebHitTestResultExt: 'static {
     fn js_node(&self, world: Option<&impl IsA<ScriptWorld>>) -> Option<javascriptcore::Value>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_hit_test_result_get_node")]
     #[doc(alias = "get_node")]
     fn node(&self) -> Option<DOMNode>;
@@ -54,6 +53,7 @@ impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_web_hit_test_result_get_node(

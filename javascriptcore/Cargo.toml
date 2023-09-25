@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore4-rs"
-version = "0.16.0"
+version = "0.17.0"
 edition = "2021"
 description = "Rust bindings for the javacriptcore library"
 repository = "https://github.com/vhdirk/javascriptcore-rs"
@@ -15,7 +15,7 @@ name = "javascriptcore"
 
 [dependencies]
 bitflags = "^1.0"
-glib = { version = "0.16" }
+glib = { version = "0.17" }
 
 [dependencies.ffi]
 package = "javascriptcore4-rs-sys"

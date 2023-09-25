@@ -2,19 +2,14 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 #[cfg(any(feature = "v2_12", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
 use crate::ConsoleMessage;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use crate::ContextMenu;
-use crate::DOMDocument;
 #[cfg(any(feature = "v2_26", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
 use crate::Frame;
-use crate::URIRequest;
-use crate::URIResponse;
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 use crate::UserMessage;
@@ -23,21 +18,17 @@ use crate::UserMessage;
 use crate::WebEditor;
 #[cfg(any(feature = "v2_8", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-use crate::WebHitTestResult;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{ContextMenu, WebHitTestResult};
+use crate::{DOMDocument, URIRequest, URIResponse};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use std::pin::Pin;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-use std::ptr;
+use std::{pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebPage")]
@@ -54,6 +45,7 @@ impl WebPage {
 
 pub trait WebPageExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_page_get_dom_document")]
     #[doc(alias = "get_dom_document")]
     fn dom_document(&self) -> Option<DOMDocument>;
@@ -158,6 +150,7 @@ pub trait WebPageExt: 'static {
 }
 
 impl<O: IsA<WebPage>> WebPageExt for O {
+    #[allow(deprecated)]
     fn dom_document(&self) -> Option<DOMDocument> {
         unsafe {
             from_glib_none(ffi::webkit_web_page_get_dom_document(

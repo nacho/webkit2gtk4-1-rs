@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLTableColElement")]
@@ -32,56 +27,68 @@ impl DOMHTMLTableColElement {
 
 pub trait DOMHTMLTableColElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_align")]
     #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_ch")]
     #[doc(alias = "get_ch")]
     fn ch(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_ch_off")]
     #[doc(alias = "get_ch_off")]
     fn ch_off(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_span")]
     #[doc(alias = "get_span")]
     fn span(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_v_align")]
     #[doc(alias = "get_v_align")]
     fn v_align(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_get_width")]
     #[doc(alias = "get_width")]
     fn width(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_align")]
     fn set_align(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_ch")]
     fn set_ch(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_ch_off")]
     fn set_ch_off(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_span")]
     fn set_span(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_v_align")]
     fn set_v_align(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_col_element_set_width")]
     fn set_width(&self, value: &str);
 
@@ -105,6 +112,7 @@ pub trait DOMHTMLTableColElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
+    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_col_element_get_align(
@@ -113,6 +121,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn ch(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_col_element_get_ch(
@@ -121,6 +130,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn ch_off(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_col_element_get_ch_off(
@@ -129,10 +139,12 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn span(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_table_col_element_get_span(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn v_align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_col_element_get_v_align(
@@ -141,6 +153,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_col_element_get_width(
@@ -149,6 +162,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_align(
@@ -158,6 +172,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_ch(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_ch(
@@ -167,6 +182,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_ch_off(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_ch_off(
@@ -176,12 +192,14 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_span(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_span(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_v_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_v_align(
@@ -191,6 +209,7 @@ impl<O: IsA<DOMHTMLTableColElement>> DOMHTMLTableColElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_col_element_set_width(

@@ -2,22 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLUListElement")]
@@ -34,20 +27,24 @@ impl DOMHTMLUListElement {
 
 pub trait DOMHTMLUListElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_u_list_element_get_compact")]
     #[doc(alias = "get_compact")]
     fn is_compact(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_u_list_element_get_type_attr")]
     #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_u_list_element_set_compact")]
     fn set_compact(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_u_list_element_set_type_attr")]
     fn set_type_attr(&self, value: &str);
 
@@ -65,6 +62,7 @@ pub trait DOMHTMLUListElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
+    #[allow(deprecated)]
     fn is_compact(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_u_list_element_get_compact(
@@ -73,6 +71,7 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_u_list_element_get_type_attr(
@@ -81,6 +80,7 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_compact(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_u_list_element_set_compact(
@@ -90,6 +90,7 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_u_list_element_set_type_attr(

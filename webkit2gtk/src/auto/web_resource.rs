@@ -3,19 +3,13 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::URIRequest;
-use crate::URIResponse;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem;
-use std::mem::transmute;
-use std::pin::Pin;
-use std::ptr;
+use crate::{URIRequest, URIResponse};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebResource")]
@@ -33,13 +27,13 @@ impl WebResource {
 pub trait WebResourceExt: 'static {
     #[doc(alias = "webkit_web_resource_get_data")]
     #[doc(alias = "get_data")]
-    fn data<P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static>(
+    fn the_data<P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static>(
         &self,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
     );
 
-    fn data_future(
+    fn the_data_future(
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<u8>, glib::Error>> + 'static>>;
 
@@ -85,7 +79,7 @@ pub trait WebResourceExt: 'static {
 }
 
 impl<O: IsA<WebResource>> WebResourceExt for O {
-    fn data<P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static>(
+    fn the_data<P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static>(
         &self,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
         callback: P,
@@ -102,7 +96,9 @@ impl<O: IsA<WebResource>> WebResourceExt for O {
 
         let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
             Box_::new(glib::thread_guard::ThreadGuard::new(callback));
-        unsafe extern "C" fn data_trampoline<P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static>(
+        unsafe extern "C" fn the_data_trampoline<
+            P: FnOnce(Result<Vec<u8>, glib::Error>) + 'static,
+        >(
             _source_object: *mut glib::gobject_ffi::GObject,
             res: *mut gio::ffi::GAsyncResult,
             user_data: glib::ffi::gpointer,
@@ -118,7 +114,7 @@ impl<O: IsA<WebResource>> WebResourceExt for O {
             let result = if error.is_null() {
                 Ok(FromGlibContainer::from_glib_full_num(
                     ret,
-                    length.assume_init() as usize,
+                    length.assume_init() as _,
                 ))
             } else {
                 Err(from_glib_full(error))
@@ -128,7 +124,7 @@ impl<O: IsA<WebResource>> WebResourceExt for O {
             let callback: P = callback.into_inner();
             callback(result);
         }
-        let callback = data_trampoline::<P>;
+        let callback = the_data_trampoline::<P>;
         unsafe {
             ffi::webkit_web_resource_get_data(
                 self.as_ref().to_glib_none().0,
@@ -139,11 +135,11 @@ impl<O: IsA<WebResource>> WebResourceExt for O {
         }
     }
 
-    fn data_future(
+    fn the_data_future(
         &self,
     ) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<u8>, glib::Error>> + 'static>> {
         Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
-            obj.data(Some(cancellable), move |res| {
+            obj.the_data(Some(cancellable), move |res| {
                 send.resolve(res);
             });
         }))

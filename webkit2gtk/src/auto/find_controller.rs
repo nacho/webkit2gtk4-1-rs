@@ -4,16 +4,12 @@
 // DO NOT EDIT
 
 use crate::WebView;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitFindController")]
@@ -32,41 +28,37 @@ impl FindController {
     ///
     /// This method returns an instance of [`FindControllerBuilder`](crate::builders::FindControllerBuilder) which can be used to create [`FindController`] objects.
     pub fn builder() -> FindControllerBuilder {
-        FindControllerBuilder::default()
+        FindControllerBuilder::new()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`FindController`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct FindControllerBuilder {
-    web_view: Option<WebView>,
+    builder: glib::object::ObjectBuilder<'static, FindController>,
 }
 
 impl FindControllerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`FindControllerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn web_view(self, web_view: &impl IsA<WebView>) -> Self {
+        Self {
+            builder: self.builder.property("web-view", web_view.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`FindController`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> FindController {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref web_view) = self.web_view {
-            properties.push(("web-view", web_view));
-        }
-        glib::Object::new::<FindController>(&properties)
-    }
-
-    pub fn web_view(mut self, web_view: &impl IsA<WebView>) -> Self {
-        self.web_view = Some(web_view.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 

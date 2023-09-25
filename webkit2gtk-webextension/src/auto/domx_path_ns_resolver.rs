@@ -2,9 +2,9 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -22,11 +22,13 @@ impl DOMXPathNSResolver {
 
 pub trait DOMXPathNSResolverExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_ns_resolver_lookup_namespace_uri")]
     fn lookup_namespace_uri(&self, prefix: &str) -> Option<glib::GString>;
 }
 
 impl<O: IsA<DOMXPathNSResolver>> DOMXPathNSResolverExt for O {
+    #[allow(deprecated)]
     fn lookup_namespace_uri(&self, prefix: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_xpath_ns_resolver_lookup_namespace_uri(

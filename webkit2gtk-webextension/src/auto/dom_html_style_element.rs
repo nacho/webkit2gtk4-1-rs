@@ -2,23 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use crate::DOMStyleSheet;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject, DOMStyleSheet};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLStyleElement")]
@@ -35,34 +27,41 @@ impl DOMHTMLStyleElement {
 
 pub trait DOMHTMLStyleElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_get_disabled")]
     #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_get_media")]
     #[doc(alias = "get_media")]
     fn media(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_get_sheet")]
     #[doc(alias = "get_sheet")]
     fn sheet(&self) -> Option<DOMStyleSheet>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_get_type_attr")]
     #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_set_disabled")]
     fn set_disabled(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_set_media")]
     fn set_media(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_set_type_attr")]
     fn set_type_attr(&self, value: &str);
 
@@ -86,6 +85,7 @@ pub trait DOMHTMLStyleElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
+    #[allow(deprecated)]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_style_element_get_disabled(
@@ -94,6 +94,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn media(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_media(
@@ -102,6 +103,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_sheet(
@@ -110,6 +112,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_type_attr(
@@ -118,6 +121,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_disabled(
@@ -127,6 +131,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_media(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_media(
@@ -136,6 +141,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_type_attr(

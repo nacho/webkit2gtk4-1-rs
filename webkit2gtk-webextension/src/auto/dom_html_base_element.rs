@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLBaseElement")]
@@ -32,20 +27,24 @@ impl DOMHTMLBaseElement {
 
 pub trait DOMHTMLBaseElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_base_element_get_href")]
     #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_base_element_get_target")]
     #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_base_element_set_href")]
     fn set_href(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_base_element_set_target")]
     fn set_target(&self, value: &str);
 
@@ -57,6 +56,7 @@ pub trait DOMHTMLBaseElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
+    #[allow(deprecated)]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_base_element_get_href(
@@ -65,6 +65,7 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_base_element_get_target(
@@ -73,6 +74,7 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_base_element_set_href(
@@ -82,6 +84,7 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_base_element_set_target(

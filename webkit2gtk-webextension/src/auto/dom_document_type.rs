@@ -2,19 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMEventTarget;
-use crate::DOMNamedNodeMap;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMEventTarget, DOMNamedNodeMap, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDocumentType")]
@@ -31,31 +27,37 @@ impl DOMDocumentType {
 
 pub trait DOMDocumentTypeExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_entities")]
     #[doc(alias = "get_entities")]
     fn entities(&self) -> Option<DOMNamedNodeMap>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_internal_subset")]
     #[doc(alias = "get_internal_subset")]
     fn internal_subset(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_notations")]
     #[doc(alias = "get_notations")]
     fn notations(&self) -> Option<DOMNamedNodeMap>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_public_id")]
     #[doc(alias = "get_public_id")]
     fn public_id(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_system_id")]
     #[doc(alias = "get_system_id")]
     fn system_id(&self) -> Option<glib::GString>;
@@ -80,6 +82,7 @@ pub trait DOMDocumentTypeExt: 'static {
 }
 
 impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
+    #[allow(deprecated)]
     fn entities(&self) -> Option<DOMNamedNodeMap> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_entities(
@@ -88,6 +91,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn internal_subset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_internal_subset(
@@ -96,6 +100,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_name(
@@ -104,6 +109,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn notations(&self) -> Option<DOMNamedNodeMap> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_notations(
@@ -112,6 +118,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn public_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_public_id(
@@ -120,6 +127,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn system_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_system_id(

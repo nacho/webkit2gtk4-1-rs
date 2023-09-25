@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::PermissionRequest;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -23,6 +23,7 @@ impl InstallMissingMediaPluginsPermissionRequest {
 
 pub trait InstallMissingMediaPluginsPermissionRequestExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_install_missing_media_plugins_permission_request_get_description")]
     #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString>;
@@ -31,6 +32,7 @@ pub trait InstallMissingMediaPluginsPermissionRequestExt: 'static {
 impl<O: IsA<InstallMissingMediaPluginsPermissionRequest>>
     InstallMissingMediaPluginsPermissionRequestExt for O
 {
+    #[allow(deprecated)]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(

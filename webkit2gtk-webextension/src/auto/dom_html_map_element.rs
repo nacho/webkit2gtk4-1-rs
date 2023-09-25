@@ -2,21 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLCollection;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLCollection, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLMapElement")]
@@ -33,16 +27,19 @@ impl DOMHTMLMapElement {
 
 pub trait DOMHTMLMapElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_map_element_get_areas")]
     #[doc(alias = "get_areas")]
     fn areas(&self) -> Option<DOMHTMLCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_map_element_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_map_element_set_name")]
     fn set_name(&self, value: &str);
 
@@ -54,6 +51,7 @@ pub trait DOMHTMLMapElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
+    #[allow(deprecated)]
     fn areas(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_map_element_get_areas(
@@ -62,6 +60,7 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_map_element_get_name(
@@ -70,6 +69,7 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_map_element_set_name(

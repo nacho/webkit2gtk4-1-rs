@@ -11,11 +11,11 @@ bitflags! {
     #[doc(alias = "JSCValuePropertyFlags")]
     pub struct ValuePropertyFlags: u32 {
         #[doc(alias = "JSC_VALUE_PROPERTY_CONFIGURABLE")]
-        const CONFIGURABLE = ffi::JSC_VALUE_PROPERTY_CONFIGURABLE as u32;
+        const CONFIGURABLE = ffi::JSC_VALUE_PROPERTY_CONFIGURABLE as _;
         #[doc(alias = "JSC_VALUE_PROPERTY_ENUMERABLE")]
-        const ENUMERABLE = ffi::JSC_VALUE_PROPERTY_ENUMERABLE as u32;
+        const ENUMERABLE = ffi::JSC_VALUE_PROPERTY_ENUMERABLE as _;
         #[doc(alias = "JSC_VALUE_PROPERTY_WRITABLE")]
-        const WRITABLE = ffi::JSC_VALUE_PROPERTY_WRITABLE as u32;
+        const WRITABLE = ffi::JSC_VALUE_PROPERTY_WRITABLE as _;
     }
 }
 
@@ -29,6 +29,7 @@ impl fmt::Display for ValuePropertyFlags {
 impl IntoGlib for ValuePropertyFlags {
     type GlibType = ffi::JSCValuePropertyFlags;
 
+    #[inline]
     fn into_glib(self) -> ffi::JSCValuePropertyFlags {
         self.bits()
     }
@@ -36,6 +37,7 @@ impl IntoGlib for ValuePropertyFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCValuePropertyFlags> for ValuePropertyFlags {
+    #[inline]
     unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
         Self::from_bits_truncate(value)
     }

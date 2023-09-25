@@ -2,12 +2,11 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::DOMEvent;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
-use std::ptr;
+use glib::{prelude::*, translate::*};
+use std::{fmt, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMEventTarget")]
@@ -24,10 +23,12 @@ impl DOMEventTarget {
 
 pub trait DOMEventTargetExt: 'static {
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_dom_event_target_add_event_listener")]
     //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_event_target_add_event_listener_with_closure")]
     fn add_event_listener_with_closure(
         &self,
@@ -37,14 +38,17 @@ pub trait DOMEventTargetExt: 'static {
     ) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_event_target_dispatch_event")]
     fn dispatch_event(&self, event: &impl IsA<DOMEvent>) -> Result<(), glib::Error>;
 
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    //#[allow(deprecated)]
     //#[doc(alias = "webkit_dom_event_target_remove_event_listener")]
     //fn remove_event_listener<P: FnMut()>(&self, event_name: &str, handler: P, use_capture: bool) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_event_target_remove_event_listener_with_closure")]
     fn remove_event_listener_with_closure(
         &self,
@@ -55,10 +59,12 @@ pub trait DOMEventTargetExt: 'static {
 }
 
 impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
+    //#[allow(deprecated)]
     //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool {
     //    unsafe { TODO: call ffi:webkit_dom_event_target_add_event_listener() }
     //}
 
+    #[allow(deprecated)]
     fn add_event_listener_with_closure(
         &self,
         event_name: &str,
@@ -77,6 +83,7 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn dispatch_event(&self, event: &impl IsA<DOMEvent>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -85,7 +92,7 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
                 event.as_ref().to_glib_none().0,
                 &mut error,
             );
-            assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
+            debug_assert_eq!(is_ok == glib::ffi::GFALSE, !error.is_null());
             if error.is_null() {
                 Ok(())
             } else {
@@ -94,10 +101,12 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
         }
     }
 
+    //#[allow(deprecated)]
     //fn remove_event_listener<P: FnMut()>(&self, event_name: &str, handler: P, use_capture: bool) -> bool {
     //    unsafe { TODO: call ffi:webkit_dom_event_target_remove_event_listener() }
     //}
 
+    #[allow(deprecated)]
     fn remove_event_listener_with_closure(
         &self,
         event_name: &str,

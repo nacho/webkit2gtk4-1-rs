@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::DOMNode;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -23,11 +23,13 @@ impl DOMNodeFilter {
 
 pub trait DOMNodeFilterExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_node_filter_accept_node")]
     fn accept_node(&self, node: &impl IsA<DOMNode>) -> libc::c_short;
 }
 
 impl<O: IsA<DOMNodeFilter>> DOMNodeFilterExt for O {
+    #[allow(deprecated)]
     fn accept_node(&self, node: &impl IsA<DOMNode>) -> libc::c_short {
         unsafe {
             ffi::webkit_dom_node_filter_accept_node(

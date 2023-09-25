@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLMetaElement")]
@@ -32,38 +27,46 @@ impl DOMHTMLMetaElement {
 
 pub trait DOMHTMLMetaElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_get_content")]
     #[doc(alias = "get_content")]
     fn content(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_get_http_equiv")]
     #[doc(alias = "get_http_equiv")]
     fn http_equiv(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_get_scheme")]
     #[doc(alias = "get_scheme")]
     fn scheme(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_set_content")]
     fn set_content(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_set_http_equiv")]
     fn set_http_equiv(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_set_name")]
     fn set_name(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_set_scheme")]
     fn set_scheme(&self, value: &str);
 
@@ -81,6 +84,7 @@ pub trait DOMHTMLMetaElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
+    #[allow(deprecated)]
     fn content(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_content(
@@ -89,6 +93,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn http_equiv(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_http_equiv(
@@ -97,6 +102,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_name(
@@ -105,6 +111,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn scheme(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_scheme(
@@ -113,6 +120,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_content(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_content(
@@ -122,6 +130,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_http_equiv(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_http_equiv(
@@ -131,6 +140,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_name(
@@ -140,6 +150,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_scheme(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_scheme(

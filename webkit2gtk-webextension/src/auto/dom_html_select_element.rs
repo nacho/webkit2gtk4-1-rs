@@ -2,24 +2,18 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMHTMLFormElement;
-use crate::DOMHTMLOptionsCollection;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::ptr;
+use crate::{
+    DOMElement, DOMEventTarget, DOMHTMLElement, DOMHTMLFormElement, DOMHTMLOptionsCollection,
+    DOMNode, DOMObject,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLSelectElement")]
@@ -36,6 +30,7 @@ impl DOMHTMLSelectElement {
 
 pub trait DOMHTMLSelectElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_add")]
     fn add(
         &self,
@@ -44,106 +39,129 @@ pub trait DOMHTMLSelectElementExt: 'static {
     ) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_autofocus")]
     #[doc(alias = "get_autofocus")]
     fn is_autofocus(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_disabled")]
     #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_form")]
     #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_length")]
     #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_multiple")]
     #[doc(alias = "get_multiple")]
     fn is_multiple(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_options")]
     #[doc(alias = "get_options")]
     fn options(&self) -> Option<DOMHTMLOptionsCollection>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_select_type")]
     #[doc(alias = "get_select_type")]
     fn select_type(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_selected_index")]
     #[doc(alias = "get_selected_index")]
     fn selected_index(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_size")]
     #[doc(alias = "get_size")]
     fn size(&self) -> libc::c_long;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_value")]
     #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_get_will_validate")]
     #[doc(alias = "get_will_validate")]
     fn is_will_validate(&self) -> bool;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_named_item")]
     fn named_item(&self, name: &str) -> Option<DOMNode>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_remove")]
     fn remove(&self, index: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_autofocus")]
     fn set_autofocus(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_disabled")]
     fn set_disabled(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_length")]
     fn set_length(&self, value: libc::c_ulong) -> Result<(), glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_multiple")]
     fn set_multiple(&self, value: bool);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_name")]
     fn set_name(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_selected_index")]
     fn set_selected_index(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_size")]
     fn set_size(&self, value: libc::c_long);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_select_element_set_value")]
     fn set_value(&self, value: &str);
 
@@ -188,6 +206,7 @@ pub trait DOMHTMLSelectElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
+    #[allow(deprecated)]
     fn add(
         &self,
         element: &impl IsA<DOMHTMLElement>,
@@ -209,6 +228,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_autofocus(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_select_element_get_autofocus(
@@ -217,6 +237,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_select_element_get_disabled(
@@ -225,6 +246,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_select_element_get_form(
@@ -233,10 +255,12 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_select_element_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn is_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_select_element_get_multiple(
@@ -245,6 +269,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_select_element_get_name(
@@ -253,6 +278,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn options(&self) -> Option<DOMHTMLOptionsCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_select_element_get_options(
@@ -261,6 +287,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn select_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_select_element_get_select_type(
@@ -269,16 +296,19 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn selected_index(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_select_element_get_selected_index(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[allow(deprecated)]
     fn size(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_select_element_get_size(self.as_ref().to_glib_none().0) }
     }
 
+    #[allow(deprecated)]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_select_element_get_value(
@@ -287,6 +317,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn is_will_validate(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_select_element_get_will_validate(
@@ -295,6 +326,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_select_element_item(
@@ -304,6 +336,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn named_item(&self, name: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_select_element_named_item(
@@ -313,12 +346,14 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn remove(&self, index: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_select_element_remove(self.as_ref().to_glib_none().0, index);
         }
     }
 
+    #[allow(deprecated)]
     fn set_autofocus(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_autofocus(
@@ -328,6 +363,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_disabled(
@@ -337,6 +373,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_length(&self, value: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -353,6 +390,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_multiple(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_multiple(
@@ -362,6 +400,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_name(
@@ -371,6 +410,7 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_selected_index(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_selected_index(
@@ -380,12 +420,14 @@ impl<O: IsA<DOMHTMLSelectElement>> DOMHTMLSelectElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_size(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_size(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[allow(deprecated)]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_select_element_set_value(

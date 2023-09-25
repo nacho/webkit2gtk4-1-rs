@@ -3,13 +3,8 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::Context;
-use crate::ValuePropertyFlags;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use crate::{Context, ValuePropertyFlags};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -158,7 +153,7 @@ impl Value {
     ///
     /// This method returns an instance of [`ValueBuilder`](crate::builders::ValueBuilder) which can be used to create [`Value`] objects.
     pub fn builder() -> ValueBuilder {
-        ValueBuilder::default()
+        ValueBuilder::new()
     }
 }
 
@@ -169,37 +164,33 @@ impl fmt::Display for Value {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`Value`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct ValueBuilder {
-    context: Option<Context>,
+    builder: glib::object::ObjectBuilder<'static, Value>,
 }
 
 impl ValueBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`ValueBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn context(self, context: &impl IsA<Context>) -> Self {
+        Self {
+            builder: self.builder.property("context", context.clone().upcast()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`Value`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> Value {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref context) = self.context {
-            properties.push(("context", context));
-        }
-        glib::Object::new::<Value>(&properties)
-    }
-
-    pub fn context(mut self, context: &impl IsA<Context>) -> Self {
-        self.context = Some(context.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 
@@ -390,7 +381,7 @@ impl<O: IsA<Value>> ValueExt for O {
     //}
 
     fn constructor_callv(&self, parameters: &[Value]) -> Option<Value> {
-        let n_parameters = parameters.len() as u32;
+        let n_parameters = parameters.len() as _;
         unsafe {
             from_glib_full(ffi::jsc_value_constructor_callv(
                 self.as_ref().to_glib_none().0,
@@ -405,7 +396,7 @@ impl<O: IsA<Value>> ValueExt for O {
     //}
 
     fn function_callv(&self, parameters: &[Value]) -> Option<Value> {
-        let n_parameters = parameters.len() as u32;
+        let n_parameters = parameters.len() as _;
         unsafe {
             from_glib_full(ffi::jsc_value_function_callv(
                 self.as_ref().to_glib_none().0,
@@ -550,7 +541,7 @@ impl<O: IsA<Value>> ValueExt for O {
     //}
 
     fn object_invoke_methodv(&self, name: &str, parameters: &[Value]) -> Option<Value> {
-        let n_parameters = parameters.len() as u32;
+        let n_parameters = parameters.len() as _;
         unsafe {
             from_glib_full(ffi::jsc_value_object_invoke_methodv(
                 self.as_ref().to_glib_none().0,

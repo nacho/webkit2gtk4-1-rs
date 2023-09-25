@@ -3,11 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -27,104 +23,85 @@ impl WindowProperties {
     ///
     /// This method returns an instance of [`WindowPropertiesBuilder`](crate::builders::WindowPropertiesBuilder) which can be used to create [`WindowProperties`] objects.
     pub fn builder() -> WindowPropertiesBuilder {
-        WindowPropertiesBuilder::default()
+        WindowPropertiesBuilder::new()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WindowProperties`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WindowPropertiesBuilder {
-    fullscreen: Option<bool>,
-    geometry: Option<gdk::Rectangle>,
-    locationbar_visible: Option<bool>,
-    menubar_visible: Option<bool>,
-    resizable: Option<bool>,
-    scrollbars_visible: Option<bool>,
-    statusbar_visible: Option<bool>,
-    toolbar_visible: Option<bool>,
+    builder: glib::object::ObjectBuilder<'static, WindowProperties>,
 }
 
 impl WindowPropertiesBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WindowPropertiesBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    pub fn fullscreen(self, fullscreen: bool) -> Self {
+        Self {
+            builder: self.builder.property("fullscreen", fullscreen),
+        }
+    }
+
+    pub fn geometry(self, geometry: &gdk::Rectangle) -> Self {
+        Self {
+            builder: self.builder.property("geometry", geometry),
+        }
+    }
+
+    pub fn locationbar_visible(self, locationbar_visible: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("locationbar-visible", locationbar_visible),
+        }
+    }
+
+    pub fn menubar_visible(self, menubar_visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("menubar-visible", menubar_visible),
+        }
+    }
+
+    pub fn resizable(self, resizable: bool) -> Self {
+        Self {
+            builder: self.builder.property("resizable", resizable),
+        }
+    }
+
+    pub fn scrollbars_visible(self, scrollbars_visible: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("scrollbars-visible", scrollbars_visible),
+        }
+    }
+
+    pub fn statusbar_visible(self, statusbar_visible: bool) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("statusbar-visible", statusbar_visible),
+        }
+    }
+
+    pub fn toolbar_visible(self, toolbar_visible: bool) -> Self {
+        Self {
+            builder: self.builder.property("toolbar-visible", toolbar_visible),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WindowProperties`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> WindowProperties {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        if let Some(ref fullscreen) = self.fullscreen {
-            properties.push(("fullscreen", fullscreen));
-        }
-        if let Some(ref geometry) = self.geometry {
-            properties.push(("geometry", geometry));
-        }
-        if let Some(ref locationbar_visible) = self.locationbar_visible {
-            properties.push(("locationbar-visible", locationbar_visible));
-        }
-        if let Some(ref menubar_visible) = self.menubar_visible {
-            properties.push(("menubar-visible", menubar_visible));
-        }
-        if let Some(ref resizable) = self.resizable {
-            properties.push(("resizable", resizable));
-        }
-        if let Some(ref scrollbars_visible) = self.scrollbars_visible {
-            properties.push(("scrollbars-visible", scrollbars_visible));
-        }
-        if let Some(ref statusbar_visible) = self.statusbar_visible {
-            properties.push(("statusbar-visible", statusbar_visible));
-        }
-        if let Some(ref toolbar_visible) = self.toolbar_visible {
-            properties.push(("toolbar-visible", toolbar_visible));
-        }
-        glib::Object::new::<WindowProperties>(&properties)
-    }
-
-    pub fn fullscreen(mut self, fullscreen: bool) -> Self {
-        self.fullscreen = Some(fullscreen);
-        self
-    }
-
-    pub fn geometry(mut self, geometry: &gdk::Rectangle) -> Self {
-        self.geometry = Some(geometry.clone());
-        self
-    }
-
-    pub fn locationbar_visible(mut self, locationbar_visible: bool) -> Self {
-        self.locationbar_visible = Some(locationbar_visible);
-        self
-    }
-
-    pub fn menubar_visible(mut self, menubar_visible: bool) -> Self {
-        self.menubar_visible = Some(menubar_visible);
-        self
-    }
-
-    pub fn resizable(mut self, resizable: bool) -> Self {
-        self.resizable = Some(resizable);
-        self
-    }
-
-    pub fn scrollbars_visible(mut self, scrollbars_visible: bool) -> Self {
-        self.scrollbars_visible = Some(scrollbars_visible);
-        self
-    }
-
-    pub fn statusbar_visible(mut self, statusbar_visible: bool) -> Self {
-        self.statusbar_visible = Some(statusbar_visible);
-        self
-    }
-
-    pub fn toolbar_visible(mut self, toolbar_visible: bool) -> Self {
-        self.toolbar_visible = Some(toolbar_visible);
-        self
+        self.builder.build()
     }
 }
 

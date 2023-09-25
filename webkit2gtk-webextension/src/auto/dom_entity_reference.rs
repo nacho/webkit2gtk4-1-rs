@@ -3,9 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use crate::DOMEventTarget;
-use crate::DOMNode;
-use crate::DOMObject;
+use crate::{DOMEventTarget, DOMNode, DOMObject};
 use std::fmt;
 
 glib::wrapper! {

@@ -2,20 +2,15 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLElement;
-use crate::DOMNode;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMHTMLModElement")]
@@ -32,20 +27,24 @@ impl DOMHTMLModElement {
 
 pub trait DOMHTMLModElementExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_mod_element_get_cite")]
     #[doc(alias = "get_cite")]
     fn cite(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_mod_element_get_date_time")]
     #[doc(alias = "get_date_time")]
     fn date_time(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_mod_element_set_cite")]
     fn set_cite(&self, value: &str);
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_mod_element_set_date_time")]
     fn set_date_time(&self, value: &str);
 
@@ -57,6 +56,7 @@ pub trait DOMHTMLModElementExt: 'static {
 }
 
 impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
+    #[allow(deprecated)]
     fn cite(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_mod_element_get_cite(
@@ -65,6 +65,7 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn date_time(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_mod_element_get_date_time(
@@ -73,6 +74,7 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_cite(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_mod_element_set_cite(
@@ -82,6 +84,7 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_date_time(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_mod_element_set_date_time(

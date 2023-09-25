@@ -2,45 +2,36 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 #[cfg(any(feature = "v2_18", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
 use crate::AutomationSession;
-use crate::CacheModel;
-use crate::CookieManager;
-use crate::Download;
-use crate::FaviconDatabase;
 #[cfg(any(feature = "v2_26", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
 use crate::GeolocationManager;
-use crate::Plugin;
 #[cfg(any(feature = "v2_4", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
 use crate::ProcessModel;
-use crate::SecurityManager;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::SecurityOrigin;
-use crate::TLSErrorsPolicy;
-use crate::URISchemeRequest;
 #[cfg(any(feature = "v2_28", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 use crate::UserMessage;
 #[cfg(any(feature = "v2_10", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 use crate::WebsiteDataManager;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
-use std::pin::Pin;
-use std::ptr;
+use crate::{
+    CacheModel, CookieManager, Download, FaviconDatabase, Plugin, SecurityManager, TLSErrorsPolicy,
+    URISchemeRequest,
+};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::{boxed::Box as Box_, fmt, mem::transmute, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebContext")]
@@ -88,11 +79,12 @@ impl WebContext {
     ///
     /// This method returns an instance of [`WebContextBuilder`](crate::builders::WebContextBuilder) which can be used to create [`WebContext`] objects.
     pub fn builder() -> WebContextBuilder {
-        WebContextBuilder::default()
+        WebContextBuilder::new()
     }
 
     #[doc(alias = "webkit_web_context_get_default")]
     #[doc(alias = "get_default")]
+    #[allow(clippy::should_implement_trait)]
     pub fn default() -> Option<WebContext> {
         assert_initialized_main_thread!();
         unsafe { from_glib_none(ffi::webkit_web_context_get_default()) }
@@ -107,121 +99,95 @@ impl Default for WebContext {
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WebContext`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WebContextBuilder {
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
-    local_storage_directory: Option<String>,
-    //memory-pressure-settings: /*Unknown type*/,
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    process_swap_on_cross_site_navigation_enabled: Option<bool>,
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    time_zone_override: Option<String>,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    use_system_appearance_for_scrollbars: Option<bool>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    website_data_manager: Option<WebsiteDataManager>,
+    builder: glib::object::ObjectBuilder<'static, WebContext>,
 }
 
 impl WebContextBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WebContextBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v2_8", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
+    pub fn local_storage_directory(
+        self,
+        local_storage_directory: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("local-storage-directory", local_storage_directory.into()),
+        }
+    }
+
+    //    #[cfg(any(feature = "v2_34", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    //pub fn memory_pressure_settings(self, memory_pressure_settings: /*Ignored*/&MemoryPressureSettings) -> Self {
+    //    Self { builder: self.builder.property("memory-pressure-settings", memory_pressure_settings), }
+    //}
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    pub fn process_swap_on_cross_site_navigation_enabled(
+        self,
+        process_swap_on_cross_site_navigation_enabled: bool,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "process-swap-on-cross-site-navigation-enabled",
+                process_swap_on_cross_site_navigation_enabled,
+            ),
+        }
+    }
+
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    pub fn time_zone_override(self, time_zone_override: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("time-zone-override", time_zone_override.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v2_30", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    pub fn use_system_appearance_for_scrollbars(
+        self,
+        use_system_appearance_for_scrollbars: bool,
+    ) -> Self {
+        Self {
+            builder: self.builder.property(
+                "use-system-appearance-for-scrollbars",
+                use_system_appearance_for_scrollbars,
+            ),
+        }
+    }
+
+    #[cfg(any(feature = "v2_10", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    pub fn website_data_manager(self, website_data_manager: &impl IsA<WebsiteDataManager>) -> Self {
+        Self {
+            builder: self.builder.property(
+                "website-data-manager",
+                website_data_manager.clone().upcast(),
+            ),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`WebContext`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> WebContext {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_8", feature = "dox"))]
-        if let Some(ref local_storage_directory) = self.local_storage_directory {
-            properties.push(("local-storage-directory", local_storage_directory));
-        }
-        #[cfg(any(feature = "v2_28", feature = "dox"))]
-        if let Some(ref process_swap_on_cross_site_navigation_enabled) =
-            self.process_swap_on_cross_site_navigation_enabled
-        {
-            properties.push((
-                "process-swap-on-cross-site-navigation-enabled",
-                process_swap_on_cross_site_navigation_enabled,
-            ));
-        }
-        #[cfg(any(feature = "v2_38", feature = "dox"))]
-        if let Some(ref time_zone_override) = self.time_zone_override {
-            properties.push(("time-zone-override", time_zone_override));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref use_system_appearance_for_scrollbars) =
-            self.use_system_appearance_for_scrollbars
-        {
-            properties.push((
-                "use-system-appearance-for-scrollbars",
-                use_system_appearance_for_scrollbars,
-            ));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref website_data_manager) = self.website_data_manager {
-            properties.push(("website-data-manager", website_data_manager));
-        }
-        glib::Object::new::<WebContext>(&properties)
-    }
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
-    pub fn local_storage_directory(mut self, local_storage_directory: &str) -> Self {
-        self.local_storage_directory = Some(local_storage_directory.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    pub fn process_swap_on_cross_site_navigation_enabled(
-        mut self,
-        process_swap_on_cross_site_navigation_enabled: bool,
-    ) -> Self {
-        self.process_swap_on_cross_site_navigation_enabled =
-            Some(process_swap_on_cross_site_navigation_enabled);
-        self
-    }
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    pub fn time_zone_override(mut self, time_zone_override: &str) -> Self {
-        self.time_zone_override = Some(time_zone_override.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    pub fn use_system_appearance_for_scrollbars(
-        mut self,
-        use_system_appearance_for_scrollbars: bool,
-    ) -> Self {
-        self.use_system_appearance_for_scrollbars = Some(use_system_appearance_for_scrollbars);
-        self
-    }
-
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    pub fn website_data_manager(
-        mut self,
-        website_data_manager: &impl IsA<WebsiteDataManager>,
-    ) -> Self {
-        self.website_data_manager = Some(website_data_manager.clone().upcast());
-        self
+        self.builder.build()
     }
 }
 
@@ -269,6 +235,7 @@ pub trait WebContextExt: 'static {
     fn geolocation_manager(&self) -> Option<GeolocationManager>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_get_plugins")]
     #[doc(alias = "get_plugins")]
     fn plugins<P: FnOnce(Result<Vec<Plugin>, glib::Error>) + 'static>(
@@ -286,6 +253,7 @@ pub trait WebContextExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_get_process_model")]
     #[doc(alias = "get_process_model")]
     fn process_model(&self) -> ProcessModel;
@@ -315,6 +283,7 @@ pub trait WebContextExt: 'static {
     fn time_zone_override(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_get_tls_errors_policy")]
     #[doc(alias = "get_tls_errors_policy")]
     fn tls_errors_policy(&self) -> TLSErrorsPolicy;
@@ -328,6 +297,7 @@ pub trait WebContextExt: 'static {
     #[cfg_attr(feature = "v2_26", deprecated = "Since 2.26")]
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_get_web_process_count_limit")]
     #[doc(alias = "get_web_process_count_limit")]
     fn web_process_count_limit(&self) -> u32;
@@ -369,6 +339,7 @@ pub trait WebContextExt: 'static {
     fn send_message_to_all_extensions(&self, message: &impl IsA<UserMessage>);
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_set_additional_plugins_directory")]
     fn set_additional_plugins_directory(&self, directory: &str);
 
@@ -381,6 +352,7 @@ pub trait WebContextExt: 'static {
     fn set_cache_model(&self, cache_model: CacheModel);
 
     #[cfg_attr(feature = "v2_10", deprecated = "Since 2.10")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_set_disk_cache_directory")]
     fn set_disk_cache_directory(&self, directory: &str);
 
@@ -393,6 +365,7 @@ pub trait WebContextExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_set_process_model")]
     fn set_process_model(&self, process_model: ProcessModel);
 
@@ -408,6 +381,7 @@ pub trait WebContextExt: 'static {
     fn set_spell_checking_languages(&self, languages: &[&str]);
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_set_tls_errors_policy")]
     fn set_tls_errors_policy(&self, policy: TLSErrorsPolicy);
 
@@ -427,6 +401,7 @@ pub trait WebContextExt: 'static {
     #[cfg_attr(feature = "v2_26", deprecated = "Since 2.26")]
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_web_context_set_web_process_count_limit")]
     fn set_web_process_count_limit(&self, limit: u32);
 
@@ -568,6 +543,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn plugins<P: FnOnce(Result<Vec<Plugin>, glib::Error>) + 'static>(
         &self,
         cancellable: Option<&impl IsA<gio::Cancellable>>,
@@ -632,6 +608,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
 
     #[cfg(any(feature = "v2_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+    #[allow(deprecated)]
     fn process_model(&self) -> ProcessModel {
         unsafe {
             from_glib(ffi::webkit_web_context_get_process_model(
@@ -686,6 +663,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn tls_errors_policy(&self) -> TLSErrorsPolicy {
         unsafe {
             from_glib(ffi::webkit_web_context_get_tls_errors_policy(
@@ -708,6 +686,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[allow(deprecated)]
     fn web_process_count_limit(&self) -> u32 {
         unsafe {
             ffi::webkit_web_context_get_web_process_count_limit(self.as_ref().to_glib_none().0)
@@ -777,7 +756,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         ) {
             let request = from_glib_borrow(request);
             let callback: &P = &*(user_data as *mut _);
-            (*callback)(&request);
+            (*callback)(&request)
         }
         let callback = Some(callback_func::<P> as _);
         unsafe extern "C" fn user_data_destroy_func_func<P: Fn(&URISchemeRequest) + 'static>(
@@ -809,6 +788,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_additional_plugins_directory(&self, directory: &str) {
         unsafe {
             ffi::webkit_web_context_set_additional_plugins_directory(
@@ -838,6 +818,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_disk_cache_directory(&self, directory: &str) {
         unsafe {
             ffi::webkit_web_context_set_disk_cache_directory(
@@ -867,6 +848,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
 
     #[cfg(any(feature = "v2_4", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_4")))]
+    #[allow(deprecated)]
     fn set_process_model(&self, process_model: ProcessModel) {
         unsafe {
             ffi::webkit_web_context_set_process_model(
@@ -905,6 +887,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn set_tls_errors_policy(&self, policy: TLSErrorsPolicy) {
         unsafe {
             ffi::webkit_web_context_set_tls_errors_policy(
@@ -947,6 +930,7 @@ impl<O: IsA<WebContext>> WebContextExt for O {
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[allow(deprecated)]
     fn set_web_process_count_limit(&self, limit: u32) {
         unsafe {
             ffi::webkit_web_context_set_web_process_count_limit(

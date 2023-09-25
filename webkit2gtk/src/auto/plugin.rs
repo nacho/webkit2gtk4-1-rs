@@ -2,10 +2,10 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
 use crate::MimeInfo;
-use glib::object::IsA;
-use glib::translate::*;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -23,27 +23,32 @@ impl Plugin {
 
 pub trait PluginExt: 'static {
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_plugin_get_description")]
     #[doc(alias = "get_description")]
     fn description(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_plugin_get_mime_info_list")]
     #[doc(alias = "get_mime_info_list")]
     fn mime_info_list(&self) -> Vec<MimeInfo>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_plugin_get_name")]
     #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_plugin_get_path")]
     #[doc(alias = "get_path")]
     fn path(&self) -> Option<glib::GString>;
 }
 
 impl<O: IsA<Plugin>> PluginExt for O {
+    #[allow(deprecated)]
     fn description(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_plugin_get_description(
@@ -52,6 +57,7 @@ impl<O: IsA<Plugin>> PluginExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn mime_info_list(&self) -> Vec<MimeInfo> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::webkit_plugin_get_mime_info_list(
@@ -60,10 +66,12 @@ impl<O: IsA<Plugin>> PluginExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::webkit_plugin_get_name(self.as_ref().to_glib_none().0)) }
     }
 
+    #[allow(deprecated)]
     fn path(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::webkit_plugin_get_path(self.as_ref().to_glib_none().0)) }
     }

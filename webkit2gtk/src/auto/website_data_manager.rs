@@ -2,10 +2,8 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use crate::CookieManager;
 #[cfg(any(feature = "v2_30", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
 use crate::ITPThirdParty;
@@ -14,25 +12,12 @@ use crate::ITPThirdParty;
 use crate::TLSErrorsPolicy;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use crate::WebsiteData;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use crate::WebsiteDataTypes;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use std::boxed::Box as Box_;
+use crate::{CookieManager, WebsiteData, WebsiteDataTypes};
+use glib::{prelude::*, translate::*};
 use std::fmt;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use std::pin::Pin;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-use std::ptr;
+use std::{boxed::Box as Box_, pin::Pin, ptr};
 
 glib::wrapper! {
     #[doc(alias = "WebKitWebsiteDataManager")]
@@ -64,7 +49,7 @@ impl WebsiteDataManager {
     ///
     /// This method returns an instance of [`WebsiteDataManagerBuilder`](crate::builders::WebsiteDataManagerBuilder) which can be used to create [`WebsiteDataManager`] objects.
     pub fn builder() -> WebsiteDataManagerBuilder {
-        WebsiteDataManagerBuilder::default()
+        WebsiteDataManagerBuilder::new()
     }
 
     //#[cfg(any(feature = "v2_34", feature = "dox"))]
@@ -79,236 +64,167 @@ impl WebsiteDataManager {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
 impl Default for WebsiteDataManager {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WebsiteDataManager`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WebsiteDataManagerBuilder {
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    base_cache_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    base_data_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    disk_cache_directory: Option<String>,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    dom_cache_directory: Option<String>,
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    hsts_cache_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    indexeddb_directory: Option<String>,
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    is_ephemeral: Option<bool>,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    itp_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    local_storage_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    offline_application_cache_directory: Option<String>,
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    service_worker_registrations_directory: Option<String>,
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[cfg_attr(feature = "v2_24", deprecated = "Since 2.24")]
-    websql_directory: Option<String>,
+    builder: glib::object::ObjectBuilder<'static, WebsiteDataManager>,
 }
 
 impl WebsiteDataManagerBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`WebsiteDataManagerBuilder`].
-    pub fn new() -> Self {
-        Self::default()
-    }
-
-    // rustdoc-stripper-ignore-next
-    /// Build the [`WebsiteDataManager`].
-    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
-    pub fn build(self) -> WebsiteDataManager {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref base_cache_directory) = self.base_cache_directory {
-            properties.push(("base-cache-directory", base_cache_directory));
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
         }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref base_data_directory) = self.base_data_directory {
-            properties.push(("base-data-directory", base_data_directory));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref disk_cache_directory) = self.disk_cache_directory {
-            properties.push(("disk-cache-directory", disk_cache_directory));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref dom_cache_directory) = self.dom_cache_directory {
-            properties.push(("dom-cache-directory", dom_cache_directory));
-        }
-        #[cfg(any(feature = "v2_26", feature = "dox"))]
-        if let Some(ref hsts_cache_directory) = self.hsts_cache_directory {
-            properties.push(("hsts-cache-directory", hsts_cache_directory));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref indexeddb_directory) = self.indexeddb_directory {
-            properties.push(("indexeddb-directory", indexeddb_directory));
-        }
-        #[cfg(any(feature = "v2_16", feature = "dox"))]
-        if let Some(ref is_ephemeral) = self.is_ephemeral {
-            properties.push(("is-ephemeral", is_ephemeral));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref itp_directory) = self.itp_directory {
-            properties.push(("itp-directory", itp_directory));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref local_storage_directory) = self.local_storage_directory {
-            properties.push(("local-storage-directory", local_storage_directory));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref offline_application_cache_directory) =
-            self.offline_application_cache_directory
-        {
-            properties.push((
-                "offline-application-cache-directory",
-                offline_application_cache_directory,
-            ));
-        }
-        #[cfg(any(feature = "v2_30", feature = "dox"))]
-        if let Some(ref service_worker_registrations_directory) =
-            self.service_worker_registrations_directory
-        {
-            properties.push((
-                "service-worker-registrations-directory",
-                service_worker_registrations_directory,
-            ));
-        }
-        #[cfg(any(feature = "v2_10", feature = "dox"))]
-        if let Some(ref websql_directory) = self.websql_directory {
-            properties.push(("websql-directory", websql_directory));
-        }
-        glib::Object::new::<WebsiteDataManager>(&properties)
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    pub fn base_cache_directory(mut self, base_cache_directory: &str) -> Self {
-        self.base_cache_directory = Some(base_cache_directory.to_string());
-        self
+    pub fn base_cache_directory(self, base_cache_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("base-cache-directory", base_cache_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    pub fn base_data_directory(mut self, base_data_directory: &str) -> Self {
-        self.base_data_directory = Some(base_data_directory.to_string());
-        self
+    pub fn base_data_directory(self, base_data_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("base-data-directory", base_data_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn disk_cache_directory(mut self, disk_cache_directory: &str) -> Self {
-        self.disk_cache_directory = Some(disk_cache_directory.to_string());
-        self
+    pub fn disk_cache_directory(self, disk_cache_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("disk-cache-directory", disk_cache_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn dom_cache_directory(mut self, dom_cache_directory: &str) -> Self {
-        self.dom_cache_directory = Some(dom_cache_directory.to_string());
-        self
+    pub fn dom_cache_directory(self, dom_cache_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("dom-cache-directory", dom_cache_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn hsts_cache_directory(mut self, hsts_cache_directory: &str) -> Self {
-        self.hsts_cache_directory = Some(hsts_cache_directory.to_string());
-        self
+    pub fn hsts_cache_directory(self, hsts_cache_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("hsts-cache-directory", hsts_cache_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn indexeddb_directory(mut self, indexeddb_directory: &str) -> Self {
-        self.indexeddb_directory = Some(indexeddb_directory.to_string());
-        self
+    pub fn indexeddb_directory(self, indexeddb_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("indexeddb-directory", indexeddb_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    pub fn is_ephemeral(mut self, is_ephemeral: bool) -> Self {
-        self.is_ephemeral = Some(is_ephemeral);
-        self
+    pub fn is_ephemeral(self, is_ephemeral: bool) -> Self {
+        Self {
+            builder: self.builder.property("is-ephemeral", is_ephemeral),
+        }
     }
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn itp_directory(mut self, itp_directory: &str) -> Self {
-        self.itp_directory = Some(itp_directory.to_string());
-        self
+    pub fn itp_directory(self, itp_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("itp-directory", itp_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    pub fn local_storage_directory(mut self, local_storage_directory: &str) -> Self {
-        self.local_storage_directory = Some(local_storage_directory.to_string());
-        self
+    pub fn local_storage_directory(
+        self,
+        local_storage_directory: impl Into<glib::GString>,
+    ) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("local-storage-directory", local_storage_directory.into()),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     pub fn offline_application_cache_directory(
-        mut self,
-        offline_application_cache_directory: &str,
+        self,
+        offline_application_cache_directory: impl Into<glib::GString>,
     ) -> Self {
-        self.offline_application_cache_directory =
-            Some(offline_application_cache_directory.to_string());
-        self
+        Self {
+            builder: self.builder.property(
+                "offline-application-cache-directory",
+                offline_application_cache_directory.into(),
+            ),
+        }
     }
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     pub fn service_worker_registrations_directory(
-        mut self,
-        service_worker_registrations_directory: &str,
+        self,
+        service_worker_registrations_directory: impl Into<glib::GString>,
     ) -> Self {
-        self.service_worker_registrations_directory =
-            Some(service_worker_registrations_directory.to_string());
-        self
+        Self {
+            builder: self.builder.property(
+                "service-worker-registrations-directory",
+                service_worker_registrations_directory.into(),
+            ),
+        }
     }
 
     #[cfg(any(feature = "v2_10", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
     #[cfg_attr(feature = "v2_24", deprecated = "Since 2.24")]
-    pub fn websql_directory(mut self, websql_directory: &str) -> Self {
-        self.websql_directory = Some(websql_directory.to_string());
-        self
+    pub fn websql_directory(self, websql_directory: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self
+                .builder
+                .property("websql-directory", websql_directory.into()),
+        }
+    }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`WebsiteDataManager`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> WebsiteDataManager {
+        self.builder.build()
     }
 }
 
@@ -345,6 +261,7 @@ pub trait WebsiteDataManagerExt: 'static {
     fn cookie_manager(&self) -> Option<CookieManager>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_disk_cache_directory")]
     #[doc(alias = "get_disk_cache_directory")]
     fn disk_cache_directory(&self) -> Option<glib::GString>;
@@ -352,6 +269,7 @@ pub trait WebsiteDataManagerExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_dom_cache_directory")]
     #[doc(alias = "get_dom_cache_directory")]
     fn dom_cache_directory(&self) -> Option<glib::GString>;
@@ -359,11 +277,13 @@ pub trait WebsiteDataManagerExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_hsts_cache_directory")]
     #[doc(alias = "get_hsts_cache_directory")]
     fn hsts_cache_directory(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_indexeddb_directory")]
     #[doc(alias = "get_indexeddb_directory")]
     fn indexeddb_directory(&self) -> Option<glib::GString>;
@@ -371,6 +291,7 @@ pub trait WebsiteDataManagerExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_itp_directory")]
     #[doc(alias = "get_itp_directory")]
     fn itp_directory(&self) -> Option<glib::GString>;
@@ -400,11 +321,13 @@ pub trait WebsiteDataManagerExt: 'static {
     >;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_local_storage_directory")]
     #[doc(alias = "get_local_storage_directory")]
     fn local_storage_directory(&self) -> Option<glib::GString>;
 
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_offline_application_cache_directory")]
     #[doc(alias = "get_offline_application_cache_directory")]
     fn offline_application_cache_directory(&self) -> Option<glib::GString>;
@@ -418,6 +341,7 @@ pub trait WebsiteDataManagerExt: 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_service_worker_registrations_directory")]
     #[doc(alias = "get_service_worker_registrations_directory")]
     fn service_worker_registrations_directory(&self) -> Option<glib::GString>;
@@ -429,6 +353,7 @@ pub trait WebsiteDataManagerExt: 'static {
     fn tls_errors_policy(&self) -> TLSErrorsPolicy;
 
     #[cfg_attr(feature = "v2_24", deprecated = "Since 2.24")]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_website_data_manager_get_websql_directory")]
     #[doc(alias = "get_websql_directory")]
     fn websql_directory(&self) -> Option<glib::GString>;
@@ -550,6 +475,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn disk_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_disk_cache_directory(
@@ -560,6 +486,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     fn dom_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_dom_cache_directory(
@@ -570,6 +497,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
 
     #[cfg(any(feature = "v2_26", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[allow(deprecated)]
     fn hsts_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_hsts_cache_directory(
@@ -578,6 +506,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn indexeddb_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_indexeddb_directory(
@@ -588,6 +517,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     fn itp_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_itp_directory(
@@ -673,6 +603,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }))
     }
 
+    #[allow(deprecated)]
     fn local_storage_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -683,6 +614,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn offline_application_cache_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -707,6 +639,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
 
     #[cfg(any(feature = "v2_30", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[allow(deprecated)]
     fn service_worker_registrations_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -727,6 +660,7 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExt for O {
         }
     }
 
+    #[allow(deprecated)]
     fn websql_directory(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_website_data_manager_get_websql_directory(

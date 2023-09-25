@@ -2,27 +2,21 @@
 // from gir-files (https://github.com/gtk-rs/gir-files.git)
 // from webkit2gtk-gir-files
 // DO NOT EDIT
+#![allow(deprecated)]
 
-use crate::DOMElement;
-use crate::DOMEventTarget;
-use crate::DOMHTMLCollection;
-use crate::DOMNode;
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use crate::DOMNodeList;
-use crate::DOMObject;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
+use crate::{DOMElement, DOMEventTarget, DOMHTMLCollection, DOMNode, DOMObject};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
 #[cfg(any(feature = "v2_16", feature = "dox"))]
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
 use std::ptr;
+use std::{boxed::Box as Box_, fmt, mem::transmute};
 
 glib::wrapper! {
     #[doc(alias = "WebKitDOMDocumentFragment")]
@@ -41,6 +35,7 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_child_element_count")]
     #[doc(alias = "get_child_element_count")]
     fn child_element_count(&self) -> libc::c_ulong;
@@ -48,6 +43,7 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_children")]
     #[doc(alias = "get_children")]
     fn children(&self) -> Option<DOMHTMLCollection>;
@@ -55,6 +51,7 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_element_by_id")]
     #[doc(alias = "get_element_by_id")]
     fn element_by_id(&self, elementId: &str) -> Option<DOMElement>;
@@ -62,6 +59,7 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_first_element_child")]
     #[doc(alias = "get_first_element_child")]
     fn first_element_child(&self) -> Option<DOMElement>;
@@ -69,6 +67,7 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_last_element_child")]
     #[doc(alias = "get_last_element_child")]
     fn last_element_child(&self) -> Option<DOMElement>;
@@ -76,12 +75,14 @@ pub trait DOMDocumentFragmentExt: 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_query_selector")]
     fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error>;
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_query_selector_all")]
     fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error>;
 
@@ -112,6 +113,7 @@ pub trait DOMDocumentFragmentExt: 'static {
 impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn child_element_count(&self) -> libc::c_ulong {
         unsafe {
             ffi::webkit_dom_document_fragment_get_child_element_count(
@@ -122,6 +124,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn children(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_fragment_get_children(
@@ -132,6 +135,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn element_by_id(&self, elementId: &str) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_element_by_id(
@@ -143,6 +147,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn first_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_first_element_child(
@@ -153,6 +158,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn last_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_last_element_child(
@@ -163,6 +169,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -181,6 +188,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
 
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[allow(deprecated)]
     fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();

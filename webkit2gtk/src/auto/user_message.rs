@@ -3,11 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use glib::{prelude::*, translate::*};
 use std::fmt;
 
 glib::wrapper! {
@@ -55,7 +51,7 @@ impl UserMessage {
     ///
     /// This method returns an instance of [`UserMessageBuilder`](crate::builders::UserMessageBuilder) which can be used to create [`UserMessage`] objects.
     pub fn builder() -> UserMessageBuilder {
-        UserMessageBuilder::default()
+        UserMessageBuilder::new()
     }
 }
 
@@ -63,74 +59,55 @@ impl UserMessage {
 #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
 impl Default for UserMessage {
     fn default() -> Self {
-        glib::object::Object::new::<Self>(&[])
+        glib::object::Object::new::<Self>()
     }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`UserMessage`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct UserMessageBuilder {
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    fd_list: Option<gio::UnixFDList>,
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    name: Option<String>,
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    parameters: Option<glib::Variant>,
+    builder: glib::object::ObjectBuilder<'static, UserMessage>,
 }
 
 impl UserMessageBuilder {
-    // rustdoc-stripper-ignore-next
-    /// Create a new [`UserMessageBuilder`].
-    pub fn new() -> Self {
-        Self::default()
+    fn new() -> Self {
+        Self {
+            builder: glib::object::Object::builder(),
+        }
+    }
+
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    pub fn fd_list(self, fd_list: &impl IsA<gio::UnixFDList>) -> Self {
+        Self {
+            builder: self.builder.property("fd-list", fd_list.clone().upcast()),
+        }
+    }
+
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    pub fn name(self, name: impl Into<glib::GString>) -> Self {
+        Self {
+            builder: self.builder.property("name", name.into()),
+        }
+    }
+
+    #[cfg(any(feature = "v2_28", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    pub fn parameters(self, parameters: &glib::Variant) -> Self {
+        Self {
+            builder: self.builder.property("parameters", parameters.clone()),
+        }
     }
 
     // rustdoc-stripper-ignore-next
     /// Build the [`UserMessage`].
     #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
     pub fn build(self) -> UserMessage {
-        let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-        #[cfg(any(feature = "v2_28", feature = "dox"))]
-        if let Some(ref fd_list) = self.fd_list {
-            properties.push(("fd-list", fd_list));
-        }
-        #[cfg(any(feature = "v2_28", feature = "dox"))]
-        if let Some(ref name) = self.name {
-            properties.push(("name", name));
-        }
-        #[cfg(any(feature = "v2_28", feature = "dox"))]
-        if let Some(ref parameters) = self.parameters {
-            properties.push(("parameters", parameters));
-        }
-        glib::Object::new::<UserMessage>(&properties)
-    }
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    pub fn fd_list(mut self, fd_list: &impl IsA<gio::UnixFDList>) -> Self {
-        self.fd_list = Some(fd_list.clone().upcast());
-        self
-    }
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    pub fn name(mut self, name: &str) -> Self {
-        self.name = Some(name.to_string());
-        self
-    }
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    pub fn parameters(mut self, parameters: &glib::Variant) -> Self {
-        self.parameters = Some(parameters.clone());
-        self
+        self.builder.build()
     }
 }
 
