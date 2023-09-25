@@ -145,6 +145,8 @@ pub const WEBKIT_INSECURE_CONTENT_DISPLAYED: WebKitInsecureContentEvent = 1;
 
 pub type WebKitJavascriptError = c_int;
 pub const WEBKIT_JAVASCRIPT_ERROR_SCRIPT_FAILED: WebKitJavascriptError = 699;
+pub const WEBKIT_JAVASCRIPT_ERROR_INVALID_PARAMETER: WebKitJavascriptError = 600;
+pub const WEBKIT_JAVASCRIPT_ERROR_INVALID_RESULT: WebKitJavascriptError = 601;
 
 pub type WebKitLoadEvent = c_int;
 pub const WEBKIT_LOAD_STARTED: WebKitLoadEvent = 0;
@@ -176,6 +178,11 @@ pub type WebKitNetworkProxyMode = c_int;
 pub const WEBKIT_NETWORK_PROXY_MODE_DEFAULT: WebKitNetworkProxyMode = 0;
 pub const WEBKIT_NETWORK_PROXY_MODE_NO_PROXY: WebKitNetworkProxyMode = 1;
 pub const WEBKIT_NETWORK_PROXY_MODE_CUSTOM: WebKitNetworkProxyMode = 2;
+
+pub type WebKitPermissionState = c_int;
+pub const WEBKIT_PERMISSION_STATE_GRANTED: WebKitPermissionState = 0;
+pub const WEBKIT_PERMISSION_STATE_DENIED: WebKitPermissionState = 1;
+pub const WEBKIT_PERMISSION_STATE_PROMPT: WebKitPermissionState = 2;
 
 pub type WebKitPluginError = c_int;
 pub const WEBKIT_PLUGIN_ERROR_FAILED: WebKitPluginError = 299;
@@ -274,8 +281,8 @@ pub const WEBKIT_EDITING_COMMAND_SELECT_ALL: *const c_char =
     b"SelectAll\0" as *const u8 as *const c_char;
 pub const WEBKIT_EDITING_COMMAND_UNDO: *const c_char = b"Undo\0" as *const u8 as *const c_char;
 pub const WEBKIT_MAJOR_VERSION: c_int = 2;
-pub const WEBKIT_MICRO_VERSION: c_int = 2;
-pub const WEBKIT_MINOR_VERSION: c_int = 38;
+pub const WEBKIT_MICRO_VERSION: c_int = 5;
+pub const WEBKIT_MINOR_VERSION: c_int = 40;
 
 // Flags
 pub type WebKitEditorTypingAttributes = c_uint;
@@ -1319,6 +1326,19 @@ impl ::std::fmt::Debug for WebKitPermissionRequestIface {
     }
 }
 
+#[repr(C)]
+pub struct WebKitPermissionStateQuery {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for WebKitPermissionStateQuery {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("WebKitPermissionStateQuery @ {:p}", self))
+            .finish()
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitPluginClass {
@@ -1523,6 +1543,19 @@ pub struct WebKitScriptDialog {
 impl ::std::fmt::Debug for WebKitScriptDialog {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitScriptDialog @ {:p}", self))
+            .finish()
+    }
+}
+
+#[repr(C)]
+pub struct WebKitScriptMessageReply {
+    _data: [u8; 0],
+    _marker: core::marker::PhantomData<(*mut u8, core::marker::PhantomPinned)>,
+}
+
+impl ::std::fmt::Debug for WebKitScriptMessageReply {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
+        f.debug_struct(&format!("WebKitScriptMessageReply @ {:p}", self))
             .finish()
     }
 }
@@ -2092,15 +2125,18 @@ pub struct WebKitWebViewClass {
     pub show_option_menu: Option<
         unsafe extern "C" fn(
             *mut WebKitWebView,
-            *mut gdk::GdkRectangle,
             *mut WebKitOptionMenu,
+            *mut gdk::GdkEvent,
+            *mut gdk::GdkRectangle,
         ) -> gboolean,
     >,
     pub web_process_terminated:
         Option<unsafe extern "C" fn(*mut WebKitWebView, WebKitWebProcessTerminationReason)>,
     pub user_message_received:
         Option<unsafe extern "C" fn(*mut WebKitWebView, *mut WebKitUserMessage) -> gboolean>,
-    pub _webkit_reserved0: Option<unsafe extern "C" fn()>,
+    pub query_permission_state: Option<
+        unsafe extern "C" fn(*mut WebKitWebView, *mut WebKitPermissionStateQuery) -> gboolean,
+    >,
 }
 
 impl ::std::fmt::Debug for WebKitWebViewClass {
@@ -2137,7 +2173,7 @@ impl ::std::fmt::Debug for WebKitWebViewClass {
             .field("show_option_menu", &self.show_option_menu)
             .field("web_process_terminated", &self.web_process_terminated)
             .field("user_message_received", &self.user_message_received)
-            .field("_webkit_reserved0", &self._webkit_reserved0)
+            .field("query_permission_state", &self.query_permission_state)
             .finish()
     }
 }
@@ -2312,6 +2348,7 @@ impl ::std::fmt::Debug for WebKitAuthenticationRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitAuthenticationRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2327,6 +2364,7 @@ impl ::std::fmt::Debug for WebKitAutomationSession {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitAutomationSession @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2342,6 +2380,7 @@ impl ::std::fmt::Debug for WebKitBackForwardList {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitBackForwardList @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2357,6 +2396,7 @@ impl ::std::fmt::Debug for WebKitBackForwardListItem {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitBackForwardListItem @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2372,6 +2412,7 @@ impl ::std::fmt::Debug for WebKitColorChooserRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitColorChooserRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2387,6 +2428,7 @@ impl ::std::fmt::Debug for WebKitContextMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitContextMenu @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2418,6 +2460,7 @@ impl ::std::fmt::Debug for WebKitCookieManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitCookieManager @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2433,6 +2476,7 @@ impl ::std::fmt::Debug for WebKitDeviceInfoPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitDeviceInfoPermissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2448,6 +2492,7 @@ impl ::std::fmt::Debug for WebKitDownload {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitDownload @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2463,6 +2508,7 @@ impl ::std::fmt::Debug for WebKitEditorState {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitEditorState @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2478,6 +2524,7 @@ impl ::std::fmt::Debug for WebKitFaviconDatabase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitFaviconDatabase @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2493,6 +2540,7 @@ impl ::std::fmt::Debug for WebKitFileChooserRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitFileChooserRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2508,6 +2556,7 @@ impl ::std::fmt::Debug for WebKitFindController {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitFindController @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2523,6 +2572,7 @@ impl ::std::fmt::Debug for WebKitFormSubmissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitFormSubmissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2538,6 +2588,7 @@ impl ::std::fmt::Debug for WebKitGeolocationManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitGeolocationManager @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2553,6 +2604,7 @@ impl ::std::fmt::Debug for WebKitGeolocationPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitGeolocationPermissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2568,6 +2620,7 @@ impl ::std::fmt::Debug for WebKitHitTestResult {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitHitTestResult @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2583,6 +2636,7 @@ impl ::std::fmt::Debug for WebKitInputMethodContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitInputMethodContext @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2619,6 +2673,7 @@ impl ::std::fmt::Debug for WebKitMediaKeySystemPermissionRequest {
             self
         ))
         .field("parent", &self.parent)
+        .field("priv_", &self.priv_)
         .finish()
     }
 }
@@ -2634,6 +2689,7 @@ impl ::std::fmt::Debug for WebKitNavigationPolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitNavigationPolicyDecision @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2649,6 +2705,7 @@ impl ::std::fmt::Debug for WebKitNotification {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitNotification @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2664,6 +2721,7 @@ impl ::std::fmt::Debug for WebKitNotificationPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitNotificationPermissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2679,6 +2737,7 @@ impl ::std::fmt::Debug for WebKitOptionMenu {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitOptionMenu @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2709,6 +2768,7 @@ impl ::std::fmt::Debug for WebKitPointerLockPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitPointerLockPermissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2724,6 +2784,7 @@ impl ::std::fmt::Debug for WebKitPolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitPolicyDecision @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2754,6 +2815,7 @@ impl ::std::fmt::Debug for WebKitPrintOperation {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitPrintOperation @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2769,6 +2831,7 @@ impl ::std::fmt::Debug for WebKitResponsePolicyDecision {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitResponsePolicyDecision @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2784,6 +2847,7 @@ impl ::std::fmt::Debug for WebKitSecurityManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitSecurityManager @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2791,14 +2855,15 @@ impl ::std::fmt::Debug for WebKitSecurityManager {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitSettings {
-    pub parent_instance: gobject::GObject,
+    pub parent: gobject::GObject,
     pub priv_: *mut WebKitSettingsPrivate,
 }
 
 impl ::std::fmt::Debug for WebKitSettings {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitSettings @ {:p}", self))
-            .field("parent_instance", &self.parent_instance)
+            .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2814,6 +2879,7 @@ impl ::std::fmt::Debug for WebKitURIRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitURIRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2829,6 +2895,7 @@ impl ::std::fmt::Debug for WebKitURIResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitURIResponse @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2844,6 +2911,7 @@ impl ::std::fmt::Debug for WebKitURISchemeRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitURISchemeRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2859,6 +2927,7 @@ impl ::std::fmt::Debug for WebKitURISchemeResponse {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitURISchemeResponse @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2874,6 +2943,7 @@ impl ::std::fmt::Debug for WebKitUserContentFilterStore {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitUserContentFilterStore @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2889,6 +2959,7 @@ impl ::std::fmt::Debug for WebKitUserContentManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitUserContentManager @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2904,6 +2975,7 @@ impl ::std::fmt::Debug for WebKitUserMediaPermissionRequest {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitUserMediaPermissionRequest @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2919,6 +2991,7 @@ impl ::std::fmt::Debug for WebKitUserMessage {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitUserMessage @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2934,6 +3007,7 @@ impl ::std::fmt::Debug for WebKitWebContext {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebContext @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2949,6 +3023,7 @@ impl ::std::fmt::Debug for WebKitWebInspector {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebInspector @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2964,6 +3039,7 @@ impl ::std::fmt::Debug for WebKitWebResource {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebResource @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2979,6 +3055,7 @@ impl ::std::fmt::Debug for WebKitWebView {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebView @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -2986,14 +3063,15 @@ impl ::std::fmt::Debug for WebKitWebView {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct WebKitWebViewBase {
-    pub parentInstance: gtk::GtkContainer,
+    pub parent: gtk::GtkContainer,
     pub priv_: *mut WebKitWebViewBasePrivate,
 }
 
 impl ::std::fmt::Debug for WebKitWebViewBase {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebViewBase @ {:p}", self))
-            .field("parentInstance", &self.parentInstance)
+            .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3012,6 +3090,7 @@ impl ::std::fmt::Debug for WebKitWebsiteDataAccessPermissionRequest {
             self
         ))
         .field("parent", &self.parent)
+        .field("priv_", &self.priv_)
         .finish()
     }
 }
@@ -3027,6 +3106,7 @@ impl ::std::fmt::Debug for WebKitWebsiteDataManager {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebsiteDataManager @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3042,6 +3122,7 @@ impl ::std::fmt::Debug for WebKitWebsitePolicies {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWebsitePolicies @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3057,6 +3138,7 @@ impl ::std::fmt::Debug for WebKitWindowProperties {
     fn fmt(&self, f: &mut ::std::fmt::Formatter) -> ::std::fmt::Result {
         f.debug_struct(&format!("WebKitWindowProperties @ {:p}", self))
             .field("parent", &self.parent)
+            .field("priv_", &self.priv_)
             .finish()
     }
 }
@@ -3075,6 +3157,7 @@ impl ::std::fmt::Debug for WebKitPermissionRequest {
 }
 
 #[link(name = "webkit2gtk-4.1")]
+#[link(name = "javascriptcoregtk-4.1")]
 extern "C" {
 
     //=========================================================================
@@ -3187,6 +3270,13 @@ extern "C" {
     #[cfg(any(feature = "v2_16", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
     pub fn webkit_network_proxy_mode_get_type() -> GType;
+
+    //=========================================================================
+    // WebKitPermissionState
+    //=========================================================================
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_get_type() -> GType;
 
     //=========================================================================
     // WebKitPluginError
@@ -3660,6 +3750,11 @@ extern "C" {
     #[cfg(any(feature = "v2_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     pub fn webkit_navigation_action_free(navigation: *mut WebKitNavigationAction);
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_navigation_action_get_frame_name(
+        navigation: *mut WebKitNavigationAction,
+    ) -> *const c_char;
     #[cfg(any(feature = "v2_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     pub fn webkit_navigation_action_get_modifiers(
@@ -3753,6 +3848,35 @@ extern "C" {
     pub fn webkit_option_menu_item_is_selected(item: *mut WebKitOptionMenuItem) -> gboolean;
 
     //=========================================================================
+    // WebKitPermissionStateQuery
+    //=========================================================================
+    pub fn webkit_permission_state_query_get_type() -> GType;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_query_finish(
+        query: *mut WebKitPermissionStateQuery,
+        state: WebKitPermissionState,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_query_get_name(
+        query: *mut WebKitPermissionStateQuery,
+    ) -> *const c_char;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_query_get_security_origin(
+        query: *mut WebKitPermissionStateQuery,
+    ) -> *mut WebKitSecurityOrigin;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_query_ref(
+        query: *mut WebKitPermissionStateQuery,
+    ) -> *mut WebKitPermissionStateQuery;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_permission_state_query_unref(query: *mut WebKitPermissionStateQuery);
+
+    //=========================================================================
     // WebKitScriptDialog
     //=========================================================================
     pub fn webkit_script_dialog_get_type() -> GType;
@@ -3780,6 +3904,33 @@ extern "C" {
     #[cfg(any(feature = "v2_24", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_24")))]
     pub fn webkit_script_dialog_unref(dialog: *mut WebKitScriptDialog);
+
+    //=========================================================================
+    // WebKitScriptMessageReply
+    //=========================================================================
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_script_message_reply_get_type() -> GType;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_script_message_reply_ref(
+        script_message_reply: *mut WebKitScriptMessageReply,
+    ) -> *mut WebKitScriptMessageReply;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_script_message_reply_return_error_message(
+        script_message_reply: *mut WebKitScriptMessageReply,
+        error_message: *const c_char,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_script_message_reply_return_value(
+        script_message_reply: *mut WebKitScriptMessageReply,
+        reply_value: *mut java_script_core::JSCValue,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_script_message_reply_unref(script_message_reply: *mut WebKitScriptMessageReply);
 
     //=========================================================================
     // WebKitSecurityOrigin
@@ -4126,6 +4277,9 @@ extern "C" {
         item: *mut WebKitContextMenuItem,
     );
     pub fn webkit_context_menu_first(menu: *mut WebKitContextMenu) -> *mut WebKitContextMenuItem;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_context_menu_get_event(menu: *mut WebKitContextMenu) -> *mut gdk::GdkEvent;
     pub fn webkit_context_menu_get_item_at_position(
         menu: *mut WebKitContextMenu,
         position: c_uint,
@@ -4320,7 +4474,10 @@ extern "C" {
     #[cfg(any(feature = "v2_6", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
     pub fn webkit_download_set_allow_overwrite(download: *mut WebKitDownload, allowed: gboolean);
-    pub fn webkit_download_set_destination(download: *mut WebKitDownload, uri: *const c_char);
+    pub fn webkit_download_set_destination(
+        download: *mut WebKitDownload,
+        destination: *const c_char,
+    );
 
     //=========================================================================
     // WebKitEditorState
@@ -4672,6 +4829,9 @@ extern "C" {
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     pub fn webkit_option_menu_close(menu: *mut WebKitOptionMenu);
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_option_menu_get_event(menu: *mut WebKitOptionMenu) -> *mut gdk::GdkEvent;
     #[cfg(any(feature = "v2_18", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
     pub fn webkit_option_menu_get_item(
@@ -4773,6 +4933,11 @@ extern "C" {
     pub fn webkit_response_policy_decision_get_response(
         decision: *mut WebKitResponsePolicyDecision,
     ) -> *mut WebKitURIResponse;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_response_policy_decision_is_main_frame_main_resource(
+        decision: *mut WebKitResponsePolicyDecision,
+    ) -> gboolean;
     pub fn webkit_response_policy_decision_is_mime_type_supported(
         decision: *mut WebKitResponsePolicyDecision,
     ) -> gboolean;
@@ -4867,6 +5032,9 @@ extern "C" {
     pub fn webkit_settings_get_default_font_family(settings: *mut WebKitSettings) -> *const c_char;
     pub fn webkit_settings_get_default_font_size(settings: *mut WebKitSettings) -> u32;
     pub fn webkit_settings_get_default_monospace_font_size(settings: *mut WebKitSettings) -> u32;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_settings_get_disable_web_security(settings: *mut WebKitSettings) -> gboolean;
     pub fn webkit_settings_get_draw_compositing_indicators(
         settings: *mut WebKitSettings,
     ) -> gboolean;
@@ -5015,6 +5183,12 @@ extern "C" {
     pub fn webkit_settings_set_default_monospace_font_size(
         settings: *mut WebKitSettings,
         font_size: u32,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_settings_set_disable_web_security(
+        settings: *mut WebKitSettings,
+        disabled: gboolean,
     );
     pub fn webkit_settings_set_draw_compositing_indicators(
         settings: *mut WebKitSettings,
@@ -5250,6 +5424,11 @@ extern "C" {
         request: *mut WebKitURISchemeRequest,
         response: *mut WebKitURISchemeResponse,
     );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_uri_scheme_request_get_http_body(
+        request: *mut WebKitURISchemeRequest,
+    ) -> *mut gio::GInputStream;
     #[cfg(any(feature = "v2_36", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
     pub fn webkit_uri_scheme_request_get_http_headers(
@@ -5435,6 +5614,13 @@ extern "C" {
     #[cfg(any(feature = "v2_22", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
     pub fn webkit_user_content_manager_register_script_message_handler_in_world(
+        manager: *mut WebKitUserContentManager,
+        name: *const c_char,
+        world_name: *const c_char,
+    ) -> gboolean;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_user_content_manager_register_script_message_handler_with_reply(
         manager: *mut WebKitUserContentManager,
         name: *const c_char,
         world_name: *const c_char,
@@ -5793,6 +5979,26 @@ extern "C" {
     pub fn webkit_web_view_new_with_user_content_manager(
         user_content_manager: *mut WebKitUserContentManager,
     ) -> *mut gtk::GtkWidget;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_web_view_call_async_javascript_function(
+        web_view: *mut WebKitWebView,
+        body: *const c_char,
+        length: ssize_t,
+        arguments: *mut glib::GVariant,
+        world_name: *const c_char,
+        source_uri: *const c_char,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_web_view_call_async_javascript_function_finish(
+        web_view: *mut WebKitWebView,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut java_script_core::JSCValue;
     pub fn webkit_web_view_can_execute_editing_command(
         web_view: *mut WebKitWebView,
         command: *const c_char,
@@ -5815,6 +6021,25 @@ extern "C" {
         web_view: *mut WebKitWebView,
         uri: *const c_char,
     ) -> *mut WebKitDownload;
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_web_view_evaluate_javascript(
+        web_view: *mut WebKitWebView,
+        script: *const c_char,
+        length: ssize_t,
+        world_name: *const c_char,
+        source_uri: *const c_char,
+        cancellable: *mut gio::GCancellable,
+        callback: gio::GAsyncReadyCallback,
+        user_data: gpointer,
+    );
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    pub fn webkit_web_view_evaluate_javascript_finish(
+        web_view: *mut WebKitWebView,
+        result: *mut gio::GAsyncResult,
+        error: *mut *mut glib::GError,
+    ) -> *mut java_script_core::JSCValue;
     pub fn webkit_web_view_execute_editing_command(
         web_view: *mut WebKitWebView,
         command: *const c_char,
@@ -5994,6 +6219,8 @@ extern "C" {
         web_view: *mut WebKitWebView,
         state: *mut WebKitWebViewSessionState,
     );
+    #[cfg(any(feature = "v2_38", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     pub fn webkit_web_view_run_async_javascript_function_in_world(
         web_view: *mut WebKitWebView,
         body: *const c_char,

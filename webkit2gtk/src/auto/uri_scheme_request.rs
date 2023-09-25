@@ -40,6 +40,12 @@ pub trait URISchemeRequestExt: 'static {
     //#[doc(alias = "webkit_uri_scheme_request_finish_with_response")]
     //fn finish_with_response(&self, response: /*Ignored*/&URISchemeResponse);
 
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[doc(alias = "webkit_uri_scheme_request_get_http_body")]
+    #[doc(alias = "get_http_body")]
+    fn http_body(&self) -> Option<gio::InputStream>;
+
     //#[cfg(any(feature = "v2_36", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
     //#[doc(alias = "webkit_uri_scheme_request_get_http_headers")]
@@ -102,6 +108,16 @@ impl<O: IsA<URISchemeRequest>> URISchemeRequestExt for O {
     //fn finish_with_response(&self, response: /*Ignored*/&URISchemeResponse) {
     //    unsafe { TODO: call ffi:webkit_uri_scheme_request_finish_with_response() }
     //}
+
+    #[cfg(any(feature = "v2_40", feature = "dox"))]
+    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    fn http_body(&self) -> Option<gio::InputStream> {
+        unsafe {
+            from_glib_full(ffi::webkit_uri_scheme_request_get_http_body(
+                self.as_ref().to_glib_none().0,
+            ))
+        }
+    }
 
     //#[cfg(any(feature = "v2_36", feature = "dox"))]
     //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_36")))]
