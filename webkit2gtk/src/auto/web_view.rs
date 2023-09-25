@@ -1065,7 +1065,9 @@ pub trait WebViewExt: 'static {
     ) -> SignalHandlerId;
 
     #[doc(alias = "decide-policy")]
-    fn connect_decide_policy<F: Fn(&Self, &PolicyDecision, PolicyDecisionType) -> bool + 'static>(
+    fn connect_decide_policy<
+        F: Fn(&Self, &PolicyDecision, PolicyDecisionType) -> glib::signal::Inhibit + 'static,
+    >(
         &self,
         f: F,
     ) -> SignalHandlerId;
@@ -2638,14 +2640,14 @@ impl<O: IsA<WebView>> WebViewExt for O {
     }
 
     fn connect_decide_policy<
-        F: Fn(&Self, &PolicyDecision, PolicyDecisionType) -> bool + 'static,
+        F: Fn(&Self, &PolicyDecision, PolicyDecisionType) -> glib::signal::Inhibit + 'static,
     >(
         &self,
         f: F,
     ) -> SignalHandlerId {
         unsafe extern "C" fn decide_policy_trampoline<
             P: IsA<WebView>,
-            F: Fn(&P, &PolicyDecision, PolicyDecisionType) -> bool + 'static,
+            F: Fn(&P, &PolicyDecision, PolicyDecisionType) -> glib::signal::Inhibit + 'static,
         >(
             this: *mut ffi::WebKitWebView,
             decision: *mut ffi::WebKitPolicyDecision,

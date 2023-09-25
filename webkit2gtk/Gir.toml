@@ -345,6 +345,9 @@ generate_builder = true
     [[object.signal]]
     name = "context-menu"
     inhibit = true
+    [[object.signal]]
+    name = "decide-policy"
+    inhibit = true
 
 [[object]]
 name = "WebKit2.WebViewSessionState"
