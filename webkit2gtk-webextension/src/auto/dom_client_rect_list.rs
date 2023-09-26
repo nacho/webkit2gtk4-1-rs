@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_18", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+#[cfg(feature = "v2_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
 use crate::DOMClientRect;
 use crate::DOMObject;
 use glib::{
@@ -28,39 +28,27 @@ impl DOMClientRectList {
     pub const NONE: Option<&'static DOMClientRectList> = None;
 }
 
-pub trait DOMClientRectListExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMClientRectList>> Sealed for T {}
+}
+
+pub trait DOMClientRectListExt: IsA<DOMClientRectList> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_list_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_list_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMClientRect>;
-
-    fn get_property_length(&self) -> libc::c_ulong;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMClientRectList>> DOMClientRectListExt for O {
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_client_rect_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMClientRect> {
         unsafe {
             from_glib_full(ffi::webkit_dom_client_rect_list_item(
@@ -71,9 +59,10 @@ impl<O: IsA<DOMClientRectList>> DOMClientRectListExt for O {
     }
 
     fn get_property_length(&self) -> libc::c_ulong {
-        glib::ObjectExt::property(self.as_ref(), "length")
+        ObjectExt::property(self.as_ref(), "length")
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<
             P: IsA<DOMClientRectList>,
@@ -99,6 +88,8 @@ impl<O: IsA<DOMClientRectList>> DOMClientRectListExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMClientRectList>> DOMClientRectListExt for O {}
 
 impl fmt::Display for DOMClientRectList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

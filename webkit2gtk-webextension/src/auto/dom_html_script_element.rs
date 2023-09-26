@@ -25,118 +25,16 @@ impl DOMHTMLScriptElement {
     pub const NONE: Option<&'static DOMHTMLScriptElement> = None;
 }
 
-pub trait DOMHTMLScriptElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLScriptElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLScriptElementExt: IsA<DOMHTMLScriptElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_script_element_get_charset")]
     #[doc(alias = "get_charset")]
-    fn charset(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_defer")]
-    #[doc(alias = "get_defer")]
-    fn is_defer(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_event")]
-    #[doc(alias = "get_event")]
-    fn event(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_html_for")]
-    #[doc(alias = "get_html_for")]
-    fn html_for(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_src")]
-    #[doc(alias = "get_src")]
-    fn src(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_charset")]
-    fn set_charset(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_defer")]
-    fn set_defer(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_event")]
-    fn set_event(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_html_for")]
-    fn set_html_for(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_src")]
-    fn set_src(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_text")]
-    fn set_text(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_script_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    fn set_property_charset(&self, charset: Option<&str>);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "charset")]
-    fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "defer")]
-    fn connect_defer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "event")]
-    fn connect_event_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "html-for")]
-    fn connect_html_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "src")]
-    fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
-    #[allow(deprecated)]
     fn charset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_charset(
@@ -145,7 +43,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_defer")]
+    #[doc(alias = "get_defer")]
     fn is_defer(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_script_element_get_defer(
@@ -154,7 +55,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_event")]
+    #[doc(alias = "get_event")]
     fn event(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_event(
@@ -163,7 +67,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_html_for")]
+    #[doc(alias = "get_html_for")]
     fn html_for(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_html_for(
@@ -172,7 +79,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_src")]
+    #[doc(alias = "get_src")]
     fn src(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_src(
@@ -181,7 +91,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_text(
@@ -190,7 +103,10 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_script_element_get_type_attr(
@@ -199,9 +115,11 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_charset")]
     fn set_charset(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_charset(
@@ -211,7 +129,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_defer")]
     fn set_defer(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_defer(
@@ -221,7 +141,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_event")]
     fn set_event(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_event(
@@ -231,7 +153,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_html_for")]
     fn set_html_for(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_html_for(
@@ -241,7 +165,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_src")]
     fn set_src(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_src(
@@ -251,7 +177,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_text")]
     fn set_text(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_text(
@@ -261,7 +189,9 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_script_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_script_element_set_type_attr(
@@ -272,17 +202,20 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
     }
 
     fn set_property_charset(&self, charset: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "charset", &charset)
+        ObjectExt::set_property(self.as_ref(), "charset", charset)
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "charset")]
     fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_charset_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -308,6 +241,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "defer")]
     fn connect_defer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_defer_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -333,6 +267,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "event")]
     fn connect_event_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_event_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -358,6 +293,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "html-for")]
     fn connect_html_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_html_for_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -383,6 +319,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "src")]
     fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_src_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -408,6 +345,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -433,6 +371,7 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLScriptElement>,
@@ -458,6 +397,8 @@ impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLScriptElement>> DOMHTMLScriptElementExt for O {}
 
 impl fmt::Display for DOMHTMLScriptElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

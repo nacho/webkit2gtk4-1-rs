@@ -25,86 +25,16 @@ impl DOMXPathResult {
     pub const NONE: Option<&'static DOMXPathResult> = None;
 }
 
-pub trait DOMXPathResultExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMXPathResult>> Sealed for T {}
+}
+
+pub trait DOMXPathResultExt: IsA<DOMXPathResult> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_result_get_boolean_value")]
     #[doc(alias = "get_boolean_value")]
-    fn boolean_value(&self) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_invalid_iterator_state")]
-    #[doc(alias = "get_invalid_iterator_state")]
-    fn is_invalid_iterator_state(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_number_value")]
-    #[doc(alias = "get_number_value")]
-    fn number_value(&self) -> Result<f64, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_result_type")]
-    #[doc(alias = "get_result_type")]
-    fn result_type(&self) -> libc::c_ushort;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_single_node_value")]
-    #[doc(alias = "get_single_node_value")]
-    fn single_node_value(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_snapshot_length")]
-    #[doc(alias = "get_snapshot_length")]
-    fn snapshot_length(&self) -> Result<libc::c_ulong, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_get_string_value")]
-    #[doc(alias = "get_string_value")]
-    fn string_value(&self) -> Result<glib::GString, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_iterate_next")]
-    fn iterate_next(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_xpath_result_snapshot_item")]
-    fn snapshot_item(&self, index: libc::c_ulong) -> Result<DOMNode, glib::Error>;
-
-    #[doc(alias = "boolean-value")]
-    fn connect_boolean_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "invalid-iterator-state")]
-    fn connect_invalid_iterator_state_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "number-value")]
-    fn connect_number_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "result-type")]
-    fn connect_result_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "single-node-value")]
-    fn connect_single_node_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "snapshot-length")]
-    fn connect_snapshot_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "string-value")]
-    fn connect_string_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
-    #[allow(deprecated)]
     fn boolean_value(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -121,7 +51,10 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_invalid_iterator_state")]
+    #[doc(alias = "get_invalid_iterator_state")]
     fn is_invalid_iterator_state(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_xpath_result_get_invalid_iterator_state(
@@ -130,7 +63,10 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_number_value")]
+    #[doc(alias = "get_number_value")]
     fn number_value(&self) -> Result<f64, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -146,12 +82,18 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_result_type")]
+    #[doc(alias = "get_result_type")]
     fn result_type(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_xpath_result_get_result_type(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_single_node_value")]
+    #[doc(alias = "get_single_node_value")]
     fn single_node_value(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -167,7 +109,10 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_snapshot_length")]
+    #[doc(alias = "get_snapshot_length")]
     fn snapshot_length(&self) -> Result<libc::c_ulong, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -183,7 +128,10 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_get_string_value")]
+    #[doc(alias = "get_string_value")]
     fn string_value(&self) -> Result<glib::GString, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -199,7 +147,9 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_iterate_next")]
     fn iterate_next(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -215,7 +165,9 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_xpath_result_snapshot_item")]
     fn snapshot_item(&self, index: libc::c_ulong) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -232,6 +184,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "boolean-value")]
     fn connect_boolean_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_boolean_value_trampoline<
             P: IsA<DOMXPathResult>,
@@ -257,6 +210,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "invalid-iterator-state")]
     fn connect_invalid_iterator_state_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -285,6 +239,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "number-value")]
     fn connect_number_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_number_value_trampoline<
             P: IsA<DOMXPathResult>,
@@ -310,6 +265,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "result-type")]
     fn connect_result_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_result_type_trampoline<
             P: IsA<DOMXPathResult>,
@@ -335,6 +291,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "single-node-value")]
     fn connect_single_node_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_single_node_value_trampoline<
             P: IsA<DOMXPathResult>,
@@ -360,6 +317,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "snapshot-length")]
     fn connect_snapshot_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_snapshot_length_trampoline<
             P: IsA<DOMXPathResult>,
@@ -385,6 +343,7 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 
+    #[doc(alias = "string-value")]
     fn connect_string_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_string_value_trampoline<
             P: IsA<DOMXPathResult>,
@@ -410,6 +369,8 @@ impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMXPathResult>> DOMXPathResultExt for O {}
 
 impl fmt::Display for DOMXPathResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

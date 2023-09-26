@@ -25,94 +25,18 @@ impl DOMAttr {
     pub const NONE: Option<&'static DOMAttr> = None;
 }
 
-pub trait DOMAttrExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMAttr>> Sealed for T {}
+}
+
+pub trait DOMAttrExt: IsA<DOMAttr> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_attr_get_local_name")]
     #[doc(alias = "get_local_name")]
-    fn local_name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_namespace_uri")]
-    #[doc(alias = "get_namespace_uri")]
-    fn namespace_uri(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_owner_element")]
-    #[doc(alias = "get_owner_element")]
-    fn owner_element(&self) -> Option<DOMElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_prefix")]
-    #[doc(alias = "get_prefix")]
-    fn prefix(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_specified")]
-    #[doc(alias = "get_specified")]
-    fn is_specified(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_attr_set_value")]
-    fn set_value(&self, value: &str) -> Result<(), glib::Error>;
-
-    #[doc(alias = "local-name")]
-    fn get_property_local_name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "namespace-uri")]
-    fn get_property_namespace_uri(&self) -> Option<glib::GString>;
-
-    fn get_property_prefix(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "local-name")]
-    fn connect_local_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "namespace-uri")]
-    fn connect_namespace_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "owner-element")]
-    fn connect_owner_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "prefix")]
-    fn connect_prefix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "specified")]
-    fn connect_specified_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMAttr>> DOMAttrExt for O {
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
-    #[allow(deprecated)]
     fn local_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_local_name(
@@ -121,7 +45,10 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_name(
@@ -130,9 +57,12 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_namespace_uri")]
+    #[doc(alias = "get_namespace_uri")]
     fn namespace_uri(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_namespace_uri(
@@ -141,7 +71,10 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_owner_element")]
+    #[doc(alias = "get_owner_element")]
     fn owner_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_attr_get_owner_element(
@@ -150,9 +83,12 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_prefix")]
+    #[doc(alias = "get_prefix")]
     fn prefix(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_prefix(
@@ -161,7 +97,10 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_specified")]
+    #[doc(alias = "get_specified")]
     fn is_specified(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_attr_get_specified(
@@ -170,7 +109,10 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_attr_get_value(
@@ -179,7 +121,9 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_attr_set_value")]
     fn set_value(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -196,18 +140,21 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "local-name")]
     fn get_property_local_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "local-name")
+        ObjectExt::property(self.as_ref(), "local-name")
     }
 
+    #[doc(alias = "namespace-uri")]
     fn get_property_namespace_uri(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "namespace-uri")
+        ObjectExt::property(self.as_ref(), "namespace-uri")
     }
 
     fn get_property_prefix(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "prefix")
+        ObjectExt::property(self.as_ref(), "prefix")
     }
 
+    #[doc(alias = "local-name")]
     fn connect_local_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_local_name_trampoline<P: IsA<DOMAttr>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMAttr,
@@ -230,6 +177,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<P: IsA<DOMAttr>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMAttr,
@@ -252,6 +200,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "namespace-uri")]
     fn connect_namespace_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_namespace_uri_trampoline<
             P: IsA<DOMAttr>,
@@ -277,6 +226,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "owner-element")]
     fn connect_owner_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_owner_element_trampoline<
             P: IsA<DOMAttr>,
@@ -302,6 +252,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "prefix")]
     fn connect_prefix_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_prefix_trampoline<P: IsA<DOMAttr>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMAttr,
@@ -324,6 +275,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "specified")]
     fn connect_specified_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_specified_trampoline<P: IsA<DOMAttr>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMAttr,
@@ -346,6 +298,7 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<P: IsA<DOMAttr>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMAttr,
@@ -368,6 +321,8 @@ impl<O: IsA<DOMAttr>> DOMAttrExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMAttr>> DOMAttrExt for O {}
 
 impl fmt::Display for DOMAttr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

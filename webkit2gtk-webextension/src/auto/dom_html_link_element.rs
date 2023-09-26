@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::DOMDOMTokenList;
 use crate::{DOMElement, DOMEventTarget, DOMHTMLElement, DOMNode, DOMObject, DOMStyleSheet};
 use glib::{
@@ -28,171 +28,16 @@ impl DOMHTMLLinkElement {
     pub const NONE: Option<&'static DOMHTMLLinkElement> = None;
 }
 
-pub trait DOMHTMLLinkElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLLinkElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLLinkElementExt: IsA<DOMHTMLLinkElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_link_element_get_charset")]
     #[doc(alias = "get_charset")]
-    fn charset(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_disabled")]
-    #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_href")]
-    #[doc(alias = "get_href")]
-    fn href(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_hreflang")]
-    #[doc(alias = "get_hreflang")]
-    fn hreflang(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_media")]
-    #[doc(alias = "get_media")]
-    fn media(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_rel")]
-    #[doc(alias = "get_rel")]
-    fn rel(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_rev")]
-    #[doc(alias = "get_rev")]
-    fn rev(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_sheet")]
-    #[doc(alias = "get_sheet")]
-    fn sheet(&self) -> Option<DOMStyleSheet>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_sizes")]
-    #[doc(alias = "get_sizes")]
-    fn sizes(&self) -> Option<DOMDOMTokenList>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_charset")]
-    fn set_charset(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_href")]
-    fn set_href(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_hreflang")]
-    fn set_hreflang(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_media")]
-    fn set_media(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_rel")]
-    fn set_rel(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_rev")]
-    fn set_rev(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_sizes")]
-    fn set_sizes(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_target")]
-    fn set_target(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_link_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "charset")]
-    fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "href")]
-    fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hreflang")]
-    fn connect_hreflang_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "media")]
-    fn connect_media_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rel")]
-    fn connect_rel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rev")]
-    fn connect_rev_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "sheet")]
-    fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "sizes")]
-    fn connect_sizes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
-    #[allow(deprecated)]
     fn charset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_charset(
@@ -201,7 +46,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_disabled")]
+    #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_link_element_get_disabled(
@@ -210,7 +58,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_href")]
+    #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_href(
@@ -219,7 +70,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_hreflang")]
+    #[doc(alias = "get_hreflang")]
     fn hreflang(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_hreflang(
@@ -228,7 +82,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_media")]
+    #[doc(alias = "get_media")]
     fn media(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_media(
@@ -237,7 +94,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_rel")]
+    #[doc(alias = "get_rel")]
     fn rel(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_rel(
@@ -246,7 +106,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_rev")]
+    #[doc(alias = "get_rev")]
     fn rev(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_rev(
@@ -255,7 +118,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_sheet")]
+    #[doc(alias = "get_sheet")]
     fn sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_sheet(
@@ -264,9 +130,12 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_sizes")]
+    #[doc(alias = "get_sizes")]
     fn sizes(&self) -> Option<DOMDOMTokenList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_sizes(
@@ -275,7 +144,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_target(
@@ -284,7 +156,10 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_link_element_get_type_attr(
@@ -293,7 +168,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_charset")]
     fn set_charset(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_charset(
@@ -303,7 +180,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_disabled(
@@ -313,7 +192,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_href")]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_href(
@@ -323,7 +204,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_hreflang")]
     fn set_hreflang(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_hreflang(
@@ -333,7 +216,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_media")]
     fn set_media(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_media(
@@ -343,7 +228,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_rel")]
     fn set_rel(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_rel(
@@ -353,7 +240,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_rev")]
     fn set_rev(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_rev(
@@ -363,9 +252,11 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_sizes")]
     fn set_sizes(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_sizes(
@@ -375,7 +266,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_target")]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_target(
@@ -385,7 +278,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_link_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_link_element_set_type_attr(
@@ -395,14 +290,17 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "charset")]
     fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_charset_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -428,6 +326,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -453,6 +352,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "href")]
     fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_href_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -478,6 +378,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "hreflang")]
     fn connect_hreflang_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hreflang_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -503,6 +404,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "media")]
     fn connect_media_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -528,6 +430,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "rel")]
     fn connect_rel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rel_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -553,6 +456,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "rev")]
     fn connect_rev_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rev_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -578,6 +482,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "sheet")]
     fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sheet_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -603,8 +508,9 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "sizes")]
     fn connect_sizes_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sizes_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -630,6 +536,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -655,6 +562,7 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLLinkElement>,
@@ -680,6 +588,8 @@ impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLLinkElement>> DOMHTMLLinkElementExt for O {}
 
 impl fmt::Display for DOMHTMLLinkElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

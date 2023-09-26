@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_6", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+#[cfg(feature = "v2_6")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_6")))]
 use crate::NavigationAction;
 use crate::{NavigationType, PolicyDecision, URIRequest};
 use glib::{
@@ -28,71 +28,18 @@ impl NavigationPolicyDecision {
     pub const NONE: Option<&'static NavigationPolicyDecision> = None;
 }
 
-pub trait NavigationPolicyDecisionExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::NavigationPolicyDecision>> Sealed for T {}
+}
+
+pub trait NavigationPolicyDecisionExt:
+    IsA<NavigationPolicyDecision> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_navigation_policy_decision_get_frame_name")]
     #[doc(alias = "get_frame_name")]
-    fn frame_name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_navigation_policy_decision_get_modifiers")]
-    #[doc(alias = "get_modifiers")]
-    fn modifiers(&self) -> u32;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_navigation_policy_decision_get_mouse_button")]
-    #[doc(alias = "get_mouse_button")]
-    fn mouse_button(&self) -> u32;
-
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    #[doc(alias = "webkit_navigation_policy_decision_get_navigation_action")]
-    #[doc(alias = "get_navigation_action")]
-    fn navigation_action(&self) -> Option<NavigationAction>;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_navigation_policy_decision_get_navigation_type")]
-    #[doc(alias = "get_navigation_type")]
-    fn navigation_type(&self) -> NavigationType;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_navigation_policy_decision_get_request")]
-    #[doc(alias = "get_request")]
-    fn request(&self) -> Option<URIRequest>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[doc(alias = "frame-name")]
-    fn connect_frame_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[doc(alias = "modifiers")]
-    fn connect_modifiers_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[doc(alias = "mouse-button")]
-    fn connect_mouse_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
-    #[doc(alias = "navigation-action")]
-    fn connect_navigation_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[doc(alias = "navigation-type")]
-    fn connect_navigation_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
-    #[doc(alias = "request")]
-    fn connect_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
-    #[allow(deprecated)]
     fn frame_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_navigation_policy_decision_get_frame_name(
@@ -101,22 +48,30 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_navigation_policy_decision_get_modifiers")]
+    #[doc(alias = "get_modifiers")]
     fn modifiers(&self) -> u32 {
         unsafe {
             ffi::webkit_navigation_policy_decision_get_modifiers(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_navigation_policy_decision_get_mouse_button")]
+    #[doc(alias = "get_mouse_button")]
     fn mouse_button(&self) -> u32 {
         unsafe {
             ffi::webkit_navigation_policy_decision_get_mouse_button(self.as_ref().to_glib_none().0)
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+    #[cfg(feature = "v2_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_6")))]
+    #[doc(alias = "webkit_navigation_policy_decision_get_navigation_action")]
+    #[doc(alias = "get_navigation_action")]
     fn navigation_action(&self) -> Option<NavigationAction> {
         unsafe {
             from_glib_none(
@@ -127,7 +82,10 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_navigation_policy_decision_get_navigation_type")]
+    #[doc(alias = "get_navigation_type")]
     fn navigation_type(&self) -> NavigationType {
         unsafe {
             from_glib(ffi::webkit_navigation_policy_decision_get_navigation_type(
@@ -136,7 +94,10 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_navigation_policy_decision_get_request")]
+    #[doc(alias = "get_request")]
     fn request(&self) -> Option<URIRequest> {
         unsafe {
             from_glib_none(ffi::webkit_navigation_policy_decision_get_request(
@@ -145,6 +106,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[doc(alias = "frame-name")]
     fn connect_frame_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_frame_name_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -170,6 +133,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
+    #[doc(alias = "modifiers")]
     fn connect_modifiers_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_modifiers_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -195,6 +160,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
+    #[doc(alias = "mouse-button")]
     fn connect_mouse_button_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mouse_button_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -220,8 +187,9 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+    #[cfg(feature = "v2_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_6")))]
+    #[doc(alias = "navigation-action")]
     fn connect_navigation_action_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_navigation_action_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -247,6 +215,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
+    #[doc(alias = "navigation-type")]
     fn connect_navigation_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_navigation_type_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -272,6 +242,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_6", deprecated = "Since 2.6")]
+    #[doc(alias = "request")]
     fn connect_request_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_request_trampoline<
             P: IsA<NavigationPolicyDecision>,
@@ -297,6 +269,8 @@ impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {
         }
     }
 }
+
+impl<O: IsA<NavigationPolicyDecision>> NavigationPolicyDecisionExt for O {}
 
 impl fmt::Display for NavigationPolicyDecision {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

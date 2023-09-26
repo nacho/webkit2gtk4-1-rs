@@ -3,13 +3,13 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-use bitflags::bitflags;
-use glib::{translate::*, value::FromValue, value::ToValue, StaticType, Type};
+use glib::{bitflags::bitflags, prelude::*, translate::*};
 use std::fmt;
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
+#[cfg(feature = "v2_10")]
 bitflags! {
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitEditorTypingAttributes")]
     pub struct EditorTypingAttributes: u32 {
         #[doc(alias = "WEBKIT_EDITOR_TYPING_ATTRIBUTE_NONE")]
@@ -25,16 +25,16 @@ bitflags! {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl fmt::Display for EditorTypingAttributes {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 #[doc(hidden)]
 impl IntoGlib for EditorTypingAttributes {
     type GlibType = ffi::WebKitEditorTypingAttributes;
@@ -45,8 +45,8 @@ impl IntoGlib for EditorTypingAttributes {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitEditorTypingAttributes> for EditorTypingAttributes {
     #[inline]
@@ -56,17 +56,17 @@ impl FromGlib<ffi::WebKitEditorTypingAttributes> for EditorTypingAttributes {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl StaticType for EditorTypingAttributes {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_editor_typing_attributes_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl glib::HasParamSpec for EditorTypingAttributes {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -77,15 +77,15 @@ impl glib::HasParamSpec for EditorTypingAttributes {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl glib::value::ValueType for EditorTypingAttributes {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-unsafe impl<'a> FromValue<'a> for EditorTypingAttributes {
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
+unsafe impl<'a> glib::value::FromValue<'a> for EditorTypingAttributes {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -95,8 +95,8 @@ unsafe impl<'a> FromValue<'a> for EditorTypingAttributes {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl ToValue for EditorTypingAttributes {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -113,8 +113,8 @@ impl ToValue for EditorTypingAttributes {
     }
 }
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 impl From<EditorTypingAttributes> for glib::Value {
     #[inline]
     fn from(v: EditorTypingAttributes) -> Self {
@@ -124,6 +124,7 @@ impl From<EditorTypingAttributes> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitFindOptions")]
     pub struct FindOptions: u32 {
         #[doc(alias = "WEBKIT_FIND_OPTIONS_NONE")]
@@ -168,7 +169,7 @@ impl FromGlib<ffi::WebKitFindOptions> for FindOptions {
 
 impl StaticType for FindOptions {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_find_options_get_type()) }
     }
 }
@@ -187,7 +188,7 @@ impl glib::value::ValueType for FindOptions {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for FindOptions {
+unsafe impl<'a> glib::value::FromValue<'a> for FindOptions {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -222,6 +223,7 @@ impl From<FindOptions> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitHitTestResultContext")]
     pub struct HitTestResultContext: u32 {
         #[doc(alias = "WEBKIT_HIT_TEST_RESULT_CONTEXT_DOCUMENT")]
@@ -268,7 +270,7 @@ impl FromGlib<ffi::WebKitHitTestResultContext> for HitTestResultContext {
 
 impl StaticType for HitTestResultContext {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_hit_test_result_context_get_type()) }
     }
 }
@@ -287,7 +289,7 @@ impl glib::value::ValueType for HitTestResultContext {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for HitTestResultContext {
+unsafe impl<'a> glib::value::FromValue<'a> for HitTestResultContext {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -321,9 +323,10 @@ impl From<HitTestResultContext> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
+#[cfg(feature = "v2_28")]
 bitflags! {
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitInputHints")]
     pub struct InputHints: u32 {
         #[doc(alias = "WEBKIT_INPUT_HINT_NONE")]
@@ -343,16 +346,16 @@ bitflags! {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl fmt::Display for InputHints {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 #[doc(hidden)]
 impl IntoGlib for InputHints {
     type GlibType = ffi::WebKitInputHints;
@@ -363,8 +366,8 @@ impl IntoGlib for InputHints {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitInputHints> for InputHints {
     #[inline]
@@ -374,17 +377,17 @@ impl FromGlib<ffi::WebKitInputHints> for InputHints {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl StaticType for InputHints {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_input_hints_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl glib::HasParamSpec for InputHints {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -395,15 +398,15 @@ impl glib::HasParamSpec for InputHints {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl glib::value::ValueType for InputHints {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-unsafe impl<'a> FromValue<'a> for InputHints {
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+unsafe impl<'a> glib::value::FromValue<'a> for InputHints {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -413,8 +416,8 @@ unsafe impl<'a> FromValue<'a> for InputHints {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl ToValue for InputHints {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -431,8 +434,8 @@ impl ToValue for InputHints {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl From<InputHints> for glib::Value {
     #[inline]
     fn from(v: InputHints) -> Self {
@@ -442,6 +445,7 @@ impl From<InputHints> for glib::Value {
 }
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitSnapshotOptions")]
     pub struct SnapshotOptions: u32 {
         #[doc(alias = "WEBKIT_SNAPSHOT_OPTIONS_NONE")]
@@ -480,7 +484,7 @@ impl FromGlib<ffi::WebKitSnapshotOptions> for SnapshotOptions {
 
 impl StaticType for SnapshotOptions {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_snapshot_options_get_type()) }
     }
 }
@@ -499,7 +503,7 @@ impl glib::value::ValueType for SnapshotOptions {
     type Type = Self;
 }
 
-unsafe impl<'a> FromValue<'a> for SnapshotOptions {
+unsafe impl<'a> glib::value::FromValue<'a> for SnapshotOptions {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -533,9 +537,10 @@ impl From<SnapshotOptions> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
+#[cfg(feature = "v2_16")]
 bitflags! {
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "WebKitWebsiteDataTypes")]
     pub struct WebsiteDataTypes: u32 {
         #[doc(alias = "WEBKIT_WEBSITE_DATA_MEMORY_CACHE")]
@@ -571,16 +576,16 @@ bitflags! {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl fmt::Display for WebsiteDataTypes {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         <Self as fmt::Debug>::fmt(self, f)
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 #[doc(hidden)]
 impl IntoGlib for WebsiteDataTypes {
     type GlibType = ffi::WebKitWebsiteDataTypes;
@@ -591,8 +596,8 @@ impl IntoGlib for WebsiteDataTypes {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitWebsiteDataTypes> for WebsiteDataTypes {
     #[inline]
@@ -602,17 +607,17 @@ impl FromGlib<ffi::WebKitWebsiteDataTypes> for WebsiteDataTypes {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl StaticType for WebsiteDataTypes {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_website_data_types_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl glib::HasParamSpec for WebsiteDataTypes {
     type ParamSpec = glib::ParamSpecFlags;
     type SetValue = Self;
@@ -623,15 +628,15 @@ impl glib::HasParamSpec for WebsiteDataTypes {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl glib::value::ValueType for WebsiteDataTypes {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-unsafe impl<'a> FromValue<'a> for WebsiteDataTypes {
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+unsafe impl<'a> glib::value::FromValue<'a> for WebsiteDataTypes {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -641,8 +646,8 @@ unsafe impl<'a> FromValue<'a> for WebsiteDataTypes {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl ToValue for WebsiteDataTypes {
     #[inline]
     fn to_value(&self) -> glib::Value {
@@ -659,8 +664,8 @@ impl ToValue for WebsiteDataTypes {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl From<WebsiteDataTypes> for glib::Value {
     #[inline]
     fn from(v: WebsiteDataTypes) -> Self {

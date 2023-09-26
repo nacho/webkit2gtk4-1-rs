@@ -25,107 +25,16 @@ impl DOMHTMLOptionElement {
     pub const NONE: Option<&'static DOMHTMLOptionElement> = None;
 }
 
-pub trait DOMHTMLOptionElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLOptionElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLOptionElementExt: IsA<DOMHTMLOptionElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_option_element_get_default_selected")]
     #[doc(alias = "get_default_selected")]
-    fn is_default_selected(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_disabled")]
-    #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_index")]
-    #[doc(alias = "get_index")]
-    fn index(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_selected")]
-    #[doc(alias = "get_selected")]
-    fn is_selected(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_set_default_selected")]
-    fn set_default_selected(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_set_label")]
-    fn set_label(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_set_selected")]
-    fn set_selected(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_option_element_set_value")]
-    fn set_value(&self, value: &str);
-
-    #[doc(alias = "default-selected")]
-    fn connect_default_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "index")]
-    fn connect_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selected")]
-    fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
-    #[allow(deprecated)]
     fn is_default_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_option_element_get_default_selected(
@@ -134,7 +43,10 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_disabled")]
+    #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_option_element_get_disabled(
@@ -143,7 +55,10 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_option_element_get_form(
@@ -152,12 +67,18 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_index")]
+    #[doc(alias = "get_index")]
     fn index(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_option_element_get_index(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_option_element_get_label(
@@ -166,7 +87,10 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_selected")]
+    #[doc(alias = "get_selected")]
     fn is_selected(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_option_element_get_selected(
@@ -175,7 +99,10 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_option_element_get_text(
@@ -184,7 +111,10 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_option_element_get_value(
@@ -193,7 +123,9 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_set_default_selected")]
     fn set_default_selected(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_option_element_set_default_selected(
@@ -203,7 +135,9 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_option_element_set_disabled(
@@ -213,7 +147,9 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_set_label")]
     fn set_label(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_option_element_set_label(
@@ -223,7 +159,9 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_set_selected")]
     fn set_selected(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_option_element_set_selected(
@@ -233,7 +171,9 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_option_element_set_value")]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_option_element_set_value(
@@ -243,6 +183,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "default-selected")]
     fn connect_default_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_selected_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -268,6 +209,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -293,6 +235,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -318,6 +261,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "index")]
     fn connect_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_index_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -343,6 +287,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -368,6 +313,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "selected")]
     fn connect_selected_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -393,6 +339,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -418,6 +365,7 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLOptionElement>,
@@ -443,6 +391,8 @@ impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLOptionElement>> DOMHTMLOptionElementExt for O {}
 
 impl fmt::Display for DOMHTMLOptionElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

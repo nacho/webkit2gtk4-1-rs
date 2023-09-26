@@ -25,104 +25,16 @@ impl DOMHTMLButtonElement {
     pub const NONE: Option<&'static DOMHTMLButtonElement> = None;
 }
 
-pub trait DOMHTMLButtonElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLButtonElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLButtonElementExt: IsA<DOMHTMLButtonElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_button_element_get_autofocus")]
     #[doc(alias = "get_autofocus")]
-    fn is_autofocus(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_button_type")]
-    #[doc(alias = "get_button_type")]
-    fn button_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_disabled")]
-    #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_get_will_validate")]
-    #[doc(alias = "get_will_validate")]
-    fn is_will_validate(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_set_autofocus")]
-    fn set_autofocus(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_set_button_type")]
-    fn set_button_type(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_button_element_set_value")]
-    fn set_value(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "autofocus")]
-    fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "will-validate")]
-    fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
-    #[allow(deprecated)]
     fn is_autofocus(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_button_element_get_autofocus(
@@ -131,7 +43,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_button_type")]
+    #[doc(alias = "get_button_type")]
     fn button_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_button_element_get_button_type(
@@ -140,7 +55,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_disabled")]
+    #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_button_element_get_disabled(
@@ -149,7 +67,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_button_element_get_form(
@@ -158,7 +79,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_button_element_get_name(
@@ -167,7 +91,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_button_element_get_value(
@@ -176,7 +103,10 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_get_will_validate")]
+    #[doc(alias = "get_will_validate")]
     fn is_will_validate(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_button_element_get_will_validate(
@@ -185,7 +115,9 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_set_autofocus")]
     fn set_autofocus(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_button_element_set_autofocus(
@@ -195,7 +127,9 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_set_button_type")]
     fn set_button_type(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_button_element_set_button_type(
@@ -205,7 +139,9 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_button_element_set_disabled(
@@ -215,7 +151,9 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_button_element_set_name(
@@ -225,7 +163,9 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_button_element_set_value")]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_button_element_set_value(
@@ -235,14 +175,17 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "autofocus")]
     fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autofocus_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -268,6 +211,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -293,6 +237,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -318,6 +263,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -343,6 +289,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -368,6 +315,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -393,6 +341,7 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 
+    #[doc(alias = "will-validate")]
     fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_will_validate_trampoline<
             P: IsA<DOMHTMLButtonElement>,
@@ -418,6 +367,8 @@ impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLButtonElement>> DOMHTMLButtonElementExt for O {}
 
 impl fmt::Display for DOMHTMLButtonElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

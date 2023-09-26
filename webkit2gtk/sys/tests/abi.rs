@@ -3,7 +3,7 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#![cfg(target_os = "linux")]
+#![cfg(unix)]
 
 use std::env;
 use std::error::Error;

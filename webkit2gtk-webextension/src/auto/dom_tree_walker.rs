@@ -25,92 +25,15 @@ impl DOMTreeWalker {
     pub const NONE: Option<&'static DOMTreeWalker> = None;
 }
 
-pub trait DOMTreeWalkerExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMTreeWalker>> Sealed for T {}
+}
+
+pub trait DOMTreeWalkerExt: IsA<DOMTreeWalker> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_tree_walker_first_child")]
-    fn first_child(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_get_current_node")]
-    #[doc(alias = "get_current_node")]
-    fn current_node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_get_expand_entity_references")]
-    #[doc(alias = "get_expand_entity_references")]
-    fn expands_entity_references(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_get_filter")]
-    #[doc(alias = "get_filter")]
-    fn filter(&self) -> Option<DOMNodeFilter>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_get_root")]
-    #[doc(alias = "get_root")]
-    fn root(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_get_what_to_show")]
-    #[doc(alias = "get_what_to_show")]
-    fn what_to_show(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_last_child")]
-    fn last_child(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_next_node")]
-    fn next_node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_next_sibling")]
-    fn next_sibling(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_parent_node")]
-    fn parent_node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_previous_node")]
-    fn previous_node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_previous_sibling")]
-    fn previous_sibling(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_tree_walker_set_current_node")]
-    fn set_current_node(&self, value: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[doc(alias = "current-node")]
-    fn connect_current_node_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "filter")]
-    fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "root")]
-    fn connect_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "what-to-show")]
-    fn connect_what_to_show_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
-    #[allow(deprecated)]
     fn first_child(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_first_child(
@@ -119,7 +42,10 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_get_current_node")]
+    #[doc(alias = "get_current_node")]
     fn current_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_get_current_node(
@@ -128,7 +54,10 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_get_expand_entity_references")]
+    #[doc(alias = "get_expand_entity_references")]
     fn expands_entity_references(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_tree_walker_get_expand_entity_references(
@@ -137,7 +66,10 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_get_filter")]
+    #[doc(alias = "get_filter")]
     fn filter(&self) -> Option<DOMNodeFilter> {
         unsafe {
             from_glib_full(ffi::webkit_dom_tree_walker_get_filter(
@@ -146,7 +78,10 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_get_root")]
+    #[doc(alias = "get_root")]
     fn root(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_get_root(
@@ -155,12 +90,17 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_get_what_to_show")]
+    #[doc(alias = "get_what_to_show")]
     fn what_to_show(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_tree_walker_get_what_to_show(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_last_child")]
     fn last_child(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_last_child(
@@ -169,7 +109,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_next_node")]
     fn next_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_next_node(
@@ -178,7 +120,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_next_sibling")]
     fn next_sibling(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_next_sibling(
@@ -187,7 +131,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_parent_node")]
     fn parent_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_parent_node(
@@ -196,7 +142,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_previous_node")]
     fn previous_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_previous_node(
@@ -205,7 +153,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_previous_sibling")]
     fn previous_sibling(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_tree_walker_previous_sibling(
@@ -214,7 +164,9 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_tree_walker_set_current_node")]
     fn set_current_node(&self, value: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -231,6 +183,7 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[doc(alias = "current-node")]
     fn connect_current_node_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_node_trampoline<
             P: IsA<DOMTreeWalker>,
@@ -256,6 +209,7 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<
             P: IsA<DOMTreeWalker>,
@@ -281,6 +235,7 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[doc(alias = "root")]
     fn connect_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_root_trampoline<P: IsA<DOMTreeWalker>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMTreeWalker,
@@ -303,6 +258,7 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 
+    #[doc(alias = "what-to-show")]
     fn connect_what_to_show_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_what_to_show_trampoline<
             P: IsA<DOMTreeWalker>,
@@ -328,6 +284,8 @@ impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMTreeWalker>> DOMTreeWalkerExt for O {}
 
 impl fmt::Display for DOMTreeWalker {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

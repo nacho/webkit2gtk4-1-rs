@@ -25,55 +25,16 @@ impl DOMCSSRule {
     pub const NONE: Option<&'static DOMCSSRule> = None;
 }
 
-pub trait DOMCSSRuleExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMCSSRule>> Sealed for T {}
+}
+
+pub trait DOMCSSRuleExt: IsA<DOMCSSRule> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_rule_get_css_text")]
     #[doc(alias = "get_css_text")]
-    fn css_text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_rule_get_parent_rule")]
-    #[doc(alias = "get_parent_rule")]
-    #[must_use]
-    fn parent_rule(&self) -> Option<DOMCSSRule>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_rule_get_parent_style_sheet")]
-    #[doc(alias = "get_parent_style_sheet")]
-    fn parent_style_sheet(&self) -> Option<DOMCSSStyleSheet>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_rule_get_rule_type")]
-    #[doc(alias = "get_rule_type")]
-    fn rule_type(&self) -> libc::c_ushort;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_rule_set_css_text")]
-    fn set_css_text(&self, value: &str) -> Result<(), glib::Error>;
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> u32;
-
-    #[doc(alias = "css-text")]
-    fn connect_css_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "parent-rule")]
-    fn connect_parent_rule_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "parent-style-sheet")]
-    fn connect_parent_style_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
-    #[allow(deprecated)]
     fn css_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_css_text(
@@ -82,7 +43,11 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_rule_get_parent_rule")]
+    #[doc(alias = "get_parent_rule")]
+    #[must_use]
     fn parent_rule(&self) -> Option<DOMCSSRule> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_parent_rule(
@@ -91,7 +56,10 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_rule_get_parent_style_sheet")]
+    #[doc(alias = "get_parent_style_sheet")]
     fn parent_style_sheet(&self) -> Option<DOMCSSStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_rule_get_parent_style_sheet(
@@ -100,12 +68,17 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_rule_get_rule_type")]
+    #[doc(alias = "get_rule_type")]
     fn rule_type(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_css_rule_get_rule_type(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_rule_set_css_text")]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -122,10 +95,12 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> u32 {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "css-text")]
     fn connect_css_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_css_text_trampoline<P: IsA<DOMCSSRule>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMCSSRule,
@@ -148,6 +123,7 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[doc(alias = "parent-rule")]
     fn connect_parent_rule_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_parent_rule_trampoline<
             P: IsA<DOMCSSRule>,
@@ -173,6 +149,7 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[doc(alias = "parent-style-sheet")]
     fn connect_parent_style_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_parent_style_sheet_trampoline<
             P: IsA<DOMCSSRule>,
@@ -198,6 +175,7 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<P: IsA<DOMCSSRule>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMCSSRule,
@@ -220,6 +198,8 @@ impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMCSSRule>> DOMCSSRuleExt for O {}
 
 impl fmt::Display for DOMCSSRule {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -1,6 +1,6 @@
 [package]
 name = "webkit2gtk4"
-version = "0.17.0"
+version = "0.18.0"
 edition = "2021"
 authors = ["The Gtk-rs Project Developers"]
 categories = ["api-bindings", "gui"]
@@ -21,7 +21,6 @@ travis-ci = { repository = "vhdirk/webkit2gtk-rs" }
 name = "webkit2gtk"
 
 [features]
-dox = ["ffi/dox", "gio/dox", "glib/dox", "cairo-rs/dox", "gdk/dox", "gtk/dox", "javascriptcore4-rs/dox"]
 v2_2 = [ ]
 v2_4 = [ "v2_2" ]
 v2_6 = [ "v2_4", "ffi/v2_6" ]
@@ -46,12 +45,10 @@ v2_38 = ["v2_36", "ffi/v2_38"]
 bitflags = "^1.0"
 once_cell = "1.8"
 libc = "^0.2"
-glib = { version = "0.17" }
-gio = { version = "0.17" }
-cairo-rs = { version = "0.17" }
-gdk = { package = "gdk", version = "0.17" }
-gtk = { package = "gtk", version = "0.17" }
+glib = { version = "0.18" }
+gio = { version = "0.18" }
+cairo-rs = { version = "0.18" }
+gdk = { package = "gdk", version = "0.18" }
+gtk = { package = "gtk", version = "0.18" }
 javascriptcore4-rs = { path = "../javascriptcore" }
 ffi = { package = "webkit2gtk4-sys", path = "sys" }
-
-

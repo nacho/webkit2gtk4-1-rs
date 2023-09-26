@@ -25,201 +25,43 @@ impl DOMHTMLDocument {
     pub const NONE: Option<&'static DOMHTMLDocument> = None;
 }
 
-pub trait DOMHTMLDocumentExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLDocument>> Sealed for T {}
+}
+
+pub trait DOMHTMLDocumentExt: IsA<DOMHTMLDocument> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_document_capture_events")]
-    fn capture_events(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_clear")]
-    fn clear(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_close")]
-    fn close(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_alink_color")]
-    #[doc(alias = "get_alink_color")]
-    fn alink_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_bg_color")]
-    #[doc(alias = "get_bg_color")]
-    fn bg_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_compat_mode")]
-    #[doc(alias = "get_compat_mode")]
-    fn compat_mode(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_design_mode")]
-    #[doc(alias = "get_design_mode")]
-    fn design_mode(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(not(feature = "v2_16"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_16"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_dir")]
-    #[doc(alias = "get_dir")]
-    fn dir(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_embeds")]
-    #[doc(alias = "get_embeds")]
-    fn embeds(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_fg_color")]
-    #[doc(alias = "get_fg_color")]
-    fn fg_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_link_color")]
-    #[doc(alias = "get_link_color")]
-    fn link_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_plugins")]
-    #[doc(alias = "get_plugins")]
-    fn plugins(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_scripts")]
-    #[doc(alias = "get_scripts")]
-    fn scripts(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_vlink_color")]
-    #[doc(alias = "get_vlink_color")]
-    fn vlink_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_release_events")]
-    fn release_events(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_alink_color")]
-    fn set_alink_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_bg_color")]
-    fn set_bg_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_design_mode")]
-    fn set_design_mode(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(not(feature = "v2_16"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_16"))))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_dir")]
-    fn set_dir(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_fg_color")]
-    fn set_fg_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_link_color")]
-    fn set_link_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_document_set_vlink_color")]
-    fn set_vlink_color(&self, value: &str);
-
-    #[doc(alias = "alink-color")]
-    fn connect_alink_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "bg-color")]
-    fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "fg-color")]
-    fn connect_fg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "link-color")]
-    fn connect_link_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "vlink-color")]
-    fn connect_vlink_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
-    #[allow(deprecated)]
     fn capture_events(&self) {
         unsafe {
             ffi::webkit_dom_html_document_capture_events(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_clear")]
     fn clear(&self) {
         unsafe {
             ffi::webkit_dom_html_document_clear(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_close")]
     fn close(&self) {
         unsafe {
             ffi::webkit_dom_html_document_close(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_alink_color")]
+    #[doc(alias = "get_alink_color")]
     fn alink_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_alink_color(
@@ -228,7 +70,10 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_bg_color")]
+    #[doc(alias = "get_bg_color")]
     fn bg_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_bg_color(
@@ -237,9 +82,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_compat_mode")]
+    #[doc(alias = "get_compat_mode")]
     fn compat_mode(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_compat_mode(
@@ -248,9 +96,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_design_mode")]
+    #[doc(alias = "get_design_mode")]
     fn design_mode(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_design_mode(
@@ -259,9 +110,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_16"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_16"))))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(not(feature = "v2_16"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_16"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_dir")]
+    #[doc(alias = "get_dir")]
     fn dir(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_dir(
@@ -270,9 +124,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_embeds")]
+    #[doc(alias = "get_embeds")]
     fn embeds(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_embeds(
@@ -281,7 +138,10 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_fg_color")]
+    #[doc(alias = "get_fg_color")]
     fn fg_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_fg_color(
@@ -290,12 +150,18 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_document_get_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_link_color")]
+    #[doc(alias = "get_link_color")]
     fn link_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_link_color(
@@ -304,9 +170,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_plugins")]
+    #[doc(alias = "get_plugins")]
     fn plugins(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_plugins(
@@ -315,9 +184,12 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_scripts")]
+    #[doc(alias = "get_scripts")]
     fn scripts(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_scripts(
@@ -326,7 +198,10 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_vlink_color")]
+    #[doc(alias = "get_vlink_color")]
     fn vlink_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_document_get_vlink_color(
@@ -335,19 +210,26 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_document_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_release_events")]
     fn release_events(&self) {
         unsafe {
             ffi::webkit_dom_html_document_release_events(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_alink_color")]
     fn set_alink_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_alink_color(
@@ -357,7 +239,9 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_bg_color")]
     fn set_bg_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_bg_color(
@@ -367,9 +251,11 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_14"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_14"))))]
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
+    #[cfg(not(feature = "v2_14"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_14"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_design_mode")]
     fn set_design_mode(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_design_mode(
@@ -379,9 +265,11 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
-    #[cfg(any(not(feature = "v2_16"), feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(not(feature = "v2_16"))))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(not(feature = "v2_16"))]
+    #[cfg_attr(docsrs, doc(cfg(not(feature = "v2_16"))))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_dir")]
     fn set_dir(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_dir(
@@ -391,7 +279,9 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_fg_color")]
     fn set_fg_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_fg_color(
@@ -401,7 +291,9 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_link_color")]
     fn set_link_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_link_color(
@@ -411,7 +303,9 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_document_set_vlink_color")]
     fn set_vlink_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_document_set_vlink_color(
@@ -421,6 +315,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "alink-color")]
     fn connect_alink_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alink_color_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -446,6 +341,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "bg-color")]
     fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bg_color_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -471,6 +367,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "fg-color")]
     fn connect_fg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_fg_color_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -496,6 +393,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -521,6 +419,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "link-color")]
     fn connect_link_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_link_color_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -546,6 +445,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "vlink-color")]
     fn connect_vlink_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vlink_color_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -571,6 +471,7 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLDocument>,
@@ -596,6 +497,8 @@ impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLDocument>> DOMHTMLDocumentExt for O {}
 
 impl fmt::Display for DOMHTMLDocument {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

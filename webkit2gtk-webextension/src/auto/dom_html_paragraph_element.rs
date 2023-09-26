@@ -25,24 +25,18 @@ impl DOMHTMLParagraphElement {
     pub const NONE: Option<&'static DOMHTMLParagraphElement> = None;
 }
 
-pub trait DOMHTMLParagraphElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLParagraphElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLParagraphElementExt:
+    IsA<DOMHTMLParagraphElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_paragraph_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_paragraph_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLParagraphElement>> DOMHTMLParagraphElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_paragraph_element_get_align(
@@ -51,7 +45,9 @@ impl<O: IsA<DOMHTMLParagraphElement>> DOMHTMLParagraphElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_paragraph_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_paragraph_element_set_align(
@@ -61,6 +57,7 @@ impl<O: IsA<DOMHTMLParagraphElement>> DOMHTMLParagraphElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLParagraphElement>,
@@ -86,6 +83,8 @@ impl<O: IsA<DOMHTMLParagraphElement>> DOMHTMLParagraphElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLParagraphElement>> DOMHTMLParagraphElementExt for O {}
 
 impl fmt::Display for DOMHTMLParagraphElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

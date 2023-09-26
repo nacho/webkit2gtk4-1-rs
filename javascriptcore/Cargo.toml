@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore4-rs"
-version = "0.17.0"
+version = "0.18.0"
 edition = "2021"
 description = "Rust bindings for the javacriptcore library"
 repository = "https://github.com/vhdirk/javascriptcore-rs"
@@ -8,14 +8,14 @@ license = "MIT"
 keywords = ["javascript", "gtk-rs", "gnome"]
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [lib]
 name = "javascriptcore"
 
 [dependencies]
 bitflags = "^1.0"
-glib = { version = "0.17" }
+glib = { version = "0.18" }
 
 [dependencies.ffi]
 package = "javascriptcore4-rs-sys"
@@ -25,4 +25,3 @@ version = "0.3.0"
 [features]
 v2_28 = ["ffi/v2_28"]
 v2_38 = ["v2_28", "ffi/v2_38"]
-dox = ["ffi/dox", "glib/dox"]

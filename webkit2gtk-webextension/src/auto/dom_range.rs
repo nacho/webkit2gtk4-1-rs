@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::DOMDocumentFragment;
 use crate::{DOMNode, DOMObject};
 use glib::{
@@ -28,223 +28,17 @@ impl DOMRange {
     pub const NONE: Option<&'static DOMRange> = None;
 }
 
-pub trait DOMRangeExt: 'static {
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_clone_contents")]
-    fn clone_contents(&self) -> Result<DOMDocumentFragment, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_clone_range")]
-    fn clone_range(&self) -> Result<DOMRange, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_collapse")]
-    fn collapse(&self, toStart: bool) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_compare_boundary_points")]
-    fn compare_boundary_points(
-        &self,
-        how: libc::c_ushort,
-        sourceRange: &impl IsA<DOMRange>,
-    ) -> Result<libc::c_short, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_compare_node")]
-    fn compare_node(&self, refNode: &impl IsA<DOMNode>) -> Result<libc::c_short, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_compare_point")]
-    fn compare_point(
-        &self,
-        refNode: &impl IsA<DOMNode>,
-        offset: libc::c_long,
-    ) -> Result<libc::c_short, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_create_contextual_fragment")]
-    fn create_contextual_fragment(&self, html: &str) -> Result<DOMDocumentFragment, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_delete_contents")]
-    fn delete_contents(&self) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_detach")]
-    fn detach(&self) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_expand")]
-    fn expand(&self, unit: &str) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_extract_contents")]
-    fn extract_contents(&self) -> Result<DOMDocumentFragment, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_collapsed")]
-    #[doc(alias = "get_collapsed")]
-    fn collapsed(&self) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_common_ancestor_container")]
-    #[doc(alias = "get_common_ancestor_container")]
-    fn common_ancestor_container(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_end_container")]
-    #[doc(alias = "get_end_container")]
-    fn end_container(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_end_offset")]
-    #[doc(alias = "get_end_offset")]
-    fn end_offset(&self) -> Result<libc::c_long, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_start_container")]
-    #[doc(alias = "get_start_container")]
-    fn start_container(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_start_offset")]
-    #[doc(alias = "get_start_offset")]
-    fn start_offset(&self) -> Result<libc::c_long, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_insert_node")]
-    fn insert_node(&self, newNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_intersects_node")]
-    fn intersects_node(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_is_point_in_range")]
-    fn is_point_in_range(
-        &self,
-        refNode: &impl IsA<DOMNode>,
-        offset: libc::c_long,
-    ) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_select_node")]
-    fn select_node(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_select_node_contents")]
-    fn select_node_contents(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_end")]
-    fn set_end(&self, refNode: &impl IsA<DOMNode>, offset: libc::c_long)
-        -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_end_after")]
-    fn set_end_after(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_end_before")]
-    fn set_end_before(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_start")]
-    fn set_start(
-        &self,
-        refNode: &impl IsA<DOMNode>,
-        offset: libc::c_long,
-    ) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_start_after")]
-    fn set_start_after(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_set_start_before")]
-    fn set_start_before(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_surround_contents")]
-    fn surround_contents(&self, newParent: &impl IsA<DOMNode>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_range_to_string")]
-    fn to_string(&self) -> Result<glib::GString, glib::Error>;
-
-    #[doc(alias = "collapsed")]
-    fn connect_collapsed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "common-ancestor-container")]
-    fn connect_common_ancestor_container_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "end-container")]
-    fn connect_end_container_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "end-offset")]
-    fn connect_end_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "start-container")]
-    fn connect_start_container_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "start-offset")]
-    fn connect_start_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMRange>> Sealed for T {}
 }
 
-impl<O: IsA<DOMRange>> DOMRangeExt for O {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+pub trait DOMRangeExt: IsA<DOMRange> + sealed::Sealed + 'static {
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_clone_contents")]
     fn clone_contents(&self) -> Result<DOMDocumentFragment, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -258,7 +52,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_clone_range")]
     fn clone_range(&self) -> Result<DOMRange, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -271,7 +67,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_collapse")]
     fn collapse(&self, toStart: bool) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -288,7 +86,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_compare_boundary_points")]
     fn compare_boundary_points(
         &self,
         how: libc::c_ushort,
@@ -310,7 +110,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_compare_node")]
     fn compare_node(&self, refNode: &impl IsA<DOMNode>) -> Result<libc::c_short, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -327,7 +129,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_compare_point")]
     fn compare_point(
         &self,
         refNode: &impl IsA<DOMNode>,
@@ -349,9 +153,11 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_create_contextual_fragment")]
     fn create_contextual_fragment(&self, html: &str) -> Result<DOMDocumentFragment, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -368,7 +174,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_delete_contents")]
     fn delete_contents(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -382,7 +190,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_detach")]
     fn detach(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -395,9 +205,11 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_expand")]
     fn expand(&self, unit: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -414,9 +226,11 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_extract_contents")]
     fn extract_contents(&self) -> Result<DOMDocumentFragment, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -430,7 +244,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_collapsed")]
+    #[doc(alias = "get_collapsed")]
     fn collapsed(&self) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -445,7 +262,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_common_ancestor_container")]
+    #[doc(alias = "get_common_ancestor_container")]
     fn common_ancestor_container(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -461,7 +281,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_end_container")]
+    #[doc(alias = "get_end_container")]
     fn end_container(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -475,7 +298,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_end_offset")]
+    #[doc(alias = "get_end_offset")]
     fn end_offset(&self) -> Result<libc::c_long, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -489,7 +315,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_start_container")]
+    #[doc(alias = "get_start_container")]
     fn start_container(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -505,7 +334,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_start_offset")]
+    #[doc(alias = "get_start_offset")]
     fn start_offset(&self) -> Result<libc::c_long, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -519,7 +351,10 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_range_get_text(
@@ -528,7 +363,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_insert_node")]
     fn insert_node(&self, newNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -545,7 +382,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_intersects_node")]
     fn intersects_node(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -563,7 +402,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_is_point_in_range")]
     fn is_point_in_range(
         &self,
         refNode: &impl IsA<DOMNode>,
@@ -586,7 +427,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_select_node")]
     fn select_node(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -603,7 +446,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_select_node_contents")]
     fn select_node_contents(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -620,7 +465,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_end")]
     fn set_end(
         &self,
         refNode: &impl IsA<DOMNode>,
@@ -642,7 +489,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_end_after")]
     fn set_end_after(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -659,7 +508,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_end_before")]
     fn set_end_before(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -676,7 +527,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_start")]
     fn set_start(
         &self,
         refNode: &impl IsA<DOMNode>,
@@ -698,7 +551,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_start_after")]
     fn set_start_after(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -715,7 +570,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_set_start_before")]
     fn set_start_before(&self, refNode: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -732,7 +589,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_surround_contents")]
     fn surround_contents(&self, newParent: &impl IsA<DOMNode>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -749,7 +608,9 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_range_to_string")]
     fn to_string(&self) -> Result<glib::GString, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -762,6 +623,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "collapsed")]
     fn connect_collapsed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_collapsed_trampoline<P: IsA<DOMRange>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMRange,
@@ -784,6 +646,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "common-ancestor-container")]
     fn connect_common_ancestor_container_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -812,6 +675,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "end-container")]
     fn connect_end_container_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_end_container_trampoline<
             P: IsA<DOMRange>,
@@ -837,6 +701,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "end-offset")]
     fn connect_end_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_end_offset_trampoline<P: IsA<DOMRange>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMRange,
@@ -859,6 +724,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "start-container")]
     fn connect_start_container_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_start_container_trampoline<
             P: IsA<DOMRange>,
@@ -884,6 +750,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "start-offset")]
     fn connect_start_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_start_offset_trampoline<
             P: IsA<DOMRange>,
@@ -909,6 +776,7 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P: IsA<DOMRange>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMRange,
@@ -931,6 +799,8 @@ impl<O: IsA<DOMRange>> DOMRangeExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMRange>> DOMRangeExt for O {}
 
 impl fmt::Display for DOMRange {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

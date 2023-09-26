@@ -25,272 +25,16 @@ impl DOMHTMLAnchorElement {
     pub const NONE: Option<&'static DOMHTMLAnchorElement> = None;
 }
 
-pub trait DOMHTMLAnchorElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLAnchorElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLAnchorElementExt: IsA<DOMHTMLAnchorElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_anchor_element_get_charset")]
     #[doc(alias = "get_charset")]
-    fn charset(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_coords")]
-    #[doc(alias = "get_coords")]
-    fn coords(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_hash")]
-    #[doc(alias = "get_hash")]
-    fn hash(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_host")]
-    #[doc(alias = "get_host")]
-    fn host(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_hostname")]
-    #[doc(alias = "get_hostname")]
-    fn hostname(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_href")]
-    #[doc(alias = "get_href")]
-    fn href(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_hreflang")]
-    #[doc(alias = "get_hreflang")]
-    fn hreflang(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_pathname")]
-    #[doc(alias = "get_pathname")]
-    fn pathname(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_port")]
-    #[doc(alias = "get_port")]
-    fn port(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_protocol")]
-    #[doc(alias = "get_protocol")]
-    fn protocol(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_rel")]
-    #[doc(alias = "get_rel")]
-    fn rel(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_rev")]
-    #[doc(alias = "get_rev")]
-    fn rev(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_search")]
-    #[doc(alias = "get_search")]
-    fn search(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_shape")]
-    #[doc(alias = "get_shape")]
-    fn shape(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_charset")]
-    fn set_charset(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_coords")]
-    fn set_coords(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_hash")]
-    fn set_hash(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_host")]
-    fn set_host(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_hostname")]
-    fn set_hostname(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_href")]
-    fn set_href(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_hreflang")]
-    fn set_hreflang(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_pathname")]
-    fn set_pathname(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_port")]
-    fn set_port(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_protocol")]
-    fn set_protocol(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_rel")]
-    fn set_rel(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_rev")]
-    fn set_rev(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_search")]
-    fn set_search(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_shape")]
-    fn set_shape(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_target")]
-    fn set_target(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_text")]
-    fn set_text(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_anchor_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    fn set_property_text(&self, text: Option<&str>);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "charset")]
-    fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "coords")]
-    fn connect_coords_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hash")]
-    fn connect_hash_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "host")]
-    fn connect_host_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hostname")]
-    fn connect_hostname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "href")]
-    fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hreflang")]
-    fn connect_hreflang_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pathname")]
-    fn connect_pathname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "port")]
-    fn connect_port_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "protocol")]
-    fn connect_protocol_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rel")]
-    fn connect_rel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rev")]
-    fn connect_rev_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "search")]
-    fn connect_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "shape")]
-    fn connect_shape_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
-    #[allow(deprecated)]
     fn charset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_charset(
@@ -299,7 +43,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_coords")]
+    #[doc(alias = "get_coords")]
     fn coords(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_coords(
@@ -308,7 +55,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_hash")]
+    #[doc(alias = "get_hash")]
     fn hash(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_hash(
@@ -317,7 +67,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_host")]
+    #[doc(alias = "get_host")]
     fn host(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_host(
@@ -326,7 +79,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_hostname")]
+    #[doc(alias = "get_hostname")]
     fn hostname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_hostname(
@@ -335,7 +91,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_href")]
+    #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_href(
@@ -344,7 +103,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_hreflang")]
+    #[doc(alias = "get_hreflang")]
     fn hreflang(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_hreflang(
@@ -353,7 +115,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_name(
@@ -362,7 +127,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_pathname")]
+    #[doc(alias = "get_pathname")]
     fn pathname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_pathname(
@@ -371,7 +139,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_port")]
+    #[doc(alias = "get_port")]
     fn port(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_port(
@@ -380,7 +151,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_protocol")]
+    #[doc(alias = "get_protocol")]
     fn protocol(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_protocol(
@@ -389,7 +163,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_rel")]
+    #[doc(alias = "get_rel")]
     fn rel(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_rel(
@@ -398,7 +175,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_rev")]
+    #[doc(alias = "get_rev")]
     fn rev(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_rev(
@@ -407,7 +187,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_search")]
+    #[doc(alias = "get_search")]
     fn search(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_search(
@@ -416,7 +199,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_shape")]
+    #[doc(alias = "get_shape")]
     fn shape(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_shape(
@@ -425,7 +211,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_target(
@@ -434,7 +223,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_text(
@@ -443,7 +235,10 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_anchor_element_get_type_attr(
@@ -452,7 +247,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_charset")]
     fn set_charset(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_charset(
@@ -462,7 +259,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_coords")]
     fn set_coords(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_coords(
@@ -472,7 +271,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_hash")]
     fn set_hash(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_hash(
@@ -482,7 +283,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_host")]
     fn set_host(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_host(
@@ -492,7 +295,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_hostname")]
     fn set_hostname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_hostname(
@@ -502,7 +307,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_href")]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_href(
@@ -512,7 +319,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_hreflang")]
     fn set_hreflang(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_hreflang(
@@ -522,7 +331,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_name(
@@ -532,7 +343,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_pathname")]
     fn set_pathname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_pathname(
@@ -542,7 +355,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_port")]
     fn set_port(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_port(
@@ -552,7 +367,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_protocol")]
     fn set_protocol(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_protocol(
@@ -562,7 +379,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_rel")]
     fn set_rel(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_rel(
@@ -572,7 +391,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_rev")]
     fn set_rev(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_rev(
@@ -582,7 +403,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_search")]
     fn set_search(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_search(
@@ -592,7 +415,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_shape")]
     fn set_shape(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_shape(
@@ -602,7 +427,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_target")]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_target(
@@ -612,9 +439,11 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_text")]
     fn set_text(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_text(
@@ -624,7 +453,9 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_anchor_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_anchor_element_set_type_attr(
@@ -635,17 +466,20 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
     }
 
     fn set_property_text(&self, text: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "text", &text)
+        ObjectExt::set_property(self.as_ref(), "text", text)
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "charset")]
     fn connect_charset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_charset_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -671,6 +505,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "coords")]
     fn connect_coords_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_coords_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -696,6 +531,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "hash")]
     fn connect_hash_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hash_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -721,6 +557,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "host")]
     fn connect_host_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_host_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -746,6 +583,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "hostname")]
     fn connect_hostname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hostname_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -771,6 +609,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "href")]
     fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_href_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -796,6 +635,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "hreflang")]
     fn connect_hreflang_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hreflang_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -821,6 +661,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -846,6 +687,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "pathname")]
     fn connect_pathname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pathname_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -871,6 +713,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "port")]
     fn connect_port_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_port_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -896,6 +739,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "protocol")]
     fn connect_protocol_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_protocol_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -921,6 +765,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "rel")]
     fn connect_rel_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rel_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -946,6 +791,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "rev")]
     fn connect_rev_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rev_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -971,6 +817,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "search")]
     fn connect_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -996,6 +843,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "shape")]
     fn connect_shape_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shape_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -1021,6 +869,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -1046,6 +895,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -1071,6 +921,7 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLAnchorElement>,
@@ -1096,6 +947,8 @@ impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLAnchorElement>> DOMHTMLAnchorElementExt for O {}
 
 impl fmt::Display for DOMHTMLAnchorElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

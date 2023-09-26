@@ -25,153 +25,97 @@ impl DOMClientRect {
     pub const NONE: Option<&'static DOMClientRect> = None;
 }
 
-pub trait DOMClientRectExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMClientRect>> Sealed for T {}
+}
+
+pub trait DOMClientRectExt: IsA<DOMClientRect> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_client_rect_get_bottom")]
     #[doc(alias = "get_bottom")]
-    fn bottom(&self) -> f32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> f32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_get_left")]
-    #[doc(alias = "get_left")]
-    fn left(&self) -> f32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_get_right")]
-    #[doc(alias = "get_right")]
-    fn right(&self) -> f32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_get_top")]
-    #[doc(alias = "get_top")]
-    fn top(&self) -> f32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_client_rect_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> f32;
-
-    fn get_property_bottom(&self) -> f32;
-
-    fn get_property_height(&self) -> f32;
-
-    fn get_property_left(&self) -> f32;
-
-    fn get_property_right(&self) -> f32;
-
-    fn get_property_top(&self) -> f32;
-
-    fn get_property_width(&self) -> f32;
-
-    #[doc(alias = "bottom")]
-    fn connect_bottom_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "left")]
-    fn connect_left_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "right")]
-    fn connect_right_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "top")]
-    fn connect_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[allow(deprecated)]
     fn bottom(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_bottom(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_height(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_get_left")]
+    #[doc(alias = "get_left")]
     fn left(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_left(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_get_right")]
+    #[doc(alias = "get_right")]
     fn right(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_right(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_get_top")]
+    #[doc(alias = "get_top")]
     fn top(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_top(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_client_rect_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> f32 {
         unsafe { ffi::webkit_dom_client_rect_get_width(self.as_ref().to_glib_none().0) }
     }
 
     fn get_property_bottom(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "bottom")
+        ObjectExt::property(self.as_ref(), "bottom")
     }
 
     fn get_property_height(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "height")
+        ObjectExt::property(self.as_ref(), "height")
     }
 
     fn get_property_left(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "left")
+        ObjectExt::property(self.as_ref(), "left")
     }
 
     fn get_property_right(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "right")
+        ObjectExt::property(self.as_ref(), "right")
     }
 
     fn get_property_top(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "top")
+        ObjectExt::property(self.as_ref(), "top")
     }
 
     fn get_property_width(&self) -> f32 {
-        glib::ObjectExt::property(self.as_ref(), "width")
+        ObjectExt::property(self.as_ref(), "width")
     }
 
+    #[doc(alias = "bottom")]
     fn connect_bottom_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bottom_trampoline<
             P: IsA<DOMClientRect>,
@@ -197,6 +141,7 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMClientRect>,
@@ -222,6 +167,7 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 
+    #[doc(alias = "left")]
     fn connect_left_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_left_trampoline<P: IsA<DOMClientRect>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMClientRect,
@@ -244,6 +190,7 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 
+    #[doc(alias = "right")]
     fn connect_right_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_right_trampoline<P: IsA<DOMClientRect>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMClientRect,
@@ -266,6 +213,7 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 
+    #[doc(alias = "top")]
     fn connect_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_top_trampoline<P: IsA<DOMClientRect>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMClientRect,
@@ -288,6 +236,7 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<P: IsA<DOMClientRect>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMClientRect,
@@ -310,6 +259,8 @@ impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMClientRect>> DOMClientRectExt for O {}
 
 impl fmt::Display for DOMClientRect {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -21,49 +21,15 @@ impl DOMDOMImplementation {
     pub const NONE: Option<&'static DOMDOMImplementation> = None;
 }
 
-pub trait DOMDOMImplementationExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMDOMImplementation>> Sealed for T {}
+}
+
+pub trait DOMDOMImplementationExt: IsA<DOMDOMImplementation> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_dom_implementation_create_css_style_sheet")]
-    fn create_css_style_sheet(
-        &self,
-        title: &str,
-        media: &str,
-    ) -> Result<DOMCSSStyleSheet, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_implementation_create_document")]
-    fn create_document(
-        &self,
-        namespaceURI: Option<&str>,
-        qualifiedName: &str,
-        doctype: Option<&impl IsA<DOMDocumentType>>,
-    ) -> Result<DOMDocument, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_implementation_create_document_type")]
-    fn create_document_type(
-        &self,
-        qualifiedName: &str,
-        publicId: &str,
-        systemId: &str,
-    ) -> Result<DOMDocumentType, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_implementation_create_html_document")]
-    fn create_html_document(&self, title: &str) -> Option<DOMHTMLDocument>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_implementation_has_feature")]
-    fn has_feature(&self, feature: &str, version: &str) -> bool;
-}
-
-impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
-    #[allow(deprecated)]
     fn create_css_style_sheet(
         &self,
         title: &str,
@@ -85,7 +51,9 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_implementation_create_document")]
     fn create_document(
         &self,
         namespaceURI: Option<&str>,
@@ -109,7 +77,9 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_implementation_create_document_type")]
     fn create_document_type(
         &self,
         qualifiedName: &str,
@@ -133,7 +103,9 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_implementation_create_html_document")]
     fn create_html_document(&self, title: &str) -> Option<DOMHTMLDocument> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_implementation_create_html_document(
@@ -143,7 +115,9 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_implementation_has_feature")]
     fn has_feature(&self, feature: &str, version: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_implementation_has_feature(
@@ -154,6 +128,8 @@ impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMDOMImplementation>> DOMDOMImplementationExt for O {}
 
 impl fmt::Display for DOMDOMImplementation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

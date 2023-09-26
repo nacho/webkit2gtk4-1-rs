@@ -27,396 +27,16 @@ impl DOMHTMLInputElement {
     pub const NONE: Option<&'static DOMHTMLInputElement> = None;
 }
 
-pub trait DOMHTMLInputElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLInputElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLInputElementExt: IsA<DOMHTMLInputElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_input_element_get_accept")]
     #[doc(alias = "get_accept")]
-    fn accept(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_align")]
-    #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_alt")]
-    #[doc(alias = "get_alt")]
-    fn alt(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_auto_filled")]
-    #[doc(alias = "get_auto_filled")]
-    fn is_auto_filled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_autofocus")]
-    #[doc(alias = "get_autofocus")]
-    fn is_autofocus(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_capture")]
-    #[doc(alias = "get_capture")]
-    fn is_capture(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_capture_type")]
-    #[doc(alias = "get_capture_type")]
-    fn capture_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_checked")]
-    #[doc(alias = "get_checked")]
-    fn is_checked(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_default_checked")]
-    #[doc(alias = "get_default_checked")]
-    fn is_default_checked(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_default_value")]
-    #[doc(alias = "get_default_value")]
-    fn default_value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_disabled")]
-    #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_files")]
-    #[doc(alias = "get_files")]
-    fn files(&self) -> Option<DOMFileList>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_indeterminate")]
-    #[doc(alias = "get_indeterminate")]
-    fn is_indeterminate(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_input_type")]
-    #[doc(alias = "get_input_type")]
-    fn input_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_max_length")]
-    #[doc(alias = "get_max_length")]
-    fn max_length(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_multiple")]
-    #[doc(alias = "get_multiple")]
-    fn is_multiple(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_read_only")]
-    #[doc(alias = "get_read_only")]
-    fn is_read_only(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_size")]
-    #[doc(alias = "get_size")]
-    fn size(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_src")]
-    #[doc(alias = "get_src")]
-    fn src(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_use_map")]
-    #[doc(alias = "get_use_map")]
-    fn use_map(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_get_will_validate")]
-    #[doc(alias = "get_will_validate")]
-    fn is_will_validate(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_is_edited")]
-    fn is_edited(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_select")]
-    fn select(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_accept")]
-    fn set_accept(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_alt")]
-    fn set_alt(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_auto_filled")]
-    fn set_auto_filled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_autofocus")]
-    fn set_autofocus(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_capture_type")]
-    fn set_capture_type(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_checked")]
-    fn set_checked(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_default_checked")]
-    fn set_default_checked(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_default_value")]
-    fn set_default_value(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_editing_value")]
-    fn set_editing_value(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_files")]
-    fn set_files(&self, value: &impl IsA<DOMFileList>);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_height")]
-    fn set_height(&self, value: libc::c_ulong);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_indeterminate")]
-    fn set_indeterminate(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_input_type")]
-    fn set_input_type(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_max_length")]
-    fn set_max_length(&self, value: libc::c_long) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_multiple")]
-    fn set_multiple(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_read_only")]
-    fn set_read_only(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_size")]
-    fn set_size(&self, value: libc::c_ulong) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_src")]
-    fn set_src(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_use_map")]
-    fn set_use_map(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_value")]
-    fn set_value(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_input_element_set_width")]
-    fn set_width(&self, value: libc::c_ulong);
-
-    fn set_capture(&self, capture: Option<&str>);
-
-    #[doc(alias = "default-checked")]
-    fn set_property_default_checked(&self, default_checked: bool);
-
-    #[doc(alias = "read-only")]
-    fn get_property_read_only(&self) -> bool;
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "accept")]
-    fn connect_accept_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "alt")]
-    fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "autofocus")]
-    fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "capture")]
-    fn connect_capture_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "checked")]
-    fn connect_checked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-checked")]
-    fn connect_default_checked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-value")]
-    fn connect_default_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "files")]
-    fn connect_files_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "indeterminate")]
-    fn connect_indeterminate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-length")]
-    fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "multiple")]
-    fn connect_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "read-only")]
-    fn connect_read_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "size")]
-    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "src")]
-    fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-map")]
-    fn connect_use_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "will-validate")]
-    fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
-    #[allow(deprecated)]
     fn accept(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_accept(
@@ -425,7 +45,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_align")]
+    #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_align(
@@ -434,7 +57,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_alt")]
+    #[doc(alias = "get_alt")]
     fn alt(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_alt(
@@ -443,9 +69,12 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_auto_filled")]
+    #[doc(alias = "get_auto_filled")]
     fn is_auto_filled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_auto_filled(
@@ -454,7 +83,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_autofocus")]
+    #[doc(alias = "get_autofocus")]
     fn is_autofocus(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_autofocus(
@@ -463,7 +95,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_capture")]
+    #[doc(alias = "get_capture")]
     fn is_capture(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_capture(
@@ -472,9 +107,12 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_capture_type")]
+    #[doc(alias = "get_capture_type")]
     fn capture_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_capture_type(
@@ -483,7 +121,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_checked")]
+    #[doc(alias = "get_checked")]
     fn is_checked(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_checked(
@@ -492,7 +133,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_default_checked")]
+    #[doc(alias = "get_default_checked")]
     fn is_default_checked(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_default_checked(
@@ -501,7 +145,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_default_value")]
+    #[doc(alias = "get_default_value")]
     fn default_value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_default_value(
@@ -510,7 +157,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_disabled")]
+    #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_disabled(
@@ -519,7 +169,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_files")]
+    #[doc(alias = "get_files")]
     fn files(&self) -> Option<DOMFileList> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_files(
@@ -528,7 +181,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_input_element_get_form(
@@ -537,12 +193,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_input_element_get_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_indeterminate")]
+    #[doc(alias = "get_indeterminate")]
     fn is_indeterminate(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_indeterminate(
@@ -551,7 +213,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_input_type")]
+    #[doc(alias = "get_input_type")]
     fn input_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_input_type(
@@ -560,12 +225,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_max_length")]
+    #[doc(alias = "get_max_length")]
     fn max_length(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_input_element_get_max_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_multiple")]
+    #[doc(alias = "get_multiple")]
     fn is_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_multiple(
@@ -574,7 +245,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_name(
@@ -583,9 +257,12 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_read_only")]
+    #[doc(alias = "get_read_only")]
     fn is_read_only(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_read_only(
@@ -594,12 +271,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_size")]
+    #[doc(alias = "get_size")]
     fn size(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_input_element_get_size(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_src")]
+    #[doc(alias = "get_src")]
     fn src(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_src(
@@ -608,7 +291,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_use_map")]
+    #[doc(alias = "get_use_map")]
     fn use_map(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_use_map(
@@ -617,7 +303,10 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_input_element_get_value(
@@ -626,12 +315,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_input_element_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_get_will_validate")]
+    #[doc(alias = "get_will_validate")]
     fn is_will_validate(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_get_will_validate(
@@ -640,7 +335,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_is_edited")]
     fn is_edited(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_input_element_is_edited(
@@ -649,14 +346,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_select")]
     fn select(&self) {
         unsafe {
             ffi::webkit_dom_html_input_element_select(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_accept")]
     fn set_accept(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_accept(
@@ -666,7 +367,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_align(
@@ -676,7 +379,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_alt")]
     fn set_alt(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_alt(
@@ -686,9 +391,11 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_auto_filled")]
     fn set_auto_filled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_auto_filled(
@@ -698,7 +405,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_autofocus")]
     fn set_autofocus(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_autofocus(
@@ -708,9 +417,11 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_capture_type")]
     fn set_capture_type(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_capture_type(
@@ -720,7 +431,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_checked")]
     fn set_checked(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_checked(
@@ -730,9 +443,11 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_default_checked")]
     fn set_default_checked(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_default_checked(
@@ -742,7 +457,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_default_value")]
     fn set_default_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_default_value(
@@ -752,7 +469,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_disabled(
@@ -762,9 +481,11 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_editing_value")]
     fn set_editing_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_editing_value(
@@ -774,7 +495,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_files")]
     fn set_files(&self, value: &impl IsA<DOMFileList>) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_files(
@@ -784,14 +507,18 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_height")]
     fn set_height(&self, value: libc::c_ulong) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_height(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_indeterminate")]
     fn set_indeterminate(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_indeterminate(
@@ -801,7 +528,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_input_type")]
     fn set_input_type(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_input_type(
@@ -811,7 +540,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_max_length")]
     fn set_max_length(&self, value: libc::c_long) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -828,7 +559,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_multiple")]
     fn set_multiple(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_multiple(
@@ -838,7 +571,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_name(
@@ -848,7 +583,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_read_only")]
     fn set_read_only(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_read_only(
@@ -858,7 +595,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_size")]
     fn set_size(&self, value: libc::c_ulong) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -875,7 +614,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_src")]
     fn set_src(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_src(
@@ -885,7 +626,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_use_map")]
     fn set_use_map(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_use_map(
@@ -895,7 +638,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_value")]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_value(
@@ -905,7 +650,9 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_input_element_set_width")]
     fn set_width(&self, value: libc::c_ulong) {
         unsafe {
             ffi::webkit_dom_html_input_element_set_width(self.as_ref().to_glib_none().0, value);
@@ -913,25 +660,30 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
     }
 
     fn set_capture(&self, capture: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "capture", &capture)
+        ObjectExt::set_property(self.as_ref(), "capture", capture)
     }
 
+    #[doc(alias = "default-checked")]
     fn set_property_default_checked(&self, default_checked: bool) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-checked", &default_checked)
+        ObjectExt::set_property(self.as_ref(), "default-checked", default_checked)
     }
 
+    #[doc(alias = "read-only")]
     fn get_property_read_only(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "read-only")
+        ObjectExt::property(self.as_ref(), "read-only")
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "accept")]
     fn connect_accept_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_accept_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -957,6 +709,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -982,6 +735,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "alt")]
     fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alt_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1007,6 +761,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "autofocus")]
     fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autofocus_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1032,6 +787,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "capture")]
     fn connect_capture_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_capture_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1057,6 +813,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "checked")]
     fn connect_checked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_checked_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1082,6 +839,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "default-checked")]
     fn connect_default_checked_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_checked_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1107,6 +865,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "default-value")]
     fn connect_default_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_value_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1132,6 +891,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1157,6 +917,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "files")]
     fn connect_files_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_files_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1182,6 +943,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1207,6 +969,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1232,6 +995,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "indeterminate")]
     fn connect_indeterminate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_indeterminate_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1257,6 +1021,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "max-length")]
     fn connect_max_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_length_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1282,6 +1047,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "multiple")]
     fn connect_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_multiple_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1307,6 +1073,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1332,6 +1099,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "read-only")]
     fn connect_read_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_read_only_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1357,6 +1125,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1382,6 +1151,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "src")]
     fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_src_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1407,6 +1177,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1432,6 +1203,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "use-map")]
     fn connect_use_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_map_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1457,6 +1229,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1482,6 +1255,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1507,6 +1281,7 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 
+    #[doc(alias = "will-validate")]
     fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_will_validate_trampoline<
             P: IsA<DOMHTMLInputElement>,
@@ -1532,6 +1307,8 @@ impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLInputElement>> DOMHTMLInputElementExt for O {}
 
 impl fmt::Display for DOMHTMLInputElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

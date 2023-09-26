@@ -25,42 +25,28 @@ impl DOMHTMLOptionsCollection {
     pub const NONE: Option<&'static DOMHTMLOptionsCollection> = None;
 }
 
-pub trait DOMHTMLOptionsCollectionExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLOptionsCollection>> Sealed for T {}
+}
+
+pub trait DOMHTMLOptionsCollectionExt:
+    IsA<DOMHTMLOptionsCollection> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_options_collection_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_options_collection_get_selected_index")]
-    #[doc(alias = "get_selected_index")]
-    fn selected_index(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_options_collection_named_item")]
-    fn named_item(&self, name: &str) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_options_collection_set_selected_index")]
-    fn set_selected_index(&self, value: libc::c_long);
-
-    #[doc(alias = "selected-index")]
-    fn connect_selected_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe {
             ffi::webkit_dom_html_options_collection_get_length(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_options_collection_get_selected_index")]
+    #[doc(alias = "get_selected_index")]
     fn selected_index(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_options_collection_get_selected_index(
@@ -69,7 +55,9 @@ impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_options_collection_named_item")]
     fn named_item(&self, name: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_options_collection_named_item(
@@ -79,7 +67,9 @@ impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_options_collection_set_selected_index")]
     fn set_selected_index(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_options_collection_set_selected_index(
@@ -89,6 +79,7 @@ impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
         }
     }
 
+    #[doc(alias = "selected-index")]
     fn connect_selected_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_index_trampoline<
             P: IsA<DOMHTMLOptionsCollection>,
@@ -114,6 +105,8 @@ impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLOptionsCollection>> DOMHTMLOptionsCollectionExt for O {}
 
 impl fmt::Display for DOMHTMLOptionsCollection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

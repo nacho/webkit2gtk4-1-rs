@@ -21,15 +21,15 @@ impl DOMNodeFilter {
     pub const NONE: Option<&'static DOMNodeFilter> = None;
 }
 
-pub trait DOMNodeFilterExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMNodeFilter>> Sealed for T {}
+}
+
+pub trait DOMNodeFilterExt: IsA<DOMNodeFilter> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_node_filter_accept_node")]
-    fn accept_node(&self, node: &impl IsA<DOMNode>) -> libc::c_short;
-}
-
-impl<O: IsA<DOMNodeFilter>> DOMNodeFilterExt for O {
-    #[allow(deprecated)]
     fn accept_node(&self, node: &impl IsA<DOMNode>) -> libc::c_short {
         unsafe {
             ffi::webkit_dom_node_filter_accept_node(
@@ -39,6 +39,8 @@ impl<O: IsA<DOMNodeFilter>> DOMNodeFilterExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMNodeFilter>> DOMNodeFilterExt for O {}
 
 impl fmt::Display for DOMNodeFilter {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

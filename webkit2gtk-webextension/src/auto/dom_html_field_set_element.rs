@@ -25,19 +25,18 @@ impl DOMHTMLFieldSetElement {
     pub const NONE: Option<&'static DOMHTMLFieldSetElement> = None;
 }
 
-pub trait DOMHTMLFieldSetElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLFieldSetElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLFieldSetElementExt:
+    IsA<DOMHTMLFieldSetElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_field_set_element_get_form")]
     #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLFieldSetElement>> DOMHTMLFieldSetElementExt for O {
-    #[allow(deprecated)]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_field_set_element_get_form(
@@ -46,6 +45,7 @@ impl<O: IsA<DOMHTMLFieldSetElement>> DOMHTMLFieldSetElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLFieldSetElement>,
@@ -71,6 +71,8 @@ impl<O: IsA<DOMHTMLFieldSetElement>> DOMHTMLFieldSetElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLFieldSetElement>> DOMHTMLFieldSetElementExt for O {}
 
 impl fmt::Display for DOMHTMLFieldSetElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

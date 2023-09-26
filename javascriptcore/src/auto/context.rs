@@ -87,73 +87,13 @@ impl ContextBuilder {
     }
 }
 
-pub trait ContextExt: 'static {
-    #[doc(alias = "jsc_context_check_syntax")]
-    fn check_syntax(
-        &self,
-        code: &str,
-        mode: CheckSyntaxMode,
-        uri: &str,
-        line_number: u32,
-    ) -> (CheckSyntaxResult, Exception);
-
-    #[doc(alias = "jsc_context_clear_exception")]
-    fn clear_exception(&self);
-
-    #[doc(alias = "jsc_context_evaluate")]
-    fn evaluate(&self, code: &str) -> Option<Value>;
-
-    //#[doc(alias = "jsc_context_evaluate_in_object")]
-    //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Basic: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value);
-
-    #[doc(alias = "jsc_context_evaluate_with_source_uri")]
-    fn evaluate_with_source_uri(&self, code: &str, uri: &str, line_number: u32) -> Option<Value>;
-
-    #[doc(alias = "jsc_context_get_exception")]
-    #[doc(alias = "get_exception")]
-    fn exception(&self) -> Option<Exception>;
-
-    #[doc(alias = "jsc_context_get_global_object")]
-    #[doc(alias = "get_global_object")]
-    fn global_object(&self) -> Option<Value>;
-
-    #[doc(alias = "jsc_context_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self, name: &str) -> Option<Value>;
-
-    #[doc(alias = "jsc_context_get_virtual_machine")]
-    #[doc(alias = "get_virtual_machine")]
-    fn virtual_machine(&self) -> Option<VirtualMachine>;
-
-    #[doc(alias = "jsc_context_pop_exception_handler")]
-    fn pop_exception_handler(&self);
-
-    #[doc(alias = "jsc_context_push_exception_handler")]
-    fn push_exception_handler<P: Fn(&Context, &Exception) + 'static>(&self, handler: P);
-
-    //#[doc(alias = "jsc_context_register_class")]
-    //fn register_class(&self, name: &str, parent_class: Option<&Class>, vtable: /*Ignored*/Option<&mut ClassVTable>) -> Option<Class>;
-
-    #[doc(alias = "jsc_context_set_value")]
-    fn set_value(&self, name: &str, value: &impl IsA<Value>);
-
-    #[doc(alias = "jsc_context_throw")]
-    fn throw(&self, error_message: &str);
-
-    #[doc(alias = "jsc_context_throw_exception")]
-    fn throw_exception(&self, exception: &impl IsA<Exception>);
-
-    //#[doc(alias = "jsc_context_throw_printf")]
-    //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
-
-    #[doc(alias = "jsc_context_throw_with_name")]
-    fn throw_with_name(&self, error_name: &str, error_message: &str);
-
-    //#[doc(alias = "jsc_context_throw_with_name_printf")]
-    //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Context>> Sealed for T {}
 }
 
-impl<O: IsA<Context>> ContextExt for O {
+pub trait ContextExt: IsA<Context> + sealed::Sealed + 'static {
+    #[doc(alias = "jsc_context_check_syntax")]
     fn check_syntax(
         &self,
         code: &str,
@@ -177,12 +117,14 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_clear_exception")]
     fn clear_exception(&self) {
         unsafe {
             ffi::jsc_context_clear_exception(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "jsc_context_evaluate")]
     fn evaluate(&self, code: &str) -> Option<Value> {
         let length = code.len() as _;
         unsafe {
@@ -194,10 +136,12 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_context_evaluate_in_object")]
     //fn evaluate_in_object(&self, code: &str, object_instance: /*Unimplemented*/Option<Basic: Pointer>, object_class: Option<&Class>, uri: &str, line_number: u32) -> (Value, Value) {
     //    unsafe { TODO: call ffi:jsc_context_evaluate_in_object() }
     //}
 
+    #[doc(alias = "jsc_context_evaluate_with_source_uri")]
     fn evaluate_with_source_uri(&self, code: &str, uri: &str, line_number: u32) -> Option<Value> {
         let length = code.len() as _;
         unsafe {
@@ -211,6 +155,8 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_get_exception")]
+    #[doc(alias = "get_exception")]
     fn exception(&self) -> Option<Exception> {
         unsafe {
             from_glib_none(ffi::jsc_context_get_exception(
@@ -219,6 +165,8 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_get_global_object")]
+    #[doc(alias = "get_global_object")]
     fn global_object(&self) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_context_get_global_object(
@@ -227,6 +175,8 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self, name: &str) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_context_get_value(
@@ -236,6 +186,8 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_get_virtual_machine")]
+    #[doc(alias = "get_virtual_machine")]
     fn virtual_machine(&self) -> Option<VirtualMachine> {
         unsafe {
             from_glib_none(ffi::jsc_context_get_virtual_machine(
@@ -244,12 +196,14 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_pop_exception_handler")]
     fn pop_exception_handler(&self) {
         unsafe {
             ffi::jsc_context_pop_exception_handler(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "jsc_context_push_exception_handler")]
     fn push_exception_handler<P: Fn(&Context, &Exception) + 'static>(&self, handler: P) {
         let handler_data: Box_<P> = Box_::new(handler);
         unsafe extern "C" fn handler_func<P: Fn(&Context, &Exception) + 'static>(
@@ -280,10 +234,12 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_context_register_class")]
     //fn register_class(&self, name: &str, parent_class: Option<&Class>, vtable: /*Ignored*/Option<&mut ClassVTable>) -> Option<Class> {
     //    unsafe { TODO: call ffi:jsc_context_register_class() }
     //}
 
+    #[doc(alias = "jsc_context_set_value")]
     fn set_value(&self, name: &str, value: &impl IsA<Value>) {
         unsafe {
             ffi::jsc_context_set_value(
@@ -294,6 +250,7 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_throw")]
     fn throw(&self, error_message: &str) {
         unsafe {
             ffi::jsc_context_throw(
@@ -303,6 +260,7 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    #[doc(alias = "jsc_context_throw_exception")]
     fn throw_exception(&self, exception: &impl IsA<Exception>) {
         unsafe {
             ffi::jsc_context_throw_exception(
@@ -312,10 +270,12 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_context_throw_printf")]
     //fn throw_printf(&self, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:jsc_context_throw_printf() }
     //}
 
+    #[doc(alias = "jsc_context_throw_with_name")]
     fn throw_with_name(&self, error_name: &str, error_message: &str) {
         unsafe {
             ffi::jsc_context_throw_with_name(
@@ -326,10 +286,13 @@ impl<O: IsA<Context>> ContextExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_context_throw_with_name_printf")]
     //fn throw_with_name_printf(&self, error_name: &str, format: &str, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) {
     //    unsafe { TODO: call ffi:jsc_context_throw_with_name_printf() }
     //}
 }
+
+impl<O: IsA<Context>> ContextExt for O {}
 
 impl fmt::Display for Context {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

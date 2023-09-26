@@ -25,38 +25,16 @@ impl DOMHTMLModElement {
     pub const NONE: Option<&'static DOMHTMLModElement> = None;
 }
 
-pub trait DOMHTMLModElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLModElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLModElementExt: IsA<DOMHTMLModElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_mod_element_get_cite")]
     #[doc(alias = "get_cite")]
-    fn cite(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_mod_element_get_date_time")]
-    #[doc(alias = "get_date_time")]
-    fn date_time(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_mod_element_set_cite")]
-    fn set_cite(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_mod_element_set_date_time")]
-    fn set_date_time(&self, value: &str);
-
-    #[doc(alias = "cite")]
-    fn connect_cite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "date-time")]
-    fn connect_date_time_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
-    #[allow(deprecated)]
     fn cite(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_mod_element_get_cite(
@@ -65,7 +43,10 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_mod_element_get_date_time")]
+    #[doc(alias = "get_date_time")]
     fn date_time(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_mod_element_get_date_time(
@@ -74,7 +55,9 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_mod_element_set_cite")]
     fn set_cite(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_mod_element_set_cite(
@@ -84,7 +67,9 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_mod_element_set_date_time")]
     fn set_date_time(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_mod_element_set_date_time(
@@ -94,6 +79,7 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[doc(alias = "cite")]
     fn connect_cite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cite_trampoline<
             P: IsA<DOMHTMLModElement>,
@@ -119,6 +105,7 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 
+    #[doc(alias = "date-time")]
     fn connect_date_time_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_date_time_trampoline<
             P: IsA<DOMHTMLModElement>,
@@ -144,6 +131,8 @@ impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLModElement>> DOMHTMLModElementExt for O {}
 
 impl fmt::Display for DOMHTMLModElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -21,20 +21,15 @@ impl DOMXPathExpression {
     pub const NONE: Option<&'static DOMXPathExpression> = None;
 }
 
-pub trait DOMXPathExpressionExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMXPathExpression>> Sealed for T {}
+}
+
+pub trait DOMXPathExpressionExt: IsA<DOMXPathExpression> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_expression_evaluate")]
-    fn evaluate(
-        &self,
-        contextNode: &impl IsA<DOMNode>,
-        type_: libc::c_ushort,
-        inResult: &impl IsA<DOMXPathResult>,
-    ) -> Result<DOMXPathResult, glib::Error>;
-}
-
-impl<O: IsA<DOMXPathExpression>> DOMXPathExpressionExt for O {
-    #[allow(deprecated)]
     fn evaluate(
         &self,
         contextNode: &impl IsA<DOMNode>,
@@ -58,6 +53,8 @@ impl<O: IsA<DOMXPathExpression>> DOMXPathExpressionExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMXPathExpression>> DOMXPathExpressionExt for O {}
 
 impl fmt::Display for DOMXPathExpression {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

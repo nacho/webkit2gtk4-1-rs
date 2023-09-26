@@ -25,24 +25,16 @@ impl DOMHTMLQuoteElement {
     pub const NONE: Option<&'static DOMHTMLQuoteElement> = None;
 }
 
-pub trait DOMHTMLQuoteElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLQuoteElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLQuoteElementExt: IsA<DOMHTMLQuoteElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_quote_element_get_cite")]
     #[doc(alias = "get_cite")]
-    fn cite(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_quote_element_set_cite")]
-    fn set_cite(&self, value: &str);
-
-    #[doc(alias = "cite")]
-    fn connect_cite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLQuoteElement>> DOMHTMLQuoteElementExt for O {
-    #[allow(deprecated)]
     fn cite(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_quote_element_get_cite(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLQuoteElement>> DOMHTMLQuoteElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_quote_element_set_cite")]
     fn set_cite(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_quote_element_set_cite(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLQuoteElement>> DOMHTMLQuoteElementExt for O {
         }
     }
 
+    #[doc(alias = "cite")]
     fn connect_cite_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cite_trampoline<
             P: IsA<DOMHTMLQuoteElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLQuoteElement>> DOMHTMLQuoteElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLQuoteElement>> DOMHTMLQuoteElementExt for O {}
 
 impl fmt::Display for DOMHTMLQuoteElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

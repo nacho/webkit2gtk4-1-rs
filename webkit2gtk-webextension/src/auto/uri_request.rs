@@ -29,35 +29,22 @@ impl URIRequest {
     }
 }
 
-pub trait URIRequestExt: 'static {
-    //#[doc(alias = "webkit_uri_request_get_http_headers")]
-    //#[doc(alias = "get_http_headers")]
-    //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders>;
-
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
-    #[doc(alias = "webkit_uri_request_get_http_method")]
-    #[doc(alias = "get_http_method")]
-    fn http_method(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_uri_request_get_uri")]
-    #[doc(alias = "get_uri")]
-    fn uri(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_uri_request_set_uri")]
-    fn set_uri(&self, uri: &str);
-
-    #[doc(alias = "uri")]
-    fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::URIRequest>> Sealed for T {}
 }
 
-impl<O: IsA<URIRequest>> URIRequestExt for O {
+pub trait URIRequestExt: IsA<URIRequest> + sealed::Sealed + 'static {
+    //#[doc(alias = "webkit_uri_request_get_http_headers")]
+    //#[doc(alias = "get_http_headers")]
     //fn http_headers(&self) -> /*Ignored*/Option<soup::MessageHeaders> {
     //    unsafe { TODO: call ffi:webkit_uri_request_get_http_headers() }
     //}
 
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
+    #[doc(alias = "webkit_uri_request_get_http_method")]
+    #[doc(alias = "get_http_method")]
     fn http_method(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_uri_request_get_http_method(
@@ -66,6 +53,8 @@ impl<O: IsA<URIRequest>> URIRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_uri_request_get_uri")]
+    #[doc(alias = "get_uri")]
     fn uri(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_uri_request_get_uri(
@@ -74,12 +63,14 @@ impl<O: IsA<URIRequest>> URIRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_uri_request_set_uri")]
     fn set_uri(&self, uri: &str) {
         unsafe {
             ffi::webkit_uri_request_set_uri(self.as_ref().to_glib_none().0, uri.to_glib_none().0);
         }
     }
 
+    #[doc(alias = "uri")]
     fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<P: IsA<URIRequest>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitURIRequest,
@@ -102,6 +93,8 @@ impl<O: IsA<URIRequest>> URIRequestExt for O {
         }
     }
 }
+
+impl<O: IsA<URIRequest>> URIRequestExt for O {}
 
 impl fmt::Display for URIRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

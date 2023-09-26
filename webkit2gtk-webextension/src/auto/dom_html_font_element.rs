@@ -25,52 +25,16 @@ impl DOMHTMLFontElement {
     pub const NONE: Option<&'static DOMHTMLFontElement> = None;
 }
 
-pub trait DOMHTMLFontElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLFontElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLFontElementExt: IsA<DOMHTMLFontElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_font_element_get_color")]
     #[doc(alias = "get_color")]
-    fn color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_font_element_get_face")]
-    #[doc(alias = "get_face")]
-    fn face(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_font_element_get_size")]
-    #[doc(alias = "get_size")]
-    fn size(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_font_element_set_color")]
-    fn set_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_font_element_set_face")]
-    fn set_face(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_font_element_set_size")]
-    fn set_size(&self, value: &str);
-
-    #[doc(alias = "color")]
-    fn connect_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "face")]
-    fn connect_face_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "size")]
-    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
-    #[allow(deprecated)]
     fn color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_color(
@@ -79,7 +43,10 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_font_element_get_face")]
+    #[doc(alias = "get_face")]
     fn face(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_face(
@@ -88,7 +55,10 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_font_element_get_size")]
+    #[doc(alias = "get_size")]
     fn size(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_font_element_get_size(
@@ -97,7 +67,9 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_font_element_set_color")]
     fn set_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_color(
@@ -107,7 +79,9 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_font_element_set_face")]
     fn set_face(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_face(
@@ -117,7 +91,9 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_font_element_set_size")]
     fn set_size(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_font_element_set_size(
@@ -127,6 +103,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[doc(alias = "color")]
     fn connect_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_color_trampoline<
             P: IsA<DOMHTMLFontElement>,
@@ -152,6 +129,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[doc(alias = "face")]
     fn connect_face_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_face_trampoline<
             P: IsA<DOMHTMLFontElement>,
@@ -177,6 +155,7 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 
+    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<
             P: IsA<DOMHTMLFontElement>,
@@ -202,6 +181,8 @@ impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLFontElement>> DOMHTMLFontElementExt for O {}
 
 impl fmt::Display for DOMHTMLFontElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -62,60 +62,13 @@ impl FindControllerBuilder {
     }
 }
 
-pub trait FindControllerExt: 'static {
-    #[doc(alias = "webkit_find_controller_count_matches")]
-    fn count_matches(&self, search_text: &str, find_options: u32, max_match_count: u32);
-
-    #[doc(alias = "webkit_find_controller_get_max_match_count")]
-    #[doc(alias = "get_max_match_count")]
-    fn max_match_count(&self) -> u32;
-
-    #[doc(alias = "webkit_find_controller_get_options")]
-    #[doc(alias = "get_options")]
-    fn options(&self) -> u32;
-
-    #[doc(alias = "webkit_find_controller_get_search_text")]
-    #[doc(alias = "get_search_text")]
-    fn search_text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_find_controller_get_web_view")]
-    #[doc(alias = "get_web_view")]
-    fn web_view(&self) -> Option<WebView>;
-
-    #[doc(alias = "webkit_find_controller_search")]
-    fn search(&self, search_text: &str, find_options: u32, max_match_count: u32);
-
-    #[doc(alias = "webkit_find_controller_search_finish")]
-    fn search_finish(&self);
-
-    #[doc(alias = "webkit_find_controller_search_next")]
-    fn search_next(&self);
-
-    #[doc(alias = "webkit_find_controller_search_previous")]
-    fn search_previous(&self);
-
-    fn text(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "counted-matches")]
-    fn connect_counted_matches<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "failed-to-find-text")]
-    fn connect_failed_to_find_text<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "found-text")]
-    fn connect_found_text<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "max-match-count")]
-    fn connect_max_match_count_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "options")]
-    fn connect_options_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FindController>> Sealed for T {}
 }
 
-impl<O: IsA<FindController>> FindControllerExt for O {
+pub trait FindControllerExt: IsA<FindController> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_find_controller_count_matches")]
     fn count_matches(&self, search_text: &str, find_options: u32, max_match_count: u32) {
         unsafe {
             ffi::webkit_find_controller_count_matches(
@@ -127,14 +80,20 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "webkit_find_controller_get_max_match_count")]
+    #[doc(alias = "get_max_match_count")]
     fn max_match_count(&self) -> u32 {
         unsafe { ffi::webkit_find_controller_get_max_match_count(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "webkit_find_controller_get_options")]
+    #[doc(alias = "get_options")]
     fn options(&self) -> u32 {
         unsafe { ffi::webkit_find_controller_get_options(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "webkit_find_controller_get_search_text")]
+    #[doc(alias = "get_search_text")]
     fn search_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_find_controller_get_search_text(
@@ -143,6 +102,8 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "webkit_find_controller_get_web_view")]
+    #[doc(alias = "get_web_view")]
     fn web_view(&self) -> Option<WebView> {
         unsafe {
             from_glib_none(ffi::webkit_find_controller_get_web_view(
@@ -151,6 +112,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "webkit_find_controller_search")]
     fn search(&self, search_text: &str, find_options: u32, max_match_count: u32) {
         unsafe {
             ffi::webkit_find_controller_search(
@@ -162,18 +124,21 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "webkit_find_controller_search_finish")]
     fn search_finish(&self) {
         unsafe {
             ffi::webkit_find_controller_search_finish(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_find_controller_search_next")]
     fn search_next(&self) {
         unsafe {
             ffi::webkit_find_controller_search_next(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_find_controller_search_previous")]
     fn search_previous(&self) {
         unsafe {
             ffi::webkit_find_controller_search_previous(self.as_ref().to_glib_none().0);
@@ -181,9 +146,10 @@ impl<O: IsA<FindController>> FindControllerExt for O {
     }
 
     fn text(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "text")
+        ObjectExt::property(self.as_ref(), "text")
     }
 
+    #[doc(alias = "counted-matches")]
     fn connect_counted_matches<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn counted_matches_trampoline<
             P: IsA<FindController>,
@@ -212,6 +178,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "failed-to-find-text")]
     fn connect_failed_to_find_text<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn failed_to_find_text_trampoline<
             P: IsA<FindController>,
@@ -236,6 +203,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "found-text")]
     fn connect_found_text<F: Fn(&Self, u32) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn found_text_trampoline<
             P: IsA<FindController>,
@@ -264,6 +232,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "max-match-count")]
     fn connect_max_match_count_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_max_match_count_trampoline<
             P: IsA<FindController>,
@@ -289,6 +258,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "options")]
     fn connect_options_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_options_trampoline<
             P: IsA<FindController>,
@@ -314,6 +284,7 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<P: IsA<FindController>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitFindController,
@@ -336,6 +307,8 @@ impl<O: IsA<FindController>> FindControllerExt for O {
         }
     }
 }
+
+impl<O: IsA<FindController>> FindControllerExt for O {}
 
 impl fmt::Display for FindController {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

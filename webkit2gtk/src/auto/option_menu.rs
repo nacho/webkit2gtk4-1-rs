@@ -24,51 +24,30 @@ impl OptionMenu {
     pub const NONE: Option<&'static OptionMenu> = None;
 }
 
-pub trait OptionMenuExt: 'static {
-    #[doc(alias = "webkit_option_menu_activate_item")]
-    fn activate_item(&self, index: u32);
-
-    #[doc(alias = "webkit_option_menu_close")]
-    fn close(&self);
-
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    #[doc(alias = "webkit_option_menu_get_event")]
-    #[doc(alias = "get_event")]
-    fn event(&self) -> Option<gdk::Event>;
-
-    #[doc(alias = "webkit_option_menu_get_item")]
-    #[doc(alias = "get_item")]
-    fn item(&self, index: u32) -> Option<OptionMenuItem>;
-
-    #[doc(alias = "webkit_option_menu_get_n_items")]
-    #[doc(alias = "get_n_items")]
-    fn n_items(&self) -> u32;
-
-    #[doc(alias = "webkit_option_menu_select_item")]
-    fn select_item(&self, index: u32);
-
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[doc(alias = "close")]
-    fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::OptionMenu>> Sealed for T {}
 }
 
-impl<O: IsA<OptionMenu>> OptionMenuExt for O {
+pub trait OptionMenuExt: IsA<OptionMenu> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_option_menu_activate_item")]
     fn activate_item(&self, index: u32) {
         unsafe {
             ffi::webkit_option_menu_activate_item(self.as_ref().to_glib_none().0, index);
         }
     }
 
+    #[doc(alias = "webkit_option_menu_close")]
     fn close(&self) {
         unsafe {
             ffi::webkit_option_menu_close(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
+    #[doc(alias = "webkit_option_menu_get_event")]
+    #[doc(alias = "get_event")]
     fn event(&self) -> Option<gdk::Event> {
         unsafe {
             from_glib_none(ffi::webkit_option_menu_get_event(
@@ -77,6 +56,8 @@ impl<O: IsA<OptionMenu>> OptionMenuExt for O {
         }
     }
 
+    #[doc(alias = "webkit_option_menu_get_item")]
+    #[doc(alias = "get_item")]
     fn item(&self, index: u32) -> Option<OptionMenuItem> {
         unsafe {
             from_glib_none(ffi::webkit_option_menu_get_item(
@@ -86,18 +67,22 @@ impl<O: IsA<OptionMenu>> OptionMenuExt for O {
         }
     }
 
+    #[doc(alias = "webkit_option_menu_get_n_items")]
+    #[doc(alias = "get_n_items")]
     fn n_items(&self) -> u32 {
         unsafe { ffi::webkit_option_menu_get_n_items(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "webkit_option_menu_select_item")]
     fn select_item(&self, index: u32) {
         unsafe {
             ffi::webkit_option_menu_select_item(self.as_ref().to_glib_none().0, index);
         }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
+    #[doc(alias = "close")]
     fn connect_close<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn close_trampoline<P: IsA<OptionMenu>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitOptionMenu,
@@ -119,6 +104,8 @@ impl<O: IsA<OptionMenu>> OptionMenuExt for O {
         }
     }
 }
+
+impl<O: IsA<OptionMenu>> OptionMenuExt for O {}
 
 impl fmt::Display for OptionMenu {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

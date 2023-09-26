@@ -21,50 +21,22 @@ impl DOMEventTarget {
     pub const NONE: Option<&'static DOMEventTarget> = None;
 }
 
-pub trait DOMEventTargetExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMEventTarget>> Sealed for T {}
+}
+
+pub trait DOMEventTargetExt: IsA<DOMEventTarget> + sealed::Sealed + 'static {
     //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[allow(deprecated)]
     //#[doc(alias = "webkit_dom_event_target_add_event_listener")]
-    //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_target_add_event_listener_with_closure")]
-    fn add_event_listener_with_closure(
-        &self,
-        event_name: &str,
-        handler: &glib::Closure,
-        use_capture: bool,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_target_dispatch_event")]
-    fn dispatch_event(&self, event: &impl IsA<DOMEvent>) -> Result<(), glib::Error>;
-
-    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    //#[allow(deprecated)]
-    //#[doc(alias = "webkit_dom_event_target_remove_event_listener")]
-    //fn remove_event_listener<P: FnMut()>(&self, event_name: &str, handler: P, use_capture: bool) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_target_remove_event_listener_with_closure")]
-    fn remove_event_listener_with_closure(
-        &self,
-        event_name: &str,
-        handler: &glib::Closure,
-        use_capture: bool,
-    ) -> bool;
-}
-
-impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
-    //#[allow(deprecated)]
     //fn add_event_listener<P: FnOnce() + 'static>(&self, event_name: &str, handler: P, use_capture: bool, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> bool {
     //    unsafe { TODO: call ffi:webkit_dom_event_target_add_event_listener() }
     //}
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_target_add_event_listener_with_closure")]
     fn add_event_listener_with_closure(
         &self,
         event_name: &str,
@@ -83,7 +55,9 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_target_dispatch_event")]
     fn dispatch_event(&self, event: &impl IsA<DOMEvent>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -101,12 +75,16 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
         }
     }
 
+    //#[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     //#[allow(deprecated)]
+    //#[doc(alias = "webkit_dom_event_target_remove_event_listener")]
     //fn remove_event_listener<P: FnMut()>(&self, event_name: &str, handler: P, use_capture: bool) -> bool {
     //    unsafe { TODO: call ffi:webkit_dom_event_target_remove_event_listener() }
     //}
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_target_remove_event_listener_with_closure")]
     fn remove_event_listener_with_closure(
         &self,
         event_name: &str,
@@ -125,6 +103,8 @@ impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMEventTarget>> DOMEventTargetExt for O {}
 
 impl fmt::Display for DOMEventTarget {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

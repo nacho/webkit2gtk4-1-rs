@@ -25,44 +25,16 @@ impl DOMHTMLUListElement {
     pub const NONE: Option<&'static DOMHTMLUListElement> = None;
 }
 
-pub trait DOMHTMLUListElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLUListElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLUListElementExt: IsA<DOMHTMLUListElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_u_list_element_get_compact")]
     #[doc(alias = "get_compact")]
-    fn is_compact(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_u_list_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_u_list_element_set_compact")]
-    fn set_compact(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_u_list_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "compact")]
-    fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
-    #[allow(deprecated)]
     fn is_compact(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_u_list_element_get_compact(
@@ -71,7 +43,10 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_u_list_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_u_list_element_get_type_attr(
@@ -80,7 +55,9 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_u_list_element_set_compact")]
     fn set_compact(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_u_list_element_set_compact(
@@ -90,7 +67,9 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_u_list_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_u_list_element_set_type_attr(
@@ -100,14 +79,17 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "compact")]
     fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_compact_trampoline<
             P: IsA<DOMHTMLUListElement>,
@@ -133,6 +115,7 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLUListElement>,
@@ -158,6 +141,8 @@ impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLUListElement>> DOMHTMLUListElementExt for O {}
 
 impl fmt::Display for DOMHTMLUListElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

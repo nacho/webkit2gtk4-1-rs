@@ -25,34 +25,23 @@ impl DOMHTMLCollection {
     pub const NONE: Option<&'static DOMHTMLCollection> = None;
 }
 
-pub trait DOMHTMLCollectionExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLCollection>> Sealed for T {}
+}
+
+pub trait DOMHTMLCollectionExt: IsA<DOMHTMLCollection> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_collection_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_collection_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_collection_named_item")]
-    fn named_item(&self, name: &str) -> Option<DOMNode>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_html_collection_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_collection_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_collection_item(
@@ -62,7 +51,9 @@ impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_collection_named_item")]
     fn named_item(&self, name: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_collection_named_item(
@@ -72,6 +63,7 @@ impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<
             P: IsA<DOMHTMLCollection>,
@@ -97,6 +89,8 @@ impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLCollection>> DOMHTMLCollectionExt for O {}
 
 impl fmt::Display for DOMHTMLCollection {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

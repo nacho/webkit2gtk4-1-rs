@@ -1,20 +1,20 @@
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::WebsiteData;
 use crate::WebsiteDataManager;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::WebsiteDataTypes;
 use glib::object::IsA;
 use glib::translate::*;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use std::boxed::Box as Box_;
 use std::ptr;
 
 pub trait WebsiteDataManagerExtManual: 'static {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_website_data_manager_clear")]
     fn clear<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
@@ -24,8 +24,8 @@ pub trait WebsiteDataManagerExtManual: 'static {
         callback: P,
     );
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[doc(alias = "webkit_website_data_manager_remove")]
     fn remove<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
@@ -37,8 +37,8 @@ pub trait WebsiteDataManagerExtManual: 'static {
 }
 
 impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExtManual for O {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     fn clear<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         types: WebsiteDataTypes,
@@ -81,8 +81,8 @@ impl<O: IsA<WebsiteDataManager>> WebsiteDataManagerExtManual for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     fn remove<P: FnOnce(Result<(), glib::Error>) + Send + 'static>(
         &self,
         types: WebsiteDataTypes,

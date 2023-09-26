@@ -25,29 +25,23 @@ impl DOMStyleSheetList {
     pub const NONE: Option<&'static DOMStyleSheetList> = None;
 }
 
-pub trait DOMStyleSheetListExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMStyleSheetList>> Sealed for T {}
+}
+
+pub trait DOMStyleSheetListExt: IsA<DOMStyleSheetList> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_style_sheet_list_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_style_sheet_list_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMStyleSheet>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMStyleSheetList>> DOMStyleSheetListExt for O {
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_style_sheet_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_style_sheet_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_style_sheet_list_item(
@@ -57,6 +51,7 @@ impl<O: IsA<DOMStyleSheetList>> DOMStyleSheetListExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<
             P: IsA<DOMStyleSheetList>,
@@ -82,6 +77,8 @@ impl<O: IsA<DOMStyleSheetList>> DOMStyleSheetListExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMStyleSheetList>> DOMStyleSheetListExt for O {}
 
 impl fmt::Display for DOMStyleSheetList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

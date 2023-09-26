@@ -318,11 +318,11 @@ pub use self::domx_path_ns_resolver::DOMXPathNSResolver;
 mod dom_xpath_result;
 pub use self::dom_xpath_result::DOMXPathResult;
 
-#[cfg(any(feature = "v2_26", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+#[cfg(feature = "v2_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
 mod frame;
-#[cfg(any(feature = "v2_26", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+#[cfg(feature = "v2_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
 pub use self::frame::Frame;
 
 mod hit_test_result;
@@ -337,56 +337,56 @@ pub use self::uri_request::URIRequest;
 mod uri_response;
 pub use self::uri_response::URIResponse;
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 mod user_message;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 pub use self::user_message::UserMessage;
 
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 mod web_editor;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 pub use self::web_editor::WebEditor;
 
 mod web_extension;
 pub use self::web_extension::WebExtension;
 
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+#[cfg(feature = "v2_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
 mod web_hit_test_result;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+#[cfg(feature = "v2_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
 pub use self::web_hit_test_result::WebHitTestResult;
 
 mod web_page;
 pub use self::web_page::WebPage;
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 mod console_message;
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 pub use self::console_message::ConsoleMessage;
 
 mod enums;
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 pub use self::enums::ConsoleMessageLevel;
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 pub use self::enums::ConsoleMessageSource;
 pub use self::enums::ContextMenuAction;
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 pub use self::enums::FormSubmissionStep;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 pub use self::enums::UserMessageError;
 
 mod flags;
@@ -495,22 +495,22 @@ pub mod traits {
     pub use super::dom_xpath_expression::DOMXPathExpressionExt;
     pub use super::dom_xpath_result::DOMXPathResultExt;
     pub use super::domx_path_ns_resolver::DOMXPathNSResolverExt;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub use super::frame::FrameExt;
     pub use super::hit_test_result::HitTestResultExt;
     pub use super::script_world::ScriptWorldExt;
     pub use super::uri_request::URIRequestExt;
     pub use super::uri_response::URIResponseExt;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub use super::user_message::UserMessageExt;
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
     pub use super::web_editor::WebEditorExt;
     pub use super::web_extension::WebExtensionExt;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub use super::web_hit_test_result::WebHitTestResultExt;
     pub use super::web_page::WebPageExt;
 }

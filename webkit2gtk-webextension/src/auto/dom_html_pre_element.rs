@@ -25,43 +25,24 @@ impl DOMHTMLPreElement {
     pub const NONE: Option<&'static DOMHTMLPreElement> = None;
 }
 
-pub trait DOMHTMLPreElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLPreElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLPreElementExt: IsA<DOMHTMLPreElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_pre_element_get_width")]
     #[doc(alias = "get_width")]
-    fn width(&self) -> libc::c_long;
+    fn width(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_html_pre_element_get_width(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_pre_element_get_wrap")]
     #[doc(alias = "get_wrap")]
-    fn wraps(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_pre_element_set_width")]
-    fn set_width(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_pre_element_set_wrap")]
-    fn set_wrap(&self, value: bool);
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wrap")]
-    fn connect_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {
-    #[allow(deprecated)]
-    fn width(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_html_pre_element_get_width(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
     fn wraps(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_pre_element_get_wrap(
@@ -70,14 +51,18 @@ impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_pre_element_set_width")]
     fn set_width(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_pre_element_set_width(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_pre_element_set_wrap")]
     fn set_wrap(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_pre_element_set_wrap(
@@ -87,6 +72,7 @@ impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLPreElement>,
@@ -112,6 +98,7 @@ impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {
         }
     }
 
+    #[doc(alias = "wrap")]
     fn connect_wrap_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wrap_trampoline<
             P: IsA<DOMHTMLPreElement>,
@@ -137,6 +124,8 @@ impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLPreElement>> DOMHTMLPreElementExt for O {}
 
 impl fmt::Display for DOMHTMLPreElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

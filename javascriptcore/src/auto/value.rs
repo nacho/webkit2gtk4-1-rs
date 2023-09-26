@@ -24,8 +24,8 @@ impl Value {
     //    unsafe { TODO: call ffi:jsc_value_new_array() }
     //}
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
     //#[doc(alias = "jsc_value_new_array_buffer")]
     //pub fn new_array_buffer(context: &impl IsA<Context>, data: /*Unimplemented*/Option<Basic: Pointer>, size: usize, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_new_array_buffer() }
@@ -61,8 +61,8 @@ impl Value {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     #[doc(alias = "jsc_value_new_from_json")]
     #[doc(alias = "new_from_json")]
     pub fn from_json(context: &impl IsA<Context>, json: &str) -> Value {
@@ -132,8 +132,8 @@ impl Value {
         }
     }
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
     //#[doc(alias = "jsc_value_new_typed_array")]
     //pub fn new_typed_array(context: &impl IsA<Context>, type_: /*Ignored*/TypedArrayType, length: usize) -> Value {
     //    unsafe { TODO: call ffi:jsc_value_new_typed_array() }
@@ -194,192 +194,34 @@ impl ValueBuilder {
     }
 }
 
-pub trait ValueExt: 'static {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_array_buffer_get_data")]
-    //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer>;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_array_buffer_get_size")]
-    fn array_buffer_get_size(&self) -> usize;
-
-    //#[doc(alias = "jsc_value_constructor_call")]
-    //#[must_use]
-    //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_constructor_callv")]
-    #[must_use]
-    fn constructor_callv(&self, parameters: &[Value]) -> Option<Value>;
-
-    //#[doc(alias = "jsc_value_function_call")]
-    //#[must_use]
-    //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_function_callv")]
-    #[must_use]
-    fn function_callv(&self, parameters: &[Value]) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_get_context")]
-    #[doc(alias = "get_context")]
-    fn context(&self) -> Option<Context>;
-
-    #[doc(alias = "jsc_value_is_array")]
-    fn is_array(&self) -> bool;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_is_array_buffer")]
-    fn is_array_buffer(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_boolean")]
-    fn is_boolean(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_constructor")]
-    fn is_constructor(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_function")]
-    fn is_function(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_null")]
-    fn is_null(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_number")]
-    fn is_number(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_object")]
-    fn is_object(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_string")]
-    fn is_string(&self) -> bool;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_is_typed_array")]
-    fn is_typed_array(&self) -> bool;
-
-    #[doc(alias = "jsc_value_is_undefined")]
-    fn is_undefined(&self) -> bool;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_new_typed_array_with_buffer")]
-    //#[must_use]
-    //fn new_typed_array_with_buffer(&self, type_: /*Ignored*/TypedArrayType, offset: usize, length: isize) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_object_define_property_data")]
-    fn object_define_property_data(
-        &self,
-        property_name: &str,
-        flags: ValuePropertyFlags,
-        property_value: Option<&impl IsA<Value>>,
-    );
-
-    #[doc(alias = "jsc_value_object_delete_property")]
-    fn object_delete_property(&self, name: &str) -> bool;
-
-    #[doc(alias = "jsc_value_object_enumerate_properties")]
-    fn object_enumerate_properties(&self) -> Vec<glib::GString>;
-
-    #[doc(alias = "jsc_value_object_get_property")]
-    #[must_use]
-    fn object_get_property(&self, name: &str) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_object_get_property_at_index")]
-    #[must_use]
-    fn object_get_property_at_index(&self, index: u32) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_object_has_property")]
-    fn object_has_property(&self, name: &str) -> bool;
-
-    //#[doc(alias = "jsc_value_object_invoke_method")]
-    //#[must_use]
-    //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_object_invoke_methodv")]
-    #[must_use]
-    fn object_invoke_methodv(&self, name: &str, parameters: &[Value]) -> Option<Value>;
-
-    #[doc(alias = "jsc_value_object_is_instance_of")]
-    fn object_is_instance_of(&self, name: &str) -> bool;
-
-    #[doc(alias = "jsc_value_object_set_property")]
-    fn object_set_property(&self, name: &str, property: &impl IsA<Value>);
-
-    #[doc(alias = "jsc_value_object_set_property_at_index")]
-    fn object_set_property_at_index(&self, index: u32, property: &impl IsA<Value>);
-
-    #[doc(alias = "jsc_value_to_boolean")]
-    fn to_boolean(&self) -> bool;
-
-    #[doc(alias = "jsc_value_to_double")]
-    fn to_double(&self) -> f64;
-
-    #[doc(alias = "jsc_value_to_int32")]
-    fn to_int32(&self) -> i32;
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    #[doc(alias = "jsc_value_to_json")]
-    fn to_json(&self, indent: u32) -> Option<glib::GString>;
-
-    #[doc(alias = "jsc_value_to_string")]
-    #[doc(alias = "to_string")]
-    fn to_str(&self) -> glib::GString;
-
-    #[doc(alias = "jsc_value_to_string_as_bytes")]
-    fn to_string_as_bytes(&self) -> Option<glib::Bytes>;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_buffer")]
-    #[must_use]
-    fn typed_array_get_buffer(&self) -> Option<Value>;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_typed_array_get_data")]
-    //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize);
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_length")]
-    fn typed_array_get_length(&self) -> usize;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_offset")]
-    fn typed_array_get_offset(&self) -> usize;
-
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    #[doc(alias = "jsc_value_typed_array_get_size")]
-    fn typed_array_get_size(&self) -> usize;
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_typed_array_get_type")]
-    //fn typed_array_get_type(&self) -> /*Ignored*/TypedArrayType;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Value>> Sealed for T {}
 }
 
-impl<O: IsA<Value>> ValueExt for O {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+pub trait ValueExt: IsA<Value> + sealed::Sealed + 'static {
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    //#[doc(alias = "jsc_value_array_buffer_get_data")]
     //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer> {
     //    unsafe { TODO: call ffi:jsc_value_array_buffer_get_data() }
     //}
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_array_buffer_get_size")]
     fn array_buffer_get_size(&self) -> usize {
         unsafe { ffi::jsc_value_array_buffer_get_size(self.as_ref().to_glib_none().0) }
     }
 
+    //#[doc(alias = "jsc_value_constructor_call")]
+    //#[must_use]
     //fn constructor_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_constructor_call() }
     //}
 
+    #[doc(alias = "jsc_value_constructor_callv")]
+    #[must_use]
     fn constructor_callv(&self, parameters: &[Value]) -> Option<Value> {
         let n_parameters = parameters.len() as _;
         unsafe {
@@ -391,10 +233,14 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_value_function_call")]
+    //#[must_use]
     //fn function_call(&self, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_function_call() }
     //}
 
+    #[doc(alias = "jsc_value_function_callv")]
+    #[must_use]
     fn function_callv(&self, parameters: &[Value]) -> Option<Value> {
         let n_parameters = parameters.len() as _;
         unsafe {
@@ -406,16 +252,20 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_get_context")]
+    #[doc(alias = "get_context")]
     fn context(&self) -> Option<Context> {
         unsafe { from_glib_none(ffi::jsc_value_get_context(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_array")]
     fn is_array(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_array(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_is_array_buffer")]
     fn is_array_buffer(&self) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_is_array_buffer(
@@ -424,10 +274,12 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_is_boolean")]
     fn is_boolean(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_boolean(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_constructor")]
     fn is_constructor(&self) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_is_constructor(
@@ -436,28 +288,34 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_is_function")]
     fn is_function(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_function(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_null")]
     fn is_null(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_null(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_number")]
     fn is_number(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_number(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_object")]
     fn is_object(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_object(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_is_string")]
     fn is_string(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_string(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_is_typed_array")]
     fn is_typed_array(&self) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_is_typed_array(
@@ -466,16 +324,20 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_is_undefined")]
     fn is_undefined(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_is_undefined(self.as_ref().to_glib_none().0)) }
     }
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    //#[doc(alias = "jsc_value_new_typed_array_with_buffer")]
+    //#[must_use]
     //fn new_typed_array_with_buffer(&self, type_: /*Ignored*/TypedArrayType, offset: usize, length: isize) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_new_typed_array_with_buffer() }
     //}
 
+    #[doc(alias = "jsc_value_object_define_property_data")]
     fn object_define_property_data(
         &self,
         property_name: &str,
@@ -492,6 +354,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_delete_property")]
     fn object_delete_property(&self, name: &str) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_object_delete_property(
@@ -501,6 +364,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_enumerate_properties")]
     fn object_enumerate_properties(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_full(ffi::jsc_value_object_enumerate_properties(
@@ -509,6 +373,8 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_get_property")]
+    #[must_use]
     fn object_get_property(&self, name: &str) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_value_object_get_property(
@@ -518,6 +384,8 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_get_property_at_index")]
+    #[must_use]
     fn object_get_property_at_index(&self, index: u32) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_value_object_get_property_at_index(
@@ -527,6 +395,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_has_property")]
     fn object_has_property(&self, name: &str) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_object_has_property(
@@ -536,10 +405,14 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    //#[doc(alias = "jsc_value_object_invoke_method")]
+    //#[must_use]
     //fn object_invoke_method(&self, name: &str, first_parameter_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Option<Value> {
     //    unsafe { TODO: call ffi:jsc_value_object_invoke_method() }
     //}
 
+    #[doc(alias = "jsc_value_object_invoke_methodv")]
+    #[must_use]
     fn object_invoke_methodv(&self, name: &str, parameters: &[Value]) -> Option<Value> {
         let n_parameters = parameters.len() as _;
         unsafe {
@@ -552,6 +425,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_is_instance_of")]
     fn object_is_instance_of(&self, name: &str) -> bool {
         unsafe {
             from_glib(ffi::jsc_value_object_is_instance_of(
@@ -561,6 +435,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_set_property")]
     fn object_set_property(&self, name: &str, property: &impl IsA<Value>) {
         unsafe {
             ffi::jsc_value_object_set_property(
@@ -571,6 +446,7 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_object_set_property_at_index")]
     fn object_set_property_at_index(&self, index: u32, property: &impl IsA<Value>) {
         unsafe {
             ffi::jsc_value_object_set_property_at_index(
@@ -581,20 +457,24 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_to_boolean")]
     fn to_boolean(&self) -> bool {
         unsafe { from_glib(ffi::jsc_value_to_boolean(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_to_double")]
     fn to_double(&self) -> f64 {
         unsafe { ffi::jsc_value_to_double(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "jsc_value_to_int32")]
     fn to_int32(&self) -> i32 {
         unsafe { ffi::jsc_value_to_int32(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[doc(alias = "jsc_value_to_json")]
     fn to_json(&self, indent: u32) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::jsc_value_to_json(
@@ -604,10 +484,13 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
+    #[doc(alias = "jsc_value_to_string")]
+    #[doc(alias = "to_string")]
     fn to_str(&self) -> glib::GString {
         unsafe { from_glib_full(ffi::jsc_value_to_string(self.as_ref().to_glib_none().0)) }
     }
 
+    #[doc(alias = "jsc_value_to_string_as_bytes")]
     fn to_string_as_bytes(&self) -> Option<glib::Bytes> {
         unsafe {
             from_glib_full(ffi::jsc_value_to_string_as_bytes(
@@ -616,8 +499,10 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_typed_array_get_buffer")]
+    #[must_use]
     fn typed_array_get_buffer(&self) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_value_typed_array_get_buffer(
@@ -626,33 +511,40 @@ impl<O: IsA<Value>> ValueExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    //#[doc(alias = "jsc_value_typed_array_get_data")]
     //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize) {
     //    unsafe { TODO: call ffi:jsc_value_typed_array_get_data() }
     //}
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_typed_array_get_length")]
     fn typed_array_get_length(&self) -> usize {
         unsafe { ffi::jsc_value_typed_array_get_length(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_typed_array_get_offset")]
     fn typed_array_get_offset(&self) -> usize {
         unsafe { ffi::jsc_value_typed_array_get_offset(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_38", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    #[cfg(feature = "v2_38")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    #[doc(alias = "jsc_value_typed_array_get_size")]
     fn typed_array_get_size(&self) -> usize {
         unsafe { ffi::jsc_value_typed_array_get_size(self.as_ref().to_glib_none().0) }
     }
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+    //#[cfg(feature = "v2_38")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
+    //#[doc(alias = "jsc_value_typed_array_get_type")]
     //fn typed_array_get_type(&self) -> /*Ignored*/TypedArrayType {
     //    unsafe { TODO: call ffi:jsc_value_typed_array_get_type() }
     //}
 }
+
+impl<O: IsA<Value>> ValueExt for O {}

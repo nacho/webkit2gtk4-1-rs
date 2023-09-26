@@ -25,24 +25,16 @@ impl DOMHTMLDListElement {
     pub const NONE: Option<&'static DOMHTMLDListElement> = None;
 }
 
-pub trait DOMHTMLDListElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLDListElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLDListElementExt: IsA<DOMHTMLDListElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_d_list_element_get_compact")]
     #[doc(alias = "get_compact")]
-    fn is_compact(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_d_list_element_set_compact")]
-    fn set_compact(&self, value: bool);
-
-    #[doc(alias = "compact")]
-    fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLDListElement>> DOMHTMLDListElementExt for O {
-    #[allow(deprecated)]
     fn is_compact(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_d_list_element_get_compact(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLDListElement>> DOMHTMLDListElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_d_list_element_set_compact")]
     fn set_compact(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_d_list_element_set_compact(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLDListElement>> DOMHTMLDListElementExt for O {
         }
     }
 
+    #[doc(alias = "compact")]
     fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_compact_trampoline<
             P: IsA<DOMHTMLDListElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLDListElement>> DOMHTMLDListElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLDListElement>> DOMHTMLDListElementExt for O {}
 
 impl fmt::Display for DOMHTMLDListElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

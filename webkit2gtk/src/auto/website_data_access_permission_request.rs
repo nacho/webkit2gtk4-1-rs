@@ -20,17 +20,16 @@ impl WebsiteDataAccessPermissionRequest {
     pub const NONE: Option<&'static WebsiteDataAccessPermissionRequest> = None;
 }
 
-pub trait WebsiteDataAccessPermissionRequestExt: 'static {
-    #[doc(alias = "webkit_website_data_access_permission_request_get_current_domain")]
-    #[doc(alias = "get_current_domain")]
-    fn current_domain(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_website_data_access_permission_request_get_requesting_domain")]
-    #[doc(alias = "get_requesting_domain")]
-    fn requesting_domain(&self) -> Option<glib::GString>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebsiteDataAccessPermissionRequest>> Sealed for T {}
 }
 
-impl<O: IsA<WebsiteDataAccessPermissionRequest>> WebsiteDataAccessPermissionRequestExt for O {
+pub trait WebsiteDataAccessPermissionRequestExt:
+    IsA<WebsiteDataAccessPermissionRequest> + sealed::Sealed + 'static
+{
+    #[doc(alias = "webkit_website_data_access_permission_request_get_current_domain")]
+    #[doc(alias = "get_current_domain")]
     fn current_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -41,6 +40,8 @@ impl<O: IsA<WebsiteDataAccessPermissionRequest>> WebsiteDataAccessPermissionRequ
         }
     }
 
+    #[doc(alias = "webkit_website_data_access_permission_request_get_requesting_domain")]
+    #[doc(alias = "get_requesting_domain")]
     fn requesting_domain(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(
@@ -51,6 +52,8 @@ impl<O: IsA<WebsiteDataAccessPermissionRequest>> WebsiteDataAccessPermissionRequ
         }
     }
 }
+
+impl<O: IsA<WebsiteDataAccessPermissionRequest>> WebsiteDataAccessPermissionRequestExt for O {}
 
 impl fmt::Display for WebsiteDataAccessPermissionRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

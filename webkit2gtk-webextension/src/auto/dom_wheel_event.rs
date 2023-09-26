@@ -25,70 +25,39 @@ impl DOMWheelEvent {
     pub const NONE: Option<&'static DOMWheelEvent> = None;
 }
 
-pub trait DOMWheelEventExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMWheelEvent>> Sealed for T {}
+}
+
+pub trait DOMWheelEventExt: IsA<DOMWheelEvent> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta")]
     #[doc(alias = "get_wheel_delta")]
-    fn wheel_delta(&self) -> libc::c_long;
+    fn wheel_delta(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta_x")]
     #[doc(alias = "get_wheel_delta_x")]
-    fn wheel_delta_x(&self) -> libc::c_long;
+    fn wheel_delta_x(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta_x(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_wheel_event_get_wheel_delta_y")]
     #[doc(alias = "get_wheel_delta_y")]
-    fn wheel_delta_y(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_wheel_event_init_wheel_event")]
-    fn init_wheel_event(
-        &self,
-        wheelDeltaX: libc::c_long,
-        wheelDeltaY: libc::c_long,
-        view: &impl IsA<DOMDOMWindow>,
-        screenX: libc::c_long,
-        screenY: libc::c_long,
-        clientX: libc::c_long,
-        clientY: libc::c_long,
-        ctrlKey: bool,
-        altKey: bool,
-        shiftKey: bool,
-        metaKey: bool,
-    );
-
-    #[doc(alias = "wheel-delta")]
-    fn connect_wheel_delta_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wheel-delta-x")]
-    fn connect_wheel_delta_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "wheel-delta-y")]
-    fn connect_wheel_delta_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
-    #[allow(deprecated)]
-    fn wheel_delta(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn wheel_delta_x(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta_x(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
     fn wheel_delta_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_wheel_event_get_wheel_delta_y(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_wheel_event_init_wheel_event")]
     fn init_wheel_event(
         &self,
         wheelDeltaX: libc::c_long,
@@ -121,6 +90,7 @@ impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
         }
     }
 
+    #[doc(alias = "wheel-delta")]
     fn connect_wheel_delta_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wheel_delta_trampoline<
             P: IsA<DOMWheelEvent>,
@@ -146,6 +116,7 @@ impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
         }
     }
 
+    #[doc(alias = "wheel-delta-x")]
     fn connect_wheel_delta_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wheel_delta_x_trampoline<
             P: IsA<DOMWheelEvent>,
@@ -171,6 +142,7 @@ impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
         }
     }
 
+    #[doc(alias = "wheel-delta-y")]
     fn connect_wheel_delta_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_wheel_delta_y_trampoline<
             P: IsA<DOMWheelEvent>,
@@ -196,6 +168,8 @@ impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMWheelEvent>> DOMWheelEventExt for O {}
 
 impl fmt::Display for DOMWheelEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

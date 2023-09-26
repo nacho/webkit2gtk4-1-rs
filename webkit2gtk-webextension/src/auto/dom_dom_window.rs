@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::{DOMCSSStyleDeclaration, DOMDOMSelection};
 use crate::{DOMDocument, DOMElement, DOMEventTarget, DOMObject};
 use glib::{
@@ -28,578 +28,17 @@ impl DOMDOMWindow {
     pub const NONE: Option<&'static DOMDOMWindow> = None;
 }
 
-pub trait DOMDOMWindowExt: 'static {
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_alert")]
-    fn alert(&self, message: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_blur")]
-    fn blur(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_capture_events")]
-    fn capture_events(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_close")]
-    fn close(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_confirm")]
-    fn confirm(&self, message: &str) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_find")]
-    fn find(
-        &self,
-        string: &str,
-        caseSensitive: bool,
-        backwards: bool,
-        wrap: bool,
-        wholeWord: bool,
-        searchInFrames: bool,
-        showDialog: bool,
-    ) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_focus")]
-    fn focus(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_closed")]
-    #[doc(alias = "get_closed")]
-    fn is_closed(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_computed_style")]
-    #[doc(alias = "get_computed_style")]
-    fn computed_style(
-        &self,
-        element: &impl IsA<DOMElement>,
-        pseudoElement: Option<&str>,
-    ) -> Option<DOMCSSStyleDeclaration>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_default_status")]
-    #[doc(alias = "get_default_status")]
-    fn default_status(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_device_pixel_ratio")]
-    #[doc(alias = "get_device_pixel_ratio")]
-    fn device_pixel_ratio(&self) -> f64;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_document")]
-    #[doc(alias = "get_document")]
-    fn document(&self) -> Option<DOMDocument>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_frame_element")]
-    #[doc(alias = "get_frame_element")]
-    fn frame_element(&self) -> Option<DOMElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_frames")]
-    #[doc(alias = "get_frames")]
-    #[must_use]
-    fn frames(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_inner_height")]
-    #[doc(alias = "get_inner_height")]
-    fn inner_height(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_inner_width")]
-    #[doc(alias = "get_inner_width")]
-    fn inner_width(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_length")]
-    #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_offscreen_buffering")]
-    #[doc(alias = "get_offscreen_buffering")]
-    fn is_offscreen_buffering(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_opener")]
-    #[doc(alias = "get_opener")]
-    #[must_use]
-    fn opener(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_orientation")]
-    #[doc(alias = "get_orientation")]
-    fn orientation(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_outer_height")]
-    #[doc(alias = "get_outer_height")]
-    fn outer_height(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_outer_width")]
-    #[doc(alias = "get_outer_width")]
-    fn outer_width(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_page_x_offset")]
-    #[doc(alias = "get_page_x_offset")]
-    fn page_x_offset(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_page_y_offset")]
-    #[doc(alias = "get_page_y_offset")]
-    fn page_y_offset(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_parent")]
-    #[doc(alias = "get_parent")]
-    #[must_use]
-    fn parent(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_screen_left")]
-    #[doc(alias = "get_screen_left")]
-    fn screen_left(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_screen_top")]
-    #[doc(alias = "get_screen_top")]
-    fn screen_top(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_screen_x")]
-    #[doc(alias = "get_screen_x")]
-    fn screen_x(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_screen_y")]
-    #[doc(alias = "get_screen_y")]
-    fn screen_y(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_scroll_x")]
-    #[doc(alias = "get_scroll_x")]
-    fn scroll_x(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_scroll_y")]
-    #[doc(alias = "get_scroll_y")]
-    fn scroll_y(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_selection")]
-    #[doc(alias = "get_selection")]
-    fn selection(&self) -> Option<DOMDOMSelection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_self")]
-    #[doc(alias = "get_self")]
-    #[must_use]
-    fn self_(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_status")]
-    #[doc(alias = "get_status")]
-    fn status(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_top")]
-    #[doc(alias = "get_top")]
-    #[must_use]
-    fn top(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_get_window")]
-    #[doc(alias = "get_window")]
-    #[must_use]
-    fn window(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_move_by")]
-    fn move_by(&self, x: f32, y: f32);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_move_to")]
-    fn move_to(&self, x: f32, y: f32);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_print")]
-    fn print(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_prompt")]
-    fn prompt(&self, message: &str, defaultValue: &str) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_release_events")]
-    fn release_events(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_resize_by")]
-    fn resize_by(&self, x: f32, y: f32);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_resize_to")]
-    fn resize_to(&self, width: f32, height: f32);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_scroll_by")]
-    fn scroll_by(&self, x: f64, y: f64);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_scroll_to")]
-    fn scroll_to(&self, x: f64, y: f64);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_set_default_status")]
-    fn set_default_status(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_set_status")]
-    fn set_status(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_dom_window_stop")]
-    fn stop(&self);
-
-    #[doc(alias = "webkit_dom_dom_window_webkit_message_handlers_post_message")]
-    fn webkit_message_handlers_post_message(&self, handler: &str, message: &str) -> bool;
-
-    fn get_property_closed(&self) -> bool;
-
-    #[doc(alias = "default-status")]
-    fn get_property_default_status(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "default-status")]
-    fn set_property_default_status(&self, default_status: Option<&str>);
-
-    #[doc(alias = "device-pixel-ratio")]
-    fn get_property_device_pixel_ratio(&self) -> f64;
-
-    fn get_property_document(&self) -> Option<DOMDocument>;
-
-    #[doc(alias = "frame-element")]
-    fn get_property_frame_element(&self) -> Option<DOMElement>;
-
-    fn get_property_frames(&self) -> Option<DOMDOMWindow>;
-
-    #[doc(alias = "inner-height")]
-    fn get_property_inner_height(&self) -> libc::c_long;
-
-    #[doc(alias = "inner-width")]
-    fn get_property_inner_width(&self) -> libc::c_long;
-
-    fn get_property_length(&self) -> libc::c_ulong;
-
-    fn get_property_name(&self) -> Option<glib::GString>;
-
-    fn set_property_name(&self, name: Option<&str>);
-
-    #[doc(alias = "offscreen-buffering")]
-    fn get_property_offscreen_buffering(&self) -> bool;
-
-    fn get_property_opener(&self) -> Option<DOMDOMWindow>;
-
-    fn get_property_orientation(&self) -> libc::c_long;
-
-    #[doc(alias = "outer-height")]
-    fn get_property_outer_height(&self) -> libc::c_long;
-
-    #[doc(alias = "outer-width")]
-    fn get_property_outer_width(&self) -> libc::c_long;
-
-    #[doc(alias = "page-x-offset")]
-    fn get_property_page_x_offset(&self) -> libc::c_long;
-
-    #[doc(alias = "page-y-offset")]
-    fn get_property_page_y_offset(&self) -> libc::c_long;
-
-    fn get_property_parent(&self) -> Option<DOMDOMWindow>;
-
-    #[doc(alias = "screen-left")]
-    fn get_property_screen_left(&self) -> libc::c_long;
-
-    #[doc(alias = "screen-top")]
-    fn get_property_screen_top(&self) -> libc::c_long;
-
-    #[doc(alias = "screen-x")]
-    fn get_property_screen_x(&self) -> libc::c_long;
-
-    #[doc(alias = "screen-y")]
-    fn get_property_screen_y(&self) -> libc::c_long;
-
-    #[doc(alias = "scroll-x")]
-    fn get_property_scroll_x(&self) -> libc::c_long;
-
-    #[doc(alias = "scroll-y")]
-    fn get_property_scroll_y(&self) -> libc::c_long;
-
-    #[doc(alias = "self")]
-    fn get_property_self(&self) -> Option<DOMDOMWindow>;
-
-    fn get_property_status(&self) -> Option<glib::GString>;
-
-    fn set_property_status(&self, status: Option<&str>);
-
-    fn get_property_top(&self) -> Option<DOMDOMWindow>;
-
-    fn get_property_window(&self) -> Option<DOMDOMWindow>;
-
-    #[doc(alias = "closed")]
-    fn connect_closed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-status")]
-    fn connect_default_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "device-pixel-ratio")]
-    fn connect_device_pixel_ratio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "document")]
-    fn connect_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "frame-element")]
-    fn connect_frame_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "frames")]
-    fn connect_frames_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "inner-height")]
-    fn connect_inner_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "inner-width")]
-    fn connect_inner_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "offscreen-buffering")]
-    fn connect_offscreen_buffering_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "opener")]
-    fn connect_opener_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "orientation")]
-    fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "outer-height")]
-    fn connect_outer_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "outer-width")]
-    fn connect_outer_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "page-x-offset")]
-    fn connect_page_x_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "page-y-offset")]
-    fn connect_page_y_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "parent")]
-    fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "screen-left")]
-    fn connect_screen_left_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "screen-top")]
-    fn connect_screen_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "screen-x")]
-    fn connect_screen_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "screen-y")]
-    fn connect_screen_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scroll-x")]
-    fn connect_scroll_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scroll-y")]
-    fn connect_scroll_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "self")]
-    fn connect_self_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "status")]
-    fn connect_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "top")]
-    fn connect_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "window")]
-    fn connect_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMDOMWindow>> Sealed for T {}
 }
 
-impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+pub trait DOMDOMWindowExt: IsA<DOMDOMWindow> + sealed::Sealed + 'static {
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_alert")]
     fn alert(&self, message: &str) {
         unsafe {
             ffi::webkit_dom_dom_window_alert(
@@ -609,36 +48,44 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_blur")]
     fn blur(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_blur(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_capture_events")]
     fn capture_events(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_capture_events(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_close")]
     fn close(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_close(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_confirm")]
     fn confirm(&self, message: &str) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_window_confirm(
@@ -648,9 +95,11 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_find")]
     fn find(
         &self,
         string: &str,
@@ -675,18 +124,23 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_focus")]
     fn focus(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_focus(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_closed")]
+    #[doc(alias = "get_closed")]
     fn is_closed(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_window_get_closed(
@@ -695,9 +149,12 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_computed_style")]
+    #[doc(alias = "get_computed_style")]
     fn computed_style(
         &self,
         element: &impl IsA<DOMElement>,
@@ -712,9 +169,12 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_default_status")]
+    #[doc(alias = "get_default_status")]
     fn default_status(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_default_status(
@@ -723,16 +183,22 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_device_pixel_ratio")]
+    #[doc(alias = "get_device_pixel_ratio")]
     fn device_pixel_ratio(&self) -> f64 {
         unsafe { ffi::webkit_dom_dom_window_get_device_pixel_ratio(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_document")]
+    #[doc(alias = "get_document")]
     fn document(&self) -> Option<DOMDocument> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_window_get_document(
@@ -741,9 +207,12 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_frame_element")]
+    #[doc(alias = "get_frame_element")]
     fn frame_element(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_dom_window_get_frame_element(
@@ -752,9 +221,13 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_frames")]
+    #[doc(alias = "get_frames")]
+    #[must_use]
     fn frames(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_frames(
@@ -763,30 +236,42 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_inner_height")]
+    #[doc(alias = "get_inner_height")]
     fn inner_height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_inner_height(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_inner_width")]
+    #[doc(alias = "get_inner_width")]
     fn inner_width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_inner_width(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_length")]
+    #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_dom_window_get_length(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_name(
@@ -795,9 +280,12 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_offscreen_buffering")]
+    #[doc(alias = "get_offscreen_buffering")]
     fn is_offscreen_buffering(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_dom_window_get_offscreen_buffering(
@@ -806,9 +294,13 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_opener")]
+    #[doc(alias = "get_opener")]
+    #[must_use]
     fn opener(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_opener(
@@ -817,44 +309,63 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_orientation")]
+    #[doc(alias = "get_orientation")]
     fn orientation(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_orientation(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_outer_height")]
+    #[doc(alias = "get_outer_height")]
     fn outer_height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_outer_height(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_outer_width")]
+    #[doc(alias = "get_outer_width")]
     fn outer_width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_outer_width(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_page_x_offset")]
+    #[doc(alias = "get_page_x_offset")]
     fn page_x_offset(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_page_x_offset(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_page_y_offset")]
+    #[doc(alias = "get_page_y_offset")]
     fn page_y_offset(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_page_y_offset(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_parent")]
+    #[doc(alias = "get_parent")]
+    #[must_use]
     fn parent(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_parent(
@@ -863,51 +374,72 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_screen_left")]
+    #[doc(alias = "get_screen_left")]
     fn screen_left(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_screen_left(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_screen_top")]
+    #[doc(alias = "get_screen_top")]
     fn screen_top(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_screen_top(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_screen_x")]
+    #[doc(alias = "get_screen_x")]
     fn screen_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_screen_x(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_screen_y")]
+    #[doc(alias = "get_screen_y")]
     fn screen_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_screen_y(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_scroll_x")]
+    #[doc(alias = "get_scroll_x")]
     fn scroll_x(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_scroll_x(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_scroll_y")]
+    #[doc(alias = "get_scroll_y")]
     fn scroll_y(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_dom_window_get_scroll_y(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_selection")]
+    #[doc(alias = "get_selection")]
     fn selection(&self) -> Option<DOMDOMSelection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_selection(
@@ -916,9 +448,13 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_self")]
+    #[doc(alias = "get_self")]
+    #[must_use]
     fn self_(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_self(
@@ -927,9 +463,12 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_status")]
+    #[doc(alias = "get_status")]
     fn status(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_status(
@@ -938,9 +477,13 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_top")]
+    #[doc(alias = "get_top")]
+    #[must_use]
     fn top(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_top(
@@ -949,9 +492,13 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_get_window")]
+    #[doc(alias = "get_window")]
+    #[must_use]
     fn window(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_get_window(
@@ -960,36 +507,44 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_move_by")]
     fn move_by(&self, x: f32, y: f32) {
         unsafe {
             ffi::webkit_dom_dom_window_move_by(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_move_to")]
     fn move_to(&self, x: f32, y: f32) {
         unsafe {
             ffi::webkit_dom_dom_window_move_to(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_print")]
     fn print(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_print(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_prompt")]
     fn prompt(&self, message: &str, defaultValue: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_dom_window_prompt(
@@ -1000,54 +555,66 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_release_events")]
     fn release_events(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_release_events(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_resize_by")]
     fn resize_by(&self, x: f32, y: f32) {
         unsafe {
             ffi::webkit_dom_dom_window_resize_by(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_resize_to")]
     fn resize_to(&self, width: f32, height: f32) {
         unsafe {
             ffi::webkit_dom_dom_window_resize_to(self.as_ref().to_glib_none().0, width, height);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_scroll_by")]
     fn scroll_by(&self, x: f64, y: f64) {
         unsafe {
             ffi::webkit_dom_dom_window_scroll_by(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_scroll_to")]
     fn scroll_to(&self, x: f64, y: f64) {
         unsafe {
             ffi::webkit_dom_dom_window_scroll_to(self.as_ref().to_glib_none().0, x, y);
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_set_default_status")]
     fn set_default_status(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_dom_window_set_default_status(
@@ -1057,9 +624,11 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_dom_window_set_name(
@@ -1069,9 +638,11 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_set_status")]
     fn set_status(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_dom_window_set_status(
@@ -1081,15 +652,18 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_dom_window_stop")]
     fn stop(&self) {
         unsafe {
             ffi::webkit_dom_dom_window_stop(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_dom_dom_window_webkit_message_handlers_post_message")]
     fn webkit_message_handlers_post_message(&self, handler: &str, message: &str) -> bool {
         unsafe {
             from_glib(
@@ -1103,129 +677,148 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
     }
 
     fn get_property_closed(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "closed")
+        ObjectExt::property(self.as_ref(), "closed")
     }
 
+    #[doc(alias = "default-status")]
     fn get_property_default_status(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "default-status")
+        ObjectExt::property(self.as_ref(), "default-status")
     }
 
+    #[doc(alias = "default-status")]
     fn set_property_default_status(&self, default_status: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "default-status", &default_status)
+        ObjectExt::set_property(self.as_ref(), "default-status", default_status)
     }
 
+    #[doc(alias = "device-pixel-ratio")]
     fn get_property_device_pixel_ratio(&self) -> f64 {
-        glib::ObjectExt::property(self.as_ref(), "device-pixel-ratio")
+        ObjectExt::property(self.as_ref(), "device-pixel-ratio")
     }
 
     fn get_property_document(&self) -> Option<DOMDocument> {
-        glib::ObjectExt::property(self.as_ref(), "document")
+        ObjectExt::property(self.as_ref(), "document")
     }
 
+    #[doc(alias = "frame-element")]
     fn get_property_frame_element(&self) -> Option<DOMElement> {
-        glib::ObjectExt::property(self.as_ref(), "frame-element")
+        ObjectExt::property(self.as_ref(), "frame-element")
     }
 
     fn get_property_frames(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "frames")
+        ObjectExt::property(self.as_ref(), "frames")
     }
 
+    #[doc(alias = "inner-height")]
     fn get_property_inner_height(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "inner-height")
+        ObjectExt::property(self.as_ref(), "inner-height")
     }
 
+    #[doc(alias = "inner-width")]
     fn get_property_inner_width(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "inner-width")
+        ObjectExt::property(self.as_ref(), "inner-width")
     }
 
     fn get_property_length(&self) -> libc::c_ulong {
-        glib::ObjectExt::property(self.as_ref(), "length")
+        ObjectExt::property(self.as_ref(), "length")
     }
 
     fn get_property_name(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "name")
+        ObjectExt::property(self.as_ref(), "name")
     }
 
     fn set_property_name(&self, name: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "name", &name)
+        ObjectExt::set_property(self.as_ref(), "name", name)
     }
 
+    #[doc(alias = "offscreen-buffering")]
     fn get_property_offscreen_buffering(&self) -> bool {
-        glib::ObjectExt::property(self.as_ref(), "offscreen-buffering")
+        ObjectExt::property(self.as_ref(), "offscreen-buffering")
     }
 
     fn get_property_opener(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "opener")
+        ObjectExt::property(self.as_ref(), "opener")
     }
 
     fn get_property_orientation(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "orientation")
+        ObjectExt::property(self.as_ref(), "orientation")
     }
 
+    #[doc(alias = "outer-height")]
     fn get_property_outer_height(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "outer-height")
+        ObjectExt::property(self.as_ref(), "outer-height")
     }
 
+    #[doc(alias = "outer-width")]
     fn get_property_outer_width(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "outer-width")
+        ObjectExt::property(self.as_ref(), "outer-width")
     }
 
+    #[doc(alias = "page-x-offset")]
     fn get_property_page_x_offset(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "page-x-offset")
+        ObjectExt::property(self.as_ref(), "page-x-offset")
     }
 
+    #[doc(alias = "page-y-offset")]
     fn get_property_page_y_offset(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "page-y-offset")
+        ObjectExt::property(self.as_ref(), "page-y-offset")
     }
 
     fn get_property_parent(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "parent")
+        ObjectExt::property(self.as_ref(), "parent")
     }
 
+    #[doc(alias = "screen-left")]
     fn get_property_screen_left(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "screen-left")
+        ObjectExt::property(self.as_ref(), "screen-left")
     }
 
+    #[doc(alias = "screen-top")]
     fn get_property_screen_top(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "screen-top")
+        ObjectExt::property(self.as_ref(), "screen-top")
     }
 
+    #[doc(alias = "screen-x")]
     fn get_property_screen_x(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "screen-x")
+        ObjectExt::property(self.as_ref(), "screen-x")
     }
 
+    #[doc(alias = "screen-y")]
     fn get_property_screen_y(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "screen-y")
+        ObjectExt::property(self.as_ref(), "screen-y")
     }
 
+    #[doc(alias = "scroll-x")]
     fn get_property_scroll_x(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "scroll-x")
+        ObjectExt::property(self.as_ref(), "scroll-x")
     }
 
+    #[doc(alias = "scroll-y")]
     fn get_property_scroll_y(&self) -> libc::c_long {
-        glib::ObjectExt::property(self.as_ref(), "scroll-y")
+        ObjectExt::property(self.as_ref(), "scroll-y")
     }
 
+    #[doc(alias = "self")]
     fn get_property_self(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "self")
+        ObjectExt::property(self.as_ref(), "self")
     }
 
     fn get_property_status(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "status")
+        ObjectExt::property(self.as_ref(), "status")
     }
 
     fn set_property_status(&self, status: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "status", &status)
+        ObjectExt::set_property(self.as_ref(), "status", status)
     }
 
     fn get_property_top(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "top")
+        ObjectExt::property(self.as_ref(), "top")
     }
 
     fn get_property_window(&self) -> Option<DOMDOMWindow> {
-        glib::ObjectExt::property(self.as_ref(), "window")
+        ObjectExt::property(self.as_ref(), "window")
     }
 
+    #[doc(alias = "closed")]
     fn connect_closed_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_closed_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1248,6 +841,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "default-status")]
     fn connect_default_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_status_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1273,6 +867,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "device-pixel-ratio")]
     fn connect_device_pixel_ratio_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_device_pixel_ratio_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1298,6 +893,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "document")]
     fn connect_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_document_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1323,6 +919,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "frame-element")]
     fn connect_frame_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_frame_element_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1348,6 +945,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "frames")]
     fn connect_frames_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_frames_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1370,6 +968,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "inner-height")]
     fn connect_inner_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inner_height_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1395,6 +994,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "inner-width")]
     fn connect_inner_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_inner_width_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1420,6 +1020,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1442,6 +1043,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1464,6 +1066,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "offscreen-buffering")]
     fn connect_offscreen_buffering_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_offscreen_buffering_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1489,6 +1092,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "opener")]
     fn connect_opener_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_opener_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1511,6 +1115,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "orientation")]
     fn connect_orientation_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_orientation_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1536,6 +1141,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "outer-height")]
     fn connect_outer_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_outer_height_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1561,6 +1167,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "outer-width")]
     fn connect_outer_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_outer_width_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1586,6 +1193,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "page-x-offset")]
     fn connect_page_x_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_x_offset_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1611,6 +1219,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "page-y-offset")]
     fn connect_page_y_offset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_y_offset_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1636,6 +1245,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "parent")]
     fn connect_parent_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_parent_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1658,6 +1268,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "screen-left")]
     fn connect_screen_left_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_screen_left_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1683,6 +1294,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "screen-top")]
     fn connect_screen_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_screen_top_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1708,6 +1320,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "screen-x")]
     fn connect_screen_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_screen_x_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1733,6 +1346,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "screen-y")]
     fn connect_screen_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_screen_y_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1758,6 +1372,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "scroll-x")]
     fn connect_scroll_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_x_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1783,6 +1398,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "scroll-y")]
     fn connect_scroll_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scroll_y_trampoline<
             P: IsA<DOMDOMWindow>,
@@ -1808,6 +1424,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "self")]
     fn connect_self_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_self_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1830,6 +1447,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "status")]
     fn connect_status_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_status_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1852,6 +1470,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "top")]
     fn connect_top_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_top_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1874,6 +1493,7 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 
+    #[doc(alias = "window")]
     fn connect_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_window_trampoline<P: IsA<DOMDOMWindow>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMDOMWindow,
@@ -1896,6 +1516,8 @@ impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMDOMWindow>> DOMDOMWindowExt for O {}
 
 impl fmt::Display for DOMDOMWindow {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

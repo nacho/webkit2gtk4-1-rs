@@ -25,48 +25,15 @@ impl DOMMediaList {
     pub const NONE: Option<&'static DOMMediaList> = None;
 }
 
-pub trait DOMMediaListExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMMediaList>> Sealed for T {}
+}
+
+pub trait DOMMediaListExt: IsA<DOMMediaList> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_media_list_append_medium")]
-    fn append_medium(&self, newMedium: &str) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_media_list_delete_medium")]
-    fn delete_medium(&self, oldMedium: &str) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_media_list_get_length")]
-    #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_media_list_get_media_text")]
-    #[doc(alias = "get_media_text")]
-    fn media_text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_media_list_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_media_list_set_media_text")]
-    fn set_media_text(&self, value: &str) -> Result<(), glib::Error>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "media-text")]
-    fn connect_media_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
-    #[allow(deprecated)]
     fn append_medium(&self, newMedium: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -83,7 +50,9 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_media_list_delete_medium")]
     fn delete_medium(&self, oldMedium: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -100,12 +69,18 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_media_list_get_length")]
+    #[doc(alias = "get_length")]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_media_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_media_list_get_media_text")]
+    #[doc(alias = "get_media_text")]
     fn media_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_media_list_get_media_text(
@@ -114,7 +89,9 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_media_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_media_list_item(
@@ -124,7 +101,9 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_media_list_set_media_text")]
     fn set_media_text(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -141,6 +120,7 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P: IsA<DOMMediaList>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMMediaList,
@@ -163,6 +143,7 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 
+    #[doc(alias = "media-text")]
     fn connect_media_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_text_trampoline<
             P: IsA<DOMMediaList>,
@@ -188,6 +169,8 @@ impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMMediaList>> DOMMediaListExt for O {}
 
 impl fmt::Display for DOMMediaList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

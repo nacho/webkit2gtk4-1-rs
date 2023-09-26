@@ -27,8 +27,8 @@ impl ContextMenuItem {
     //    unsafe { TODO: call ffi:webkit_context_menu_item_new() }
     //}
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     #[doc(alias = "webkit_context_menu_item_new_from_gaction")]
     #[doc(alias = "new_from_gaction")]
     pub fn from_gaction(
@@ -90,42 +90,24 @@ impl ContextMenuItem {
     }
 }
 
-pub trait ContextMenuItemExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ContextMenuItem>> Sealed for T {}
+}
+
+pub trait ContextMenuItemExt: IsA<ContextMenuItem> + sealed::Sealed + 'static {
     //#[cfg_attr(feature = "v2_18", deprecated = "Since 2.18")]
     //#[allow(deprecated)]
     //#[doc(alias = "webkit_context_menu_item_get_action")]
     //#[doc(alias = "get_action")]
-    //fn action(&self) -> /*Ignored*/Option<gtk::Action>;
-
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[doc(alias = "webkit_context_menu_item_get_gaction")]
-    #[doc(alias = "get_gaction")]
-    fn gaction(&self) -> Option<gio::Action>;
-
-    #[doc(alias = "webkit_context_menu_item_get_stock_action")]
-    #[doc(alias = "get_stock_action")]
-    fn stock_action(&self) -> ContextMenuAction;
-
-    #[doc(alias = "webkit_context_menu_item_get_submenu")]
-    #[doc(alias = "get_submenu")]
-    fn submenu(&self) -> Option<ContextMenu>;
-
-    #[doc(alias = "webkit_context_menu_item_is_separator")]
-    fn is_separator(&self) -> bool;
-
-    #[doc(alias = "webkit_context_menu_item_set_submenu")]
-    fn set_submenu(&self, submenu: Option<&impl IsA<ContextMenu>>);
-}
-
-impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
-    //#[allow(deprecated)]
     //fn action(&self) -> /*Ignored*/Option<gtk::Action> {
     //    unsafe { TODO: call ffi:webkit_context_menu_item_get_action() }
     //}
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
+    #[doc(alias = "webkit_context_menu_item_get_gaction")]
+    #[doc(alias = "get_gaction")]
     fn gaction(&self) -> Option<gio::Action> {
         unsafe {
             from_glib_none(ffi::webkit_context_menu_item_get_gaction(
@@ -134,6 +116,8 @@ impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
         }
     }
 
+    #[doc(alias = "webkit_context_menu_item_get_stock_action")]
+    #[doc(alias = "get_stock_action")]
     fn stock_action(&self) -> ContextMenuAction {
         unsafe {
             from_glib(ffi::webkit_context_menu_item_get_stock_action(
@@ -142,6 +126,8 @@ impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
         }
     }
 
+    #[doc(alias = "webkit_context_menu_item_get_submenu")]
+    #[doc(alias = "get_submenu")]
     fn submenu(&self) -> Option<ContextMenu> {
         unsafe {
             from_glib_none(ffi::webkit_context_menu_item_get_submenu(
@@ -150,6 +136,7 @@ impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
         }
     }
 
+    #[doc(alias = "webkit_context_menu_item_is_separator")]
     fn is_separator(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_context_menu_item_is_separator(
@@ -158,6 +145,7 @@ impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
         }
     }
 
+    #[doc(alias = "webkit_context_menu_item_set_submenu")]
     fn set_submenu(&self, submenu: Option<&impl IsA<ContextMenu>>) {
         unsafe {
             ffi::webkit_context_menu_item_set_submenu(
@@ -167,6 +155,8 @@ impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {
         }
     }
 }
+
+impl<O: IsA<ContextMenuItem>> ContextMenuItemExt for O {}
 
 impl fmt::Display for ContextMenuItem {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

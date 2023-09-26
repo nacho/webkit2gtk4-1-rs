@@ -25,164 +25,16 @@ impl DOMHTMLAppletElement {
     pub const NONE: Option<&'static DOMHTMLAppletElement> = None;
 }
 
-pub trait DOMHTMLAppletElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLAppletElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLAppletElementExt: IsA<DOMHTMLAppletElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_applet_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_alt")]
-    #[doc(alias = "get_alt")]
-    fn alt(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_archive")]
-    #[doc(alias = "get_archive")]
-    fn archive(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_code")]
-    #[doc(alias = "get_code")]
-    fn code(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_code_base")]
-    #[doc(alias = "get_code_base")]
-    fn code_base(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_hspace")]
-    #[doc(alias = "get_hspace")]
-    fn hspace(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_object")]
-    #[doc(alias = "get_object")]
-    fn object(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_vspace")]
-    #[doc(alias = "get_vspace")]
-    fn vspace(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_alt")]
-    fn set_alt(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_archive")]
-    fn set_archive(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_code")]
-    fn set_code(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_code_base")]
-    fn set_code_base(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_height")]
-    fn set_height(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_hspace")]
-    fn set_hspace(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_object")]
-    fn set_object(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_vspace")]
-    fn set_vspace(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_applet_element_set_width")]
-    fn set_width(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "alt")]
-    fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "archive")]
-    fn connect_archive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "code")]
-    fn connect_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "code-base")]
-    fn connect_code_base_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hspace")]
-    fn connect_hspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "object")]
-    fn connect_object_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "vspace")]
-    fn connect_vspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_align(
@@ -191,7 +43,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_alt")]
+    #[doc(alias = "get_alt")]
     fn alt(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_alt(
@@ -200,7 +55,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_archive")]
+    #[doc(alias = "get_archive")]
     fn archive(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_archive(
@@ -209,7 +67,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_code")]
+    #[doc(alias = "get_code")]
     fn code(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_code(
@@ -218,7 +79,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_code_base")]
+    #[doc(alias = "get_code_base")]
     fn code_base(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_code_base(
@@ -227,7 +91,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_height(
@@ -236,12 +103,18 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_hspace")]
+    #[doc(alias = "get_hspace")]
     fn hspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_applet_element_get_hspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_name(
@@ -250,7 +123,10 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_object")]
+    #[doc(alias = "get_object")]
     fn object(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_object(
@@ -259,12 +135,18 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_vspace")]
+    #[doc(alias = "get_vspace")]
     fn vspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_applet_element_get_vspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_applet_element_get_width(
@@ -273,7 +155,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_align(
@@ -283,7 +167,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_alt")]
     fn set_alt(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_alt(
@@ -293,7 +179,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_archive")]
     fn set_archive(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_archive(
@@ -303,7 +191,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_code")]
     fn set_code(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_code(
@@ -313,7 +203,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_code_base")]
     fn set_code_base(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_code_base(
@@ -323,7 +215,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_height")]
     fn set_height(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_height(
@@ -333,14 +227,18 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_hspace")]
     fn set_hspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_hspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_name(
@@ -350,7 +248,9 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_object")]
     fn set_object(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_object(
@@ -360,14 +260,18 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_vspace")]
     fn set_vspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_vspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_applet_element_set_width")]
     fn set_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_applet_element_set_width(
@@ -377,6 +281,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -402,6 +307,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "alt")]
     fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alt_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -427,6 +333,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "archive")]
     fn connect_archive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_archive_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -452,6 +359,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "code")]
     fn connect_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_code_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -477,6 +385,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "code-base")]
     fn connect_code_base_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_code_base_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -502,6 +411,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -527,6 +437,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "hspace")]
     fn connect_hspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hspace_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -552,6 +463,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -577,6 +489,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "object")]
     fn connect_object_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_object_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -602,6 +515,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "vspace")]
     fn connect_vspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vspace_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -627,6 +541,7 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLAppletElement>,
@@ -652,6 +567,8 @@ impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLAppletElement>> DOMHTMLAppletElementExt for O {}
 
 impl fmt::Display for DOMHTMLAppletElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

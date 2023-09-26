@@ -25,33 +25,16 @@ impl DOMHTMLMapElement {
     pub const NONE: Option<&'static DOMHTMLMapElement> = None;
 }
 
-pub trait DOMHTMLMapElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLMapElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLMapElementExt: IsA<DOMHTMLMapElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_map_element_get_areas")]
     #[doc(alias = "get_areas")]
-    fn areas(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_map_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_map_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[doc(alias = "areas")]
-    fn connect_areas_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
-    #[allow(deprecated)]
     fn areas(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_map_element_get_areas(
@@ -60,7 +43,10 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_map_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_map_element_get_name(
@@ -69,7 +55,9 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_map_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_map_element_set_name(
@@ -79,6 +67,7 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[doc(alias = "areas")]
     fn connect_areas_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_areas_trampoline<
             P: IsA<DOMHTMLMapElement>,
@@ -104,6 +93,7 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLMapElement>,
@@ -129,6 +119,8 @@ impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLMapElement>> DOMHTMLMapElementExt for O {}
 
 impl fmt::Display for DOMHTMLMapElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

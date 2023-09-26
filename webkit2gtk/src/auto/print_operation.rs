@@ -3,8 +3,8 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::PrintCustomWidget;
 use crate::{PrintOperationResponse, WebView};
 use glib::{
@@ -95,53 +95,14 @@ impl PrintOperationBuilder {
     }
 }
 
-pub trait PrintOperationExt: 'static {
-    #[doc(alias = "webkit_print_operation_get_page_setup")]
-    #[doc(alias = "get_page_setup")]
-    fn page_setup(&self) -> Option<gtk::PageSetup>;
-
-    #[doc(alias = "webkit_print_operation_get_print_settings")]
-    #[doc(alias = "get_print_settings")]
-    fn print_settings(&self) -> Option<gtk::PrintSettings>;
-
-    #[doc(alias = "webkit_print_operation_print")]
-    fn print(&self);
-
-    #[doc(alias = "webkit_print_operation_run_dialog")]
-    fn run_dialog(&self, parent: Option<&impl IsA<gtk::Window>>) -> PrintOperationResponse;
-
-    #[doc(alias = "webkit_print_operation_set_page_setup")]
-    fn set_page_setup(&self, page_setup: &gtk::PageSetup);
-
-    #[doc(alias = "webkit_print_operation_set_print_settings")]
-    fn set_print_settings(&self, print_settings: &gtk::PrintSettings);
-
-    #[doc(alias = "web-view")]
-    fn web_view(&self) -> Option<WebView>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "create-custom-widget")]
-    fn connect_create_custom_widget<F: Fn(&Self) -> PrintCustomWidget + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "failed")]
-    fn connect_failed<F: Fn(&Self, &glib::Error) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "finished")]
-    fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "page-setup")]
-    fn connect_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "print-settings")]
-    fn connect_print_settings_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::PrintOperation>> Sealed for T {}
 }
 
-impl<O: IsA<PrintOperation>> PrintOperationExt for O {
+pub trait PrintOperationExt: IsA<PrintOperation> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_print_operation_get_page_setup")]
+    #[doc(alias = "get_page_setup")]
     fn page_setup(&self) -> Option<gtk::PageSetup> {
         unsafe {
             from_glib_none(ffi::webkit_print_operation_get_page_setup(
@@ -150,6 +111,8 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_print_operation_get_print_settings")]
+    #[doc(alias = "get_print_settings")]
     fn print_settings(&self) -> Option<gtk::PrintSettings> {
         unsafe {
             from_glib_none(ffi::webkit_print_operation_get_print_settings(
@@ -158,12 +121,14 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_print_operation_print")]
     fn print(&self) {
         unsafe {
             ffi::webkit_print_operation_print(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_print_operation_run_dialog")]
     fn run_dialog(&self, parent: Option<&impl IsA<gtk::Window>>) -> PrintOperationResponse {
         unsafe {
             from_glib(ffi::webkit_print_operation_run_dialog(
@@ -173,6 +138,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_print_operation_set_page_setup")]
     fn set_page_setup(&self, page_setup: &gtk::PageSetup) {
         unsafe {
             ffi::webkit_print_operation_set_page_setup(
@@ -182,6 +148,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_print_operation_set_print_settings")]
     fn set_print_settings(&self, print_settings: &gtk::PrintSettings) {
         unsafe {
             ffi::webkit_print_operation_set_print_settings(
@@ -191,12 +158,15 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "web-view")]
     fn web_view(&self) -> Option<WebView> {
-        glib::ObjectExt::property(self.as_ref(), "web-view")
+        ObjectExt::property(self.as_ref(), "web-view")
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "create-custom-widget")]
     fn connect_create_custom_widget<F: Fn(&Self) -> PrintCustomWidget + 'static>(
         &self,
         f: F,
@@ -224,6 +194,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "failed")]
     fn connect_failed<F: Fn(&Self, &glib::Error) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn failed_trampoline<
             P: IsA<PrintOperation>,
@@ -252,6 +223,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "finished")]
     fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn finished_trampoline<P: IsA<PrintOperation>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitPrintOperation,
@@ -273,6 +245,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "page-setup")]
     fn connect_page_setup_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_setup_trampoline<
             P: IsA<PrintOperation>,
@@ -298,6 +271,7 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 
+    #[doc(alias = "print-settings")]
     fn connect_print_settings_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_print_settings_trampoline<
             P: IsA<PrintOperation>,
@@ -323,6 +297,8 @@ impl<O: IsA<PrintOperation>> PrintOperationExt for O {
         }
     }
 }
+
+impl<O: IsA<PrintOperation>> PrintOperationExt for O {}
 
 impl fmt::Display for PrintOperation {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

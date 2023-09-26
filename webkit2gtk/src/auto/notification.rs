@@ -23,79 +23,30 @@ impl Notification {
     pub const NONE: Option<&'static Notification> = None;
 }
 
-pub trait NotificationExt: 'static {
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
-    #[doc(alias = "webkit_notification_clicked")]
-    fn clicked(&self);
-
-    #[doc(alias = "webkit_notification_close")]
-    fn close(&self);
-
-    #[doc(alias = "webkit_notification_get_body")]
-    #[doc(alias = "get_body")]
-    fn body(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_notification_get_id")]
-    #[doc(alias = "get_id")]
-    fn id(&self) -> u64;
-
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "webkit_notification_get_tag")]
-    #[doc(alias = "get_tag")]
-    fn tag(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_notification_get_title")]
-    #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
-    #[doc(alias = "clicked")]
-    fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "closed")]
-    fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "body")]
-    fn connect_body_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "id")]
-    fn connect_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "tag")]
-    fn connect_tag_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "title")]
-    fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::Notification>> Sealed for T {}
 }
 
-impl<O: IsA<Notification>> NotificationExt for O {
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+pub trait NotificationExt: IsA<Notification> + sealed::Sealed + 'static {
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
+    #[doc(alias = "webkit_notification_clicked")]
     fn clicked(&self) {
         unsafe {
             ffi::webkit_notification_clicked(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_notification_close")]
     fn close(&self) {
         unsafe {
             ffi::webkit_notification_close(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_notification_get_body")]
+    #[doc(alias = "get_body")]
     fn body(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_notification_get_body(
@@ -104,12 +55,16 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_notification_get_id")]
+    #[doc(alias = "get_id")]
     fn id(&self) -> u64 {
         unsafe { ffi::webkit_notification_get_id(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "webkit_notification_get_tag")]
+    #[doc(alias = "get_tag")]
     fn tag(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_notification_get_tag(
@@ -118,6 +73,8 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
+    #[doc(alias = "webkit_notification_get_title")]
+    #[doc(alias = "get_title")]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_notification_get_title(
@@ -126,8 +83,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
+    #[doc(alias = "clicked")]
     fn connect_clicked<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn clicked_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -149,8 +107,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "closed")]
     fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn closed_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -172,8 +131,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "body")]
     fn connect_body_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_body_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -196,8 +156,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "id")]
     fn connect_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_id_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -220,8 +181,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "tag")]
     fn connect_tag_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_tag_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -244,8 +206,9 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "title")]
     fn connect_title_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_title_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitNotification,
@@ -268,6 +231,8 @@ impl<O: IsA<Notification>> NotificationExt for O {
         }
     }
 }
+
+impl<O: IsA<Notification>> NotificationExt for O {}
 
 impl fmt::Display for Notification {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

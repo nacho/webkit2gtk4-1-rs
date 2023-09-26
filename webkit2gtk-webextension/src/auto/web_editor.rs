@@ -24,18 +24,14 @@ impl WebEditor {
     pub const NONE: Option<&'static WebEditor> = None;
 }
 
-pub trait WebEditorExt: 'static {
-    #[doc(alias = "webkit_web_editor_get_page")]
-    #[doc(alias = "get_page")]
-    fn page(&self) -> Option<WebPage>;
-
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[doc(alias = "selection-changed")]
-    fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebEditor>> Sealed for T {}
 }
 
-impl<O: IsA<WebEditor>> WebEditorExt for O {
+pub trait WebEditorExt: IsA<WebEditor> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_web_editor_get_page")]
+    #[doc(alias = "get_page")]
     fn page(&self) -> Option<WebPage> {
         unsafe {
             from_glib_none(ffi::webkit_web_editor_get_page(
@@ -44,8 +40,9 @@ impl<O: IsA<WebEditor>> WebEditorExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
+    #[doc(alias = "selection-changed")]
     fn connect_selection_changed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn selection_changed_trampoline<
             P: IsA<WebEditor>,
@@ -70,6 +67,8 @@ impl<O: IsA<WebEditor>> WebEditorExt for O {
         }
     }
 }
+
+impl<O: IsA<WebEditor>> WebEditorExt for O {}
 
 impl fmt::Display for WebEditor {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

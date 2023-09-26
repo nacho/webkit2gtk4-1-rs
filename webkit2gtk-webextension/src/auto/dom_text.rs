@@ -25,29 +25,16 @@ impl DOMText {
     pub const NONE: Option<&'static DOMText> = None;
 }
 
-pub trait DOMTextExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMText>> Sealed for T {}
+}
+
+pub trait DOMTextExt: IsA<DOMText> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_text_get_whole_text")]
     #[doc(alias = "get_whole_text")]
-    fn whole_text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_text_replace_whole_text")]
-    fn replace_whole_text(&self, content: &str) -> Result<DOMText, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_text_split_text")]
-    fn split_text(&self, offset: libc::c_ulong) -> Result<DOMText, glib::Error>;
-
-    #[doc(alias = "whole-text")]
-    fn connect_whole_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMText>> DOMTextExt for O {
-    #[allow(deprecated)]
     fn whole_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_text_get_whole_text(
@@ -56,7 +43,9 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_14", deprecated = "Since 2.14")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_text_replace_whole_text")]
     fn replace_whole_text(&self, content: &str) -> Result<DOMText, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -73,7 +62,9 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_text_split_text")]
     fn split_text(&self, offset: libc::c_ulong) -> Result<DOMText, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -87,6 +78,7 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 
+    #[doc(alias = "whole-text")]
     fn connect_whole_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_whole_text_trampoline<P: IsA<DOMText>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMText,
@@ -109,6 +101,8 @@ impl<O: IsA<DOMText>> DOMTextExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMText>> DOMTextExt for O {}
 
 impl fmt::Display for DOMText {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

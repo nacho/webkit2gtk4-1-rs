@@ -25,67 +25,16 @@ impl DOMHTMLStyleElement {
     pub const NONE: Option<&'static DOMHTMLStyleElement> = None;
 }
 
-pub trait DOMHTMLStyleElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLStyleElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLStyleElementExt: IsA<DOMHTMLStyleElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_style_element_get_disabled")]
     #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_get_media")]
-    #[doc(alias = "get_media")]
-    fn media(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_get_sheet")]
-    #[doc(alias = "get_sheet")]
-    fn sheet(&self) -> Option<DOMStyleSheet>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_set_media")]
-    fn set_media(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_style_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "media")]
-    fn connect_media_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "sheet")]
-    fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
-    #[allow(deprecated)]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_style_element_get_disabled(
@@ -94,7 +43,10 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_get_media")]
+    #[doc(alias = "get_media")]
     fn media(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_media(
@@ -103,7 +55,10 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_get_sheet")]
+    #[doc(alias = "get_sheet")]
     fn sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_sheet(
@@ -112,7 +67,10 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_style_element_get_type_attr(
@@ -121,7 +79,9 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_disabled(
@@ -131,7 +91,9 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_set_media")]
     fn set_media(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_media(
@@ -141,7 +103,9 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_style_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_style_element_set_type_attr(
@@ -151,14 +115,17 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLStyleElement>,
@@ -184,6 +151,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[doc(alias = "media")]
     fn connect_media_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_media_trampoline<
             P: IsA<DOMHTMLStyleElement>,
@@ -209,6 +177,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[doc(alias = "sheet")]
     fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sheet_trampoline<
             P: IsA<DOMHTMLStyleElement>,
@@ -234,6 +203,7 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLStyleElement>,
@@ -259,6 +229,8 @@ impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLStyleElement>> DOMHTMLStyleElementExt for O {}
 
 impl fmt::Display for DOMHTMLStyleElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
