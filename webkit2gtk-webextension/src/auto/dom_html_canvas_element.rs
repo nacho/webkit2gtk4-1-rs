@@ -25,61 +25,47 @@ impl DOMHTMLCanvasElement {
     pub const NONE: Option<&'static DOMHTMLCanvasElement> = None;
 }
 
-pub trait DOMHTMLCanvasElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLCanvasElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLCanvasElementExt: IsA<DOMHTMLCanvasElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_canvas_element_get_height")]
     #[doc(alias = "get_height")]
-    fn height(&self) -> libc::c_long;
+    fn height(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_html_canvas_element_get_height(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_canvas_element_get_width")]
     #[doc(alias = "get_width")]
-    fn width(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_canvas_element_set_height")]
-    fn set_height(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_canvas_element_set_width")]
-    fn set_width(&self, value: libc::c_long);
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLCanvasElement>> DOMHTMLCanvasElementExt for O {
-    #[allow(deprecated)]
-    fn height(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_html_canvas_element_get_height(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
     fn width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_canvas_element_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_canvas_element_set_height")]
     fn set_height(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_canvas_element_set_height(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_canvas_element_set_width")]
     fn set_width(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_canvas_element_set_width(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLCanvasElement>,
@@ -105,6 +91,7 @@ impl<O: IsA<DOMHTMLCanvasElement>> DOMHTMLCanvasElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLCanvasElement>,
@@ -130,6 +117,8 @@ impl<O: IsA<DOMHTMLCanvasElement>> DOMHTMLCanvasElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLCanvasElement>> DOMHTMLCanvasElementExt for O {}
 
 impl fmt::Display for DOMHTMLCanvasElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

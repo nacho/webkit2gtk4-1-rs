@@ -4,15 +4,15 @@
 // DO NOT EDIT
 
 use glib::prelude::*;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+#[cfg(feature = "v2_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use std::fmt;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+#[cfg(feature = "v2_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
 use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
@@ -52,8 +52,8 @@ impl ColorChooserRequestBuilder {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn rgba(self, rgba: &gdk::RGBA) -> Self {
         Self {
             builder: self.builder.property("rgba", rgba),
@@ -68,64 +68,34 @@ impl ColorChooserRequestBuilder {
     }
 }
 
-pub trait ColorChooserRequestExt: 'static {
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "webkit_color_chooser_request_cancel")]
-    fn cancel(&self);
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "webkit_color_chooser_request_finish")]
-    fn finish(&self);
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "webkit_color_chooser_request_get_element_rectangle")]
-    #[doc(alias = "get_element_rectangle")]
-    fn element_rectangle(&self) -> gdk::Rectangle;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "webkit_color_chooser_request_get_rgba")]
-    #[doc(alias = "get_rgba")]
-    fn rgba(&self) -> gdk::RGBA;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "webkit_color_chooser_request_set_rgba")]
-    fn set_rgba(&self, rgba: &gdk::RGBA);
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "finished")]
-    fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "rgba")]
-    fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ColorChooserRequest>> Sealed for T {}
 }
 
-impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+pub trait ColorChooserRequestExt: IsA<ColorChooserRequest> + sealed::Sealed + 'static {
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "webkit_color_chooser_request_cancel")]
     fn cancel(&self) {
         unsafe {
             ffi::webkit_color_chooser_request_cancel(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "webkit_color_chooser_request_finish")]
     fn finish(&self) {
         unsafe {
             ffi::webkit_color_chooser_request_finish(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "webkit_color_chooser_request_get_element_rectangle")]
+    #[doc(alias = "get_element_rectangle")]
     fn element_rectangle(&self) -> gdk::Rectangle {
         unsafe {
             let mut rect = gdk::Rectangle::uninitialized();
@@ -137,8 +107,10 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "webkit_color_chooser_request_get_rgba")]
+    #[doc(alias = "get_rgba")]
     fn rgba(&self) -> gdk::RGBA {
         unsafe {
             let mut rgba = gdk::RGBA::uninitialized();
@@ -150,8 +122,9 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "webkit_color_chooser_request_set_rgba")]
     fn set_rgba(&self, rgba: &gdk::RGBA) {
         unsafe {
             ffi::webkit_color_chooser_request_set_rgba(
@@ -161,8 +134,9 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "finished")]
     fn connect_finished<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn finished_trampoline<
             P: IsA<ColorChooserRequest>,
@@ -187,8 +161,9 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "rgba")]
     fn connect_rgba_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rgba_trampoline<
             P: IsA<ColorChooserRequest>,
@@ -214,6 +189,8 @@ impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {
         }
     }
 }
+
+impl<O: IsA<ColorChooserRequest>> ColorChooserRequestExt for O {}
 
 impl fmt::Display for ColorChooserRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

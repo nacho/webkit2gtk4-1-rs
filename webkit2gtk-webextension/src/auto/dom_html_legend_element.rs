@@ -25,33 +25,16 @@ impl DOMHTMLLegendElement {
     pub const NONE: Option<&'static DOMHTMLLegendElement> = None;
 }
 
-pub trait DOMHTMLLegendElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLLegendElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLLegendElementExt: IsA<DOMHTMLLegendElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_legend_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_legend_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_legend_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_legend_element_get_align(
@@ -60,7 +43,10 @@ impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_legend_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_legend_element_get_form(
@@ -69,7 +55,9 @@ impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_legend_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_legend_element_set_align(
@@ -79,6 +67,7 @@ impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLLegendElement>,
@@ -104,6 +93,7 @@ impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLLegendElement>,
@@ -129,6 +119,8 @@ impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLLegendElement>> DOMHTMLLegendElementExt for O {}
 
 impl fmt::Display for DOMHTMLLegendElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

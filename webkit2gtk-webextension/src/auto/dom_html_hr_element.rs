@@ -25,66 +25,16 @@ impl DOMHTMLHRElement {
     pub const NONE: Option<&'static DOMHTMLHRElement> = None;
 }
 
-pub trait DOMHTMLHRElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLHRElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLHRElementExt: IsA<DOMHTMLHRElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_hr_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_get_no_shade")]
-    #[doc(alias = "get_no_shade")]
-    fn is_no_shade(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_get_size")]
-    #[doc(alias = "get_size")]
-    fn size(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_set_no_shade")]
-    fn set_no_shade(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_set_size")]
-    fn set_size(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_hr_element_set_width")]
-    fn set_width(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "no-shade")]
-    fn connect_no_shade_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "size")]
-    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_hr_element_get_align(
@@ -93,7 +43,10 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_get_no_shade")]
+    #[doc(alias = "get_no_shade")]
     fn is_no_shade(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_hr_element_get_no_shade(
@@ -102,7 +55,10 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_get_size")]
+    #[doc(alias = "get_size")]
     fn size(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_hr_element_get_size(
@@ -111,7 +67,10 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_hr_element_get_width(
@@ -120,7 +79,9 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_hr_element_set_align(
@@ -130,7 +91,9 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_set_no_shade")]
     fn set_no_shade(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_hr_element_set_no_shade(
@@ -140,7 +103,9 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_set_size")]
     fn set_size(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_hr_element_set_size(
@@ -150,7 +115,9 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_hr_element_set_width")]
     fn set_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_hr_element_set_width(
@@ -160,6 +127,7 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLHRElement>,
@@ -185,6 +153,7 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[doc(alias = "no-shade")]
     fn connect_no_shade_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_no_shade_trampoline<
             P: IsA<DOMHTMLHRElement>,
@@ -210,6 +179,7 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<
             P: IsA<DOMHTMLHRElement>,
@@ -235,6 +205,7 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLHRElement>,
@@ -260,6 +231,8 @@ impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLHRElement>> DOMHTMLHRElementExt for O {}
 
 impl fmt::Display for DOMHTMLHRElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

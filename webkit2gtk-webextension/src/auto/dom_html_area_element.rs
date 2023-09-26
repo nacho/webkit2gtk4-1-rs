@@ -25,216 +25,16 @@ impl DOMHTMLAreaElement {
     pub const NONE: Option<&'static DOMHTMLAreaElement> = None;
 }
 
-pub trait DOMHTMLAreaElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLAreaElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLAreaElementExt: IsA<DOMHTMLAreaElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_area_element_get_alt")]
     #[doc(alias = "get_alt")]
-    fn alt(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_coords")]
-    #[doc(alias = "get_coords")]
-    fn coords(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_hash")]
-    #[doc(alias = "get_hash")]
-    fn hash(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_host")]
-    #[doc(alias = "get_host")]
-    fn host(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_hostname")]
-    #[doc(alias = "get_hostname")]
-    fn hostname(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_href")]
-    #[doc(alias = "get_href")]
-    fn href(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_no_href")]
-    #[doc(alias = "get_no_href")]
-    fn is_no_href(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_pathname")]
-    #[doc(alias = "get_pathname")]
-    fn pathname(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_port")]
-    #[doc(alias = "get_port")]
-    fn port(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_protocol")]
-    #[doc(alias = "get_protocol")]
-    fn protocol(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_search")]
-    #[doc(alias = "get_search")]
-    fn search(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_shape")]
-    #[doc(alias = "get_shape")]
-    fn shape(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_alt")]
-    fn set_alt(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_coords")]
-    fn set_coords(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_hash")]
-    fn set_hash(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_host")]
-    fn set_host(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_hostname")]
-    fn set_hostname(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_href")]
-    fn set_href(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_no_href")]
-    fn set_no_href(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_pathname")]
-    fn set_pathname(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_port")]
-    fn set_port(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_protocol")]
-    fn set_protocol(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_search")]
-    fn set_search(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_shape")]
-    fn set_shape(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_area_element_set_target")]
-    fn set_target(&self, value: &str);
-
-    fn set_property_host(&self, host: Option<&str>);
-
-    fn set_property_hostname(&self, hostname: Option<&str>);
-
-    fn set_property_pathname(&self, pathname: Option<&str>);
-
-    fn set_property_port(&self, port: Option<&str>);
-
-    fn set_property_protocol(&self, protocol: Option<&str>);
-
-    fn set_property_search(&self, search: Option<&str>);
-
-    #[doc(alias = "alt")]
-    fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "coords")]
-    fn connect_coords_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hash")]
-    fn connect_hash_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "host")]
-    fn connect_host_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hostname")]
-    fn connect_hostname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "href")]
-    fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "no-href")]
-    fn connect_no_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pathname")]
-    fn connect_pathname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "port")]
-    fn connect_port_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "protocol")]
-    fn connect_protocol_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "search")]
-    fn connect_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "shape")]
-    fn connect_shape_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
-    #[allow(deprecated)]
     fn alt(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_alt(
@@ -243,7 +43,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_coords")]
+    #[doc(alias = "get_coords")]
     fn coords(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_coords(
@@ -252,7 +55,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_hash")]
+    #[doc(alias = "get_hash")]
     fn hash(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_hash(
@@ -261,7 +67,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_host")]
+    #[doc(alias = "get_host")]
     fn host(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_host(
@@ -270,7 +79,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_hostname")]
+    #[doc(alias = "get_hostname")]
     fn hostname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_hostname(
@@ -279,7 +91,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_href")]
+    #[doc(alias = "get_href")]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_href(
@@ -288,7 +103,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_no_href")]
+    #[doc(alias = "get_no_href")]
     fn is_no_href(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_area_element_get_no_href(
@@ -297,7 +115,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_pathname")]
+    #[doc(alias = "get_pathname")]
     fn pathname(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_pathname(
@@ -306,7 +127,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_port")]
+    #[doc(alias = "get_port")]
     fn port(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_port(
@@ -315,7 +139,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_protocol")]
+    #[doc(alias = "get_protocol")]
     fn protocol(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_protocol(
@@ -324,7 +151,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_search")]
+    #[doc(alias = "get_search")]
     fn search(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_search(
@@ -333,7 +163,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_shape")]
+    #[doc(alias = "get_shape")]
     fn shape(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_shape(
@@ -342,7 +175,10 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_area_element_get_target(
@@ -351,7 +187,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_alt")]
     fn set_alt(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_alt(
@@ -361,7 +199,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_coords")]
     fn set_coords(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_coords(
@@ -371,7 +211,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_hash")]
     fn set_hash(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_hash(
@@ -381,9 +223,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_host")]
     fn set_host(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_host(
@@ -393,9 +237,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_hostname")]
     fn set_hostname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_hostname(
@@ -405,7 +251,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_href")]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_href(
@@ -415,7 +263,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_no_href")]
     fn set_no_href(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_no_href(
@@ -425,9 +275,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_pathname")]
     fn set_pathname(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_pathname(
@@ -437,9 +289,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_port")]
     fn set_port(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_port(
@@ -449,9 +303,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_protocol")]
     fn set_protocol(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_protocol(
@@ -461,9 +317,11 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_search")]
     fn set_search(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_search(
@@ -473,7 +331,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_shape")]
     fn set_shape(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_shape(
@@ -483,7 +343,9 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_area_element_set_target")]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_area_element_set_target(
@@ -494,29 +356,30 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
     }
 
     fn set_property_host(&self, host: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "host", &host)
+        ObjectExt::set_property(self.as_ref(), "host", host)
     }
 
     fn set_property_hostname(&self, hostname: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "hostname", &hostname)
+        ObjectExt::set_property(self.as_ref(), "hostname", hostname)
     }
 
     fn set_property_pathname(&self, pathname: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "pathname", &pathname)
+        ObjectExt::set_property(self.as_ref(), "pathname", pathname)
     }
 
     fn set_property_port(&self, port: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "port", &port)
+        ObjectExt::set_property(self.as_ref(), "port", port)
     }
 
     fn set_property_protocol(&self, protocol: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "protocol", &protocol)
+        ObjectExt::set_property(self.as_ref(), "protocol", protocol)
     }
 
     fn set_property_search(&self, search: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "search", &search)
+        ObjectExt::set_property(self.as_ref(), "search", search)
     }
 
+    #[doc(alias = "alt")]
     fn connect_alt_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_alt_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -542,6 +405,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "coords")]
     fn connect_coords_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_coords_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -567,6 +431,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "hash")]
     fn connect_hash_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hash_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -592,6 +457,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "host")]
     fn connect_host_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_host_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -617,6 +483,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "hostname")]
     fn connect_hostname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hostname_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -642,6 +509,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "href")]
     fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_href_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -667,6 +535,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "no-href")]
     fn connect_no_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_no_href_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -692,6 +561,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "pathname")]
     fn connect_pathname_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_pathname_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -717,6 +587,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "port")]
     fn connect_port_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_port_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -742,6 +613,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "protocol")]
     fn connect_protocol_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_protocol_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -767,6 +639,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "search")]
     fn connect_search_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_search_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -792,6 +665,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "shape")]
     fn connect_shape_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_shape_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -817,6 +691,7 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<
             P: IsA<DOMHTMLAreaElement>,
@@ -842,6 +717,8 @@ impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLAreaElement>> DOMHTMLAreaElementExt for O {}
 
 impl fmt::Display for DOMHTMLAreaElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

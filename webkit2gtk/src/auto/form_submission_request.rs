@@ -20,29 +20,29 @@ impl FormSubmissionRequest {
     pub const NONE: Option<&'static FormSubmissionRequest> = None;
 }
 
-pub trait FormSubmissionRequestExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FormSubmissionRequest>> Sealed for T {}
+}
+
+pub trait FormSubmissionRequestExt: IsA<FormSubmissionRequest> + sealed::Sealed + 'static {
     //#[cfg_attr(feature = "v2_20", deprecated = "Since 2.20")]
     //#[allow(deprecated)]
     //#[doc(alias = "webkit_form_submission_request_get_text_fields")]
     //#[doc(alias = "get_text_fields")]
-    //fn text_fields(&self) -> /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 25 }/TypeId { ns_id: 0, id: 25 };
-
-    #[doc(alias = "webkit_form_submission_request_submit")]
-    fn submit(&self);
-}
-
-impl<O: IsA<FormSubmissionRequest>> FormSubmissionRequestExt for O {
-    //#[allow(deprecated)]
     //fn text_fields(&self) -> /*Unknown conversion*//*Unimplemented*/HashTable TypeId { ns_id: 0, id: 25 }/TypeId { ns_id: 0, id: 25 } {
     //    unsafe { TODO: call ffi:webkit_form_submission_request_get_text_fields() }
     //}
 
+    #[doc(alias = "webkit_form_submission_request_submit")]
     fn submit(&self) {
         unsafe {
             ffi::webkit_form_submission_request_submit(self.as_ref().to_glib_none().0);
         }
     }
 }
+
+impl<O: IsA<FormSubmissionRequest>> FormSubmissionRequestExt for O {}
 
 impl fmt::Display for FormSubmissionRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

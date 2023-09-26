@@ -25,33 +25,16 @@ impl DOMCSSValue {
     pub const NONE: Option<&'static DOMCSSValue> = None;
 }
 
-pub trait DOMCSSValueExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMCSSValue>> Sealed for T {}
+}
+
+pub trait DOMCSSValueExt: IsA<DOMCSSValue> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_css_value_get_css_text")]
     #[doc(alias = "get_css_text")]
-    fn css_text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_value_get_css_value_type")]
-    #[doc(alias = "get_css_value_type")]
-    fn css_value_type(&self) -> libc::c_ushort;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_css_value_set_css_text")]
-    fn set_css_text(&self, value: &str) -> Result<(), glib::Error>;
-
-    #[doc(alias = "css-text")]
-    fn connect_css_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "css-value-type")]
-    fn connect_css_value_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {
-    #[allow(deprecated)]
     fn css_text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_css_value_get_css_text(
@@ -60,12 +43,17 @@ impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_value_get_css_value_type")]
+    #[doc(alias = "get_css_value_type")]
     fn css_value_type(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_css_value_get_css_value_type(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_css_value_set_css_text")]
     fn set_css_text(&self, value: &str) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -82,6 +70,7 @@ impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {
         }
     }
 
+    #[doc(alias = "css-text")]
     fn connect_css_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_css_text_trampoline<
             P: IsA<DOMCSSValue>,
@@ -107,6 +96,7 @@ impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {
         }
     }
 
+    #[doc(alias = "css-value-type")]
     fn connect_css_value_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_css_value_type_trampoline<
             P: IsA<DOMCSSValue>,
@@ -132,6 +122,8 @@ impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMCSSValue>> DOMCSSValueExt for O {}
 
 impl fmt::Display for DOMCSSValue {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

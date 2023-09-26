@@ -25,85 +25,17 @@ impl DOMHTMLTableSectionElement {
     pub const NONE: Option<&'static DOMHTMLTableSectionElement> = None;
 }
 
-pub trait DOMHTMLTableSectionElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLTableSectionElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLTableSectionElementExt:
+    IsA<DOMHTMLTableSectionElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_section_element_delete_row")]
-    fn delete_row(&self, index: libc::c_long) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_get_align")]
-    #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_get_ch")]
-    #[doc(alias = "get_ch")]
-    fn ch(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_get_ch_off")]
-    #[doc(alias = "get_ch_off")]
-    fn ch_off(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_get_rows")]
-    #[doc(alias = "get_rows")]
-    fn rows(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_get_v_align")]
-    #[doc(alias = "get_v_align")]
-    fn v_align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_insert_row")]
-    fn insert_row(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_set_ch")]
-    fn set_ch(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_set_ch_off")]
-    fn set_ch_off(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_section_element_set_v_align")]
-    fn set_v_align(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ch")]
-    fn connect_ch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ch-off")]
-    fn connect_ch_off_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rows")]
-    fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "v-align")]
-    fn connect_v_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
-    #[allow(deprecated)]
     fn delete_row(&self, index: libc::c_long) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -120,7 +52,10 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_get_align")]
+    #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_section_element_get_align(
@@ -129,7 +64,10 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_get_ch")]
+    #[doc(alias = "get_ch")]
     fn ch(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_section_element_get_ch(
@@ -138,7 +76,10 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_get_ch_off")]
+    #[doc(alias = "get_ch_off")]
     fn ch_off(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_section_element_get_ch_off(
@@ -147,7 +88,10 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_get_rows")]
+    #[doc(alias = "get_rows")]
     fn rows(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_section_element_get_rows(
@@ -156,7 +100,10 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_get_v_align")]
+    #[doc(alias = "get_v_align")]
     fn v_align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_section_element_get_v_align(
@@ -165,7 +112,9 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_insert_row")]
     fn insert_row(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -182,7 +131,9 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_section_element_set_align(
@@ -192,7 +143,9 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_set_ch")]
     fn set_ch(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_section_element_set_ch(
@@ -202,7 +155,9 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_set_ch_off")]
     fn set_ch_off(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_section_element_set_ch_off(
@@ -212,7 +167,9 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_section_element_set_v_align")]
     fn set_v_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_section_element_set_v_align(
@@ -222,6 +179,7 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLTableSectionElement>,
@@ -247,6 +205,7 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[doc(alias = "ch")]
     fn connect_ch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ch_trampoline<
             P: IsA<DOMHTMLTableSectionElement>,
@@ -272,6 +231,7 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[doc(alias = "ch-off")]
     fn connect_ch_off_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ch_off_trampoline<
             P: IsA<DOMHTMLTableSectionElement>,
@@ -297,6 +257,7 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[doc(alias = "rows")]
     fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rows_trampoline<
             P: IsA<DOMHTMLTableSectionElement>,
@@ -322,6 +283,7 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 
+    #[doc(alias = "v-align")]
     fn connect_v_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_v_align_trampoline<
             P: IsA<DOMHTMLTableSectionElement>,
@@ -347,6 +309,8 @@ impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLTableSectionElement>> DOMHTMLTableSectionElementExt for O {}
 
 impl fmt::Display for DOMHTMLTableSectionElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

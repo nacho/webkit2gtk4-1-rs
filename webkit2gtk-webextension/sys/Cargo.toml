@@ -8,23 +8,23 @@ bitflags = "^1.0"
 
 [dependencies.gio]
 package = "gio-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gobject]
 package = "gobject-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gtk]
 package = "gtk-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.soup]
 package = "soup3-sys"
-version = "0.4"
+version = "0.5"
 
 [dependencies.java_script_core]
 package = "javascriptcore4-rs-sys"
@@ -35,7 +35,6 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = ["gio/dox", "glib/dox", "gobject/dox", "java_script_core/dox", "soup/dox"]
 v2_6 = []
 v2_8 = ["v2_6"]
 v2_10 = ["v2_8"]
@@ -65,7 +64,7 @@ version = "0.5.0"
 edition = "2021"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [package.metadata.system-deps.webkit2gtk_web_extension_4_1]
 name = "webkit2gtk-web-extension-4.1"

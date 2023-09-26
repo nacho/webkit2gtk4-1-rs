@@ -25,29 +25,23 @@ impl DOMFileList {
     pub const NONE: Option<&'static DOMFileList> = None;
 }
 
-pub trait DOMFileListExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMFileList>> Sealed for T {}
+}
+
+pub trait DOMFileListExt: IsA<DOMFileList> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_file_list_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_file_list_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMFile>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMFileList>> DOMFileListExt for O {
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_file_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_file_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMFile> {
         unsafe {
             from_glib_full(ffi::webkit_dom_file_list_item(
@@ -57,6 +51,7 @@ impl<O: IsA<DOMFileList>> DOMFileListExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P: IsA<DOMFileList>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMFileList,
@@ -79,6 +74,8 @@ impl<O: IsA<DOMFileList>> DOMFileListExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMFileList>> DOMFileListExt for O {}
 
 impl fmt::Display for DOMFileList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

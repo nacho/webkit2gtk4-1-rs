@@ -21,7 +21,7 @@
 
 #[cfg(feature = "v2_4")]
 use glib::ToVariant;
-use gtk::{prelude::*, Inhibit, Window, WindowType};
+use gtk::{prelude::*, Window, WindowType};
 use webkit2gtk::prelude::WebContextExt;
 use webkit2gtk::prelude::WebkitSettingsExt;
 use webkit2gtk::traits::WebViewExt;
@@ -82,7 +82,7 @@ fn main() {
 
     window.connect_delete_event(|_, _| {
         gtk::main_quit();
-        Inhibit(false)
+        glib::Propagation::Stop
     });
 
     gtk::main();

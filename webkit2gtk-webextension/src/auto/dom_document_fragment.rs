@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use crate::DOMNodeList;
 use crate::{DOMElement, DOMEventTarget, DOMHTMLCollection, DOMNode, DOMObject};
 use glib::{
@@ -13,8 +13,8 @@ use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 use std::ptr;
 use std::{boxed::Box as Box_, fmt, mem::transmute};
 
@@ -31,89 +31,18 @@ impl DOMDocumentFragment {
     pub const NONE: Option<&'static DOMDocumentFragment> = None;
 }
 
-pub trait DOMDocumentFragmentExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMDocumentFragment>> Sealed for T {}
+}
+
+pub trait DOMDocumentFragmentExt: IsA<DOMDocumentFragment> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_fragment_get_child_element_count")]
     #[doc(alias = "get_child_element_count")]
-    fn child_element_count(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_get_children")]
-    #[doc(alias = "get_children")]
-    fn children(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_get_element_by_id")]
-    #[doc(alias = "get_element_by_id")]
-    fn element_by_id(&self, elementId: &str) -> Option<DOMElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_get_first_element_child")]
-    #[doc(alias = "get_first_element_child")]
-    fn first_element_child(&self) -> Option<DOMElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_get_last_element_child")]
-    #[doc(alias = "get_last_element_child")]
-    fn last_element_child(&self) -> Option<DOMElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_query_selector")]
-    fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_fragment_query_selector_all")]
-    fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error>;
-
-    #[doc(alias = "child-element-count")]
-    fn get_property_child_element_count(&self) -> libc::c_ulong;
-
-    fn get_property_children(&self) -> Option<DOMHTMLCollection>;
-
-    #[doc(alias = "first-element-child")]
-    fn get_property_first_element_child(&self) -> Option<DOMElement>;
-
-    #[doc(alias = "last-element-child")]
-    fn get_property_last_element_child(&self) -> Option<DOMElement>;
-
-    #[doc(alias = "child-element-count")]
-    fn connect_child_element_count_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "children")]
-    fn connect_children_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "first-element-child")]
-    fn connect_first_element_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "last-element-child")]
-    fn connect_last_element_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[allow(deprecated)]
     fn child_element_count(&self) -> libc::c_ulong {
         unsafe {
             ffi::webkit_dom_document_fragment_get_child_element_count(
@@ -122,9 +51,12 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_get_children")]
+    #[doc(alias = "get_children")]
     fn children(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_fragment_get_children(
@@ -133,9 +65,12 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_get_element_by_id")]
+    #[doc(alias = "get_element_by_id")]
     fn element_by_id(&self, elementId: &str) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_element_by_id(
@@ -145,9 +80,12 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_get_first_element_child")]
+    #[doc(alias = "get_first_element_child")]
     fn first_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_first_element_child(
@@ -156,9 +94,12 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_get_last_element_child")]
+    #[doc(alias = "get_last_element_child")]
     fn last_element_child(&self) -> Option<DOMElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_document_fragment_get_last_element_child(
@@ -167,9 +108,11 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_query_selector")]
     fn query_selector(&self, selectors: &str) -> Result<DOMElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -186,9 +129,11 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_fragment_query_selector_all")]
     fn query_selector_all(&self, selectors: &str) -> Result<DOMNodeList, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -205,22 +150,26 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
+    #[doc(alias = "child-element-count")]
     fn get_property_child_element_count(&self) -> libc::c_ulong {
-        glib::ObjectExt::property(self.as_ref(), "child-element-count")
+        ObjectExt::property(self.as_ref(), "child-element-count")
     }
 
     fn get_property_children(&self) -> Option<DOMHTMLCollection> {
-        glib::ObjectExt::property(self.as_ref(), "children")
+        ObjectExt::property(self.as_ref(), "children")
     }
 
+    #[doc(alias = "first-element-child")]
     fn get_property_first_element_child(&self) -> Option<DOMElement> {
-        glib::ObjectExt::property(self.as_ref(), "first-element-child")
+        ObjectExt::property(self.as_ref(), "first-element-child")
     }
 
+    #[doc(alias = "last-element-child")]
     fn get_property_last_element_child(&self) -> Option<DOMElement> {
-        glib::ObjectExt::property(self.as_ref(), "last-element-child")
+        ObjectExt::property(self.as_ref(), "last-element-child")
     }
 
+    #[doc(alias = "child-element-count")]
     fn connect_child_element_count_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_child_element_count_trampoline<
             P: IsA<DOMDocumentFragment>,
@@ -246,6 +195,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
+    #[doc(alias = "children")]
     fn connect_children_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_children_trampoline<
             P: IsA<DOMDocumentFragment>,
@@ -271,6 +221,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
+    #[doc(alias = "first-element-child")]
     fn connect_first_element_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_first_element_child_trampoline<
             P: IsA<DOMDocumentFragment>,
@@ -296,6 +247,7 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 
+    #[doc(alias = "last-element-child")]
     fn connect_last_element_child_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_last_element_child_trampoline<
             P: IsA<DOMDocumentFragment>,
@@ -321,6 +273,8 @@ impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMDocumentFragment>> DOMDocumentFragmentExt for O {}
 
 impl fmt::Display for DOMDocumentFragment {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

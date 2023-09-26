@@ -4,20 +4,20 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 use crate::ConsoleMessage;
-#[cfg(any(feature = "v2_26", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+#[cfg(feature = "v2_26")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
 use crate::Frame;
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 use crate::UserMessage;
-#[cfg(any(feature = "v2_10", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+#[cfg(feature = "v2_10")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
 use crate::WebEditor;
-#[cfg(any(feature = "v2_8", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+#[cfg(feature = "v2_8")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
 use crate::{ContextMenu, WebHitTestResult};
 use crate::{DOMDocument, URIRequest, URIResponse};
 use glib::{
@@ -26,8 +26,8 @@ use glib::{
     translate::*,
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 use std::{pin::Pin, ptr};
 
 glib::wrapper! {
@@ -43,114 +43,16 @@ impl WebPage {
     pub const NONE: Option<&'static WebPage> = None;
 }
 
-pub trait WebPageExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebPage>> Sealed for T {}
+}
+
+pub trait WebPageExt: IsA<WebPage> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_web_page_get_dom_document")]
     #[doc(alias = "get_dom_document")]
-    fn dom_document(&self) -> Option<DOMDocument>;
-
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
-    #[doc(alias = "webkit_web_page_get_editor")]
-    #[doc(alias = "get_editor")]
-    fn editor(&self) -> Option<WebEditor>;
-
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    //#[doc(alias = "webkit_web_page_get_form_manager")]
-    //#[doc(alias = "get_form_manager")]
-    //fn form_manager(&self, world: Option<&impl IsA<ScriptWorld>>) -> /*Ignored*/Option<WebFormManager>;
-
-    #[doc(alias = "webkit_web_page_get_id")]
-    #[doc(alias = "get_id")]
-    fn id(&self) -> u64;
-
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
-    #[doc(alias = "webkit_web_page_get_main_frame")]
-    #[doc(alias = "get_main_frame")]
-    fn main_frame(&self) -> Option<Frame>;
-
-    #[doc(alias = "webkit_web_page_get_uri")]
-    #[doc(alias = "get_uri")]
-    fn uri(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    #[doc(alias = "webkit_web_page_send_message_to_view")]
-    fn send_message_to_view<P: FnOnce(Result<UserMessage, glib::Error>) + 'static>(
-        &self,
-        message: &impl IsA<UserMessage>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    fn send_message_to_view_future(
-        &self,
-        message: &(impl IsA<UserMessage> + Clone + 'static),
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserMessage, glib::Error>> + 'static>>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
-    #[doc(alias = "console-message-sent")]
-    fn connect_console_message_sent<F: Fn(&Self, &ConsoleMessage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
-    #[doc(alias = "context-menu")]
-    fn connect_context_menu<F: Fn(&Self, &ContextMenu, &WebHitTestResult) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "document-loaded")]
-    fn connect_document_loaded<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    //#[cfg_attr(feature = "v2_26", deprecated = "Since 2.26")]
-    //#[cfg(any(feature = "v2_16", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    //#[doc(alias = "form-controls-associated")]
-    //fn connect_form_controls_associated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
-    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    //#[cfg(any(feature = "v2_26", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
-    //#[doc(alias = "form-controls-associated-for-frame")]
-    //fn connect_form_controls_associated_for_frame<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "send-request")]
-    fn connect_send_request<F: Fn(&Self, &URIRequest, Option<&URIResponse>) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    #[doc(alias = "user-message-received")]
-    fn connect_user_message_received<F: Fn(&Self, &UserMessage) -> bool + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    //#[cfg(any(feature = "v2_20", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
-    //#[doc(alias = "will-submit-form")]
-    //fn connect_will_submit_form<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "uri")]
-    fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<WebPage>> WebPageExt for O {
-    #[allow(deprecated)]
     fn dom_document(&self) -> Option<DOMDocument> {
         unsafe {
             from_glib_none(ffi::webkit_web_page_get_dom_document(
@@ -159,8 +61,10 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
+    #[doc(alias = "webkit_web_page_get_editor")]
+    #[doc(alias = "get_editor")]
     fn editor(&self) -> Option<WebEditor> {
         unsafe {
             from_glib_none(ffi::webkit_web_page_get_editor(
@@ -169,18 +73,24 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_40", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    //#[cfg(feature = "v2_40")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
+    //#[doc(alias = "webkit_web_page_get_form_manager")]
+    //#[doc(alias = "get_form_manager")]
     //fn form_manager(&self, world: Option<&impl IsA<ScriptWorld>>) -> /*Ignored*/Option<WebFormManager> {
     //    unsafe { TODO: call ffi:webkit_web_page_get_form_manager() }
     //}
 
+    #[doc(alias = "webkit_web_page_get_id")]
+    #[doc(alias = "get_id")]
     fn id(&self) -> u64 {
         unsafe { ffi::webkit_web_page_get_id(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
+    #[doc(alias = "webkit_web_page_get_main_frame")]
+    #[doc(alias = "get_main_frame")]
     fn main_frame(&self) -> Option<Frame> {
         unsafe {
             from_glib_none(ffi::webkit_web_page_get_main_frame(
@@ -189,12 +99,15 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
+    #[doc(alias = "webkit_web_page_get_uri")]
+    #[doc(alias = "get_uri")]
     fn uri(&self) -> Option<glib::GString> {
         unsafe { from_glib_none(ffi::webkit_web_page_get_uri(self.as_ref().to_glib_none().0)) }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[doc(alias = "webkit_web_page_send_message_to_view")]
     fn send_message_to_view<P: FnOnce(Result<UserMessage, glib::Error>) + 'static>(
         &self,
         message: &impl IsA<UserMessage>,
@@ -248,8 +161,8 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     fn send_message_to_view_future(
         &self,
         message: &(impl IsA<UserMessage> + Clone + 'static),
@@ -263,8 +176,10 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }))
     }
 
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
+    #[doc(alias = "console-message-sent")]
     fn connect_console_message_sent<F: Fn(&Self, &ConsoleMessage) + 'static>(
         &self,
         f: F,
@@ -296,8 +211,9 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
+    #[doc(alias = "context-menu")]
     fn connect_context_menu<F: Fn(&Self, &ContextMenu, &WebHitTestResult) -> bool + 'static>(
         &self,
         f: F,
@@ -332,6 +248,7 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
+    #[doc(alias = "document-loaded")]
     fn connect_document_loaded<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn document_loaded_trampoline<P: IsA<WebPage>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitWebPage,
@@ -353,18 +270,23 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_16", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    //#[cfg_attr(feature = "v2_26", deprecated = "Since 2.26")]
+    //#[cfg(feature = "v2_16")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    //#[doc(alias = "form-controls-associated")]
     //fn connect_form_controls_associated<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Empty ctype elements: *.PtrArray TypeId { ns_id: 1, id: 12 }
     //}
 
-    //#[cfg(any(feature = "v2_26", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    //#[cfg(feature = "v2_26")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
+    //#[doc(alias = "form-controls-associated-for-frame")]
     //fn connect_form_controls_associated_for_frame<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Empty ctype elements: *.PtrArray TypeId { ns_id: 1, id: 12 }
     //}
 
+    #[doc(alias = "send-request")]
     fn connect_send_request<F: Fn(&Self, &URIRequest, Option<&URIResponse>) -> bool + 'static>(
         &self,
         f: F,
@@ -401,8 +323,9 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[doc(alias = "user-message-received")]
     fn connect_user_message_received<F: Fn(&Self, &UserMessage) -> bool + 'static>(
         &self,
         f: F,
@@ -435,13 +358,16 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 
-    //#[cfg(any(feature = "v2_20", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+    //#[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    //#[cfg(feature = "v2_20")]
+    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
+    //#[doc(alias = "will-submit-form")]
     //fn connect_will_submit_form<Unsupported or ignored types>(&self, f: F) -> SignalHandlerId {
     //    Empty ctype text_field_names: *.PtrArray TypeId { ns_id: 0, id: 28 }
     //    Empty ctype text_field_values: *.PtrArray TypeId { ns_id: 0, id: 28 }
     //}
 
+    #[doc(alias = "uri")]
     fn connect_uri_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_uri_trampoline<P: IsA<WebPage>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitWebPage,
@@ -464,6 +390,8 @@ impl<O: IsA<WebPage>> WebPageExt for O {
         }
     }
 }
+
+impl<O: IsA<WebPage>> WebPageExt for O {}
 
 impl fmt::Display for WebPage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

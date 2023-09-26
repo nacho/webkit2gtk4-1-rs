@@ -25,128 +25,16 @@ impl DOMEvent {
     pub const NONE: Option<&'static DOMEvent> = None;
 }
 
-pub trait DOMEventExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMEvent>> Sealed for T {}
+}
+
+pub trait DOMEventExt: IsA<DOMEvent> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_event_get_bubbles")]
     #[doc(alias = "get_bubbles")]
-    fn is_bubbles(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_cancel_bubble")]
-    #[doc(alias = "get_cancel_bubble")]
-    fn is_cancel_bubble(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_cancelable")]
-    #[doc(alias = "get_cancelable")]
-    fn is_cancelable(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_current_target")]
-    #[doc(alias = "get_current_target")]
-    fn current_target(&self) -> Option<DOMEventTarget>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_event_phase")]
-    #[doc(alias = "get_event_phase")]
-    fn event_phase(&self) -> libc::c_ushort;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_event_type")]
-    #[doc(alias = "get_event_type")]
-    fn event_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_return_value")]
-    #[doc(alias = "get_return_value")]
-    fn is_return_value(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_src_element")]
-    #[doc(alias = "get_src_element")]
-    fn src_element(&self) -> Option<DOMEventTarget>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<DOMEventTarget>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_get_time_stamp")]
-    #[doc(alias = "get_time_stamp")]
-    fn time_stamp(&self) -> u32;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_init_event")]
-    fn init_event(&self, eventTypeArg: &str, canBubbleArg: bool, cancelableArg: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_prevent_default")]
-    fn prevent_default(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_set_cancel_bubble")]
-    fn set_cancel_bubble(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_set_return_value")]
-    fn set_return_value(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_event_stop_propagation")]
-    fn stop_propagation(&self);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "bubbles")]
-    fn connect_bubbles_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cancel-bubble")]
-    fn connect_cancel_bubble_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cancelable")]
-    fn connect_cancelable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "current-target")]
-    fn connect_current_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "event-phase")]
-    fn connect_event_phase_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "return-value")]
-    fn connect_return_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "src-element")]
-    fn connect_src_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "time-stamp")]
-    fn connect_time_stamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMEvent>> DOMEventExt for O {
-    #[allow(deprecated)]
     fn is_bubbles(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_event_get_bubbles(
@@ -155,7 +43,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_cancel_bubble")]
+    #[doc(alias = "get_cancel_bubble")]
     fn is_cancel_bubble(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_event_get_cancel_bubble(
@@ -164,7 +55,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_cancelable")]
+    #[doc(alias = "get_cancelable")]
     fn is_cancelable(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_event_get_cancelable(
@@ -173,7 +67,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_current_target")]
+    #[doc(alias = "get_current_target")]
     fn current_target(&self) -> Option<DOMEventTarget> {
         unsafe {
             from_glib_full(ffi::webkit_dom_event_get_current_target(
@@ -182,12 +79,18 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_event_phase")]
+    #[doc(alias = "get_event_phase")]
     fn event_phase(&self) -> libc::c_ushort {
         unsafe { ffi::webkit_dom_event_get_event_phase(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_event_type")]
+    #[doc(alias = "get_event_type")]
     fn event_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_event_get_event_type(
@@ -196,7 +99,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_return_value")]
+    #[doc(alias = "get_return_value")]
     fn is_return_value(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_event_get_return_value(
@@ -205,7 +111,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_src_element")]
+    #[doc(alias = "get_src_element")]
     fn src_element(&self) -> Option<DOMEventTarget> {
         unsafe {
             from_glib_full(ffi::webkit_dom_event_get_src_element(
@@ -214,7 +123,10 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<DOMEventTarget> {
         unsafe {
             from_glib_full(ffi::webkit_dom_event_get_target(
@@ -223,12 +135,17 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_get_time_stamp")]
+    #[doc(alias = "get_time_stamp")]
     fn time_stamp(&self) -> u32 {
         unsafe { ffi::webkit_dom_event_get_time_stamp(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_init_event")]
     fn init_event(&self, eventTypeArg: &str, canBubbleArg: bool, cancelableArg: bool) {
         unsafe {
             ffi::webkit_dom_event_init_event(
@@ -240,14 +157,18 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_prevent_default")]
     fn prevent_default(&self) {
         unsafe {
             ffi::webkit_dom_event_prevent_default(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_set_cancel_bubble")]
     fn set_cancel_bubble(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_event_set_cancel_bubble(
@@ -257,7 +178,9 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_set_return_value")]
     fn set_return_value(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_event_set_return_value(
@@ -267,17 +190,21 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_event_stop_propagation")]
     fn stop_propagation(&self) {
         unsafe {
             ffi::webkit_dom_event_stop_propagation(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "bubbles")]
     fn connect_bubbles_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bubbles_trampoline<P: IsA<DOMEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMEvent,
@@ -300,6 +227,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "cancel-bubble")]
     fn connect_cancel_bubble_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cancel_bubble_trampoline<
             P: IsA<DOMEvent>,
@@ -325,6 +253,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "cancelable")]
     fn connect_cancelable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cancelable_trampoline<P: IsA<DOMEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMEvent,
@@ -347,6 +276,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "current-target")]
     fn connect_current_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_current_target_trampoline<
             P: IsA<DOMEvent>,
@@ -372,6 +302,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "event-phase")]
     fn connect_event_phase_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_event_phase_trampoline<
             P: IsA<DOMEvent>,
@@ -397,6 +328,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "return-value")]
     fn connect_return_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_return_value_trampoline<
             P: IsA<DOMEvent>,
@@ -422,6 +354,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "src-element")]
     fn connect_src_element_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_src_element_trampoline<
             P: IsA<DOMEvent>,
@@ -447,6 +380,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<P: IsA<DOMEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMEvent,
@@ -469,6 +403,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "time-stamp")]
     fn connect_time_stamp_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_time_stamp_trampoline<P: IsA<DOMEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMEvent,
@@ -491,6 +426,7 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<P: IsA<DOMEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMEvent,
@@ -513,6 +449,8 @@ impl<O: IsA<DOMEvent>> DOMEventExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMEvent>> DOMEventExt for O {}
 
 impl fmt::Display for DOMEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -32,25 +32,22 @@ impl WebsitePolicies {
     //}
 }
 
-#[cfg(any(feature = "v2_30", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+#[cfg(feature = "v2_30")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
 impl Default for WebsitePolicies {
     fn default() -> Self {
         Self::new()
     }
 }
 
-pub trait WebsitePoliciesExt: 'static {
-    #[doc(alias = "webkit_website_policies_get_autoplay_policy")]
-    #[doc(alias = "get_autoplay_policy")]
-    fn autoplay_policy(&self) -> AutoplayPolicy;
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    fn autoplay(&self) -> AutoplayPolicy;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebsitePolicies>> Sealed for T {}
 }
 
-impl<O: IsA<WebsitePolicies>> WebsitePoliciesExt for O {
+pub trait WebsitePoliciesExt: IsA<WebsitePolicies> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_website_policies_get_autoplay_policy")]
+    #[doc(alias = "get_autoplay_policy")]
     fn autoplay_policy(&self) -> AutoplayPolicy {
         unsafe {
             from_glib(ffi::webkit_website_policies_get_autoplay_policy(
@@ -59,12 +56,14 @@ impl<O: IsA<WebsitePolicies>> WebsitePoliciesExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
     fn autoplay(&self) -> AutoplayPolicy {
-        glib::ObjectExt::property(self.as_ref(), "autoplay")
+        ObjectExt::property(self.as_ref(), "autoplay")
     }
 }
+
+impl<O: IsA<WebsitePolicies>> WebsitePoliciesExt for O {}
 
 impl fmt::Display for WebsitePolicies {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

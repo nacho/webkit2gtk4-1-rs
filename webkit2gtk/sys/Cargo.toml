@@ -8,31 +8,31 @@ bitflags = "^1.0"
 
 [dependencies.gio]
 package = "gio-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.glib]
 package = "glib-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gobject]
 package = "gobject-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.cairo]
 package = "cairo-sys-rs"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gdk]
 package = "gdk-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.gtk]
 package = "gtk-sys"
-version = "0.17"
+version = "0.18"
 
 [dependencies.soup]
 package = "soup3-sys"
-version = "0.4"
+version = "0.5"
 
 [dependencies.java_script_core]
 package = "javascriptcore4-rs-sys"
@@ -43,7 +43,6 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = ["glib/dox", "gobject/dox", "gio/dox", "cairo/dox", "java_script_core/dox", "soup/dox", "gdk/dox", "gtk/dox"]
 v2_6 = []
 v2_8 = ["v2_6"]
 v2_10 = ["v2_8"]
@@ -75,11 +74,11 @@ keywords = ["webkit", "gtk-rs", "gnome", "GUI"]
 license = "MIT"
 links = "web_kit2"
 repository = "https://github.com/vhdirk/webkit2gtk-rs"
-version = "0.17.0"
+version = "0.18.0"
 edition = "2021"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = []
 
 [package.metadata.system-deps.webkit2gtk_4_1]
 name = "webkit2gtk-4.1"

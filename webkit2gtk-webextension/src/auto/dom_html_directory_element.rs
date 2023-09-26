@@ -25,24 +25,18 @@ impl DOMHTMLDirectoryElement {
     pub const NONE: Option<&'static DOMHTMLDirectoryElement> = None;
 }
 
-pub trait DOMHTMLDirectoryElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLDirectoryElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLDirectoryElementExt:
+    IsA<DOMHTMLDirectoryElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_directory_element_get_compact")]
     #[doc(alias = "get_compact")]
-    fn is_compact(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_directory_element_set_compact")]
-    fn set_compact(&self, value: bool);
-
-    #[doc(alias = "compact")]
-    fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLDirectoryElement>> DOMHTMLDirectoryElementExt for O {
-    #[allow(deprecated)]
     fn is_compact(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_directory_element_get_compact(
@@ -51,7 +45,9 @@ impl<O: IsA<DOMHTMLDirectoryElement>> DOMHTMLDirectoryElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_directory_element_set_compact")]
     fn set_compact(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_directory_element_set_compact(
@@ -61,6 +57,7 @@ impl<O: IsA<DOMHTMLDirectoryElement>> DOMHTMLDirectoryElementExt for O {
         }
     }
 
+    #[doc(alias = "compact")]
     fn connect_compact_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_compact_trampoline<
             P: IsA<DOMHTMLDirectoryElement>,
@@ -86,6 +83,8 @@ impl<O: IsA<DOMHTMLDirectoryElement>> DOMHTMLDirectoryElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLDirectoryElement>> DOMHTMLDirectoryElementExt for O {}
 
 impl fmt::Display for DOMHTMLDirectoryElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

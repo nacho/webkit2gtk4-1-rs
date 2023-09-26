@@ -3,22 +3,22 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_30", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+#[cfg(feature = "v2_30")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
 use crate::SecurityOrigin;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use crate::{AuthenticationScheme, Credential};
 use glib::prelude::*;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use std::fmt;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
@@ -34,93 +34,15 @@ impl AuthenticationRequest {
     pub const NONE: Option<&'static AuthenticationRequest> = None;
 }
 
-pub trait AuthenticationRequestExt: 'static {
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_can_save_credentials")]
-    fn can_save_credentials(&self) -> bool;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_cancel")]
-    fn cancel(&self);
-
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
-    #[doc(alias = "webkit_authentication_request_get_certificate_pin_flags")]
-    #[doc(alias = "get_certificate_pin_flags")]
-    fn certificate_pin_flags(&self) -> gio::TlsPasswordFlags;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_get_host")]
-    #[doc(alias = "get_host")]
-    fn host(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_get_port")]
-    #[doc(alias = "get_port")]
-    fn port(&self) -> u32;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_get_proposed_credential")]
-    #[doc(alias = "get_proposed_credential")]
-    fn proposed_credential(&self) -> Option<Credential>;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_get_realm")]
-    #[doc(alias = "get_realm")]
-    fn realm(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_get_scheme")]
-    #[doc(alias = "get_scheme")]
-    fn scheme(&self) -> AuthenticationScheme;
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[doc(alias = "webkit_authentication_request_get_security_origin")]
-    #[doc(alias = "get_security_origin")]
-    fn security_origin(&self) -> Option<SecurityOrigin>;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_is_for_proxy")]
-    fn is_for_proxy(&self) -> bool;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "webkit_authentication_request_is_retry")]
-    fn is_retry(&self) -> bool;
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[doc(alias = "webkit_authentication_request_set_can_save_credentials")]
-    fn set_can_save_credentials(&self, enabled: bool);
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[doc(alias = "webkit_authentication_request_set_proposed_credential")]
-    fn set_proposed_credential(&self, credential: &mut Credential);
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[doc(alias = "authenticated")]
-    fn connect_authenticated<F: Fn(&Self, &Credential) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "cancelled")]
-    fn connect_cancelled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AuthenticationRequest>> Sealed for T {}
 }
 
-impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+pub trait AuthenticationRequestExt: IsA<AuthenticationRequest> + sealed::Sealed + 'static {
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_can_save_credentials")]
     fn can_save_credentials(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_authentication_request_can_save_credentials(
@@ -129,16 +51,19 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_cancel")]
     fn cancel(&self) {
         unsafe {
             ffi::webkit_authentication_request_cancel(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_34", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_34")))]
+    #[cfg(feature = "v2_34")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_34")))]
+    #[doc(alias = "webkit_authentication_request_get_certificate_pin_flags")]
+    #[doc(alias = "get_certificate_pin_flags")]
     fn certificate_pin_flags(&self) -> gio::TlsPasswordFlags {
         unsafe {
             from_glib(
@@ -149,8 +74,10 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_get_host")]
+    #[doc(alias = "get_host")]
     fn host(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_authentication_request_get_host(
@@ -159,14 +86,18 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_get_port")]
+    #[doc(alias = "get_port")]
     fn port(&self) -> u32 {
         unsafe { ffi::webkit_authentication_request_get_port(self.as_ref().to_glib_none().0) }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_get_proposed_credential")]
+    #[doc(alias = "get_proposed_credential")]
     fn proposed_credential(&self) -> Option<Credential> {
         unsafe {
             from_glib_full(ffi::webkit_authentication_request_get_proposed_credential(
@@ -175,8 +106,10 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_get_realm")]
+    #[doc(alias = "get_realm")]
     fn realm(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_authentication_request_get_realm(
@@ -185,8 +118,10 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_get_scheme")]
+    #[doc(alias = "get_scheme")]
     fn scheme(&self) -> AuthenticationScheme {
         unsafe {
             from_glib(ffi::webkit_authentication_request_get_scheme(
@@ -195,8 +130,10 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "webkit_authentication_request_get_security_origin")]
+    #[doc(alias = "get_security_origin")]
     fn security_origin(&self) -> Option<SecurityOrigin> {
         unsafe {
             from_glib_full(ffi::webkit_authentication_request_get_security_origin(
@@ -205,8 +142,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_is_for_proxy")]
     fn is_for_proxy(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_authentication_request_is_for_proxy(
@@ -215,8 +153,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "webkit_authentication_request_is_retry")]
     fn is_retry(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_authentication_request_is_retry(
@@ -225,8 +164,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "webkit_authentication_request_set_can_save_credentials")]
     fn set_can_save_credentials(&self, enabled: bool) {
         unsafe {
             ffi::webkit_authentication_request_set_can_save_credentials(
@@ -236,8 +176,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "webkit_authentication_request_set_proposed_credential")]
     fn set_proposed_credential(&self, credential: &mut Credential) {
         unsafe {
             ffi::webkit_authentication_request_set_proposed_credential(
@@ -247,8 +188,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "authenticated")]
     fn connect_authenticated<F: Fn(&Self, &Credential) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn authenticated_trampoline<
             P: IsA<AuthenticationRequest>,
@@ -277,8 +219,9 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "cancelled")]
     fn connect_cancelled<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cancelled_trampoline<
             P: IsA<AuthenticationRequest>,
@@ -303,6 +246,8 @@ impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {
         }
     }
 }
+
+impl<O: IsA<AuthenticationRequest>> AuthenticationRequestExt for O {}
 
 impl fmt::Display for AuthenticationRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

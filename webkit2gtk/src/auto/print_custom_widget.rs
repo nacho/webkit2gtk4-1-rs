@@ -45,8 +45,8 @@ impl PrintCustomWidget {
     }
 }
 
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 impl Default for PrintCustomWidget {
     fn default() -> Self {
         glib::object::Object::new::<Self>()
@@ -69,8 +69,8 @@ impl PrintCustomWidgetBuilder {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     pub fn title(self, title: impl Into<glib::GString>) -> Self {
         Self {
@@ -78,8 +78,8 @@ impl PrintCustomWidgetBuilder {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     pub fn widget(self, widget: &impl IsA<gtk::Widget>) -> Self {
         Self {
@@ -95,37 +95,16 @@ impl PrintCustomWidgetBuilder {
     }
 }
 
-pub trait PrintCustomWidgetExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::PrintCustomWidget>> Sealed for T {}
+}
+
+pub trait PrintCustomWidgetExt: IsA<PrintCustomWidget> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_print_custom_widget_get_title")]
     #[doc(alias = "get_title")]
-    fn title(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_print_custom_widget_get_widget")]
-    #[doc(alias = "get_widget")]
-    fn widget(&self) -> Option<gtk::Widget>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "apply")]
-    fn connect_apply<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
-    #[doc(alias = "update")]
-    fn connect_update<F: Fn(&Self, &gtk::PageSetup, &gtk::PrintSettings) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-}
-
-impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
-    #[allow(deprecated)]
     fn title(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_print_custom_widget_get_title(
@@ -134,7 +113,10 @@ impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_print_custom_widget_get_widget")]
+    #[doc(alias = "get_widget")]
     fn widget(&self) -> Option<gtk::Widget> {
         unsafe {
             from_glib_none(ffi::webkit_print_custom_widget_get_widget(
@@ -143,8 +125,10 @@ impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "apply")]
     fn connect_apply<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn apply_trampoline<P: IsA<PrintCustomWidget>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitPrintCustomWidget,
@@ -166,8 +150,10 @@ impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
+    #[doc(alias = "update")]
     fn connect_update<F: Fn(&Self, &gtk::PageSetup, &gtk::PrintSettings) + 'static>(
         &self,
         f: F,
@@ -201,6 +187,8 @@ impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {
         }
     }
 }
+
+impl<O: IsA<PrintCustomWidget>> PrintCustomWidgetExt for O {}
 
 impl fmt::Display for PrintCustomWidget {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

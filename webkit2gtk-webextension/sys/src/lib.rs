@@ -10,7 +10,7 @@
     clippy::unreadable_literal,
     clippy::upper_case_acronyms
 )]
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 #[allow(unused_imports)]
 use libc::{
@@ -3704,56 +3704,56 @@ extern "C" {
     //=========================================================================
     // WebKitConsoleMessageLevel
     //=========================================================================
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_level_get_type() -> GType;
 
     //=========================================================================
     // WebKitConsoleMessageSource
     //=========================================================================
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_source_get_type() -> GType;
 
     //=========================================================================
     // WebKitFormSubmissionStep
     //=========================================================================
-    #[cfg(any(feature = "v2_20", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+    #[cfg(feature = "v2_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
     pub fn webkit_form_submission_step_get_type() -> GType;
 
     //=========================================================================
     // WebKitConsoleMessage
     //=========================================================================
     pub fn webkit_console_message_get_type() -> GType;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_copy(
         console_message: *mut WebKitConsoleMessage,
     ) -> *mut WebKitConsoleMessage;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_free(console_message: *mut WebKitConsoleMessage);
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_get_level(
         console_message: *mut WebKitConsoleMessage,
     ) -> WebKitConsoleMessageLevel;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_get_line(console_message: *mut WebKitConsoleMessage) -> c_uint;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_get_source(
         console_message: *mut WebKitConsoleMessage,
     ) -> WebKitConsoleMessageSource;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_get_source_id(
         console_message: *mut WebKitConsoleMessage,
     ) -> *const c_char;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_console_message_get_text(
         console_message: *mut WebKitConsoleMessage,
     ) -> *const c_char;
@@ -3769,8 +3769,8 @@ extern "C" {
         item: *mut WebKitContextMenuItem,
     );
     pub fn webkit_context_menu_first(menu: *mut WebKitContextMenu) -> *mut WebKitContextMenuItem;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_context_menu_get_event(menu: *mut WebKitContextMenu) -> *mut gdk::GdkEvent;
     pub fn webkit_context_menu_get_item_at_position(
         menu: *mut WebKitContextMenu,
@@ -3778,8 +3778,8 @@ extern "C" {
     ) -> *mut WebKitContextMenuItem;
     pub fn webkit_context_menu_get_items(menu: *mut WebKitContextMenu) -> *mut glib::GList;
     pub fn webkit_context_menu_get_n_items(menu: *mut WebKitContextMenu) -> c_uint;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_context_menu_get_user_data(menu: *mut WebKitContextMenu) -> *mut glib::GVariant;
     pub fn webkit_context_menu_insert(
         menu: *mut WebKitContextMenu,
@@ -3801,8 +3801,8 @@ extern "C" {
         item: *mut WebKitContextMenuItem,
     );
     pub fn webkit_context_menu_remove_all(menu: *mut WebKitContextMenu);
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_context_menu_set_user_data(
         menu: *mut WebKitContextMenu,
         user_data: *mut glib::GVariant,
@@ -3813,8 +3813,8 @@ extern "C" {
     //=========================================================================
     pub fn webkit_context_menu_item_get_type() -> GType;
     pub fn webkit_context_menu_item_new(action: *mut gtk::GtkAction) -> *mut WebKitContextMenuItem;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_context_menu_item_new_from_gaction(
         action: *mut gio::GAction,
         label: *const c_char,
@@ -3835,8 +3835,8 @@ extern "C" {
     pub fn webkit_context_menu_item_get_action(
         item: *mut WebKitContextMenuItem,
     ) -> *mut gtk::GtkAction;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_context_menu_item_get_gaction(
         item: *mut WebKitContextMenuItem,
     ) -> *mut gio::GAction;
@@ -3856,16 +3856,16 @@ extern "C" {
     // WebKitDOMAttr
     //=========================================================================
     pub fn webkit_dom_attr_get_type() -> GType;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_attr_get_local_name(self_: *mut WebKitDOMAttr) -> *mut c_char;
     pub fn webkit_dom_attr_get_name(self_: *mut WebKitDOMAttr) -> *mut c_char;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_attr_get_namespace_uri(self_: *mut WebKitDOMAttr) -> *mut c_char;
     pub fn webkit_dom_attr_get_owner_element(self_: *mut WebKitDOMAttr) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_attr_get_prefix(self_: *mut WebKitDOMAttr) -> *mut c_char;
     pub fn webkit_dom_attr_get_specified(self_: *mut WebKitDOMAttr) -> gboolean;
     pub fn webkit_dom_attr_get_value(self_: *mut WebKitDOMAttr) -> *mut c_char;
@@ -4060,34 +4060,34 @@ extern "C" {
     // WebKitDOMClientRect
     //=========================================================================
     pub fn webkit_dom_client_rect_get_type() -> GType;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_bottom(self_: *mut WebKitDOMClientRect) -> c_float;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_height(self_: *mut WebKitDOMClientRect) -> c_float;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_left(self_: *mut WebKitDOMClientRect) -> c_float;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_right(self_: *mut WebKitDOMClientRect) -> c_float;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_top(self_: *mut WebKitDOMClientRect) -> c_float;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_get_width(self_: *mut WebKitDOMClientRect) -> c_float;
 
     //=========================================================================
     // WebKitDOMClientRectList
     //=========================================================================
     pub fn webkit_dom_client_rect_list_get_type() -> GType;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_list_get_length(self_: *mut WebKitDOMClientRectList) -> c_ulong;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_client_rect_list_item(
         self_: *mut WebKitDOMClientRectList,
         index: c_ulong,
@@ -4136,124 +4136,124 @@ extern "C" {
     // WebKitDOMDOMSelection
     //=========================================================================
     pub fn webkit_dom_dom_selection_get_type() -> GType;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_add_range(
         self_: *mut WebKitDOMDOMSelection,
         range: *mut WebKitDOMRange,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_collapse(
         self_: *mut WebKitDOMDOMSelection,
         node: *mut WebKitDOMNode,
         offset: c_ulong,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_collapse_to_end(
         self_: *mut WebKitDOMDOMSelection,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_collapse_to_start(
         self_: *mut WebKitDOMDOMSelection,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_contains_node(
         self_: *mut WebKitDOMDOMSelection,
         node: *mut WebKitDOMNode,
         allowPartial: gboolean,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_delete_from_document(self_: *mut WebKitDOMDOMSelection);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_empty(self_: *mut WebKitDOMDOMSelection);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_extend(
         self_: *mut WebKitDOMDOMSelection,
         node: *mut WebKitDOMNode,
         offset: c_ulong,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_anchor_node(
         self_: *mut WebKitDOMDOMSelection,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_anchor_offset(self_: *mut WebKitDOMDOMSelection)
         -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_base_node(
         self_: *mut WebKitDOMDOMSelection,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_base_offset(self_: *mut WebKitDOMDOMSelection) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_extent_node(
         self_: *mut WebKitDOMDOMSelection,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_extent_offset(self_: *mut WebKitDOMDOMSelection)
         -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_focus_node(
         self_: *mut WebKitDOMDOMSelection,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_focus_offset(self_: *mut WebKitDOMDOMSelection) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_is_collapsed(self_: *mut WebKitDOMDOMSelection)
         -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_range_at(
         self_: *mut WebKitDOMDOMSelection,
         index: c_ulong,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMRange;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_range_count(self_: *mut WebKitDOMDOMSelection) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_get_selection_type(
         self_: *mut WebKitDOMDOMSelection,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_modify(
         self_: *mut WebKitDOMDOMSelection,
         alter: *const c_char,
         direction: *const c_char,
         granularity: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_remove_all_ranges(self_: *mut WebKitDOMDOMSelection);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_select_all_children(
         self_: *mut WebKitDOMDOMSelection,
         node: *mut WebKitDOMNode,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_set_base_and_extent(
         self_: *mut WebKitDOMDOMSelection,
         baseNode: *mut WebKitDOMNode,
@@ -4261,8 +4261,8 @@ extern "C" {
         extentNode: *mut WebKitDOMNode,
         extentOffset: c_ulong,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_selection_set_position(
         self_: *mut WebKitDOMDOMSelection,
         node: *mut WebKitDOMNode,
@@ -4273,54 +4273,54 @@ extern "C" {
     // WebKitDOMDOMTokenList
     //=========================================================================
     pub fn webkit_dom_dom_token_list_get_type() -> GType;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_add(
         self_: *mut WebKitDOMDOMTokenList,
         error: *mut *mut glib::GError,
         ...
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_contains(
         self_: *mut WebKitDOMDOMTokenList,
         token: *const c_char,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_get_length(self_: *mut WebKitDOMDOMTokenList) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_get_value(self_: *mut WebKitDOMDOMTokenList) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_item(
         self_: *mut WebKitDOMDOMTokenList,
         index: c_ulong,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_remove(
         self_: *mut WebKitDOMDOMTokenList,
         error: *mut *mut glib::GError,
         ...
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_replace(
         self_: *mut WebKitDOMDOMTokenList,
         token: *const c_char,
         newToken: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_set_value(
         self_: *mut WebKitDOMDOMTokenList,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_token_list_toggle(
         self_: *mut WebKitDOMDOMTokenList,
         token: *const c_char,
@@ -4332,26 +4332,26 @@ extern "C" {
     // WebKitDOMDOMWindow
     //=========================================================================
     pub fn webkit_dom_dom_window_get_type() -> GType;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_alert(self_: *mut WebKitDOMDOMWindow, message: *const c_char);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_blur(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_capture_events(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_close(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_confirm(
         self_: *mut WebKitDOMDOMWindow,
         message: *const c_char,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_find(
         self_: *mut WebKitDOMDOMWindow,
         string: *const c_char,
@@ -4362,180 +4362,180 @@ extern "C" {
         searchInFrames: gboolean,
         showDialog: gboolean,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_focus(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_closed(self_: *mut WebKitDOMDOMWindow) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_computed_style(
         self_: *mut WebKitDOMDOMWindow,
         element: *mut WebKitDOMElement,
         pseudoElement: *const c_char,
     ) -> *mut WebKitDOMCSSStyleDeclaration;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_default_status(self_: *mut WebKitDOMDOMWindow) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_device_pixel_ratio(self_: *mut WebKitDOMDOMWindow)
         -> c_double;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_document(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDocument;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_frame_element(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_frames(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_inner_height(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_inner_width(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_length(self_: *mut WebKitDOMDOMWindow) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_name(self_: *mut WebKitDOMDOMWindow) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_offscreen_buffering(
         self_: *mut WebKitDOMDOMWindow,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_opener(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_orientation(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_outer_height(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_outer_width(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_page_x_offset(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_page_y_offset(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_parent(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_screen_left(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_screen_top(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_screen_x(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_screen_y(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_scroll_x(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_scroll_y(self_: *mut WebKitDOMDOMWindow) -> c_long;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_selection(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMSelection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_self(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_status(self_: *mut WebKitDOMDOMWindow) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_top(self_: *mut WebKitDOMDOMWindow)
         -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_get_window(
         self_: *mut WebKitDOMDOMWindow,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_move_by(self_: *mut WebKitDOMDOMWindow, x: c_float, y: c_float);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_move_to(self_: *mut WebKitDOMDOMWindow, x: c_float, y: c_float);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_print(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_prompt(
         self_: *mut WebKitDOMDOMWindow,
         message: *const c_char,
         defaultValue: *const c_char,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_release_events(self_: *mut WebKitDOMDOMWindow);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_resize_by(self_: *mut WebKitDOMDOMWindow, x: c_float, y: c_float);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_resize_to(
         self_: *mut WebKitDOMDOMWindow,
         width: c_float,
         height: c_float,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_scroll_by(
         self_: *mut WebKitDOMDOMWindow,
         x: c_double,
         y: c_double,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_scroll_to(
         self_: *mut WebKitDOMDOMWindow,
         x: c_double,
         y: c_double,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_set_default_status(
         self_: *mut WebKitDOMDOMWindow,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_set_name(self_: *mut WebKitDOMDOMWindow, value: *const c_char);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_set_status(self_: *mut WebKitDOMDOMWindow, value: *const c_char);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_dom_window_stop(self_: *mut WebKitDOMDOMWindow);
     pub fn webkit_dom_dom_window_webkit_message_handlers_post_message(
         window: *mut WebKitDOMDOMWindow,
@@ -4552,8 +4552,8 @@ extern "C" {
         source: *mut WebKitDOMNode,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_caret_range_from_point(
         self_: *mut WebKitDOMDocument,
         x: c_long,
@@ -4663,8 +4663,8 @@ extern "C" {
         userInterface: gboolean,
         value: *const c_char,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_exit_pointer_lock(self_: *mut WebKitDOMDocument);
     pub fn webkit_dom_document_get_active_element(
         self_: *mut WebKitDOMDocument,
@@ -4679,26 +4679,26 @@ extern "C" {
         -> *mut WebKitDOMHTMLElement;
     pub fn webkit_dom_document_get_character_set(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_charset(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_child_element_count(self_: *mut WebKitDOMDocument) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_children(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_get_compat_mode(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_content_type(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_cookie(
         self_: *mut WebKitDOMDocument,
         error: *mut *mut glib::GError,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_current_script(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLScriptElement;
@@ -4706,11 +4706,11 @@ extern "C" {
     pub fn webkit_dom_document_get_default_view(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMDOMWindow;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_get_design_mode(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_dir(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_doctype(
         self_: *mut WebKitDOMDocument,
@@ -4728,8 +4728,8 @@ extern "C" {
         self_: *mut WebKitDOMDocument,
         class_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_document_get_elements_by_class_name_as_html_collection(
         self_: *mut WebKitDOMDocument,
         classNames: *const c_char,
@@ -4742,8 +4742,8 @@ extern "C" {
         self_: *mut WebKitDOMDocument,
         tag_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_document_get_elements_by_tag_name_as_html_collection(
         self_: *mut WebKitDOMDocument,
         tagname: *const c_char,
@@ -4753,20 +4753,20 @@ extern "C" {
         namespace_uri: *const c_char,
         tag_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_document_get_elements_by_tag_name_ns_as_html_collection(
         self_: *mut WebKitDOMDocument,
         namespaceURI: *const c_char,
         localName: *const c_char,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_get_embeds(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_first_element_child(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
@@ -4776,8 +4776,8 @@ extern "C" {
     pub fn webkit_dom_document_get_head(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLHeadElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_hidden(self_: *mut WebKitDOMDocument) -> gboolean;
     pub fn webkit_dom_document_get_images(
         self_: *mut WebKitDOMDocument,
@@ -4786,8 +4786,8 @@ extern "C" {
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMDOMImplementation;
     pub fn webkit_dom_document_get_input_encoding(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_last_element_child(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
@@ -4795,21 +4795,21 @@ extern "C" {
     pub fn webkit_dom_document_get_links(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_origin(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_override_style(
         self_: *mut WebKitDOMDocument,
         element: *mut WebKitDOMElement,
         pseudoElement: *const c_char,
     ) -> *mut WebKitDOMCSSStyleDeclaration;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_get_plugins(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_pointer_lock_element(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
@@ -4818,13 +4818,13 @@ extern "C" {
     ) -> *mut c_char;
     pub fn webkit_dom_document_get_ready_state(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_referrer(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_get_scripts(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_scrolling_element(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
@@ -4836,31 +4836,31 @@ extern "C" {
     ) -> *mut WebKitDOMStyleSheetList;
     pub fn webkit_dom_document_get_title(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_url(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_visibility_state(self_: *mut WebKitDOMDocument) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_webkit_current_fullscreen_element(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_webkit_fullscreen_element(
         self_: *mut WebKitDOMDocument,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_webkit_fullscreen_enabled(
         self_: *mut WebKitDOMDocument,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_webkit_fullscreen_keyboard_input_allowed(
         self_: *mut WebKitDOMDocument,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_get_webkit_is_fullscreen(self_: *mut WebKitDOMDocument) -> gboolean;
     pub fn webkit_dom_document_get_xml_encoding(self_: *mut WebKitDOMDocument) -> *mut c_char;
     pub fn webkit_dom_document_get_xml_standalone(self_: *mut WebKitDOMDocument) -> gboolean;
@@ -4913,11 +4913,11 @@ extern "C" {
         value: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_document_set_design_mode(self_: *mut WebKitDOMDocument, value: *const c_char);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_set_dir(self_: *mut WebKitDOMDocument, value: *const c_char);
     pub fn webkit_dom_document_set_document_uri(
         self_: *mut WebKitDOMDocument,
@@ -4938,52 +4938,52 @@ extern "C" {
         value: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_webkit_cancel_fullscreen(self_: *mut WebKitDOMDocument);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_webkit_exit_fullscreen(self_: *mut WebKitDOMDocument);
 
     //=========================================================================
     // WebKitDOMDocumentFragment
     //=========================================================================
     pub fn webkit_dom_document_fragment_get_type() -> GType;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_get_child_element_count(
         self_: *mut WebKitDOMDocumentFragment,
     ) -> c_ulong;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_get_children(
         self_: *mut WebKitDOMDocumentFragment,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_get_element_by_id(
         self_: *mut WebKitDOMDocumentFragment,
         elementId: *const c_char,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_get_first_element_child(
         self_: *mut WebKitDOMDocumentFragment,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_get_last_element_child(
         self_: *mut WebKitDOMDocumentFragment,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_query_selector(
         self_: *mut WebKitDOMDocumentFragment,
         selectors: *const c_char,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_document_fragment_query_selector_all(
         self_: *mut WebKitDOMDocumentFragment,
         selectors: *const c_char,
@@ -5014,8 +5014,8 @@ extern "C" {
     //=========================================================================
     pub fn webkit_dom_element_get_type() -> GType;
     pub fn webkit_dom_element_blur(self_: *mut WebKitDOMElement);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_closest(
         self_: *mut WebKitDOMElement,
         selectors: *const c_char,
@@ -5043,27 +5043,27 @@ extern "C" {
     pub fn webkit_dom_element_get_attributes(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMNamedNodeMap;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_element_get_bounding_client_rect(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMClientRect;
     pub fn webkit_dom_element_get_child_element_count(self_: *mut WebKitDOMElement) -> c_ulong;
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
     pub fn webkit_dom_element_get_children(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMHTMLCollection;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_get_class_list(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMDOMTokenList;
     pub fn webkit_dom_element_get_class_name(self_: *mut WebKitDOMElement) -> *mut c_char;
     pub fn webkit_dom_element_get_client_height(self_: *mut WebKitDOMElement) -> c_double;
     pub fn webkit_dom_element_get_client_left(self_: *mut WebKitDOMElement) -> c_double;
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
     pub fn webkit_dom_element_get_client_rects(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMClientRectList;
@@ -5073,8 +5073,8 @@ extern "C" {
         self_: *mut WebKitDOMElement,
         class_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_element_get_elements_by_class_name_as_html_collection(
         self_: *mut WebKitDOMElement,
         name: *const c_char,
@@ -5083,8 +5083,8 @@ extern "C" {
         self_: *mut WebKitDOMElement,
         tag_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_element_get_elements_by_tag_name_as_html_collection(
         self_: *mut WebKitDOMElement,
         name: *const c_char,
@@ -5094,8 +5094,8 @@ extern "C" {
         namespace_uri: *const c_char,
         tag_name: *const c_char,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_dom_element_get_elements_by_tag_name_ns_as_html_collection(
         self_: *mut WebKitDOMElement,
         namespaceURI: *const c_char,
@@ -5105,17 +5105,17 @@ extern "C" {
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMElement;
     pub fn webkit_dom_element_get_id(self_: *mut WebKitDOMElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_dom_element_get_inner_html(self_: *mut WebKitDOMElement) -> *mut c_char;
     pub fn webkit_dom_element_get_last_element_child(
         self_: *mut WebKitDOMElement,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_element_get_local_name(self_: *mut WebKitDOMElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_element_get_namespace_uri(self_: *mut WebKitDOMElement) -> *mut c_char;
     pub fn webkit_dom_element_get_next_element_sibling(
         self_: *mut WebKitDOMElement,
@@ -5127,11 +5127,11 @@ extern "C" {
     ) -> *mut WebKitDOMElement;
     pub fn webkit_dom_element_get_offset_top(self_: *mut WebKitDOMElement) -> c_double;
     pub fn webkit_dom_element_get_offset_width(self_: *mut WebKitDOMElement) -> c_double;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_dom_element_get_outer_html(self_: *mut WebKitDOMElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_element_get_prefix(self_: *mut WebKitDOMElement) -> *mut c_char;
     pub fn webkit_dom_element_get_previous_element_sibling(
         self_: *mut WebKitDOMElement,
@@ -5157,54 +5157,54 @@ extern "C" {
         localName: *const c_char,
     ) -> gboolean;
     pub fn webkit_dom_element_has_attributes(self_: *mut WebKitDOMElement) -> gboolean;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_element_html_input_element_get_auto_filled(
         element: *mut WebKitDOMElement,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_element_html_input_element_is_user_edited(
         element: *mut WebKitDOMElement,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_element_html_input_element_set_auto_filled(
         element: *mut WebKitDOMElement,
         auto_filled: gboolean,
     );
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_element_html_input_element_set_editing_value(
         element: *mut WebKitDOMElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_insert_adjacent_element(
         self_: *mut WebKitDOMElement,
         where_: *const c_char,
         element: *mut WebKitDOMElement,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMElement;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_insert_adjacent_html(
         self_: *mut WebKitDOMElement,
         where_: *const c_char,
         html: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_insert_adjacent_text(
         self_: *mut WebKitDOMElement,
         where_: *const c_char,
         text: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_matches(
         self_: *mut WebKitDOMElement,
         selectors: *const c_char,
@@ -5220,8 +5220,8 @@ extern "C" {
         selectors: *const c_char,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMNodeList;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_remove(self_: *mut WebKitDOMElement, error: *mut *mut glib::GError);
     pub fn webkit_dom_element_remove_attribute(self_: *mut WebKitDOMElement, name: *const c_char);
     pub fn webkit_dom_element_remove_attribute_node(
@@ -5234,8 +5234,8 @@ extern "C" {
         namespaceURI: *const c_char,
         localName: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_request_pointer_lock(self_: *mut WebKitDOMElement);
     pub fn webkit_dom_element_scroll_by_lines(self_: *mut WebKitDOMElement, lines: c_long);
     pub fn webkit_dom_element_scroll_by_pages(self_: *mut WebKitDOMElement, pages: c_long);
@@ -5272,15 +5272,15 @@ extern "C" {
     );
     pub fn webkit_dom_element_set_class_name(self_: *mut WebKitDOMElement, value: *const c_char);
     pub fn webkit_dom_element_set_id(self_: *mut WebKitDOMElement, value: *const c_char);
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_dom_element_set_inner_html(
         self_: *mut WebKitDOMElement,
         value: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_dom_element_set_outer_html(
         self_: *mut WebKitDOMElement,
         value: *const c_char,
@@ -5288,15 +5288,15 @@ extern "C" {
     );
     pub fn webkit_dom_element_set_scroll_left(self_: *mut WebKitDOMElement, value: c_long);
     pub fn webkit_dom_element_set_scroll_top(self_: *mut WebKitDOMElement, value: c_long);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_webkit_matches_selector(
         self_: *mut WebKitDOMElement,
         selectors: *const c_char,
         error: *mut *mut glib::GError,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_element_webkit_request_fullscreen(self_: *mut WebKitDOMElement);
 
     //=========================================================================
@@ -5471,8 +5471,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLAnchorElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_anchor_element_set_text(
         self_: *mut WebKitDOMHTMLAnchorElement,
         value: *const c_char,
@@ -5619,14 +5619,14 @@ extern "C" {
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_host(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_hostname(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
@@ -5639,26 +5639,26 @@ extern "C" {
         self_: *mut WebKitDOMHTMLAreaElement,
         value: gboolean,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_pathname(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_port(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_protocol(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_area_element_set_search(
         self_: *mut WebKitDOMHTMLAreaElement,
         value: *const c_char,
@@ -5968,11 +5968,11 @@ extern "C" {
         self_: *mut WebKitDOMHTMLElement,
     ) -> *mut c_char;
     pub fn webkit_dom_html_element_get_dir(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_get_draggable(self_: *mut WebKitDOMHTMLElement) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_get_hidden(self_: *mut WebKitDOMHTMLElement) -> gboolean;
     pub fn webkit_dom_html_element_get_inner_html(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
     pub fn webkit_dom_html_element_get_inner_text(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
@@ -5982,16 +5982,16 @@ extern "C" {
     pub fn webkit_dom_html_element_get_lang(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
     pub fn webkit_dom_html_element_get_outer_html(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
     pub fn webkit_dom_html_element_get_outer_text(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_get_spellcheck(self_: *mut WebKitDOMHTMLElement) -> gboolean;
     pub fn webkit_dom_html_element_get_tab_index(self_: *mut WebKitDOMHTMLElement) -> c_long;
     pub fn webkit_dom_html_element_get_title(self_: *mut WebKitDOMHTMLElement) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_get_translate(self_: *mut WebKitDOMHTMLElement) -> gboolean;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_get_webkitdropzone(
         self_: *mut WebKitDOMHTMLElement,
     ) -> *mut c_char;
@@ -6005,11 +6005,11 @@ extern "C" {
         error: *mut *mut glib::GError,
     );
     pub fn webkit_dom_html_element_set_dir(self_: *mut WebKitDOMHTMLElement, value: *const c_char);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_set_draggable(self_: *mut WebKitDOMHTMLElement, value: gboolean);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_set_hidden(self_: *mut WebKitDOMHTMLElement, value: gboolean);
     pub fn webkit_dom_html_element_set_inner_html(
         self_: *mut WebKitDOMHTMLElement,
@@ -6032,8 +6032,8 @@ extern "C" {
         value: *const c_char,
         error: *mut *mut glib::GError,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_set_spellcheck(
         self_: *mut WebKitDOMHTMLElement,
         value: gboolean,
@@ -6043,11 +6043,11 @@ extern "C" {
         self_: *mut WebKitDOMHTMLElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_set_translate(self_: *mut WebKitDOMHTMLElement, value: gboolean);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_element_set_webkitdropzone(
         self_: *mut WebKitDOMHTMLElement,
         value: *const c_char,
@@ -6545,8 +6545,8 @@ extern "C" {
     pub fn webkit_dom_html_input_element_get_alt(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_get_auto_filled(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> gboolean;
@@ -6556,8 +6556,8 @@ extern "C" {
     pub fn webkit_dom_html_input_element_get_capture(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_html_input_element_get_capture_type(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> *mut c_char;
@@ -6597,8 +6597,8 @@ extern "C" {
     pub fn webkit_dom_html_input_element_get_name(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_get_read_only(
         self_: *mut WebKitDOMHTMLInputElement,
     ) -> gboolean;
@@ -6635,8 +6635,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLInputElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_set_auto_filled(
         self_: *mut WebKitDOMHTMLInputElement,
         value: gboolean,
@@ -6645,8 +6645,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLInputElement,
         value: gboolean,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_set_capture_type(
         self_: *mut WebKitDOMHTMLInputElement,
         value: *const c_char,
@@ -6655,8 +6655,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLInputElement,
         value: gboolean,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_set_default_checked(
         self_: *mut WebKitDOMHTMLInputElement,
         value: gboolean,
@@ -6669,8 +6669,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLInputElement,
         value: gboolean,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_input_element_set_editing_value(
         self_: *mut WebKitDOMHTMLInputElement,
         value: *const c_char,
@@ -6802,8 +6802,8 @@ extern "C" {
     pub fn webkit_dom_html_link_element_get_sheet(
         self_: *mut WebKitDOMHTMLLinkElement,
     ) -> *mut WebKitDOMStyleSheet;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_link_element_get_sizes(
         self_: *mut WebKitDOMHTMLLinkElement,
     ) -> *mut WebKitDOMDOMTokenList;
@@ -6841,8 +6841,8 @@ extern "C" {
         self_: *mut WebKitDOMHTMLLinkElement,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_link_element_set_sizes(
         self_: *mut WebKitDOMHTMLLinkElement,
         value: *const c_char,
@@ -7273,8 +7273,8 @@ extern "C" {
     pub fn webkit_dom_html_script_element_get_type_attr(
         self_: *mut WebKitDOMHTMLScriptElement,
     ) -> *mut c_char;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_html_script_element_set_charset(
         self_: *mut WebKitDOMHTMLScriptElement,
         value: *const c_char,
@@ -8084,8 +8084,8 @@ extern "C" {
     // WebKitDOMNode
     //=========================================================================
     pub fn webkit_dom_node_get_type() -> GType;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_dom_node_for_js_value(
         value: *mut java_script_core::JSCValue,
     ) -> *mut WebKitDOMNode;
@@ -8099,8 +8099,8 @@ extern "C" {
         deep: gboolean,
         error: *mut *mut glib::GError,
     ) -> *mut WebKitDOMNode;
-    #[cfg(any(feature = "v2_14", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_14")))]
+    #[cfg(feature = "v2_14")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_14")))]
     pub fn webkit_dom_node_clone_node_with_error(
         self_: *mut WebKitDOMNode,
         deep: gboolean,
@@ -8290,8 +8290,8 @@ extern "C" {
         error: *mut *mut glib::GError,
     );
     pub fn webkit_dom_range_detach(self_: *mut WebKitDOMRange, error: *mut *mut glib::GError);
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub fn webkit_dom_range_expand(
         self_: *mut WebKitDOMRange,
         unit: *const c_char,
@@ -8574,52 +8574,52 @@ extern "C" {
     //=========================================================================
     // WebKitFrame
     //=========================================================================
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_type() -> GType;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_id(frame: *mut WebKitFrame) -> u64;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_javascript_context_for_script_world(
         frame: *mut WebKitFrame,
         world: *mut WebKitScriptWorld,
     ) -> java_script_core::JSGlobalContextRef;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_javascript_global_context(
         frame: *mut WebKitFrame,
     ) -> java_script_core::JSGlobalContextRef;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_js_context(
         frame: *mut WebKitFrame,
     ) -> *mut java_script_core::JSCContext;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_js_context_for_script_world(
         frame: *mut WebKitFrame,
         world: *mut WebKitScriptWorld,
     ) -> *mut java_script_core::JSCContext;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_js_value_for_dom_object(
         frame: *mut WebKitFrame,
         dom_object: *mut WebKitDOMObject,
     ) -> *mut java_script_core::JSCValue;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_js_value_for_dom_object_in_script_world(
         frame: *mut WebKitFrame,
         dom_object: *mut WebKitDOMObject,
         world: *mut WebKitScriptWorld,
     ) -> *mut java_script_core::JSCValue;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_get_uri(frame: *mut WebKitFrame) -> *const c_char;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_frame_is_main_frame(frame: *mut WebKitFrame) -> gboolean;
 
     //=========================================================================
@@ -8641,8 +8641,8 @@ extern "C" {
     pub fn webkit_hit_test_result_context_is_scrollbar(
         hit_test_result: *mut WebKitHitTestResult,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_hit_test_result_context_is_selection(
         hit_test_result: *mut WebKitHitTestResult,
     ) -> gboolean;
@@ -8668,12 +8668,12 @@ extern "C" {
     //=========================================================================
     pub fn webkit_script_world_get_type() -> GType;
     pub fn webkit_script_world_new() -> *mut WebKitScriptWorld;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_script_world_new_with_name(name: *const c_char) -> *mut WebKitScriptWorld;
     pub fn webkit_script_world_get_default() -> *mut WebKitScriptWorld;
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     pub fn webkit_script_world_get_name(world: *mut WebKitScriptWorld) -> *const c_char;
 
     //=========================================================================
@@ -8684,8 +8684,8 @@ extern "C" {
     pub fn webkit_uri_request_get_http_headers(
         request: *mut WebKitURIRequest,
     ) -> *mut soup::SoupMessageHeaders;
-    #[cfg(any(feature = "v2_12", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+    #[cfg(feature = "v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
     pub fn webkit_uri_request_get_http_method(request: *mut WebKitURIRequest) -> *const c_char;
     pub fn webkit_uri_request_get_uri(request: *mut WebKitURIRequest) -> *const c_char;
     pub fn webkit_uri_request_set_uri(request: *mut WebKitURIRequest, uri: *const c_char);
@@ -8695,8 +8695,8 @@ extern "C" {
     //=========================================================================
     pub fn webkit_uri_response_get_type() -> GType;
     pub fn webkit_uri_response_get_content_length(response: *mut WebKitURIResponse) -> u64;
-    #[cfg(any(feature = "v2_6", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_6")))]
+    #[cfg(feature = "v2_6")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_6")))]
     pub fn webkit_uri_response_get_http_headers(
         response: *mut WebKitURIResponse,
     ) -> *mut soup::SoupMessageHeaders;
@@ -8710,40 +8710,40 @@ extern "C" {
     //=========================================================================
     // WebKitUserMessage
     //=========================================================================
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_get_type() -> GType;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_new(
         name: *const c_char,
         parameters: *mut glib::GVariant,
     ) -> *mut WebKitUserMessage;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_new_with_fd_list(
         name: *const c_char,
         parameters: *mut glib::GVariant,
         fd_list: *mut gio::GUnixFDList,
     ) -> *mut WebKitUserMessage;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_error_quark() -> glib::GQuark;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_get_fd_list(
         message: *mut WebKitUserMessage,
     ) -> *mut gio::GUnixFDList;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_get_name(message: *mut WebKitUserMessage) -> *const c_char;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_get_parameters(
         message: *mut WebKitUserMessage,
     ) -> *mut glib::GVariant;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_user_message_send_reply(
         message: *mut WebKitUserMessage,
         reply: *mut WebKitUserMessage,
@@ -8752,11 +8752,11 @@ extern "C" {
     //=========================================================================
     // WebKitWebEditor
     //=========================================================================
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_editor_get_type() -> GType;
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_editor_get_page(editor: *mut WebKitWebEditor) -> *mut WebKitWebPage;
 
     //=========================================================================
@@ -8767,8 +8767,8 @@ extern "C" {
         extension: *mut WebKitWebExtension,
         page_id: u64,
     ) -> *mut WebKitWebPage;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_web_extension_send_message_to_context(
         extension: *mut WebKitWebExtension,
         message: *mut WebKitUserMessage,
@@ -8776,8 +8776,8 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_web_extension_send_message_to_context_finish(
         extension: *mut WebKitWebExtension,
         result: *mut gio::GAsyncResult,
@@ -8787,22 +8787,22 @@ extern "C" {
     //=========================================================================
     // WebKitWebFormManager
     //=========================================================================
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_form_manager_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_form_manager_input_element_auto_fill(
         element: *mut java_script_core::JSCValue,
         value: *const c_char,
     );
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_form_manager_input_element_is_auto_filled(
         element: *mut java_script_core::JSCValue,
     ) -> gboolean;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_form_manager_input_element_is_user_edited(
         element: *mut java_script_core::JSCValue,
     ) -> gboolean;
@@ -8810,17 +8810,17 @@ extern "C" {
     //=========================================================================
     // WebKitWebHitTestResult
     //=========================================================================
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_web_hit_test_result_get_type() -> GType;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_hit_test_result_get_js_node(
         web_hit_test_result: *mut WebKitWebHitTestResult,
         world: *mut WebKitScriptWorld,
     ) -> *mut java_script_core::JSCValue;
-    #[cfg(any(feature = "v2_8", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_8")))]
+    #[cfg(feature = "v2_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_8")))]
     pub fn webkit_web_hit_test_result_get_node(
         hit_test_result: *mut WebKitWebHitTestResult,
     ) -> *mut WebKitDOMNode;
@@ -8831,22 +8831,22 @@ extern "C" {
     pub fn webkit_web_page_get_type() -> GType;
     pub fn webkit_web_page_get_dom_document(web_page: *mut WebKitWebPage)
         -> *mut WebKitDOMDocument;
-    #[cfg(any(feature = "v2_10", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_10")))]
+    #[cfg(feature = "v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_10")))]
     pub fn webkit_web_page_get_editor(web_page: *mut WebKitWebPage) -> *mut WebKitWebEditor;
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
     pub fn webkit_web_page_get_form_manager(
         web_page: *mut WebKitWebPage,
         world: *mut WebKitScriptWorld,
     ) -> *mut WebKitWebFormManager;
     pub fn webkit_web_page_get_id(web_page: *mut WebKitWebPage) -> u64;
-    #[cfg(any(feature = "v2_26", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_26")))]
+    #[cfg(feature = "v2_26")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_26")))]
     pub fn webkit_web_page_get_main_frame(web_page: *mut WebKitWebPage) -> *mut WebKitFrame;
     pub fn webkit_web_page_get_uri(web_page: *mut WebKitWebPage) -> *const c_char;
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_web_page_send_message_to_view(
         web_page: *mut WebKitWebPage,
         message: *mut WebKitUserMessage,
@@ -8854,8 +8854,8 @@ extern "C" {
         callback: gio::GAsyncReadyCallback,
         user_data: gpointer,
     );
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     pub fn webkit_web_page_send_message_to_view_finish(
         web_page: *mut WebKitWebPage,
         result: *mut gio::GAsyncResult,

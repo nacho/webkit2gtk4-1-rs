@@ -25,44 +25,16 @@ impl DOMHTMLLIElement {
     pub const NONE: Option<&'static DOMHTMLLIElement> = None;
 }
 
-pub trait DOMHTMLLIElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLLIElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLLIElementExt: IsA<DOMHTMLLIElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_li_element_get_type_attr")]
     #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_li_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_li_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_li_element_set_value")]
-    fn set_value(&self, value: libc::c_long);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {
-    #[allow(deprecated)]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_li_element_get_type_attr(
@@ -71,12 +43,17 @@ impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_li_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_li_element_get_value(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_li_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_li_element_set_type_attr(
@@ -86,21 +63,26 @@ impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_li_element_set_value")]
     fn set_value(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_li_element_set_value(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLLIElement>,
@@ -126,6 +108,7 @@ impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLLIElement>,
@@ -151,6 +134,8 @@ impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLLIElement>> DOMHTMLLIElementExt for O {}
 
 impl fmt::Display for DOMHTMLLIElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

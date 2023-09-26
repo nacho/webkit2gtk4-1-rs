@@ -3,8 +3,8 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 use crate::UserMessage;
 use crate::WebPage;
 use glib::{
@@ -13,8 +13,8 @@ use glib::{
     translate::*,
 };
 use std::{boxed::Box as Box_, fmt, mem::transmute};
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 use std::{pin::Pin, ptr};
 
 glib::wrapper! {
@@ -30,41 +30,14 @@ impl WebExtension {
     pub const NONE: Option<&'static WebExtension> = None;
 }
 
-pub trait WebExtensionExt: 'static {
-    #[doc(alias = "webkit_web_extension_get_page")]
-    #[doc(alias = "get_page")]
-    fn page(&self, page_id: u64) -> Option<WebPage>;
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    #[doc(alias = "webkit_web_extension_send_message_to_context")]
-    fn send_message_to_context<P: FnOnce(Result<UserMessage, glib::Error>) + 'static>(
-        &self,
-        message: &impl IsA<UserMessage>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    fn send_message_to_context_future(
-        &self,
-        message: &(impl IsA<UserMessage> + Clone + 'static),
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserMessage, glib::Error>> + 'static>>;
-
-    #[doc(alias = "page-created")]
-    fn connect_page_created<F: Fn(&Self, &WebPage) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
-    #[doc(alias = "user-message-received")]
-    fn connect_user_message_received<F: Fn(&Self, &UserMessage) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebExtension>> Sealed for T {}
 }
 
-impl<O: IsA<WebExtension>> WebExtensionExt for O {
+pub trait WebExtensionExt: IsA<WebExtension> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_web_extension_get_page")]
+    #[doc(alias = "get_page")]
     fn page(&self, page_id: u64) -> Option<WebPage> {
         unsafe {
             from_glib_none(ffi::webkit_web_extension_get_page(
@@ -74,8 +47,9 @@ impl<O: IsA<WebExtension>> WebExtensionExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[doc(alias = "webkit_web_extension_send_message_to_context")]
     fn send_message_to_context<P: FnOnce(Result<UserMessage, glib::Error>) + 'static>(
         &self,
         message: &impl IsA<UserMessage>,
@@ -129,8 +103,8 @@ impl<O: IsA<WebExtension>> WebExtensionExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
     fn send_message_to_context_future(
         &self,
         message: &(impl IsA<UserMessage> + Clone + 'static),
@@ -144,6 +118,7 @@ impl<O: IsA<WebExtension>> WebExtensionExt for O {
         }))
     }
 
+    #[doc(alias = "page-created")]
     fn connect_page_created<F: Fn(&Self, &WebPage) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn page_created_trampoline<
             P: IsA<WebExtension>,
@@ -172,8 +147,9 @@ impl<O: IsA<WebExtension>> WebExtensionExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_28", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+    #[cfg(feature = "v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
+    #[doc(alias = "user-message-received")]
     fn connect_user_message_received<F: Fn(&Self, &UserMessage) + 'static>(
         &self,
         f: F,
@@ -205,6 +181,8 @@ impl<O: IsA<WebExtension>> WebExtensionExt for O {
         }
     }
 }
+
+impl<O: IsA<WebExtension>> WebExtensionExt for O {}
 
 impl fmt::Display for WebExtension {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

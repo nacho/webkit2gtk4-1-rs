@@ -4,8 +4,8 @@
 // DO NOT EDIT
 #![allow(deprecated)]
 
-#[cfg(any(feature = "v2_40", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+#[cfg(feature = "v2_40")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
 use crate::ScriptWorld;
 use crate::{DOMNode, HitTestResult};
 use glib::{prelude::*, translate::*};
@@ -24,26 +24,16 @@ impl WebHitTestResult {
     pub const NONE: Option<&'static WebHitTestResult> = None;
 }
 
-pub trait WebHitTestResultExt: 'static {
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
-    #[doc(alias = "webkit_web_hit_test_result_get_js_node")]
-    #[doc(alias = "get_js_node")]
-    fn js_node(&self, world: Option<&impl IsA<ScriptWorld>>) -> Option<javascriptcore::Value>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_web_hit_test_result_get_node")]
-    #[doc(alias = "get_node")]
-    fn node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-    fn get_property_node(&self) -> Option<DOMNode>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WebHitTestResult>> Sealed for T {}
 }
 
-impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
-    #[cfg(any(feature = "v2_40", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_40")))]
+pub trait WebHitTestResultExt: IsA<WebHitTestResult> + sealed::Sealed + 'static {
+    #[cfg(feature = "v2_40")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_40")))]
+    #[doc(alias = "webkit_web_hit_test_result_get_js_node")]
+    #[doc(alias = "get_js_node")]
     fn js_node(&self, world: Option<&impl IsA<ScriptWorld>>) -> Option<javascriptcore::Value> {
         unsafe {
             from_glib_full(ffi::webkit_web_hit_test_result_get_js_node(
@@ -53,7 +43,10 @@ impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_web_hit_test_result_get_node")]
+    #[doc(alias = "get_node")]
     fn node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_web_hit_test_result_get_node(
@@ -62,10 +55,13 @@ impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
     fn get_property_node(&self) -> Option<DOMNode> {
-        glib::ObjectExt::property(self.as_ref(), "node")
+        ObjectExt::property(self.as_ref(), "node")
     }
 }
+
+impl<O: IsA<WebHitTestResult>> WebHitTestResultExt for O {}
 
 impl fmt::Display for WebHitTestResult {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

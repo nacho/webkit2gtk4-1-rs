@@ -28,222 +28,15 @@ impl DOMHTMLTableElement {
     pub const NONE: Option<&'static DOMHTMLTableElement> = None;
 }
 
-pub trait DOMHTMLTableElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLTableElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLTableElementExt: IsA<DOMHTMLTableElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_element_create_caption")]
-    fn create_caption(&self) -> Option<DOMHTMLElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_create_t_foot")]
-    fn create_t_foot(&self) -> Option<DOMHTMLElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_create_t_head")]
-    fn create_t_head(&self) -> Option<DOMHTMLElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_delete_caption")]
-    fn delete_caption(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_delete_row")]
-    fn delete_row(&self, index: libc::c_long) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_delete_t_foot")]
-    fn delete_t_foot(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_delete_t_head")]
-    fn delete_t_head(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_align")]
-    #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_bg_color")]
-    #[doc(alias = "get_bg_color")]
-    fn bg_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_border")]
-    #[doc(alias = "get_border")]
-    fn border(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_caption")]
-    #[doc(alias = "get_caption")]
-    fn caption(&self) -> Option<DOMHTMLTableCaptionElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_cell_padding")]
-    #[doc(alias = "get_cell_padding")]
-    fn cell_padding(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_cell_spacing")]
-    #[doc(alias = "get_cell_spacing")]
-    fn cell_spacing(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_rows")]
-    #[doc(alias = "get_rows")]
-    fn rows(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_rules")]
-    #[doc(alias = "get_rules")]
-    fn rules(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_summary")]
-    #[doc(alias = "get_summary")]
-    fn summary(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_t_bodies")]
-    #[doc(alias = "get_t_bodies")]
-    fn t_bodies(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_t_foot")]
-    #[doc(alias = "get_t_foot")]
-    fn t_foot(&self) -> Option<DOMHTMLTableSectionElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_t_head")]
-    #[doc(alias = "get_t_head")]
-    fn t_head(&self) -> Option<DOMHTMLTableSectionElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_insert_row")]
-    fn insert_row(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_bg_color")]
-    fn set_bg_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_border")]
-    fn set_border(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_caption")]
-    fn set_caption(&self, value: &impl IsA<DOMHTMLTableCaptionElement>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_cell_padding")]
-    fn set_cell_padding(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_cell_spacing")]
-    fn set_cell_spacing(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_rules")]
-    fn set_rules(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_summary")]
-    fn set_summary(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_t_foot")]
-    fn set_t_foot(&self, value: &impl IsA<DOMHTMLTableSectionElement>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_t_head")]
-    fn set_t_head(&self, value: &impl IsA<DOMHTMLTableSectionElement>) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_element_set_width")]
-    fn set_width(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "bg-color")]
-    fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "border")]
-    fn connect_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "caption")]
-    fn connect_caption_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cell-padding")]
-    fn connect_cell_padding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cell-spacing")]
-    fn connect_cell_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rows")]
-    fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rules")]
-    fn connect_rules_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "summary")]
-    fn connect_summary_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "t-bodies")]
-    fn connect_t_bodies_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "t-foot")]
-    fn connect_t_foot_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "t-head")]
-    fn connect_t_head_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
-    #[allow(deprecated)]
     fn create_caption(&self) -> Option<DOMHTMLElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_create_caption(
@@ -252,7 +45,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_create_t_foot")]
     fn create_t_foot(&self) -> Option<DOMHTMLElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_create_t_foot(
@@ -261,7 +56,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_create_t_head")]
     fn create_t_head(&self) -> Option<DOMHTMLElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_create_t_head(
@@ -270,14 +67,18 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_delete_caption")]
     fn delete_caption(&self) {
         unsafe {
             ffi::webkit_dom_html_table_element_delete_caption(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_delete_row")]
     fn delete_row(&self, index: libc::c_long) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -294,21 +95,28 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_delete_t_foot")]
     fn delete_t_foot(&self) {
         unsafe {
             ffi::webkit_dom_html_table_element_delete_t_foot(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_delete_t_head")]
     fn delete_t_head(&self) {
         unsafe {
             ffi::webkit_dom_html_table_element_delete_t_head(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_align")]
+    #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_align(
@@ -317,7 +125,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_bg_color")]
+    #[doc(alias = "get_bg_color")]
     fn bg_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_bg_color(
@@ -326,7 +137,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_border")]
+    #[doc(alias = "get_border")]
     fn border(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_border(
@@ -335,7 +149,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_caption")]
+    #[doc(alias = "get_caption")]
     fn caption(&self) -> Option<DOMHTMLTableCaptionElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_get_caption(
@@ -344,7 +161,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_cell_padding")]
+    #[doc(alias = "get_cell_padding")]
     fn cell_padding(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_cell_padding(
@@ -353,7 +173,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_cell_spacing")]
+    #[doc(alias = "get_cell_spacing")]
     fn cell_spacing(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_cell_spacing(
@@ -362,7 +185,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_rows")]
+    #[doc(alias = "get_rows")]
     fn rows(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_rows(
@@ -371,7 +197,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_rules")]
+    #[doc(alias = "get_rules")]
     fn rules(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_rules(
@@ -380,7 +209,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_summary")]
+    #[doc(alias = "get_summary")]
     fn summary(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_summary(
@@ -389,7 +221,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_t_bodies")]
+    #[doc(alias = "get_t_bodies")]
     fn t_bodies(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_t_bodies(
@@ -398,7 +233,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_t_foot")]
+    #[doc(alias = "get_t_foot")]
     fn t_foot(&self) -> Option<DOMHTMLTableSectionElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_get_t_foot(
@@ -407,7 +245,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_t_head")]
+    #[doc(alias = "get_t_head")]
     fn t_head(&self) -> Option<DOMHTMLTableSectionElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_table_element_get_t_head(
@@ -416,7 +257,10 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_element_get_width(
@@ -425,7 +269,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_insert_row")]
     fn insert_row(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -442,7 +288,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_align(
@@ -452,7 +300,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_bg_color")]
     fn set_bg_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_bg_color(
@@ -462,7 +312,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_border")]
     fn set_border(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_border(
@@ -472,7 +324,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_caption")]
     fn set_caption(&self, value: &impl IsA<DOMHTMLTableCaptionElement>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -489,7 +343,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_cell_padding")]
     fn set_cell_padding(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_cell_padding(
@@ -499,7 +355,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_cell_spacing")]
     fn set_cell_spacing(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_cell_spacing(
@@ -509,7 +367,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_rules")]
     fn set_rules(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_rules(
@@ -519,7 +379,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_summary")]
     fn set_summary(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_summary(
@@ -529,7 +391,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_t_foot")]
     fn set_t_foot(&self, value: &impl IsA<DOMHTMLTableSectionElement>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -546,7 +410,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_t_head")]
     fn set_t_head(&self, value: &impl IsA<DOMHTMLTableSectionElement>) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -563,7 +429,9 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_element_set_width")]
     fn set_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_element_set_width(
@@ -573,6 +441,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -598,6 +467,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "bg-color")]
     fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bg_color_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -623,6 +493,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "border")]
     fn connect_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_border_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -648,6 +519,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "caption")]
     fn connect_caption_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_caption_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -673,6 +545,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "cell-padding")]
     fn connect_cell_padding_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_padding_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -698,6 +571,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "cell-spacing")]
     fn connect_cell_spacing_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cell_spacing_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -723,6 +597,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "rows")]
     fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rows_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -748,6 +623,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "rules")]
     fn connect_rules_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rules_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -773,6 +649,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "summary")]
     fn connect_summary_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_summary_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -798,6 +675,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "t-bodies")]
     fn connect_t_bodies_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_t_bodies_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -823,6 +701,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "t-foot")]
     fn connect_t_foot_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_t_foot_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -848,6 +727,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "t-head")]
     fn connect_t_head_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_t_head_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -873,6 +753,7 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLTableElement>,
@@ -898,6 +779,8 @@ impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLTableElement>> DOMHTMLTableElementExt for O {}
 
 impl fmt::Display for DOMHTMLTableElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,66 +25,16 @@ impl DOMHTMLMetaElement {
     pub const NONE: Option<&'static DOMHTMLMetaElement> = None;
 }
 
-pub trait DOMHTMLMetaElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLMetaElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLMetaElementExt: IsA<DOMHTMLMetaElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_meta_element_get_content")]
     #[doc(alias = "get_content")]
-    fn content(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_get_http_equiv")]
-    #[doc(alias = "get_http_equiv")]
-    fn http_equiv(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_get_scheme")]
-    #[doc(alias = "get_scheme")]
-    fn scheme(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_set_content")]
-    fn set_content(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_set_http_equiv")]
-    fn set_http_equiv(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_meta_element_set_scheme")]
-    fn set_scheme(&self, value: &str);
-
-    #[doc(alias = "content")]
-    fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "http-equiv")]
-    fn connect_http_equiv_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scheme")]
-    fn connect_scheme_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
-    #[allow(deprecated)]
     fn content(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_content(
@@ -93,7 +43,10 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_get_http_equiv")]
+    #[doc(alias = "get_http_equiv")]
     fn http_equiv(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_http_equiv(
@@ -102,7 +55,10 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_name(
@@ -111,7 +67,10 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_get_scheme")]
+    #[doc(alias = "get_scheme")]
     fn scheme(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_meta_element_get_scheme(
@@ -120,7 +79,9 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_set_content")]
     fn set_content(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_content(
@@ -130,7 +91,9 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_set_http_equiv")]
     fn set_http_equiv(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_http_equiv(
@@ -140,7 +103,9 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_name(
@@ -150,7 +115,9 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_meta_element_set_scheme")]
     fn set_scheme(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_meta_element_set_scheme(
@@ -160,6 +127,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[doc(alias = "content")]
     fn connect_content_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_trampoline<
             P: IsA<DOMHTMLMetaElement>,
@@ -185,6 +153,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[doc(alias = "http-equiv")]
     fn connect_http_equiv_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_http_equiv_trampoline<
             P: IsA<DOMHTMLMetaElement>,
@@ -210,6 +179,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLMetaElement>,
@@ -235,6 +205,7 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 
+    #[doc(alias = "scheme")]
     fn connect_scheme_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scheme_trampoline<
             P: IsA<DOMHTMLMetaElement>,
@@ -260,6 +231,8 @@ impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLMetaElement>> DOMHTMLMetaElementExt for O {}
 
 impl fmt::Display for DOMHTMLMetaElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

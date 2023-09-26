@@ -25,29 +25,23 @@ impl DOMNodeList {
     pub const NONE: Option<&'static DOMNodeList> = None;
 }
 
-pub trait DOMNodeListExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMNodeList>> Sealed for T {}
+}
+
+pub trait DOMNodeListExt: IsA<DOMNodeList> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_node_list_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_list_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMNode>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMNodeList>> DOMNodeListExt for O {
-    #[allow(deprecated)]
     fn length(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_node_list_get_length(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_list_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_node_list_item(
@@ -57,6 +51,7 @@ impl<O: IsA<DOMNodeList>> DOMNodeListExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<P: IsA<DOMNodeList>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMNodeList,
@@ -79,6 +74,8 @@ impl<O: IsA<DOMNodeList>> DOMNodeListExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMNodeList>> DOMNodeListExt for O {}
 
 impl fmt::Display for DOMNodeList {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,19 +25,16 @@ impl DOMFile {
     pub const NONE: Option<&'static DOMFile> = None;
 }
 
-pub trait DOMFileExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMFile>> Sealed for T {}
+}
+
+pub trait DOMFileExt: IsA<DOMFile> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_file_get_name")]
     #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMFile>> DOMFileExt for O {
-    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_file_get_name(
@@ -46,6 +43,7 @@ impl<O: IsA<DOMFile>> DOMFileExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<P: IsA<DOMFile>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMFile,
@@ -68,6 +66,8 @@ impl<O: IsA<DOMFile>> DOMFileExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMFile>> DOMFileExt for O {}
 
 impl fmt::Display for DOMFile {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -30,69 +30,16 @@ impl UserContentFilterStore {
     }
 }
 
-pub trait UserContentFilterStoreExt: 'static {
-    #[doc(alias = "webkit_user_content_filter_store_get_path")]
-    #[doc(alias = "get_path")]
-    fn path(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_user_content_filter_store_load")]
-    fn load<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
-        &self,
-        identifier: &str,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    fn load_future(
-        &self,
-        identifier: &str,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserContentFilter, glib::Error>> + 'static>>;
-
-    #[doc(alias = "webkit_user_content_filter_store_remove")]
-    fn remove<P: FnOnce(Result<(), glib::Error>) + 'static>(
-        &self,
-        identifier: &str,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    fn remove_future(
-        &self,
-        identifier: &str,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>>;
-
-    #[doc(alias = "webkit_user_content_filter_store_save")]
-    fn save<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
-        &self,
-        identifier: &str,
-        source: &glib::Bytes,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    fn save_future(
-        &self,
-        identifier: &str,
-        source: &glib::Bytes,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserContentFilter, glib::Error>> + 'static>>;
-
-    #[doc(alias = "webkit_user_content_filter_store_save_from_file")]
-    fn save_from_file<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
-        &self,
-        identifier: &str,
-        file: &impl IsA<gio::File>,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    fn save_from_file_future(
-        &self,
-        identifier: &str,
-        file: &(impl IsA<gio::File> + Clone + 'static),
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<UserContentFilter, glib::Error>> + 'static>>;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::UserContentFilterStore>> Sealed for T {}
 }
 
-impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
+pub trait UserContentFilterStoreExt:
+    IsA<UserContentFilterStore> + sealed::Sealed + 'static
+{
+    #[doc(alias = "webkit_user_content_filter_store_get_path")]
+    #[doc(alias = "get_path")]
     fn path(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_user_content_filter_store_get_path(
@@ -101,6 +48,7 @@ impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
         }
     }
 
+    #[doc(alias = "webkit_user_content_filter_store_load")]
     fn load<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
         &self,
         identifier: &str,
@@ -167,6 +115,7 @@ impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
         }))
     }
 
+    #[doc(alias = "webkit_user_content_filter_store_remove")]
     fn remove<P: FnOnce(Result<(), glib::Error>) + 'static>(
         &self,
         identifier: &str,
@@ -230,6 +179,7 @@ impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
         }))
     }
 
+    #[doc(alias = "webkit_user_content_filter_store_save")]
     fn save<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
         &self,
         identifier: &str,
@@ -300,6 +250,7 @@ impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
         }))
     }
 
+    #[doc(alias = "webkit_user_content_filter_store_save_from_file")]
     fn save_from_file<P: FnOnce(Result<UserContentFilter, glib::Error>) + 'static>(
         &self,
         identifier: &str,
@@ -370,6 +321,8 @@ impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {
         }))
     }
 }
+
+impl<O: IsA<UserContentFilterStore>> UserContentFilterStoreExt for O {}
 
 impl fmt::Display for UserContentFilterStore {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -21,33 +21,32 @@ impl DOMHTMLMarqueeElement {
     pub const NONE: Option<&'static DOMHTMLMarqueeElement> = None;
 }
 
-pub trait DOMHTMLMarqueeElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLMarqueeElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLMarqueeElementExt: IsA<DOMHTMLMarqueeElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_marquee_element_start")]
-    fn start(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_marquee_element_stop")]
-    fn stop(&self);
-}
-
-impl<O: IsA<DOMHTMLMarqueeElement>> DOMHTMLMarqueeElementExt for O {
-    #[allow(deprecated)]
     fn start(&self) {
         unsafe {
             ffi::webkit_dom_html_marquee_element_start(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_marquee_element_stop")]
     fn stop(&self) {
         unsafe {
             ffi::webkit_dom_html_marquee_element_stop(self.as_ref().to_glib_none().0);
         }
     }
 }
+
+impl<O: IsA<DOMHTMLMarqueeElement>> DOMHTMLMarqueeElementExt for O {}
 
 impl fmt::Display for DOMHTMLMarqueeElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

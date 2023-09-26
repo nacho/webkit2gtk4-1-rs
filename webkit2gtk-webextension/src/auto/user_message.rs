@@ -53,24 +53,14 @@ impl UserMessage {
     }
 }
 
-pub trait UserMessageExt: 'static {
-    #[doc(alias = "webkit_user_message_get_fd_list")]
-    #[doc(alias = "get_fd_list")]
-    fn fd_list(&self) -> Option<gio::UnixFDList>;
-
-    #[doc(alias = "webkit_user_message_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_user_message_get_parameters")]
-    #[doc(alias = "get_parameters")]
-    fn parameters(&self) -> Option<glib::Variant>;
-
-    #[doc(alias = "webkit_user_message_send_reply")]
-    fn send_reply(&self, reply: &impl IsA<UserMessage>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::UserMessage>> Sealed for T {}
 }
 
-impl<O: IsA<UserMessage>> UserMessageExt for O {
+pub trait UserMessageExt: IsA<UserMessage> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_user_message_get_fd_list")]
+    #[doc(alias = "get_fd_list")]
     fn fd_list(&self) -> Option<gio::UnixFDList> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_fd_list(
@@ -79,6 +69,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[doc(alias = "webkit_user_message_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_name(
@@ -87,6 +79,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[doc(alias = "webkit_user_message_get_parameters")]
+    #[doc(alias = "get_parameters")]
     fn parameters(&self) -> Option<glib::Variant> {
         unsafe {
             from_glib_none(ffi::webkit_user_message_get_parameters(
@@ -95,6 +89,7 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 
+    #[doc(alias = "webkit_user_message_send_reply")]
     fn send_reply(&self, reply: &impl IsA<UserMessage>) {
         unsafe {
             ffi::webkit_user_message_send_reply(
@@ -104,6 +99,8 @@ impl<O: IsA<UserMessage>> UserMessageExt for O {
         }
     }
 }
+
+impl<O: IsA<UserMessage>> UserMessageExt for O {}
 
 impl fmt::Display for UserMessage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

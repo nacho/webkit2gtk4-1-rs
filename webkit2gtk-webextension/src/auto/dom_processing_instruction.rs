@@ -25,28 +25,18 @@ impl DOMProcessingInstruction {
     pub const NONE: Option<&'static DOMProcessingInstruction> = None;
 }
 
-pub trait DOMProcessingInstructionExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMProcessingInstruction>> Sealed for T {}
+}
+
+pub trait DOMProcessingInstructionExt:
+    IsA<DOMProcessingInstruction> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_processing_instruction_get_sheet")]
     #[doc(alias = "get_sheet")]
-    fn sheet(&self) -> Option<DOMStyleSheet>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_processing_instruction_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "sheet")]
-    fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
-    #[allow(deprecated)]
     fn sheet(&self) -> Option<DOMStyleSheet> {
         unsafe {
             from_glib_full(ffi::webkit_dom_processing_instruction_get_sheet(
@@ -55,7 +45,10 @@ impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_processing_instruction_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_processing_instruction_get_target(
@@ -64,6 +57,7 @@ impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
         }
     }
 
+    #[doc(alias = "sheet")]
     fn connect_sheet_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_sheet_trampoline<
             P: IsA<DOMProcessingInstruction>,
@@ -89,6 +83,7 @@ impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<
             P: IsA<DOMProcessingInstruction>,
@@ -114,6 +109,8 @@ impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMProcessingInstruction>> DOMProcessingInstructionExt for O {}
 
 impl fmt::Display for DOMProcessingInstruction {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

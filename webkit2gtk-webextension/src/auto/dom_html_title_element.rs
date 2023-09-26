@@ -25,24 +25,16 @@ impl DOMHTMLTitleElement {
     pub const NONE: Option<&'static DOMHTMLTitleElement> = None;
 }
 
-pub trait DOMHTMLTitleElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLTitleElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLTitleElementExt: IsA<DOMHTMLTitleElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_title_element_get_text")]
     #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_title_element_set_text")]
-    fn set_text(&self, value: &str);
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLTitleElement>> DOMHTMLTitleElementExt for O {
-    #[allow(deprecated)]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_title_element_get_text(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLTitleElement>> DOMHTMLTitleElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_title_element_set_text")]
     fn set_text(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_title_element_set_text(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLTitleElement>> DOMHTMLTitleElementExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<DOMHTMLTitleElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLTitleElement>> DOMHTMLTitleElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLTitleElement>> DOMHTMLTitleElementExt for O {}
 
 impl fmt::Display for DOMHTMLTitleElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,24 +25,16 @@ impl DOMHTMLHtmlElement {
     pub const NONE: Option<&'static DOMHTMLHtmlElement> = None;
 }
 
-pub trait DOMHTMLHtmlElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLHtmlElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLHtmlElementExt: IsA<DOMHTMLHtmlElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_html_element_get_version")]
     #[doc(alias = "get_version")]
-    fn version(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_html_element_set_version")]
-    fn set_version(&self, value: &str);
-
-    #[doc(alias = "version")]
-    fn connect_version_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLHtmlElement>> DOMHTMLHtmlElementExt for O {
-    #[allow(deprecated)]
     fn version(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_html_element_get_version(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLHtmlElement>> DOMHTMLHtmlElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_html_element_set_version")]
     fn set_version(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_html_element_set_version(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLHtmlElement>> DOMHTMLHtmlElementExt for O {
         }
     }
 
+    #[doc(alias = "version")]
     fn connect_version_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_version_trampoline<
             P: IsA<DOMHTMLHtmlElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLHtmlElement>> DOMHTMLHtmlElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLHtmlElement>> DOMHTMLHtmlElementExt for O {}
 
 impl fmt::Display for DOMHTMLHtmlElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -3,8 +3,8 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_30", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+#[cfg(feature = "v2_30")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
 use crate::WebsitePolicies;
 use glib::{prelude::*, translate::*};
 use std::fmt;
@@ -22,44 +22,37 @@ impl PolicyDecision {
     pub const NONE: Option<&'static PolicyDecision> = None;
 }
 
-pub trait PolicyDecisionExt: 'static {
-    #[doc(alias = "webkit_policy_decision_download")]
-    fn download(&self);
-
-    #[doc(alias = "webkit_policy_decision_ignore")]
-    fn ignore(&self);
-
-    #[doc(alias = "webkit_policy_decision_use")]
-    #[doc(alias = "use")]
-    fn use_(&self);
-
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
-    #[doc(alias = "webkit_policy_decision_use_with_policies")]
-    fn use_with_policies(&self, policies: &impl IsA<WebsitePolicies>);
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::PolicyDecision>> Sealed for T {}
 }
 
-impl<O: IsA<PolicyDecision>> PolicyDecisionExt for O {
+pub trait PolicyDecisionExt: IsA<PolicyDecision> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_policy_decision_download")]
     fn download(&self) {
         unsafe {
             ffi::webkit_policy_decision_download(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_policy_decision_ignore")]
     fn ignore(&self) {
         unsafe {
             ffi::webkit_policy_decision_ignore(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_policy_decision_use")]
+    #[doc(alias = "use")]
     fn use_(&self) {
         unsafe {
             ffi::webkit_policy_decision_use(self.as_ref().to_glib_none().0);
         }
     }
 
-    #[cfg(any(feature = "v2_30", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_30")))]
+    #[cfg(feature = "v2_30")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_30")))]
+    #[doc(alias = "webkit_policy_decision_use_with_policies")]
     fn use_with_policies(&self, policies: &impl IsA<WebsitePolicies>) {
         unsafe {
             ffi::webkit_policy_decision_use_with_policies(
@@ -69,6 +62,8 @@ impl<O: IsA<PolicyDecision>> PolicyDecisionExt for O {
         }
     }
 }
+
+impl<O: IsA<PolicyDecision>> PolicyDecisionExt for O {}
 
 impl fmt::Display for PolicyDecision {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

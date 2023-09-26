@@ -25,86 +25,25 @@ impl DOMNodeIterator {
     pub const NONE: Option<&'static DOMNodeIterator> = None;
 }
 
-pub trait DOMNodeIteratorExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMNodeIterator>> Sealed for T {}
+}
+
+pub trait DOMNodeIteratorExt: IsA<DOMNodeIterator> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_node_iterator_detach")]
-    fn detach(&self);
-
-    #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_expand_entity_references")]
-    #[doc(alias = "get_expand_entity_references")]
-    fn expands_entity_references(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_filter")]
-    #[doc(alias = "get_filter")]
-    fn filter(&self) -> Option<DOMNodeFilter>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_pointer_before_reference_node")]
-    #[doc(alias = "get_pointer_before_reference_node")]
-    fn is_pointer_before_reference_node(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_reference_node")]
-    #[doc(alias = "get_reference_node")]
-    fn reference_node(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_root")]
-    #[doc(alias = "get_root")]
-    fn root(&self) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_get_what_to_show")]
-    #[doc(alias = "get_what_to_show")]
-    fn what_to_show(&self) -> libc::c_ulong;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_next_node")]
-    fn next_node(&self) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_node_iterator_previous_node")]
-    fn previous_node(&self) -> Result<DOMNode, glib::Error>;
-
-    #[doc(alias = "filter")]
-    fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "pointer-before-reference-node")]
-    fn connect_pointer_before_reference_node_notify<F: Fn(&Self) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
-
-    #[doc(alias = "reference-node")]
-    fn connect_reference_node_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "root")]
-    fn connect_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "what-to-show")]
-    fn connect_what_to_show_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
-    #[allow(deprecated)]
     fn detach(&self) {
         unsafe {
             ffi::webkit_dom_node_iterator_detach(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_12", deprecated = "Since 2.12")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_expand_entity_references")]
+    #[doc(alias = "get_expand_entity_references")]
     fn expands_entity_references(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_node_iterator_get_expand_entity_references(
@@ -113,7 +52,10 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_filter")]
+    #[doc(alias = "get_filter")]
     fn filter(&self) -> Option<DOMNodeFilter> {
         unsafe {
             from_glib_full(ffi::webkit_dom_node_iterator_get_filter(
@@ -122,7 +64,10 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_pointer_before_reference_node")]
+    #[doc(alias = "get_pointer_before_reference_node")]
     fn is_pointer_before_reference_node(&self) -> bool {
         unsafe {
             from_glib(
@@ -133,7 +78,10 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_reference_node")]
+    #[doc(alias = "get_reference_node")]
     fn reference_node(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_node_iterator_get_reference_node(
@@ -142,7 +90,10 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_root")]
+    #[doc(alias = "get_root")]
     fn root(&self) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_node_iterator_get_root(
@@ -151,12 +102,17 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_get_what_to_show")]
+    #[doc(alias = "get_what_to_show")]
     fn what_to_show(&self) -> libc::c_ulong {
         unsafe { ffi::webkit_dom_node_iterator_get_what_to_show(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_next_node")]
     fn next_node(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -170,7 +126,9 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_node_iterator_previous_node")]
     fn previous_node(&self) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -186,6 +144,7 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<
             P: IsA<DOMNodeIterator>,
@@ -211,6 +170,7 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[doc(alias = "pointer-before-reference-node")]
     fn connect_pointer_before_reference_node_notify<F: Fn(&Self) + 'static>(
         &self,
         f: F,
@@ -239,6 +199,7 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[doc(alias = "reference-node")]
     fn connect_reference_node_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_reference_node_trampoline<
             P: IsA<DOMNodeIterator>,
@@ -264,6 +225,7 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[doc(alias = "root")]
     fn connect_root_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_root_trampoline<
             P: IsA<DOMNodeIterator>,
@@ -289,6 +251,7 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 
+    #[doc(alias = "what-to-show")]
     fn connect_what_to_show_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_what_to_show_trampoline<
             P: IsA<DOMNodeIterator>,
@@ -314,6 +277,8 @@ impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMNodeIterator>> DOMNodeIteratorExt for O {}
 
 impl fmt::Display for DOMNodeIterator {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,72 +25,16 @@ impl DOMHTMLParamElement {
     pub const NONE: Option<&'static DOMHTMLParamElement> = None;
 }
 
-pub trait DOMHTMLParamElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLParamElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLParamElementExt: IsA<DOMHTMLParamElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_param_element_get_name")]
     #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_get_value_type")]
-    #[doc(alias = "get_value_type")]
-    fn value_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_set_value")]
-    fn set_value(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_param_element_set_value_type")]
-    fn set_value_type(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value-type")]
-    fn connect_value_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
-    #[allow(deprecated)]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_param_element_get_name(
@@ -99,7 +43,10 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_param_element_get_type_attr(
@@ -108,7 +55,10 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_param_element_get_value(
@@ -117,7 +67,10 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_get_value_type")]
+    #[doc(alias = "get_value_type")]
     fn value_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_param_element_get_value_type(
@@ -126,7 +79,9 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_param_element_set_name(
@@ -136,7 +91,9 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_param_element_set_type_attr(
@@ -146,7 +103,9 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_set_value")]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_param_element_set_value(
@@ -156,7 +115,9 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_param_element_set_value_type")]
     fn set_value_type(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_param_element_set_value_type(
@@ -166,14 +127,17 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLParamElement>,
@@ -199,6 +163,7 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLParamElement>,
@@ -224,6 +189,7 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLParamElement>,
@@ -249,6 +215,7 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 
+    #[doc(alias = "value-type")]
     fn connect_value_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_type_trampoline<
             P: IsA<DOMHTMLParamElement>,
@@ -274,6 +241,8 @@ impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLParamElement>> DOMHTMLParamElementExt for O {}
 
 impl fmt::Display for DOMHTMLParamElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

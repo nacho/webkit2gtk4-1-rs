@@ -25,64 +25,16 @@ impl DOMDocumentType {
     pub const NONE: Option<&'static DOMDocumentType> = None;
 }
 
-pub trait DOMDocumentTypeExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMDocumentType>> Sealed for T {}
+}
+
+pub trait DOMDocumentTypeExt: IsA<DOMDocumentType> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_document_type_get_entities")]
     #[doc(alias = "get_entities")]
-    fn entities(&self) -> Option<DOMNamedNodeMap>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_type_get_internal_subset")]
-    #[doc(alias = "get_internal_subset")]
-    fn internal_subset(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_type_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_type_get_notations")]
-    #[doc(alias = "get_notations")]
-    fn notations(&self) -> Option<DOMNamedNodeMap>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_type_get_public_id")]
-    #[doc(alias = "get_public_id")]
-    fn public_id(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_document_type_get_system_id")]
-    #[doc(alias = "get_system_id")]
-    fn system_id(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "entities")]
-    fn connect_entities_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "internal-subset")]
-    fn connect_internal_subset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "notations")]
-    fn connect_notations_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "public-id")]
-    fn connect_public_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "system-id")]
-    fn connect_system_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
-    #[allow(deprecated)]
     fn entities(&self) -> Option<DOMNamedNodeMap> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_entities(
@@ -91,7 +43,10 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_type_get_internal_subset")]
+    #[doc(alias = "get_internal_subset")]
     fn internal_subset(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_internal_subset(
@@ -100,7 +55,10 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_type_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_name(
@@ -109,7 +67,10 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_type_get_notations")]
+    #[doc(alias = "get_notations")]
     fn notations(&self) -> Option<DOMNamedNodeMap> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_notations(
@@ -118,7 +79,10 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_type_get_public_id")]
+    #[doc(alias = "get_public_id")]
     fn public_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_public_id(
@@ -127,7 +91,10 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_document_type_get_system_id")]
+    #[doc(alias = "get_system_id")]
     fn system_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_document_type_get_system_id(
@@ -136,6 +103,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "entities")]
     fn connect_entities_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_entities_trampoline<
             P: IsA<DOMDocumentType>,
@@ -161,6 +129,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "internal-subset")]
     fn connect_internal_subset_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_internal_subset_trampoline<
             P: IsA<DOMDocumentType>,
@@ -186,6 +155,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMDocumentType>,
@@ -211,6 +181,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "notations")]
     fn connect_notations_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_notations_trampoline<
             P: IsA<DOMDocumentType>,
@@ -236,6 +207,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "public-id")]
     fn connect_public_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_public_id_trampoline<
             P: IsA<DOMDocumentType>,
@@ -261,6 +233,7 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 
+    #[doc(alias = "system-id")]
     fn connect_system_id_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_system_id_trampoline<
             P: IsA<DOMDocumentType>,
@@ -286,6 +259,8 @@ impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMDocumentType>> DOMDocumentTypeExt for O {}
 
 impl fmt::Display for DOMDocumentType {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,24 +25,16 @@ impl DOMHTMLHeadingElement {
     pub const NONE: Option<&'static DOMHTMLHeadingElement> = None;
 }
 
-pub trait DOMHTMLHeadingElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLHeadingElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLHeadingElementExt: IsA<DOMHTMLHeadingElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_heading_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_heading_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLHeadingElement>> DOMHTMLHeadingElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_heading_element_get_align(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLHeadingElement>> DOMHTMLHeadingElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_heading_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_heading_element_set_align(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLHeadingElement>> DOMHTMLHeadingElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLHeadingElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLHeadingElement>> DOMHTMLHeadingElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLHeadingElement>> DOMHTMLHeadingElementExt for O {}
 
 impl fmt::Display for DOMHTMLHeadingElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

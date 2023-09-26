@@ -20,15 +20,15 @@ impl DOMXPathNSResolver {
     pub const NONE: Option<&'static DOMXPathNSResolver> = None;
 }
 
-pub trait DOMXPathNSResolverExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMXPathNSResolver>> Sealed for T {}
+}
+
+pub trait DOMXPathNSResolverExt: IsA<DOMXPathNSResolver> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_xpath_ns_resolver_lookup_namespace_uri")]
-    fn lookup_namespace_uri(&self, prefix: &str) -> Option<glib::GString>;
-}
-
-impl<O: IsA<DOMXPathNSResolver>> DOMXPathNSResolverExt for O {
-    #[allow(deprecated)]
     fn lookup_namespace_uri(&self, prefix: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_xpath_ns_resolver_lookup_namespace_uri(
@@ -38,6 +38,8 @@ impl<O: IsA<DOMXPathNSResolver>> DOMXPathNSResolverExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMXPathNSResolver>> DOMXPathNSResolverExt for O {}
 
 impl fmt::Display for DOMXPathNSResolver {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

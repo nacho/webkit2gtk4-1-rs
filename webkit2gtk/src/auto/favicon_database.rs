@@ -23,39 +23,21 @@ impl FaviconDatabase {
     pub const NONE: Option<&'static FaviconDatabase> = None;
 }
 
-pub trait FaviconDatabaseExt: 'static {
-    #[doc(alias = "webkit_favicon_database_clear")]
-    fn clear(&self);
-
-    #[doc(alias = "webkit_favicon_database_get_favicon")]
-    #[doc(alias = "get_favicon")]
-    fn favicon<P: FnOnce(Result<cairo::Surface, glib::Error>) + 'static>(
-        &self,
-        page_uri: &str,
-        cancellable: Option<&impl IsA<gio::Cancellable>>,
-        callback: P,
-    );
-
-    fn favicon_future(
-        &self,
-        page_uri: &str,
-    ) -> Pin<Box_<dyn std::future::Future<Output = Result<cairo::Surface, glib::Error>> + 'static>>;
-
-    #[doc(alias = "webkit_favicon_database_get_favicon_uri")]
-    #[doc(alias = "get_favicon_uri")]
-    fn favicon_uri(&self, page_uri: &str) -> Option<glib::GString>;
-
-    #[doc(alias = "favicon-changed")]
-    fn connect_favicon_changed<F: Fn(&Self, &str, &str) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FaviconDatabase>> Sealed for T {}
 }
 
-impl<O: IsA<FaviconDatabase>> FaviconDatabaseExt for O {
+pub trait FaviconDatabaseExt: IsA<FaviconDatabase> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_favicon_database_clear")]
     fn clear(&self) {
         unsafe {
             ffi::webkit_favicon_database_clear(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_favicon_database_get_favicon")]
+    #[doc(alias = "get_favicon")]
     fn favicon<P: FnOnce(Result<cairo::Surface, glib::Error>) + 'static>(
         &self,
         page_uri: &str,
@@ -122,6 +104,8 @@ impl<O: IsA<FaviconDatabase>> FaviconDatabaseExt for O {
         }))
     }
 
+    #[doc(alias = "webkit_favicon_database_get_favicon_uri")]
+    #[doc(alias = "get_favicon_uri")]
     fn favicon_uri(&self, page_uri: &str) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_favicon_database_get_favicon_uri(
@@ -131,6 +115,7 @@ impl<O: IsA<FaviconDatabase>> FaviconDatabaseExt for O {
         }
     }
 
+    #[doc(alias = "favicon-changed")]
     fn connect_favicon_changed<F: Fn(&Self, &str, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn favicon_changed_trampoline<
             P: IsA<FaviconDatabase>,
@@ -161,6 +146,8 @@ impl<O: IsA<FaviconDatabase>> FaviconDatabaseExt for O {
         }
     }
 }
+
+impl<O: IsA<FaviconDatabase>> FaviconDatabaseExt for O {}
 
 impl fmt::Display for FaviconDatabase {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

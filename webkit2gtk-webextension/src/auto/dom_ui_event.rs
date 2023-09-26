@@ -25,129 +25,72 @@ impl DOMUIEvent {
     pub const NONE: Option<&'static DOMUIEvent> = None;
 }
 
-pub trait DOMUIEventExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMUIEvent>> Sealed for T {}
+}
+
+pub trait DOMUIEventExt: IsA<DOMUIEvent> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_char_code")]
     #[doc(alias = "get_char_code")]
-    fn char_code(&self) -> libc::c_long;
+    fn char_code(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_char_code(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_detail")]
     #[doc(alias = "get_detail")]
-    fn detail(&self) -> libc::c_long;
+    fn detail(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_detail(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_key_code")]
     #[doc(alias = "get_key_code")]
-    fn key_code(&self) -> libc::c_long;
+    fn key_code(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_key_code(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_layer_x")]
     #[doc(alias = "get_layer_x")]
-    fn layer_x(&self) -> libc::c_long;
+    fn layer_x(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_layer_x(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_layer_y")]
     #[doc(alias = "get_layer_y")]
-    fn layer_y(&self) -> libc::c_long;
+    fn layer_y(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_layer_y(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_page_x")]
     #[doc(alias = "get_page_x")]
-    fn page_x(&self) -> libc::c_long;
+    fn page_x(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_page_x(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_page_y")]
     #[doc(alias = "get_page_y")]
-    fn page_y(&self) -> libc::c_long;
+    fn page_y(&self) -> libc::c_long {
+        unsafe { ffi::webkit_dom_ui_event_get_page_y(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_ui_event_get_view")]
     #[doc(alias = "get_view")]
-    fn view(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_ui_event_init_ui_event")]
-    fn init_ui_event(
-        &self,
-        type_: &str,
-        canBubble: bool,
-        cancelable: bool,
-        view: &impl IsA<DOMDOMWindow>,
-        detail: libc::c_long,
-    );
-
-    #[doc(alias = "char-code")]
-    fn connect_char_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "detail")]
-    fn connect_detail_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "key-code")]
-    fn connect_key_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "layer-x")]
-    fn connect_layer_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "layer-y")]
-    fn connect_layer_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "page-x")]
-    fn connect_page_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "page-y")]
-    fn connect_page_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "view")]
-    fn connect_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
-    #[allow(deprecated)]
-    fn char_code(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_char_code(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn detail(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_detail(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn key_code(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_key_code(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn layer_x(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_layer_x(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn layer_y(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_layer_y(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn page_x(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_page_x(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
-    fn page_y(&self) -> libc::c_long {
-        unsafe { ffi::webkit_dom_ui_event_get_page_y(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
     fn view(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_ui_event_get_view(
@@ -156,7 +99,9 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_ui_event_init_ui_event")]
     fn init_ui_event(
         &self,
         type_: &str,
@@ -177,6 +122,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "char-code")]
     fn connect_char_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_char_code_trampoline<
             P: IsA<DOMUIEvent>,
@@ -202,6 +148,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "detail")]
     fn connect_detail_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_detail_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -224,6 +171,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "key-code")]
     fn connect_key_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_key_code_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -246,6 +194,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "layer-x")]
     fn connect_layer_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_layer_x_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -268,6 +217,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "layer-y")]
     fn connect_layer_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_layer_y_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -290,6 +240,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "page-x")]
     fn connect_page_x_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_x_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -312,6 +263,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "page-y")]
     fn connect_page_y_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_page_y_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -334,6 +286,7 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 
+    #[doc(alias = "view")]
     fn connect_view_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_view_trampoline<P: IsA<DOMUIEvent>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMUIEvent,
@@ -356,6 +309,8 @@ impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMUIEvent>> DOMUIEventExt for O {}
 
 impl fmt::Display for DOMUIEvent {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

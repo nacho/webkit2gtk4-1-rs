@@ -25,33 +25,16 @@ impl DOMHTMLLabelElement {
     pub const NONE: Option<&'static DOMHTMLLabelElement> = None;
 }
 
-pub trait DOMHTMLLabelElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLLabelElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLLabelElementExt: IsA<DOMHTMLLabelElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_label_element_get_form")]
     #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_label_element_get_html_for")]
-    #[doc(alias = "get_html_for")]
-    fn html_for(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_label_element_set_html_for")]
-    fn set_html_for(&self, value: &str);
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "html-for")]
-    fn connect_html_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
-    #[allow(deprecated)]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_label_element_get_form(
@@ -60,7 +43,10 @@ impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_label_element_get_html_for")]
+    #[doc(alias = "get_html_for")]
     fn html_for(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_label_element_get_html_for(
@@ -69,7 +55,9 @@ impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_label_element_set_html_for")]
     fn set_html_for(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_label_element_set_html_for(
@@ -79,6 +67,7 @@ impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLLabelElement>,
@@ -104,6 +93,7 @@ impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
         }
     }
 
+    #[doc(alias = "html-for")]
     fn connect_html_for_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_html_for_trampoline<
             P: IsA<DOMHTMLLabelElement>,
@@ -129,6 +119,8 @@ impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLLabelElement>> DOMHTMLLabelElementExt for O {}
 
 impl fmt::Display for DOMHTMLLabelElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

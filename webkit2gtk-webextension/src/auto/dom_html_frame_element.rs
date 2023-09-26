@@ -27,158 +27,16 @@ impl DOMHTMLFrameElement {
     pub const NONE: Option<&'static DOMHTMLFrameElement> = None;
 }
 
-pub trait DOMHTMLFrameElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLFrameElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLFrameElementExt: IsA<DOMHTMLFrameElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_frame_element_get_content_document")]
     #[doc(alias = "get_content_document")]
-    fn content_document(&self) -> Option<DOMDocument>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_content_window")]
-    #[doc(alias = "get_content_window")]
-    fn content_window(&self) -> Option<DOMDOMWindow>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_frame_border")]
-    #[doc(alias = "get_frame_border")]
-    fn frame_border(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_long_desc")]
-    #[doc(alias = "get_long_desc")]
-    fn long_desc(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_margin_height")]
-    #[doc(alias = "get_margin_height")]
-    fn margin_height(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_margin_width")]
-    #[doc(alias = "get_margin_width")]
-    fn margin_width(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_no_resize")]
-    #[doc(alias = "get_no_resize")]
-    fn is_no_resize(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_scrolling")]
-    #[doc(alias = "get_scrolling")]
-    fn scrolling(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_src")]
-    #[doc(alias = "get_src")]
-    fn src(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_frame_border")]
-    fn set_frame_border(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_long_desc")]
-    fn set_long_desc(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_margin_height")]
-    fn set_margin_height(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_margin_width")]
-    fn set_margin_width(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_no_resize")]
-    fn set_no_resize(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_scrolling")]
-    fn set_scrolling(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_element_set_src")]
-    fn set_src(&self, value: &str);
-
-    #[doc(alias = "content-document")]
-    fn connect_content_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-window")]
-    fn connect_content_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "frame-border")]
-    fn connect_frame_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "long-desc")]
-    fn connect_long_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "margin-height")]
-    fn connect_margin_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "margin-width")]
-    fn connect_margin_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "no-resize")]
-    fn connect_no_resize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "scrolling")]
-    fn connect_scrolling_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "src")]
-    fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
-    #[allow(deprecated)]
     fn content_document(&self) -> Option<DOMDocument> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_frame_element_get_content_document(
@@ -187,7 +45,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_content_window")]
+    #[doc(alias = "get_content_window")]
     fn content_window(&self) -> Option<DOMDOMWindow> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_content_window(
@@ -196,7 +57,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_frame_border")]
+    #[doc(alias = "get_frame_border")]
     fn frame_border(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_frame_border(
@@ -205,12 +69,18 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_frame_element_get_height(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_long_desc")]
+    #[doc(alias = "get_long_desc")]
     fn long_desc(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_long_desc(
@@ -219,7 +89,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_margin_height")]
+    #[doc(alias = "get_margin_height")]
     fn margin_height(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_margin_height(
@@ -228,7 +101,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_margin_width")]
+    #[doc(alias = "get_margin_width")]
     fn margin_width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_margin_width(
@@ -237,7 +113,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_name(
@@ -246,7 +125,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_no_resize")]
+    #[doc(alias = "get_no_resize")]
     fn is_no_resize(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_frame_element_get_no_resize(
@@ -255,7 +137,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_scrolling")]
+    #[doc(alias = "get_scrolling")]
     fn scrolling(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_scrolling(
@@ -264,7 +149,10 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_src")]
+    #[doc(alias = "get_src")]
     fn src(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_element_get_src(
@@ -273,12 +161,17 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_frame_element_get_width(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_frame_border")]
     fn set_frame_border(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_frame_border(
@@ -288,7 +181,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_long_desc")]
     fn set_long_desc(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_long_desc(
@@ -298,7 +193,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_margin_height")]
     fn set_margin_height(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_margin_height(
@@ -308,7 +205,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_margin_width")]
     fn set_margin_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_margin_width(
@@ -318,7 +217,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_name(
@@ -328,7 +229,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_no_resize")]
     fn set_no_resize(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_no_resize(
@@ -338,7 +241,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_scrolling")]
     fn set_scrolling(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_scrolling(
@@ -348,7 +253,9 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_element_set_src")]
     fn set_src(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_element_set_src(
@@ -358,6 +265,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "content-document")]
     fn connect_content_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_document_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -383,6 +291,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "content-window")]
     fn connect_content_window_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_window_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -408,6 +317,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "frame-border")]
     fn connect_frame_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_frame_border_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -433,6 +343,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -458,6 +369,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "long-desc")]
     fn connect_long_desc_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_long_desc_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -483,6 +395,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "margin-height")]
     fn connect_margin_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_height_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -508,6 +421,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "margin-width")]
     fn connect_margin_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_margin_width_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -533,6 +447,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -558,6 +473,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "no-resize")]
     fn connect_no_resize_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_no_resize_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -583,6 +499,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "scrolling")]
     fn connect_scrolling_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_scrolling_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -608,6 +525,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "src")]
     fn connect_src_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_src_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -633,6 +551,7 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLFrameElement>,
@@ -658,6 +577,8 @@ impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLFrameElement>> DOMHTMLFrameElementExt for O {}
 
 impl fmt::Display for DOMHTMLFrameElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

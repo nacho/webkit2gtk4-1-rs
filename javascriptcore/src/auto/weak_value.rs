@@ -73,16 +73,14 @@ impl WeakValueBuilder {
     }
 }
 
-pub trait WeakValueExt: 'static {
-    #[doc(alias = "jsc_weak_value_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<Value>;
-
-    #[doc(alias = "cleared")]
-    fn connect_cleared<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WeakValue>> Sealed for T {}
 }
 
-impl<O: IsA<WeakValue>> WeakValueExt for O {
+pub trait WeakValueExt: IsA<WeakValue> + sealed::Sealed + 'static {
+    #[doc(alias = "jsc_weak_value_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<Value> {
         unsafe {
             from_glib_full(ffi::jsc_weak_value_get_value(
@@ -91,6 +89,7 @@ impl<O: IsA<WeakValue>> WeakValueExt for O {
         }
     }
 
+    #[doc(alias = "cleared")]
     fn connect_cleared<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn cleared_trampoline<P: IsA<WeakValue>, F: Fn(&P) + 'static>(
             this: *mut ffi::JSCWeakValue,
@@ -112,6 +111,8 @@ impl<O: IsA<WeakValue>> WeakValueExt for O {
         }
     }
 }
+
+impl<O: IsA<WeakValue>> WeakValueExt for O {}
 
 impl fmt::Display for WeakValue {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

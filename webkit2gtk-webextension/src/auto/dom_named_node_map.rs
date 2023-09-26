@@ -25,65 +25,24 @@ impl DOMNamedNodeMap {
     pub const NONE: Option<&'static DOMNamedNodeMap> = None;
 }
 
-pub trait DOMNamedNodeMapExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMNamedNodeMap>> Sealed for T {}
+}
+
+pub trait DOMNamedNodeMapExt: IsA<DOMNamedNodeMap> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_named_node_map_get_length")]
     #[doc(alias = "get_length")]
-    fn length(&self) -> libc::c_ulong;
+    fn length(&self) -> libc::c_ulong {
+        unsafe { ffi::webkit_dom_named_node_map_get_length(self.as_ref().to_glib_none().0) }
+    }
 
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_named_node_map_get_named_item")]
     #[doc(alias = "get_named_item")]
-    fn named_item(&self, name: &str) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_get_named_item_ns")]
-    #[doc(alias = "get_named_item_ns")]
-    fn named_item_ns(&self, namespaceURI: &str, localName: &str) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_item")]
-    fn item(&self, index: libc::c_ulong) -> Option<DOMNode>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_remove_named_item")]
-    fn remove_named_item(&self, name: &str) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_remove_named_item_ns")]
-    fn remove_named_item_ns(
-        &self,
-        namespaceURI: &str,
-        localName: &str,
-    ) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_set_named_item")]
-    fn set_named_item(&self, node: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_named_node_map_set_named_item_ns")]
-    fn set_named_item_ns(&self, node: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error>;
-
-    #[doc(alias = "length")]
-    fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
-    #[allow(deprecated)]
-    fn length(&self) -> libc::c_ulong {
-        unsafe { ffi::webkit_dom_named_node_map_get_length(self.as_ref().to_glib_none().0) }
-    }
-
-    #[allow(deprecated)]
     fn named_item(&self, name: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_named_node_map_get_named_item(
@@ -93,7 +52,10 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_get_named_item_ns")]
+    #[doc(alias = "get_named_item_ns")]
     fn named_item_ns(&self, namespaceURI: &str, localName: &str) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_named_node_map_get_named_item_ns(
@@ -104,7 +66,9 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_item")]
     fn item(&self, index: libc::c_ulong) -> Option<DOMNode> {
         unsafe {
             from_glib_none(ffi::webkit_dom_named_node_map_item(
@@ -114,7 +78,9 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_remove_named_item")]
     fn remove_named_item(&self, name: &str) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -131,7 +97,9 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_remove_named_item_ns")]
     fn remove_named_item_ns(
         &self,
         namespaceURI: &str,
@@ -153,7 +121,9 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_set_named_item")]
     fn set_named_item(&self, node: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -170,7 +140,9 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_named_node_map_set_named_item_ns")]
     fn set_named_item_ns(&self, node: &impl IsA<DOMNode>) -> Result<DOMNode, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -187,6 +159,7 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 
+    #[doc(alias = "length")]
     fn connect_length_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_length_trampoline<
             P: IsA<DOMNamedNodeMap>,
@@ -212,6 +185,8 @@ impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMNamedNodeMap>> DOMNamedNodeMapExt for O {}
 
 impl fmt::Display for DOMNamedNodeMap {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

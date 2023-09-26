@@ -25,24 +25,16 @@ impl DOMHTMLBRElement {
     pub const NONE: Option<&'static DOMHTMLBRElement> = None;
 }
 
-pub trait DOMHTMLBRElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLBRElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLBRElementExt: IsA<DOMHTMLBRElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_br_element_get_clear")]
     #[doc(alias = "get_clear")]
-    fn clear(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_br_element_set_clear")]
-    fn set_clear(&self, value: &str);
-
-    #[doc(alias = "clear")]
-    fn connect_clear_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLBRElement>> DOMHTMLBRElementExt for O {
-    #[allow(deprecated)]
     fn clear(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_br_element_get_clear(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLBRElement>> DOMHTMLBRElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_br_element_set_clear")]
     fn set_clear(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_br_element_set_clear(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLBRElement>> DOMHTMLBRElementExt for O {
         }
     }
 
+    #[doc(alias = "clear")]
     fn connect_clear_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_clear_trampoline<
             P: IsA<DOMHTMLBRElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLBRElement>> DOMHTMLBRElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLBRElement>> DOMHTMLBRElementExt for O {}
 
 impl fmt::Display for DOMHTMLBRElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,38 +25,16 @@ impl DOMHTMLBaseElement {
     pub const NONE: Option<&'static DOMHTMLBaseElement> = None;
 }
 
-pub trait DOMHTMLBaseElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLBaseElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLBaseElementExt: IsA<DOMHTMLBaseElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_base_element_get_href")]
     #[doc(alias = "get_href")]
-    fn href(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_base_element_get_target")]
-    #[doc(alias = "get_target")]
-    fn target(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_base_element_set_href")]
-    fn set_href(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_base_element_set_target")]
-    fn set_target(&self, value: &str);
-
-    #[doc(alias = "href")]
-    fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "target")]
-    fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
-    #[allow(deprecated)]
     fn href(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_base_element_get_href(
@@ -65,7 +43,10 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_base_element_get_target")]
+    #[doc(alias = "get_target")]
     fn target(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_base_element_get_target(
@@ -74,7 +55,9 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_base_element_set_href")]
     fn set_href(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_base_element_set_href(
@@ -84,7 +67,9 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_base_element_set_target")]
     fn set_target(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_base_element_set_target(
@@ -94,6 +79,7 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[doc(alias = "href")]
     fn connect_href_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_href_trampoline<
             P: IsA<DOMHTMLBaseElement>,
@@ -119,6 +105,7 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 
+    #[doc(alias = "target")]
     fn connect_target_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_target_trampoline<
             P: IsA<DOMHTMLBaseElement>,
@@ -144,6 +131,8 @@ impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLBaseElement>> DOMHTMLBaseElementExt for O {}
 
 impl fmt::Display for DOMHTMLBaseElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

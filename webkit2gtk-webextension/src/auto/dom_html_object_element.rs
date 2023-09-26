@@ -27,258 +27,16 @@ impl DOMHTMLObjectElement {
     pub const NONE: Option<&'static DOMHTMLObjectElement> = None;
 }
 
-pub trait DOMHTMLObjectElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLObjectElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLObjectElementExt: IsA<DOMHTMLObjectElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_object_element_get_align")]
     #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_archive")]
-    #[doc(alias = "get_archive")]
-    fn archive(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_border")]
-    #[doc(alias = "get_border")]
-    fn border(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_code")]
-    #[doc(alias = "get_code")]
-    fn code(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_code_base")]
-    #[doc(alias = "get_code_base")]
-    fn code_base(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_code_type")]
-    #[doc(alias = "get_code_type")]
-    fn code_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_content_document")]
-    #[doc(alias = "get_content_document")]
-    fn content_document(&self) -> Option<DOMDocument>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_data")]
-    #[doc(alias = "get_data")]
-    fn data(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_declare")]
-    #[doc(alias = "get_declare")]
-    fn is_declare(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_height")]
-    #[doc(alias = "get_height")]
-    fn height(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_hspace")]
-    #[doc(alias = "get_hspace")]
-    fn hspace(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_standby")]
-    #[doc(alias = "get_standby")]
-    fn standby(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_type_attr")]
-    #[doc(alias = "get_type_attr")]
-    fn type_attr(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_use_map")]
-    #[doc(alias = "get_use_map")]
-    fn use_map(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_vspace")]
-    #[doc(alias = "get_vspace")]
-    fn vspace(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_get_width")]
-    #[doc(alias = "get_width")]
-    fn width(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_archive")]
-    fn set_archive(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_border")]
-    fn set_border(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_code")]
-    fn set_code(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_code_base")]
-    fn set_code_base(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_code_type")]
-    fn set_code_type(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_data")]
-    fn set_data(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_declare")]
-    fn set_declare(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_height")]
-    fn set_height(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_hspace")]
-    fn set_hspace(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_standby")]
-    fn set_standby(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_type_attr")]
-    fn set_type_attr(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_use_map")]
-    fn set_use_map(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_vspace")]
-    fn set_vspace(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_object_element_set_width")]
-    fn set_width(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "type")]
-    fn set_type(&self, type_: Option<&str>);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "archive")]
-    fn connect_archive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "border")]
-    fn connect_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "code")]
-    fn connect_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "code-base")]
-    fn connect_code_base_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "code-type")]
-    fn connect_code_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "content-document")]
-    fn connect_content_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "data")]
-    fn connect_data_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "declare")]
-    fn connect_declare_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "height")]
-    fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "hspace")]
-    fn connect_hspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "standby")]
-    fn connect_standby_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "use-map")]
-    fn connect_use_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "vspace")]
-    fn connect_vspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "width")]
-    fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
-    #[allow(deprecated)]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_align(
@@ -287,7 +45,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_archive")]
+    #[doc(alias = "get_archive")]
     fn archive(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_archive(
@@ -296,7 +57,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_border")]
+    #[doc(alias = "get_border")]
     fn border(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_border(
@@ -305,7 +69,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_code")]
+    #[doc(alias = "get_code")]
     fn code(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_code(
@@ -314,7 +81,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_code_base")]
+    #[doc(alias = "get_code_base")]
     fn code_base(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_code_base(
@@ -323,7 +93,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_code_type")]
+    #[doc(alias = "get_code_type")]
     fn code_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_code_type(
@@ -332,7 +105,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_content_document")]
+    #[doc(alias = "get_content_document")]
     fn content_document(&self) -> Option<DOMDocument> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_object_element_get_content_document(
@@ -341,7 +117,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_data")]
+    #[doc(alias = "get_data")]
     fn data(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_data(
@@ -350,7 +129,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_declare")]
+    #[doc(alias = "get_declare")]
     fn is_declare(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_object_element_get_declare(
@@ -359,7 +141,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_object_element_get_form(
@@ -368,7 +153,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_height")]
+    #[doc(alias = "get_height")]
     fn height(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_height(
@@ -377,12 +165,18 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_hspace")]
+    #[doc(alias = "get_hspace")]
     fn hspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_object_element_get_hspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_name(
@@ -391,7 +185,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_standby")]
+    #[doc(alias = "get_standby")]
     fn standby(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_standby(
@@ -400,7 +197,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_type_attr")]
+    #[doc(alias = "get_type_attr")]
     fn type_attr(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_type_attr(
@@ -409,7 +209,10 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_use_map")]
+    #[doc(alias = "get_use_map")]
     fn use_map(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_use_map(
@@ -418,12 +221,18 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_vspace")]
+    #[doc(alias = "get_vspace")]
     fn vspace(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_object_element_get_vspace(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_get_width")]
+    #[doc(alias = "get_width")]
     fn width(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_object_element_get_width(
@@ -432,7 +241,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_align(
@@ -442,7 +253,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_archive")]
     fn set_archive(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_archive(
@@ -452,7 +265,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_border")]
     fn set_border(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_border(
@@ -462,7 +277,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_code")]
     fn set_code(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_code(
@@ -472,7 +289,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_code_base")]
     fn set_code_base(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_code_base(
@@ -482,7 +301,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_code_type")]
     fn set_code_type(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_code_type(
@@ -492,7 +313,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_data")]
     fn set_data(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_data(
@@ -502,7 +325,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_declare")]
     fn set_declare(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_declare(
@@ -512,7 +337,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_height")]
     fn set_height(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_height(
@@ -522,14 +349,18 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_hspace")]
     fn set_hspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_hspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_name(
@@ -539,7 +370,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_standby")]
     fn set_standby(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_standby(
@@ -549,7 +382,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_type_attr")]
     fn set_type_attr(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_type_attr(
@@ -559,7 +394,9 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_use_map")]
     fn set_use_map(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_use_map(
@@ -569,14 +406,18 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_vspace")]
     fn set_vspace(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_vspace(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_object_element_set_width")]
     fn set_width(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_object_element_set_width(
@@ -586,14 +427,17 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "type")]
     fn set_type(&self, type_: Option<&str>) {
-        glib::ObjectExt::set_property(self.as_ref(), "type", &type_)
+        ObjectExt::set_property(self.as_ref(), "type", type_)
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -619,6 +463,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "archive")]
     fn connect_archive_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_archive_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -644,6 +489,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "border")]
     fn connect_border_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_border_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -669,6 +515,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "code")]
     fn connect_code_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_code_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -694,6 +541,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "code-base")]
     fn connect_code_base_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_code_base_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -719,6 +567,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "code-type")]
     fn connect_code_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_code_type_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -744,6 +593,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "content-document")]
     fn connect_content_document_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_content_document_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -769,6 +619,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "data")]
     fn connect_data_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_data_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -794,6 +645,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "declare")]
     fn connect_declare_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_declare_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -819,6 +671,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -844,6 +697,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "height")]
     fn connect_height_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_height_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -869,6 +723,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "hspace")]
     fn connect_hspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_hspace_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -894,6 +749,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -919,6 +775,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "standby")]
     fn connect_standby_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_standby_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -944,6 +801,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -969,6 +827,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "use-map")]
     fn connect_use_map_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_use_map_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -994,6 +853,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "vspace")]
     fn connect_vspace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_vspace_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -1019,6 +879,7 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 
+    #[doc(alias = "width")]
     fn connect_width_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_width_trampoline<
             P: IsA<DOMHTMLObjectElement>,
@@ -1044,6 +905,8 @@ impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLObjectElement>> DOMHTMLObjectElementExt for O {}
 
 impl fmt::Display for DOMHTMLObjectElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

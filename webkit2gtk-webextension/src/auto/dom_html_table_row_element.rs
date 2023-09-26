@@ -25,117 +25,17 @@ impl DOMHTMLTableRowElement {
     pub const NONE: Option<&'static DOMHTMLTableRowElement> = None;
 }
 
-pub trait DOMHTMLTableRowElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLTableRowElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLTableRowElementExt:
+    IsA<DOMHTMLTableRowElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_table_row_element_delete_cell")]
-    fn delete_cell(&self, index: libc::c_long) -> Result<(), glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_align")]
-    #[doc(alias = "get_align")]
-    fn align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_bg_color")]
-    #[doc(alias = "get_bg_color")]
-    fn bg_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_cells")]
-    #[doc(alias = "get_cells")]
-    fn cells(&self) -> Option<DOMHTMLCollection>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_ch")]
-    #[doc(alias = "get_ch")]
-    fn ch(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_ch_off")]
-    #[doc(alias = "get_ch_off")]
-    fn ch_off(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_row_index")]
-    #[doc(alias = "get_row_index")]
-    fn row_index(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_section_row_index")]
-    #[doc(alias = "get_section_row_index")]
-    fn section_row_index(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_get_v_align")]
-    #[doc(alias = "get_v_align")]
-    fn v_align(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_insert_cell")]
-    fn insert_cell(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_set_align")]
-    fn set_align(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_set_bg_color")]
-    fn set_bg_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_set_ch")]
-    fn set_ch(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_set_ch_off")]
-    fn set_ch_off(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_table_row_element_set_v_align")]
-    fn set_v_align(&self, value: &str);
-
-    #[doc(alias = "align")]
-    fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "bg-color")]
-    fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cells")]
-    fn connect_cells_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ch")]
-    fn connect_ch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "ch-off")]
-    fn connect_ch_off_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "row-index")]
-    fn connect_row_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "section-row-index")]
-    fn connect_section_row_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "v-align")]
-    fn connect_v_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
-    #[allow(deprecated)]
     fn delete_cell(&self, index: libc::c_long) -> Result<(), glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -152,7 +52,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_align")]
+    #[doc(alias = "get_align")]
     fn align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_align(
@@ -161,7 +64,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_bg_color")]
+    #[doc(alias = "get_bg_color")]
     fn bg_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_bg_color(
@@ -170,7 +76,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_cells")]
+    #[doc(alias = "get_cells")]
     fn cells(&self) -> Option<DOMHTMLCollection> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_cells(
@@ -179,7 +88,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_ch")]
+    #[doc(alias = "get_ch")]
     fn ch(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_ch(
@@ -188,7 +100,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_ch_off")]
+    #[doc(alias = "get_ch_off")]
     fn ch_off(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_ch_off(
@@ -197,14 +112,20 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_row_index")]
+    #[doc(alias = "get_row_index")]
     fn row_index(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_table_row_element_get_row_index(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_section_row_index")]
+    #[doc(alias = "get_section_row_index")]
     fn section_row_index(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_table_row_element_get_section_row_index(
@@ -213,7 +134,10 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_get_v_align")]
+    #[doc(alias = "get_v_align")]
     fn v_align(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_table_row_element_get_v_align(
@@ -222,7 +146,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_insert_cell")]
     fn insert_cell(&self, index: libc::c_long) -> Result<DOMHTMLElement, glib::Error> {
         unsafe {
             let mut error = ptr::null_mut();
@@ -239,7 +165,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_set_align")]
     fn set_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_row_element_set_align(
@@ -249,7 +177,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_set_bg_color")]
     fn set_bg_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_row_element_set_bg_color(
@@ -259,7 +189,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_set_ch")]
     fn set_ch(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_row_element_set_ch(
@@ -269,7 +201,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_set_ch_off")]
     fn set_ch_off(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_row_element_set_ch_off(
@@ -279,7 +213,9 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_table_row_element_set_v_align")]
     fn set_v_align(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_table_row_element_set_v_align(
@@ -289,6 +225,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "align")]
     fn connect_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_align_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -314,6 +251,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "bg-color")]
     fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bg_color_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -339,6 +277,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "cells")]
     fn connect_cells_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cells_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -364,6 +303,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "ch")]
     fn connect_ch_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ch_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -389,6 +329,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "ch-off")]
     fn connect_ch_off_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_ch_off_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -414,6 +355,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "row-index")]
     fn connect_row_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_row_index_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -439,6 +381,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "section-row-index")]
     fn connect_section_row_index_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_section_row_index_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -464,6 +407,7 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 
+    #[doc(alias = "v-align")]
     fn connect_v_align_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_v_align_trampoline<
             P: IsA<DOMHTMLTableRowElement>,
@@ -489,6 +433,8 @@ impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLTableRowElement>> DOMHTMLTableRowElementExt for O {}
 
 impl fmt::Display for DOMHTMLTableRowElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

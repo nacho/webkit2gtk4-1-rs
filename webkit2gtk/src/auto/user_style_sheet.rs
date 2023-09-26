@@ -38,8 +38,8 @@ impl UserStyleSheet {
         }
     }
 
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_user_style_sheet_new_for_world")]
     #[doc(alias = "new_for_world")]
     pub fn for_world(

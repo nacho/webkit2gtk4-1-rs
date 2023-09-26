@@ -25,94 +25,16 @@ impl DOMHTMLBodyElement {
     pub const NONE: Option<&'static DOMHTMLBodyElement> = None;
 }
 
-pub trait DOMHTMLBodyElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLBodyElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLBodyElementExt: IsA<DOMHTMLBodyElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_body_element_get_a_link")]
     #[doc(alias = "get_a_link")]
-    fn a_link(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_get_background")]
-    #[doc(alias = "get_background")]
-    fn background(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_get_bg_color")]
-    #[doc(alias = "get_bg_color")]
-    fn bg_color(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_get_link")]
-    #[doc(alias = "get_link")]
-    fn link(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_get_text")]
-    #[doc(alias = "get_text")]
-    fn text(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_get_v_link")]
-    #[doc(alias = "get_v_link")]
-    fn v_link(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_a_link")]
-    fn set_a_link(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_background")]
-    fn set_background(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_bg_color")]
-    fn set_bg_color(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_link")]
-    fn set_link(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_text")]
-    fn set_text(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_body_element_set_v_link")]
-    fn set_v_link(&self, value: &str);
-
-    #[doc(alias = "a-link")]
-    fn connect_a_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "background")]
-    fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "bg-color")]
-    fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "link")]
-    fn connect_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "text")]
-    fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "v-link")]
-    fn connect_v_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
-    #[allow(deprecated)]
     fn a_link(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_a_link(
@@ -121,7 +43,10 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_get_background")]
+    #[doc(alias = "get_background")]
     fn background(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_background(
@@ -130,7 +55,10 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_get_bg_color")]
+    #[doc(alias = "get_bg_color")]
     fn bg_color(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_bg_color(
@@ -139,7 +67,10 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_get_link")]
+    #[doc(alias = "get_link")]
     fn link(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_link(
@@ -148,7 +79,10 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_get_text")]
+    #[doc(alias = "get_text")]
     fn text(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_text(
@@ -157,7 +91,10 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_get_v_link")]
+    #[doc(alias = "get_v_link")]
     fn v_link(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_body_element_get_v_link(
@@ -166,7 +103,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_a_link")]
     fn set_a_link(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_a_link(
@@ -176,7 +115,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_background")]
     fn set_background(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_background(
@@ -186,7 +127,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_bg_color")]
     fn set_bg_color(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_bg_color(
@@ -196,7 +139,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_link")]
     fn set_link(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_link(
@@ -206,7 +151,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_text")]
     fn set_text(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_text(
@@ -216,7 +163,9 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_body_element_set_v_link")]
     fn set_v_link(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_body_element_set_v_link(
@@ -226,6 +175,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "a-link")]
     fn connect_a_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_a_link_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -251,6 +201,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "background")]
     fn connect_background_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_background_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -276,6 +227,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "bg-color")]
     fn connect_bg_color_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bg_color_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -301,6 +253,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "link")]
     fn connect_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_link_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -326,6 +279,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "text")]
     fn connect_text_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_text_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -351,6 +305,7 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 
+    #[doc(alias = "v-link")]
     fn connect_v_link_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_v_link_trampoline<
             P: IsA<DOMHTMLBodyElement>,
@@ -376,6 +331,8 @@ impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLBodyElement>> DOMHTMLBodyElementExt for O {}
 
 impl fmt::Display for DOMHTMLBodyElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

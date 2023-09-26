@@ -24,29 +24,14 @@ impl AutomationSession {
     pub const NONE: Option<&'static AutomationSession> = None;
 }
 
-pub trait AutomationSessionExt: 'static {
-    #[doc(alias = "webkit_automation_session_get_application_info")]
-    #[doc(alias = "get_application_info")]
-    fn application_info(&self) -> Option<ApplicationInfo>;
-
-    #[doc(alias = "webkit_automation_session_get_id")]
-    #[doc(alias = "get_id")]
-    fn id(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "webkit_automation_session_set_application_info")]
-    fn set_application_info(&self, info: &ApplicationInfo);
-
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
-    #[doc(alias = "create-web-view")]
-    fn connect_create_web_view<F: Fn(&Self) -> WebView + 'static>(
-        &self,
-        detail: Option<&str>,
-        f: F,
-    ) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::AutomationSession>> Sealed for T {}
 }
 
-impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
+pub trait AutomationSessionExt: IsA<AutomationSession> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_automation_session_get_application_info")]
+    #[doc(alias = "get_application_info")]
     fn application_info(&self) -> Option<ApplicationInfo> {
         unsafe {
             from_glib_none(ffi::webkit_automation_session_get_application_info(
@@ -55,6 +40,8 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 
+    #[doc(alias = "webkit_automation_session_get_id")]
+    #[doc(alias = "get_id")]
     fn id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_automation_session_get_id(
@@ -63,6 +50,7 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 
+    #[doc(alias = "webkit_automation_session_set_application_info")]
     fn set_application_info(&self, info: &ApplicationInfo) {
         unsafe {
             ffi::webkit_automation_session_set_application_info(
@@ -72,8 +60,9 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_18", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+    #[cfg(feature = "v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
+    #[doc(alias = "create-web-view")]
     fn connect_create_web_view<F: Fn(&Self) -> WebView + 'static>(
         &self,
         detail: Option<&str>,
@@ -108,6 +97,8 @@ impl<O: IsA<AutomationSession>> AutomationSessionExt for O {
         }
     }
 }
+
+impl<O: IsA<AutomationSession>> AutomationSessionExt for O {}
 
 impl fmt::Display for AutomationSession {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

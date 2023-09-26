@@ -66,8 +66,8 @@ impl ApplicationInfo {
     }
 }
 
-#[cfg(any(feature = "v2_18", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_18")))]
+#[cfg(feature = "v2_18")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_18")))]
 impl Default for ApplicationInfo {
     fn default() -> Self {
         Self::new()

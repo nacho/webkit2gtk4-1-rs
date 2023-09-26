@@ -25,38 +25,18 @@ impl DOMHTMLOptGroupElement {
     pub const NONE: Option<&'static DOMHTMLOptGroupElement> = None;
 }
 
-pub trait DOMHTMLOptGroupElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLOptGroupElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLOptGroupElementExt:
+    IsA<DOMHTMLOptGroupElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_opt_group_element_get_disabled")]
     #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_opt_group_element_get_label")]
-    #[doc(alias = "get_label")]
-    fn label(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_opt_group_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_opt_group_element_set_label")]
-    fn set_label(&self, value: &str);
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "label")]
-    fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
-    #[allow(deprecated)]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_opt_group_element_get_disabled(
@@ -65,7 +45,10 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_opt_group_element_get_label")]
+    #[doc(alias = "get_label")]
     fn label(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_opt_group_element_get_label(
@@ -74,7 +57,9 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_opt_group_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_opt_group_element_set_disabled(
@@ -84,7 +69,9 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_opt_group_element_set_label")]
     fn set_label(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_opt_group_element_set_label(
@@ -94,6 +81,7 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLOptGroupElement>,
@@ -119,6 +107,7 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 
+    #[doc(alias = "label")]
     fn connect_label_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_label_trampoline<
             P: IsA<DOMHTMLOptGroupElement>,
@@ -144,6 +133,8 @@ impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLOptGroupElement>> DOMHTMLOptGroupElementExt for O {}
 
 impl fmt::Display for DOMHTMLOptGroupElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

@@ -25,24 +25,16 @@ impl DOMHTMLHeadElement {
     pub const NONE: Option<&'static DOMHTMLHeadElement> = None;
 }
 
-pub trait DOMHTMLHeadElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLHeadElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLHeadElementExt: IsA<DOMHTMLHeadElement> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_head_element_get_profile")]
     #[doc(alias = "get_profile")]
-    fn profile(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_head_element_set_profile")]
-    fn set_profile(&self, value: &str);
-
-    #[doc(alias = "profile")]
-    fn connect_profile_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLHeadElement>> DOMHTMLHeadElementExt for O {
-    #[allow(deprecated)]
     fn profile(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_head_element_get_profile(
@@ -51,7 +43,9 @@ impl<O: IsA<DOMHTMLHeadElement>> DOMHTMLHeadElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_head_element_set_profile")]
     fn set_profile(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_head_element_set_profile(
@@ -61,6 +55,7 @@ impl<O: IsA<DOMHTMLHeadElement>> DOMHTMLHeadElementExt for O {
         }
     }
 
+    #[doc(alias = "profile")]
     fn connect_profile_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_profile_trampoline<
             P: IsA<DOMHTMLHeadElement>,
@@ -86,6 +81,8 @@ impl<O: IsA<DOMHTMLHeadElement>> DOMHTMLHeadElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLHeadElement>> DOMHTMLHeadElementExt for O {}
 
 impl fmt::Display for DOMHTMLHeadElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

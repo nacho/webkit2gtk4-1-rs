@@ -3,15 +3,15 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
+use glib::prelude::*;
 use glib::translate::*;
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
-use glib::{value::FromValue, value::ToValue, StaticType, Type};
 use std::fmt;
 
 #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "WebKitConsoleMessageLevel")]
@@ -30,8 +30,8 @@ pub enum ConsoleMessageLevel {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl fmt::Display for ConsoleMessageLevel {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -50,8 +50,8 @@ impl fmt::Display for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for ConsoleMessageLevel {
@@ -70,8 +70,8 @@ impl IntoGlib for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitConsoleMessageLevel> for ConsoleMessageLevel {
@@ -90,18 +90,18 @@ impl FromGlib<ffi::WebKitConsoleMessageLevel> for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl StaticType for ConsoleMessageLevel {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_console_message_level_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl glib::HasParamSpec for ConsoleMessageLevel {
     type ParamSpec = glib::ParamSpecEnum;
@@ -113,17 +113,17 @@ impl glib::HasParamSpec for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl glib::value::ValueType for ConsoleMessageLevel {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
-unsafe impl<'a> FromValue<'a> for ConsoleMessageLevel {
+unsafe impl<'a> glib::value::FromValue<'a> for ConsoleMessageLevel {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -133,8 +133,8 @@ unsafe impl<'a> FromValue<'a> for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl ToValue for ConsoleMessageLevel {
     #[inline]
@@ -152,8 +152,8 @@ impl ToValue for ConsoleMessageLevel {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl From<ConsoleMessageLevel> for glib::Value {
     #[inline]
@@ -164,8 +164,8 @@ impl From<ConsoleMessageLevel> for glib::Value {
 }
 
 #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "WebKitConsoleMessageSource")]
@@ -184,8 +184,8 @@ pub enum ConsoleMessageSource {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl fmt::Display for ConsoleMessageSource {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -204,8 +204,8 @@ impl fmt::Display for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for ConsoleMessageSource {
@@ -224,8 +224,8 @@ impl IntoGlib for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitConsoleMessageSource> for ConsoleMessageSource {
@@ -244,18 +244,18 @@ impl FromGlib<ffi::WebKitConsoleMessageSource> for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl StaticType for ConsoleMessageSource {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_console_message_source_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl glib::HasParamSpec for ConsoleMessageSource {
     type ParamSpec = glib::ParamSpecEnum;
@@ -267,17 +267,17 @@ impl glib::HasParamSpec for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl glib::value::ValueType for ConsoleMessageSource {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
-unsafe impl<'a> FromValue<'a> for ConsoleMessageSource {
+unsafe impl<'a> glib::value::FromValue<'a> for ConsoleMessageSource {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -287,8 +287,8 @@ unsafe impl<'a> FromValue<'a> for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl ToValue for ConsoleMessageSource {
     #[inline]
@@ -306,8 +306,8 @@ impl ToValue for ConsoleMessageSource {
     }
 }
 
-#[cfg(any(feature = "v2_12", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_12")))]
+#[cfg(feature = "v2_12")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_12")))]
 #[allow(deprecated)]
 impl From<ConsoleMessageSource> for glib::Value {
     #[inline]
@@ -607,8 +607,8 @@ impl FromGlib<ffi::WebKitContextMenuAction> for ContextMenuAction {
 }
 
 #[cfg_attr(feature = "v2_40", deprecated = "Since 2.40")]
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "WebKitFormSubmissionStep")]
@@ -621,8 +621,8 @@ pub enum FormSubmissionStep {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl fmt::Display for FormSubmissionStep {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
@@ -638,8 +638,8 @@ impl fmt::Display for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl IntoGlib for FormSubmissionStep {
@@ -655,8 +655,8 @@ impl IntoGlib for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitFormSubmissionStep> for FormSubmissionStep {
@@ -672,18 +672,18 @@ impl FromGlib<ffi::WebKitFormSubmissionStep> for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl StaticType for FormSubmissionStep {
     #[inline]
-    fn static_type() -> Type {
+    fn static_type() -> glib::Type {
         unsafe { from_glib(ffi::webkit_form_submission_step_get_type()) }
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl glib::HasParamSpec for FormSubmissionStep {
     type ParamSpec = glib::ParamSpecEnum;
@@ -695,17 +695,17 @@ impl glib::HasParamSpec for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl glib::value::ValueType for FormSubmissionStep {
     type Type = Self;
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
-unsafe impl<'a> FromValue<'a> for FormSubmissionStep {
+unsafe impl<'a> glib::value::FromValue<'a> for FormSubmissionStep {
     type Checker = glib::value::GenericValueTypeChecker<Self>;
 
     #[inline]
@@ -715,8 +715,8 @@ unsafe impl<'a> FromValue<'a> for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl ToValue for FormSubmissionStep {
     #[inline]
@@ -734,8 +734,8 @@ impl ToValue for FormSubmissionStep {
     }
 }
 
-#[cfg(any(feature = "v2_20", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_20")))]
+#[cfg(feature = "v2_20")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
 #[allow(deprecated)]
 impl From<FormSubmissionStep> for glib::Value {
     #[inline]
@@ -745,8 +745,8 @@ impl From<FormSubmissionStep> for glib::Value {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "WebKitUserMessageError")]
@@ -757,8 +757,8 @@ pub enum UserMessageError {
     __Unknown(i32),
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 impl fmt::Display for UserMessageError {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
@@ -772,8 +772,8 @@ impl fmt::Display for UserMessageError {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 #[doc(hidden)]
 impl IntoGlib for UserMessageError {
     type GlibType = ffi::WebKitUserMessageError;
@@ -787,8 +787,8 @@ impl IntoGlib for UserMessageError {
     }
 }
 
-#[cfg(any(feature = "v2_28", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_28")))]
+#[cfg(feature = "v2_28")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_28")))]
 #[doc(hidden)]
 impl FromGlib<ffi::WebKitUserMessageError> for UserMessageError {
     #[inline]

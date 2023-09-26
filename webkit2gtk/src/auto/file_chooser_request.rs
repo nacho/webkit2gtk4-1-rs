@@ -23,51 +23,21 @@ impl FileChooserRequest {
     pub const NONE: Option<&'static FileChooserRequest> = None;
 }
 
-pub trait FileChooserRequestExt: 'static {
-    #[doc(alias = "webkit_file_chooser_request_cancel")]
-    fn cancel(&self);
-
-    #[doc(alias = "webkit_file_chooser_request_get_mime_types")]
-    #[doc(alias = "get_mime_types")]
-    fn mime_types(&self) -> Vec<glib::GString>;
-
-    #[doc(alias = "webkit_file_chooser_request_get_mime_types_filter")]
-    #[doc(alias = "get_mime_types_filter")]
-    fn mime_types_filter(&self) -> Option<gtk::FileFilter>;
-
-    #[doc(alias = "webkit_file_chooser_request_get_select_multiple")]
-    #[doc(alias = "get_select_multiple")]
-    fn selects_multiple(&self) -> bool;
-
-    #[doc(alias = "webkit_file_chooser_request_get_selected_files")]
-    #[doc(alias = "get_selected_files")]
-    fn selected_files(&self) -> Vec<glib::GString>;
-
-    #[doc(alias = "webkit_file_chooser_request_select_files")]
-    fn select_files(&self, files: &[&str]);
-
-    fn filter(&self) -> Option<gtk::FileFilter>;
-
-    #[doc(alias = "filter")]
-    fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "mime-types")]
-    fn connect_mime_types_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "select-multiple")]
-    fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selected-files")]
-    fn connect_selected_files_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::FileChooserRequest>> Sealed for T {}
 }
 
-impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
+pub trait FileChooserRequestExt: IsA<FileChooserRequest> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_file_chooser_request_cancel")]
     fn cancel(&self) {
         unsafe {
             ffi::webkit_file_chooser_request_cancel(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[doc(alias = "webkit_file_chooser_request_get_mime_types")]
+    #[doc(alias = "get_mime_types")]
     fn mime_types(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(ffi::webkit_file_chooser_request_get_mime_types(
@@ -76,6 +46,8 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_file_chooser_request_get_mime_types_filter")]
+    #[doc(alias = "get_mime_types_filter")]
     fn mime_types_filter(&self) -> Option<gtk::FileFilter> {
         unsafe {
             from_glib_none(ffi::webkit_file_chooser_request_get_mime_types_filter(
@@ -84,6 +56,8 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_file_chooser_request_get_select_multiple")]
+    #[doc(alias = "get_select_multiple")]
     fn selects_multiple(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_file_chooser_request_get_select_multiple(
@@ -92,6 +66,8 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_file_chooser_request_get_selected_files")]
+    #[doc(alias = "get_selected_files")]
     fn selected_files(&self) -> Vec<glib::GString> {
         unsafe {
             FromGlibPtrContainer::from_glib_none(
@@ -100,6 +76,7 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "webkit_file_chooser_request_select_files")]
     fn select_files(&self, files: &[&str]) {
         unsafe {
             ffi::webkit_file_chooser_request_select_files(
@@ -110,9 +87,10 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
     }
 
     fn filter(&self) -> Option<gtk::FileFilter> {
-        glib::ObjectExt::property(self.as_ref(), "filter")
+        ObjectExt::property(self.as_ref(), "filter")
     }
 
+    #[doc(alias = "filter")]
     fn connect_filter_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_filter_trampoline<
             P: IsA<FileChooserRequest>,
@@ -138,6 +116,7 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "mime-types")]
     fn connect_mime_types_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_mime_types_trampoline<
             P: IsA<FileChooserRequest>,
@@ -163,6 +142,7 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "select-multiple")]
     fn connect_select_multiple_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_select_multiple_trampoline<
             P: IsA<FileChooserRequest>,
@@ -188,6 +168,7 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 
+    #[doc(alias = "selected-files")]
     fn connect_selected_files_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selected_files_trampoline<
             P: IsA<FileChooserRequest>,
@@ -213,6 +194,8 @@ impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {
         }
     }
 }
+
+impl<O: IsA<FileChooserRequest>> FileChooserRequestExt for O {}
 
 impl fmt::Display for FileChooserRequest {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

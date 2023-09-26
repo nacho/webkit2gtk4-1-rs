@@ -25,38 +25,18 @@ impl DOMHTMLFrameSetElement {
     pub const NONE: Option<&'static DOMHTMLFrameSetElement> = None;
 }
 
-pub trait DOMHTMLFrameSetElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLFrameSetElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLFrameSetElementExt:
+    IsA<DOMHTMLFrameSetElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_frame_set_element_get_cols")]
     #[doc(alias = "get_cols")]
-    fn cols(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_set_element_get_rows")]
-    #[doc(alias = "get_rows")]
-    fn rows(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_set_element_set_cols")]
-    fn set_cols(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_frame_set_element_set_rows")]
-    fn set_rows(&self, value: &str);
-
-    #[doc(alias = "cols")]
-    fn connect_cols_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rows")]
-    fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
-    #[allow(deprecated)]
     fn cols(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_set_element_get_cols(
@@ -65,7 +45,10 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_set_element_get_rows")]
+    #[doc(alias = "get_rows")]
     fn rows(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_frame_set_element_get_rows(
@@ -74,7 +57,9 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_set_element_set_cols")]
     fn set_cols(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_set_element_set_cols(
@@ -84,7 +69,9 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_frame_set_element_set_rows")]
     fn set_rows(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_frame_set_element_set_rows(
@@ -94,6 +81,7 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 
+    #[doc(alias = "cols")]
     fn connect_cols_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cols_trampoline<
             P: IsA<DOMHTMLFrameSetElement>,
@@ -119,6 +107,7 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 
+    #[doc(alias = "rows")]
     fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rows_trampoline<
             P: IsA<DOMHTMLFrameSetElement>,
@@ -144,6 +133,8 @@ impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLFrameSetElement>> DOMHTMLFrameSetElementExt for O {}
 
 impl fmt::Display for DOMHTMLFrameSetElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

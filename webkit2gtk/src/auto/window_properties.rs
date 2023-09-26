@@ -105,41 +105,14 @@ impl WindowPropertiesBuilder {
     }
 }
 
-pub trait WindowPropertiesExt: 'static {
-    #[doc(alias = "webkit_window_properties_get_fullscreen")]
-    #[doc(alias = "get_fullscreen")]
-    fn is_fullscreen(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_geometry")]
-    #[doc(alias = "get_geometry")]
-    fn geometry(&self) -> gdk::Rectangle;
-
-    #[doc(alias = "webkit_window_properties_get_locationbar_visible")]
-    #[doc(alias = "get_locationbar_visible")]
-    fn is_locationbar_visible(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_menubar_visible")]
-    #[doc(alias = "get_menubar_visible")]
-    fn is_menubar_visible(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_resizable")]
-    #[doc(alias = "get_resizable")]
-    fn is_resizable(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_scrollbars_visible")]
-    #[doc(alias = "get_scrollbars_visible")]
-    fn is_scrollbars_visible(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_statusbar_visible")]
-    #[doc(alias = "get_statusbar_visible")]
-    fn is_statusbar_visible(&self) -> bool;
-
-    #[doc(alias = "webkit_window_properties_get_toolbar_visible")]
-    #[doc(alias = "get_toolbar_visible")]
-    fn is_toolbar_visible(&self) -> bool;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::WindowProperties>> Sealed for T {}
 }
 
-impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
+pub trait WindowPropertiesExt: IsA<WindowProperties> + sealed::Sealed + 'static {
+    #[doc(alias = "webkit_window_properties_get_fullscreen")]
+    #[doc(alias = "get_fullscreen")]
     fn is_fullscreen(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_fullscreen(
@@ -148,6 +121,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_geometry")]
+    #[doc(alias = "get_geometry")]
     fn geometry(&self) -> gdk::Rectangle {
         unsafe {
             let mut geometry = gdk::Rectangle::uninitialized();
@@ -159,6 +134,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_locationbar_visible")]
+    #[doc(alias = "get_locationbar_visible")]
     fn is_locationbar_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_locationbar_visible(
@@ -167,6 +144,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_menubar_visible")]
+    #[doc(alias = "get_menubar_visible")]
     fn is_menubar_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_menubar_visible(
@@ -175,6 +154,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_resizable")]
+    #[doc(alias = "get_resizable")]
     fn is_resizable(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_resizable(
@@ -183,6 +164,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_scrollbars_visible")]
+    #[doc(alias = "get_scrollbars_visible")]
     fn is_scrollbars_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_scrollbars_visible(
@@ -191,6 +174,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_statusbar_visible")]
+    #[doc(alias = "get_statusbar_visible")]
     fn is_statusbar_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_statusbar_visible(
@@ -199,6 +184,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 
+    #[doc(alias = "webkit_window_properties_get_toolbar_visible")]
+    #[doc(alias = "get_toolbar_visible")]
     fn is_toolbar_visible(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_window_properties_get_toolbar_visible(
@@ -207,6 +194,8 @@ impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {
         }
     }
 }
+
+impl<O: IsA<WindowProperties>> WindowPropertiesExt for O {}
 
 impl fmt::Display for WindowProperties {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

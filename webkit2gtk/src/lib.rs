@@ -1,4 +1,4 @@
-#![cfg_attr(feature = "dox", feature(doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 
 pub use cairo;
 pub use ffi;
@@ -19,8 +19,8 @@ mod credential;
 mod javascript_result;
 mod web_context;
 mod web_view;
-#[cfg(any(feature = "v2_16", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+#[cfg(feature = "v2_16")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
 mod website_data_manager;
 
 pub use crate::auto::*;
@@ -31,8 +31,8 @@ pub mod prelude {
     pub use super::auto::traits::*;
     pub use super::web_context::WebContextExtManual;
     pub use super::web_view::WebViewExtManual;
-    #[cfg(any(feature = "v2_16", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_16")))]
+    #[cfg(feature = "v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_16")))]
     pub use super::website_data_manager::WebsiteDataManagerExtManual;
     pub use javascriptcore::prelude::*;
 }

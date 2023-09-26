@@ -25,195 +25,18 @@ impl DOMHTMLTextAreaElement {
     pub const NONE: Option<&'static DOMHTMLTextAreaElement> = None;
 }
 
-pub trait DOMHTMLTextAreaElementExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMHTMLTextAreaElement>> Sealed for T {}
+}
+
+pub trait DOMHTMLTextAreaElementExt:
+    IsA<DOMHTMLTextAreaElement> + sealed::Sealed + 'static
+{
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_html_text_area_element_get_area_type")]
     #[doc(alias = "get_area_type")]
-    fn area_type(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_autofocus")]
-    #[doc(alias = "get_autofocus")]
-    fn is_autofocus(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_cols")]
-    #[doc(alias = "get_cols")]
-    fn cols(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_default_value")]
-    #[doc(alias = "get_default_value")]
-    fn default_value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_disabled")]
-    #[doc(alias = "get_disabled")]
-    fn is_disabled(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_form")]
-    #[doc(alias = "get_form")]
-    fn form(&self) -> Option<DOMHTMLFormElement>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_read_only")]
-    #[doc(alias = "get_read_only")]
-    fn is_read_only(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_rows")]
-    #[doc(alias = "get_rows")]
-    fn rows(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_selection_end")]
-    #[doc(alias = "get_selection_end")]
-    fn selection_end(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_selection_start")]
-    #[doc(alias = "get_selection_start")]
-    fn selection_start(&self) -> libc::c_long;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_value")]
-    #[doc(alias = "get_value")]
-    fn value(&self) -> Option<glib::GString>;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_get_will_validate")]
-    #[doc(alias = "get_will_validate")]
-    fn is_will_validate(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_is_edited")]
-    fn is_edited(&self) -> bool;
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_select")]
-    fn select(&self);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_autofocus")]
-    fn set_autofocus(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_cols")]
-    fn set_cols(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_default_value")]
-    fn set_default_value(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_disabled")]
-    fn set_disabled(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_name")]
-    fn set_name(&self, value: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_read_only")]
-    fn set_read_only(&self, value: bool);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_rows")]
-    fn set_rows(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_end")]
-    fn set_selection_end(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_range")]
-    fn set_selection_range(&self, start: libc::c_long, end: libc::c_long, direction: &str);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_start")]
-    fn set_selection_start(&self, value: libc::c_long);
-
-    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
-    #[allow(deprecated)]
-    #[doc(alias = "webkit_dom_html_text_area_element_set_value")]
-    fn set_value(&self, value: &str);
-
-    #[doc(alias = "type")]
-    fn type_(&self) -> Option<glib::GString>;
-
-    #[doc(alias = "autofocus")]
-    fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "cols")]
-    fn connect_cols_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "default-value")]
-    fn connect_default_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "disabled")]
-    fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "form")]
-    fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "name")]
-    fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "read-only")]
-    fn connect_read_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "rows")]
-    fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selection-end")]
-    fn connect_selection_end_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "selection-start")]
-    fn connect_selection_start_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "type")]
-    fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "value")]
-    fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-
-    #[doc(alias = "will-validate")]
-    fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
-    #[allow(deprecated)]
     fn area_type(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_text_area_element_get_area_type(
@@ -222,7 +45,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_autofocus")]
+    #[doc(alias = "get_autofocus")]
     fn is_autofocus(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_text_area_element_get_autofocus(
@@ -231,12 +57,18 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_cols")]
+    #[doc(alias = "get_cols")]
     fn cols(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_text_area_element_get_cols(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_default_value")]
+    #[doc(alias = "get_default_value")]
     fn default_value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_text_area_element_get_default_value(
@@ -245,7 +77,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_disabled")]
+    #[doc(alias = "get_disabled")]
     fn is_disabled(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_text_area_element_get_disabled(
@@ -254,7 +89,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_form")]
+    #[doc(alias = "get_form")]
     fn form(&self) -> Option<DOMHTMLFormElement> {
         unsafe {
             from_glib_none(ffi::webkit_dom_html_text_area_element_get_form(
@@ -263,7 +101,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_text_area_element_get_name(
@@ -272,7 +113,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_read_only")]
+    #[doc(alias = "get_read_only")]
     fn is_read_only(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_text_area_element_get_read_only(
@@ -281,19 +125,28 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_rows")]
+    #[doc(alias = "get_rows")]
     fn rows(&self) -> libc::c_long {
         unsafe { ffi::webkit_dom_html_text_area_element_get_rows(self.as_ref().to_glib_none().0) }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_selection_end")]
+    #[doc(alias = "get_selection_end")]
     fn selection_end(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_text_area_element_get_selection_end(self.as_ref().to_glib_none().0)
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_selection_start")]
+    #[doc(alias = "get_selection_start")]
     fn selection_start(&self) -> libc::c_long {
         unsafe {
             ffi::webkit_dom_html_text_area_element_get_selection_start(
@@ -302,7 +155,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_value")]
+    #[doc(alias = "get_value")]
     fn value(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::webkit_dom_html_text_area_element_get_value(
@@ -311,7 +167,10 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_get_will_validate")]
+    #[doc(alias = "get_will_validate")]
     fn is_will_validate(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_text_area_element_get_will_validate(
@@ -320,7 +179,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_is_edited")]
     fn is_edited(&self) -> bool {
         unsafe {
             from_glib(ffi::webkit_dom_html_text_area_element_is_edited(
@@ -329,14 +190,18 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_select")]
     fn select(&self) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_select(self.as_ref().to_glib_none().0);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_autofocus")]
     fn set_autofocus(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_autofocus(
@@ -346,14 +211,18 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_cols")]
     fn set_cols(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_cols(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_default_value")]
     fn set_default_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_default_value(
@@ -363,7 +232,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_disabled")]
     fn set_disabled(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_disabled(
@@ -373,7 +244,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_name")]
     fn set_name(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_name(
@@ -383,7 +256,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_read_only")]
     fn set_read_only(&self, value: bool) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_read_only(
@@ -393,14 +268,18 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_rows")]
     fn set_rows(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_rows(self.as_ref().to_glib_none().0, value);
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_end")]
     fn set_selection_end(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_selection_end(
@@ -410,7 +289,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_range")]
     fn set_selection_range(&self, start: libc::c_long, end: libc::c_long, direction: &str) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_selection_range(
@@ -422,7 +303,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_selection_start")]
     fn set_selection_start(&self, value: libc::c_long) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_selection_start(
@@ -432,7 +315,9 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
+    #[doc(alias = "webkit_dom_html_text_area_element_set_value")]
     fn set_value(&self, value: &str) {
         unsafe {
             ffi::webkit_dom_html_text_area_element_set_value(
@@ -442,10 +327,12 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn type_(&self) -> Option<glib::GString> {
-        glib::ObjectExt::property(self.as_ref(), "type")
+        ObjectExt::property(self.as_ref(), "type")
     }
 
+    #[doc(alias = "autofocus")]
     fn connect_autofocus_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_autofocus_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -471,6 +358,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "cols")]
     fn connect_cols_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_cols_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -496,6 +384,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "default-value")]
     fn connect_default_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_default_value_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -521,6 +410,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "disabled")]
     fn connect_disabled_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_disabled_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -546,6 +436,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "form")]
     fn connect_form_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_form_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -571,6 +462,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "name")]
     fn connect_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_name_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -596,6 +488,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "read-only")]
     fn connect_read_only_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_read_only_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -621,6 +514,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "rows")]
     fn connect_rows_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_rows_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -646,6 +540,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "selection-end")]
     fn connect_selection_end_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_end_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -671,6 +566,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "selection-start")]
     fn connect_selection_start_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_selection_start_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -696,6 +592,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "type")]
     fn connect_type_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_type_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -721,6 +618,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "value")]
     fn connect_value_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_value_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -746,6 +644,7 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 
+    #[doc(alias = "will-validate")]
     fn connect_will_validate_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_will_validate_trampoline<
             P: IsA<DOMHTMLTextAreaElement>,
@@ -771,6 +670,8 @@ impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMHTMLTextAreaElement>> DOMHTMLTextAreaElementExt for O {}
 
 impl fmt::Display for DOMHTMLTextAreaElement {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

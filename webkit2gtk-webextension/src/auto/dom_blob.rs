@@ -25,23 +25,21 @@ impl DOMBlob {
     pub const NONE: Option<&'static DOMBlob> = None;
 }
 
-pub trait DOMBlobExt: 'static {
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::DOMBlob>> Sealed for T {}
+}
+
+pub trait DOMBlobExt: IsA<DOMBlob> + sealed::Sealed + 'static {
     #[cfg_attr(feature = "v2_22", deprecated = "Since 2.22")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_dom_blob_get_size")]
     #[doc(alias = "get_size")]
-    fn size(&self) -> u64;
-
-    #[doc(alias = "size")]
-    fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<DOMBlob>> DOMBlobExt for O {
-    #[allow(deprecated)]
     fn size(&self) -> u64 {
         unsafe { ffi::webkit_dom_blob_get_size(self.as_ref().to_glib_none().0) }
     }
 
+    #[doc(alias = "size")]
     fn connect_size_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_size_trampoline<P: IsA<DOMBlob>, F: Fn(&P) + 'static>(
             this: *mut ffi::WebKitDOMBlob,
@@ -64,6 +62,8 @@ impl<O: IsA<DOMBlob>> DOMBlobExt for O {
         }
     }
 }
+
+impl<O: IsA<DOMBlob>> DOMBlobExt for O {}
 
 impl fmt::Display for DOMBlob {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {

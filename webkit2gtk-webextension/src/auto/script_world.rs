@@ -3,19 +3,19 @@
 // from webkit2gtk-gir-files
 // DO NOT EDIT
 
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use crate::{Frame, WebPage};
 use glib::prelude::*;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use glib::{
     signal::{connect_raw, SignalHandlerId},
     translate::*,
 };
 use std::fmt;
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 use std::{boxed::Box as Box_, mem::transmute};
 
 glib::wrapper! {
@@ -30,16 +30,16 @@ glib::wrapper! {
 impl ScriptWorld {
     pub const NONE: Option<&'static ScriptWorld> = None;
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
     #[doc(alias = "webkit_script_world_new")]
     pub fn new() -> ScriptWorld {
         assert_initialized_main_thread!();
         unsafe { from_glib_full(ffi::webkit_script_world_new()) }
     }
 
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
     #[doc(alias = "webkit_script_world_new_with_name")]
     #[doc(alias = "new_with_name")]
     pub fn with_name(name: &str) -> ScriptWorld {
@@ -51,8 +51,8 @@ impl ScriptWorld {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
     #[doc(alias = "webkit_script_world_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]
@@ -62,33 +62,24 @@ impl ScriptWorld {
     }
 }
 
-#[cfg(any(feature = "v2_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+#[cfg(feature = "v2_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
 impl Default for ScriptWorld {
     fn default() -> Self {
         Self::new()
     }
 }
 
-pub trait ScriptWorldExt: 'static {
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
-    #[doc(alias = "webkit_script_world_get_name")]
-    #[doc(alias = "get_name")]
-    fn name(&self) -> Option<glib::GString>;
-
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
-    #[doc(alias = "window-object-cleared")]
-    fn connect_window_object_cleared<F: Fn(&Self, &WebPage, &Frame) + 'static>(
-        &self,
-        f: F,
-    ) -> SignalHandlerId;
+mod sealed {
+    pub trait Sealed {}
+    impl<T: super::IsA<super::ScriptWorld>> Sealed for T {}
 }
 
-impl<O: IsA<ScriptWorld>> ScriptWorldExt for O {
-    #[cfg(any(feature = "v2_22", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_22")))]
+pub trait ScriptWorldExt: IsA<ScriptWorld> + sealed::Sealed + 'static {
+    #[cfg(feature = "v2_22")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_22")))]
+    #[doc(alias = "webkit_script_world_get_name")]
+    #[doc(alias = "get_name")]
     fn name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::webkit_script_world_get_name(
@@ -97,8 +88,9 @@ impl<O: IsA<ScriptWorld>> ScriptWorldExt for O {
         }
     }
 
-    #[cfg(any(feature = "v2_2", feature = "dox"))]
-    #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_2")))]
+    #[cfg(feature = "v2_2")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_2")))]
+    #[doc(alias = "window-object-cleared")]
     fn connect_window_object_cleared<F: Fn(&Self, &WebPage, &Frame) + 'static>(
         &self,
         f: F,
@@ -132,6 +124,8 @@ impl<O: IsA<ScriptWorld>> ScriptWorldExt for O {
         }
     }
 }
+
+impl<O: IsA<ScriptWorld>> ScriptWorldExt for O {}
 
 impl fmt::Display for ScriptWorld {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
