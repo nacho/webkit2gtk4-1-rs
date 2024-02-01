@@ -1993,14 +1993,14 @@ against at application run time.</doc>
       <source-position filename="build-soup3/JavaScriptCoreGLib/DerivedSources/jsc/JSCVersion.h" line="38"/>
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MICRO_VERSION" value="5" c:type="JSC_MICRO_VERSION">
+    <constant name="MICRO_VERSION" value="4" c:type="JSC_MICRO_VERSION">
       <doc xml:space="preserve" filename="build-soup3/JavaScriptCoreGLib/DerivedSources/jsc/JSCVersion.h" line="49">Like jsc_get_micro_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
       <source-position filename="build-soup3/JavaScriptCoreGLib/DerivedSources/jsc/JSCVersion.h" line="56"/>
       <type name="gint" c:type="gint"/>
     </constant>
-    <constant name="MINOR_VERSION" value="40" c:type="JSC_MINOR_VERSION">
+    <constant name="MINOR_VERSION" value="42" c:type="JSC_MINOR_VERSION">
       <doc xml:space="preserve" filename="build-soup3/JavaScriptCoreGLib/DerivedSources/jsc/JSCVersion.h" line="40">Like jsc_get_minor_version(), but from the headers used at
 application compile time, rather than from the library linked
 against at application run time.</doc>
