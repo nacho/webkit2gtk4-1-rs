@@ -277,8 +277,8 @@ pub const WEBKIT_EDITING_COMMAND_REDO: &[u8] = b"Redo\0";
 pub const WEBKIT_EDITING_COMMAND_SELECT_ALL: &[u8] = b"SelectAll\0";
 pub const WEBKIT_EDITING_COMMAND_UNDO: &[u8] = b"Undo\0";
 pub const WEBKIT_MAJOR_VERSION: c_int = 2;
-pub const WEBKIT_MICRO_VERSION: c_int = 5;
-pub const WEBKIT_MINOR_VERSION: c_int = 40;
+pub const WEBKIT_MICRO_VERSION: c_int = 4;
+pub const WEBKIT_MINOR_VERSION: c_int = 42;
 
 // Flags
 pub type WebKitEditorTypingAttributes = c_uint;
