@@ -11,6 +11,7 @@ pub use javascriptcore;
 #[macro_use]
 mod rt;
 
+mod authentication_request;
 #[allow(unused_imports)]
 #[allow(unused_mut)]
 #[allow(clippy::clone_on_copy)]
@@ -28,6 +29,7 @@ pub use credential::Credential;
 pub use javascript_result::JavascriptResult;
 
 pub mod prelude {
+    pub use super::authentication_request::AuthenticationRequestExtManual;
     pub use super::auto::traits::*;
     pub use super::web_context::WebContextExtManual;
     pub use super::web_view::WebViewExtManual;
