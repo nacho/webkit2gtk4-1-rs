@@ -139,7 +139,8 @@ name = "WebKit2.AuthenticationRequest"
 status = "generate"
     [[object.function]]
     name = "authenticate"
-    ignore = true
+    # Wrong mutability
+    manual = true
 
 [[object]]
 name = "WebKit2.AutomationSession"
