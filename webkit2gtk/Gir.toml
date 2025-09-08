@@ -14,6 +14,7 @@ single_version_file = true
 external_libraries = [
     "Gio",
     "Gtk",
+    "Soup",
     "JavaScriptCore",
 ]
 
@@ -28,7 +29,6 @@ generate = [
     "WebKit2.ContextMenuAction",
     "WebKit2.ContextMenuItem",
     "WebKit2.CookieAcceptPolicy",
-    "WebKit2.CookieManager",
     "WebKit2.CookiePersistentStorage",
     "WebKit2.CredentialPersistence",
     "WebKit2.DeviceInfoPermissionRequest",
@@ -124,6 +124,7 @@ manual = [
     "Gtk.PrintSettings",
     "Gtk.Widget",
     "Gtk.Window",
+    "Soup.Cookie",
     "WebKit2.Credential",
     "WebKit2.JavascriptResult",
 ]
@@ -151,6 +152,18 @@ generate_builder = false
 name = "WebKit2.ColorChooserRequest"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "WebKit2.CookieManager"
+status = "generate"
+    [[object.function]]
+    name = "delete_cookie"
+    # Wrong mutability
+    ignore = true
+    [[object.function]]
+    name = "add_cookie"
+    # Wrong mutability
+    ignore = true
 
 [[object]]
 name = "WebKit2.Download"

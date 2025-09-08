@@ -22,6 +22,8 @@ version = "2.38"
 
 [package.metadata.docs.rs]
 features = []
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [lib]
 name = "javascriptcore4_rs_sys"

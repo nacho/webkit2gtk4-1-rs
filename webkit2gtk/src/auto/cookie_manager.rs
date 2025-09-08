@@ -31,30 +31,6 @@ mod sealed {
 }
 
 pub trait CookieManagerExt: IsA<CookieManager> + sealed::Sealed + 'static {
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //#[doc(alias = "webkit_cookie_manager_add_cookie")]
-    //fn add_cookie<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, cookie: /*Ignored*/&mut soup::Cookie, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
-    //    unsafe { TODO: call ffi:webkit_cookie_manager_add_cookie() }
-    //}
-
-    //
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //fn add_cookie_future(&self, cookie: /*Ignored*/&mut soup::Cookie) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-
-    //let cookie = cookie.clone();
-    //Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
-    //    obj.add_cookie(
-    //        &cookie,
-    //        Some(cancellable),
-    //        move |res| {
-    //            send.resolve(res);
-    //        },
-    //    );
-    //}))
-    //}
-
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
     #[allow(deprecated)]
     #[doc(alias = "webkit_cookie_manager_delete_all_cookies")]
@@ -63,30 +39,6 @@ pub trait CookieManagerExt: IsA<CookieManager> + sealed::Sealed + 'static {
             ffi::webkit_cookie_manager_delete_all_cookies(self.as_ref().to_glib_none().0);
         }
     }
-
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //#[doc(alias = "webkit_cookie_manager_delete_cookie")]
-    //fn delete_cookie<P: FnOnce(Result<(), glib::Error>) + 'static>(&self, cookie: /*Ignored*/&mut soup::Cookie, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
-    //    unsafe { TODO: call ffi:webkit_cookie_manager_delete_cookie() }
-    //}
-
-    //
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //fn delete_cookie_future(&self, cookie: /*Ignored*/&mut soup::Cookie) -> Pin<Box_<dyn std::future::Future<Output = Result<(), glib::Error>> + 'static>> {
-
-    //let cookie = cookie.clone();
-    //Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
-    //    obj.delete_cookie(
-    //        &cookie,
-    //        Some(cancellable),
-    //        move |res| {
-    //            send.resolve(res);
-    //        },
-    //    );
-    //}))
-    //}
 
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
     #[allow(deprecated)]
@@ -165,30 +117,77 @@ pub trait CookieManagerExt: IsA<CookieManager> + sealed::Sealed + 'static {
         }))
     }
 
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //#[doc(alias = "webkit_cookie_manager_get_cookies")]
-    //#[doc(alias = "get_cookies")]
-    //fn cookies<P: FnOnce(Result</*Ignored*/Vec<soup::Cookie>, glib::Error>) + 'static>(&self, uri: &str, cancellable: Option<&impl IsA<gio::Cancellable>>, callback: P) {
-    //    unsafe { TODO: call ffi:webkit_cookie_manager_get_cookies() }
-    //}
+    #[cfg(feature = "v2_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
+    #[doc(alias = "webkit_cookie_manager_get_cookies")]
+    #[doc(alias = "get_cookies")]
+    fn cookies<P: FnOnce(Result<Vec<soup::Cookie>, glib::Error>) + 'static>(
+        &self,
+        uri: &str,
+        cancellable: Option<&impl IsA<gio::Cancellable>>,
+        callback: P,
+    ) {
+        let main_context = glib::MainContext::ref_thread_default();
+        let is_main_context_owner = main_context.is_owner();
+        let has_acquired_main_context = (!is_main_context_owner)
+            .then(|| main_context.acquire().ok())
+            .flatten();
+        assert!(
+            is_main_context_owner || has_acquired_main_context.is_some(),
+            "Async operations only allowed if the thread is owning the MainContext"
+        );
 
-    //
-    //#[cfg(feature = "v2_20")]
-    //#[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
-    //fn cookies_future(&self, uri: &str) -> Pin<Box_<dyn std::future::Future<Output = Result</*Ignored*/Vec<soup::Cookie>, glib::Error>> + 'static>> {
+        let user_data: Box_<glib::thread_guard::ThreadGuard<P>> =
+            Box_::new(glib::thread_guard::ThreadGuard::new(callback));
+        unsafe extern "C" fn cookies_trampoline<
+            P: FnOnce(Result<Vec<soup::Cookie>, glib::Error>) + 'static,
+        >(
+            _source_object: *mut glib::gobject_ffi::GObject,
+            res: *mut gio::ffi::GAsyncResult,
+            user_data: glib::ffi::gpointer,
+        ) {
+            let mut error = ptr::null_mut();
+            let ret = ffi::webkit_cookie_manager_get_cookies_finish(
+                _source_object as *mut _,
+                res,
+                &mut error,
+            );
+            let result = if error.is_null() {
+                Ok(FromGlibPtrContainer::from_glib_full(ret))
+            } else {
+                Err(from_glib_full(error))
+            };
+            let callback: Box_<glib::thread_guard::ThreadGuard<P>> =
+                Box_::from_raw(user_data as *mut _);
+            let callback: P = callback.into_inner();
+            callback(result);
+        }
+        let callback = cookies_trampoline::<P>;
+        unsafe {
+            ffi::webkit_cookie_manager_get_cookies(
+                self.as_ref().to_glib_none().0,
+                uri.to_glib_none().0,
+                cancellable.map(|p| p.as_ref()).to_glib_none().0,
+                Some(callback),
+                Box_::into_raw(user_data) as *mut _,
+            );
+        }
+    }
 
-    //let uri = String::from(uri);
-    //Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
-    //    obj.cookies(
-    //        &uri,
-    //        Some(cancellable),
-    //        move |res| {
-    //            send.resolve(res);
-    //        },
-    //    );
-    //}))
-    //}
+    #[cfg(feature = "v2_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "v2_20")))]
+    fn cookies_future(
+        &self,
+        uri: &str,
+    ) -> Pin<Box_<dyn std::future::Future<Output = Result<Vec<soup::Cookie>, glib::Error>> + 'static>>
+    {
+        let uri = String::from(uri);
+        Box_::pin(gio::GioFuture::new(self, move |obj, cancellable, send| {
+            obj.cookies(&uri, Some(cancellable), move |res| {
+                send.resolve(res);
+            });
+        }))
+    }
 
     #[cfg_attr(feature = "v2_16", deprecated = "Since 2.16")]
     #[allow(deprecated)]

@@ -78,6 +78,8 @@ edition = "2021"
 
 [package.metadata.docs.rs]
 features = []
+rustc-args = ["--cfg", "docsrs"]
+rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 
 [package.metadata.system-deps.webkit2gtk_4_1]
 name = "webkit2gtk-4.1"

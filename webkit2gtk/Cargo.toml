@@ -40,6 +40,7 @@ v2_32 = [ "v2_30", "ffi/v2_32" ]
 v2_34 = [ "v2_32", "ffi/v2_34" ]
 v2_36 = ["v2_34", "ffi/v2_36"]
 v2_38 = ["v2_36", "ffi/v2_38", "javascriptcore4-rs/v2_38" ]
+v2_40 = ["v2_38", "ffi/v2_40" ]
 
 [dependencies]
 bitflags = "^1.0"
@@ -50,5 +51,6 @@ gio = { version = "0.18" }
 cairo-rs = { version = "0.18" }
 gdk = { package = "gdk", version = "0.18" }
 gtk = { package = "gtk", version = "0.18" }
+soup = { package = "soup3", version = "0.5" }
 javascriptcore4-rs = { path = "../javascriptcore" }
 ffi = { package = "webkit2gtk4-sys", path = "sys" }
